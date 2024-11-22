@@ -1,0 +1,287 @@
+/*********************************/
+/* Main Workforce Turnover Styles */
+/*********************************/
+.workforceTurnOver {
+    display: flex;
+    justify-content: flex-start; /* Aligns content to the left */
+    padding: 1rem;
+    max-width: 100%;
+    margin: 0;
+}
+
+/* Chart container for Employee Turnover */
+.chart-container {
+    width: 60%; /* Adjust width for responsiveness */
+    max-width: 800px; /* Maximum width for large screens */
+}
+
+/* Card style for the chart */
+.chart-card {
+    background-color: #ffffff;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 1rem;
+    height: 100%;
+}
+
+/* Title for the chart */
+.chart-title {
+    color: #1f2937;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem; /* Centered title */
+}
+
+/* Chart area */
+#employee-turnover-chart {
+    width: 100%;
+    height: 300px;
+}
+
+/* Bar hover effect */
+.bar {
+    transition: opacity 0.3s; /* Smooth fade */
+}
+
+.bar:hover {
+    opacity: 0.8; /* Hover effect */
+}
+
+/* Tooltip styles */
+.tooltip {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 4px; /* Rounded edges */
+    color: #ffffff;
+    font-size: 12px;
+    padding: 8px;
+    position: absolute;
+    pointer-events: none; /* Prevent interaction */
+}
+
+/* Legend styles */
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center legend items */
+    margin-top: 1rem;
+}
+
+/* Legend item styles */
+.legend-item {
+    align-items: center;
+    display: flex;
+    margin: 0.5rem;
+}
+
+/* Color indicator */
+.legend-color {
+    border-radius: 50%; /* Circular */
+    height: 12px;
+    margin-right: 5px;
+    width: 12px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 840px) {
+    .workforceTurnOver {
+        justify-content: center; /* Center on smaller screens */
+    }
+
+    .chart-container {
+        width: 100%; /* Responsive */
+    }
+}
+
+/* Further adjustments for mobile */
+@media (max-width: 768px) {
+    .chart-card {
+        padding: 0.5rem; /* Less padding */
+    }
+
+    .chart-title {
+        font-size: 1rem; /* Smaller title */
+    }
+
+    #employee-turnover-chart {
+        height: 250px; /* Shorter chart */
+    }
+
+    .tooltip {
+        font-size: 10px; /* Smaller tooltip */
+        padding: 4px; /* Less padding */
+    }
+}
+
+/*********************************/
+/* Absenteeism Rate Chart Styles */
+/*********************************/
+.absenteeismRate .chart-container {
+    width: 100%; /* Full width */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Card style for Absenteeism Rate */
+.absenteeismRate .chart-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Title for Absenteeism Rate */
+.absenteeismRate .chart-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .absenteeismRate .chart-card {
+        padding: 15px; /* Less padding */
+    }
+
+    .absenteeismRate .chart-title {
+        font-size: 16px; /* Smaller title */
+    }
+
+    .absenteeismRate .legend-item {
+        font-size: 14px; /* Smaller legend text */
+    }
+}
+
+/* Legend for Absenteeism Rate */
+.absenteeismRate .legend {
+    margin-top: 10px;
+}
+
+/* Space out legend items */
+.absenteeismRate .legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+/* Tooltip styles for Absenteeism Rate */
+.absenteeismRate .tooltip {
+    position: absolute;
+    text-align: center;
+    padding: 8px;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 4px;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/*********************************/
+/* Department Distribution Chart Styles */
+/*********************************/
+.departmentDistribution {
+    display: flex;
+    justify-content: flex-start; /* Aligns content to the left */
+    padding: 1rem;
+    max-width: 50%;
+    margin: 0;
+}
+
+.department-distribution {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Title for Department Distribution */
+.department-distribution-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center; /* Centered title */
+}
+
+/* Responsive adjustments for Department Distribution */
+@media (max-width: 768px) {
+    .department-distribution {
+        width: 250%; /* Full width on mobile */
+    }
+
+    .department-distribution-title {
+        font-size: 16px; /* Smaller title */
+    }
+}
+
+/* Interactive hover effects for pie slices */
+.pie-slice:hover {
+    opacity: 0.8; /* Change opacity on hover */
+}
+
+/* Tooltip styling for Department Distribution */
+.tooltip {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 4px;
+    position: absolute;
+    pointer-events: none; /* Prevent interaction */
+}
+
+
+canvas {
+    height: 400px; /* Set height according to your needs */
+}
+
+/* text color */
+.man-color {
+    color: #5969ff !important;
+}
+.woman-color {
+    color: #ff407b !important;
+}
+.turnover-color {
+    color: #25d5f2 !important;
+}
+
+.text-brand {
+    color: #ffc750 !important;
+}
+
+
+.text-success {
+    color: #2ec551 !important;
+}
+
+.text-danger {
+    color: #ef172c !important;
+}
+
+.text-warning {
+    bcolor: #ffc108 !important;
+}
+
+
+.text-light {
+    color: #f0f0f8 !important;
+}
+
+.text-dark {
+    color: #3d405c !important;
+}
+
+.text-gray {
+    color: #868aa5 !important;
+}
+
+.text-muted {
+    color: #7171a6 !important;
+}
+
+.rating-color {
+    color: #ffa811;
+}

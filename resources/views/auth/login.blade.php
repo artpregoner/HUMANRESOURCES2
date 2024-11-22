@@ -11,6 +11,8 @@
     <link href="../template/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
     <link rel="stylesheet" href="../template/assets/libs/css/style.css">
     <link rel="stylesheet" href="../template/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <link rel="icon" href="https://hr2.fareastcafeshop.com/template/images/storelogo.png" type="image/x-icon">
+
     <style>
     html,
     body {

@@ -1252,7 +1252,7 @@ Top Header
     color: #007bff;
 }
 .navbar-brand:hover{
-    color: #007bff;
+    color: #2a2f5a;
 }
 .navbar-right-top {}
 
@@ -1377,7 +1377,7 @@ Top Header
     padding: 10px 0px;
     line-height: 1.5;
     font-weight: 700;
-    background-color: #5969ff;
+    background-color: #2a2f5a;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
 }
@@ -1423,6 +1423,42 @@ Top Header
         transform: scale(0.9);
     }
 }
+@media (max-width: 767px) {
+    .indicator {
+        top: 12px; /* Adjust top position */
+        left: 30px; /* Adjust right position */
+        width: 7px; /* Smaller size for mobile */
+        height: 7px; /* Smaller size for mobile */
+    }
+}
+
+/* Dropdown Icon Styles */
+.topnav-dropdown {
+    display: none;
+}
+
+/* Mobile View Adjustments (max-width: 767px) */
+@media (max-width: 767px) {
+    .topnav-dropdown {
+        display: inline-block; /* Show the dropdown icon only on mobile */
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        transform-origin: center;
+        padding: 5px; /* Space around the icon */
+        cursor: pointer; /* Make it clickable */
+    }
+
+    .topnav-dropdown i {
+        font-size: 18px;  /* Adjust icon size */
+        color: #fff;  /* Icon color */
+    }
+}
+/* Dapat ilagay to sa topbar para may naka indicate na dropdown */
+/* <span>
+    <i class="topnav-dropdown m-r-10 mdi mdi-arrow-down-drop-circle"></i>
+</span> */
+
 
 
 /* ------  Connection --------  */
@@ -1477,7 +1513,7 @@ Top Header
 .nav-user-name {}
 
 .nav-user-info {
-    background-color: #5969ff;
+    background-color: #2a2f5a;
     line-height: 1.4;
     padding: 12px;
     color: #fff;
@@ -3241,6 +3277,21 @@ btn-link
 }
 
 .card-link {}
+/*dapat yung class na card ipasok sa loob ng <a href="fdf.com" class="card-link"></a>*/
+.card-link {
+    display: block; 
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Added transition for background color */
+}
+
+.card-link:hover .card {
+    transform: translateX(10px) translateY(10px) rotate(5deg); /* Move and rotate card */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Add shadow for more 3D effect */
+    cursor: pointer; /* Change the cursor to indicate interactivity */
+    background-color: #9c9c9c; /* Light color change on hover */
+    color: #333333; /* Change text color on hover */
+
+}
 
 .toolbar {
     font-size: 18px;
@@ -6986,3 +7037,273 @@ Media Query
 
 /* Custom, iPhone Retina */
 @media only screen and (max-width:320px) {}
+
+/* Updated Buttons */
+
+/*--- btn code1 --*/
+
+.btn-code1 {
+    color: #fff;
+    background-color: #ff407b;
+    border-color: #ff407b;
+}
+
+.btn-code1:hover {
+    color: #fff;
+    background-color: #f0346e;
+    border-color: #f0346e;
+}
+
+.btn-code1.focus,
+.btn-code1:focus {
+    color: #fff;
+    background-color: #f0346e;
+    border-color: #f0346e;
+    box-shadow: 0 0 0 1px rgb(222, 17, 80);
+}
+
+.btn-code1:not(:disabled):not(.disabled).active,
+.btn-code:not(:disabled):not(.disabled):active,
+.show>.btn-secondary.dropdown-toggle {
+    color: #fff;
+    background-color: #f0346e;
+    border-color: #f0346e;
+}
+/*--- btn code2 --*/
+.btn-code2 {
+    color: #fff;
+    background-color: #4caf50; /* Green */
+    border-color: #4caf50;
+}
+
+.btn-code2:hover {
+    color: #fff;
+    background-color: #43a047;
+    border-color: #43a047;
+}
+
+.btn-code2.focus,
+.btn-code2:focus {
+    color: #fff;
+    background-color: #43a047;
+    border-color: #43a047;
+    box-shadow: 0 0 0 1px rgba(67, 160, 71, 0.5);
+}
+
+.btn-code2:not(:disabled):not(.disabled).active,
+.btn-code2:not(:disabled):not(.disabled):active,
+.show>.btn-code2.dropdown-toggle {
+    color: #fff;
+    background-color: #388e3c;
+    border-color: #388e3c;
+}
+
+/*--- btn code3 --*/
+.btn-code3 {
+    color: #fff;
+    background-color: #03a9f4; /* Light Blue */
+    border-color: #03a9f4;
+}
+
+.btn-code3:hover {
+    color: #fff;
+    background-color: #039be5;
+    border-color: #039be5;
+}
+
+.btn-code3.focus,
+.btn-code3:focus {
+    color: #fff;
+    background-color: #039be5;
+    border-color: #039be5;
+    box-shadow: 0 0 0 1px rgba(3, 155, 229, 0.5);
+}
+
+.btn-code3:not(:disabled):not(.disabled).active,
+.btn-code3:not(:disabled):not(.disabled):active,
+.show>.btn-code3.dropdown-toggle {
+    color: #fff;
+    background-color: #0288d1;
+    border-color: #0288d1;
+}
+
+/*--- btn code4 --*/
+.btn-code4 {
+    color: #fff;
+    background-color: #9c27b0; /* Purple */
+    border-color: #9c27b0;
+}
+
+.btn-code4:hover {
+    color: #fff;
+    background-color: #8e24aa;
+    border-color: #8e24aa;
+}
+
+.btn-code4.focus,
+.btn-code4:focus {
+    color: #fff;
+    background-color: #8e24aa;
+    border-color: #8e24aa;
+    box-shadow: 0 0 0 1px rgba(142, 36, 170, 0.5);
+}
+
+.btn-code4:not(:disabled):not(.disabled).active,
+.btn-code4:not(:disabled):not(.disabled):active,
+.show>.btn-code4.dropdown-toggle {
+    color: #fff;
+    background-color: #7b1fa2;
+    border-color: #7b1fa2;
+}
+
+/*--- btn code5 --*/
+.btn-code5 {
+    color: #fff;
+    background-color: #ff9800; /* Orange */
+    border-color: #ff9800;
+}
+
+.btn-code5:hover {
+    color: #fff;
+    background-color: #fb8c00;
+    border-color: #fb8c00;
+}
+
+.btn-code5.focus,
+.btn-code5:focus {
+    color: #fff;
+    background-color: #fb8c00;
+    border-color: #fb8c00;
+    box-shadow: 0 0 0 1px rgba(251, 140, 0, 0.5);
+}
+
+.btn-code5:not(:disabled):not(.disabled).active,
+.btn-code5:not(:disabled):not(.disabled):active,
+.show>.btn-code5.dropdown-toggle {
+    color: #fff;
+    background-color: #f57c00;
+    border-color: #f57c00;
+}
+
+/*--- btn code6 --*/
+.btn-code6 {
+    color: #fff;
+    background-color: #e91e63; /* Pink */
+    border-color: #e91e63;
+}
+
+.btn-code6:hover {
+    color: #fff;
+    background-color: #d81b60;
+    border-color: #d81b60;
+}
+
+.btn-code6.focus,
+.btn-code6:focus {
+    color: #fff;
+    background-color: #d81b60;
+    border-color: #d81b60;
+    box-shadow: 0 0 0 1px rgba(216, 27, 96, 0.5);
+}
+
+.btn-code6:not(:disabled):not(.disabled).active,
+.btn-code6:not(:disabled):not(.disabled):active,
+.show>.btn-code6.dropdown-toggle {
+    color: #fff;
+    background-color: #c2185b;
+    border-color: #c2185b;
+}
+
+/*--- btn code7 --*/
+.btn-code7 {
+    color: #fff;
+    background-color: #ff5722; /* Deep Orange */
+    border-color: #ff5722;
+}
+
+.btn-code7:hover {
+    color: #fff;
+    background-color: #f4511e;
+    border-color: #f4511e;
+}
+
+.btn-code7.focus,
+.btn-code7:focus {
+    color: #fff;
+    background-color: #f4511e;
+    border-color: #f4511e;
+    box-shadow: 0 0 0 1px rgba(244, 81, 30, 0.5);
+}
+
+.btn-code7:not(:disabled):not(.disabled).active,
+.btn-code7:not(:disabled):not(.disabled):active,
+.show>.btn-code7.dropdown-toggle {
+    color: #fff;
+    background-color: #e64a19;
+    border-color: #e64a19;
+}
+
+/*--- btn code8 --*/
+.btn-code8 {
+    color: #fff;
+    background-color: #607d8b; /* Blue Grey */
+    border-color: #607d8b;
+}
+
+.btn-code8:hover {
+    color: #fff;
+    background-color: #546e7a;
+    border-color: #546e7a;
+}
+
+.btn-code8.focus,
+.btn-code8:focus {
+    color: #fff;
+    background-color: #546e7a;
+    border-color: #546e7a;
+    box-shadow: 0 0 0 1px rgba(84, 110, 122, 0.5);
+}
+
+.btn-code8:not(:disabled):not(.disabled).active,
+.btn-code8:not(:disabled):not(.disabled):active,
+.show>.btn-code8.dropdown-toggle {
+    color: #fff;
+    background-color: #455a64;
+    border-color: #455a64;
+}
+
+/*--- btn code9 --*/
+.btn-code9 {
+    color: #fff;
+    background-color: #3f51b5; /* Indigo */
+    border-color: #3f51b5;
+}
+
+.btn-code9:hover {
+    color: #fff;
+    background-color: #3949ab;
+    border-color: #3949ab;
+}
+
+.btn-code9.focus,
+.btn-code9:focus {
+    color: #fff;
+    background-color: #3949ab;
+    border-color: #3949ab;
+    box-shadow: 0 0 0 1px rgba(57, 73, 171, 0.5);
+}
+
+.btn-code9:not(:disabled):not(.disabled).active,
+.btn-code9:not(:disabled):not(.disabled):active,
+.show>.btn-code9.dropdown-toggle {
+    color: #fff;
+    background-color: #303f9f;
+    border-color: #303f9f;
+}
+
+
+
+
+
+
+

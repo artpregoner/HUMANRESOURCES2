@@ -28,19 +28,12 @@
 
 <body>
     <div class="dashboard-main-wrapper">
-        @include('layouts.admin-layouts.topbar') <!-- Topbar included here / this is for admin -->
+        {{-- @include('layouts.admin-layouts.topbar') <!-- Topbar included here / this is for admin -->
         @include('layouts.admin-layouts.sidebar') <!-- Sidebar included here / this is for admin -->
         @include('layouts.manager-layouts.topbar') <!-- Topbar included here / this is for manager -->
-        @include('layouts.manager-layouts.sidebar') <!-- Sidebar included here / this is for manager -->
-        @include('layouts.employee-layouts.topbar') <!-- Topbar included here / this is for employee -->
-        @include('layouts.employee-layouts.sidebar') <!-- Sidebar included here / this is for employee -->
-    {{-- @if(View::exists("layouts.{$role}-layouts.topbar"))
-        @include("layouts.{$role}-layouts.topbar") <!-- Dynamic topbar based on role -->
-    @endif
-
-    @if(View::exists("layouts.{$role}-layouts.sidebar"))
-        @include("layouts.{$role}-layouts.sidebar") <!-- Dynamic sidebar based on role -->
-    @endif --}}
+        @include('layouts.manager-layouts.sidebar') <!-- Sidebar included here / this is for manager --> --}}
+        @include('layouts.portal-layouts.topbar') <!-- Topbar included here / this is for employee -->
+        @include('layouts.portal-layouts.sidebar') <!-- Sidebar included here / this is for employee -->
         <div class="dashboard-wrapper">
             <div class="dashboard-ecommerce">
                 <div class="container-fluid dashboard-content ">

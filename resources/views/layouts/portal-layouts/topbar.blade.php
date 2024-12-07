@@ -16,7 +16,7 @@
                     <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span>
                         <span class="topnav-dropdown m-r-10 mdi mdi-arrow-down-drop-circle"></span>
                     </a>
-                    @include('layouts.portal-layouts.components.notification')
+                    @include('layouts.portal-layouts.partials.notification')
                 </li>
                 <li class="nav-item dropdown nav-user">
                     <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('template/assets/images/user1.png') }}" alt="" class="user-avatar-md rounded-circle">

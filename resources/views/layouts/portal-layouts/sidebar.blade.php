@@ -7,12 +7,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav flex-column">
-                    <li class="nav-divider">PORTAL</li> <!-- Title --> 
+                    <li class="nav-divider">PORTAL</li> <!-- Title -->
                     <!-- ============================================================== -->
-                    <!-- Dashboard --> 
+                    <!-- Dashboard -->
                     <!-- ============================================================== -->
                     <li class="nav-item ">
-                        <a class="nav-link {{ request()->is('portal') ? 'active' : '' }}" href="{{url('portal')}}" aria-expanded="false"><i class="fa fa-fw fas fa-home"></i>Home </a>
+                        <a class="nav-link {{ request()->is('portal') ? 'active' : '' }}" href="{{ route('home')}}" aria-expanded="false"><i class="fa fa-fw fas fa-home"></i>Home </a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link {{ request()->is('portal/employee/profile') ? 'active' : '' }}" href="{{url('portal/employee/profile')}}" aria-expanded="false"><i class="fa fa-fw fas fa-user"></i>My Profile </a>
@@ -20,7 +20,7 @@
                     <!-- ============================================================== -->
                     <!-- Employee Self-service -->
                     <!-- ============================================================== -->
-                    <li class="nav-divider">SELF-SERVICE</li> <!-- Title --> 
+                    <li class="nav-divider">SELF-SERVICE</li> <!-- Title -->
                     <li class="nav-item ">
                         <a class="nav-link {{ request()->is('portal/schedule') ? 'active' : '' }}" href="{{url('portal/schedule')}}" aria-expanded="false"><i class="fa fa-fw fas fa-calendar-alt"></i>Schedule </a>
                     </li>
@@ -39,7 +39,7 @@
                         </div>
                     </li>
                     <!-- ============================================================== -->
-                    <!-- Claims & Reimbursement --> 
+                    <!-- Claims & Reimbursement -->
                     <!-- ============================================================== -->
                     <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
                     <li class="nav-divider">Claims</li>

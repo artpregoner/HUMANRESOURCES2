@@ -52,11 +52,8 @@
                     <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
                     <li class="nav-divider">Helpdesk</li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('portal/helpdesk/list') ? 'active' : '' }}" href="{{url('portal/helpdesk/list')}}" aria-expanded="false"><i class="fas fa-fw  fa-envelope"></i>Tickets</a>
+                        <a class="nav-link {{ request()->is('portal/helpdesk/*') ? 'active' : '' }}" href="{{ route('read')}}" aria-expanded="false"><i class="fas fa-fw  fa-envelope"></i>Tickets</a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="{{url('helpdesk/ticket-inbox')}}" aria-expanded="false"><i class="fas fa-inbox"></i>Inbox <span class="badge badge-secondary">New</span></a>
-                    </li> --}}
                 </ul>
             </div>
         </nav>

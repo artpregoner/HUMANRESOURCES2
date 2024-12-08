@@ -1761,7 +1761,7 @@ Left Navigation Sidebar
     padding-left: 12px;
     padding-right: 12px;
     /* margin-top: 5px; */
-    
+
 }
 
 .nav-left-sidebar .submenu .nav .nav-item .nav-link {
@@ -3279,7 +3279,7 @@ btn-link
 .card-link {}
 /*dapat yung class na card ipasok sa loob ng <a href="fdf.com" class="card-link"></a>*/
 .card-link {
-    display: block; 
+    display: block;
     text-decoration: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Added transition for background color */
 }
@@ -6011,8 +6011,19 @@ Vertical Timeline - by CodyHouse.co
     font-size: 1rem;
     color: #3d405c;
     margin-left: 3px;
+    display: inline-block; /* Ensure it's inline initially */
 }
+@media only screen and (max-width: 320px) {
+    .email-title {
+        text-align: center; /* Optional: Align text to the center for better readability */
+    }
 
+    .email-title .new-messages {
+        display: block; /* Move it to a new line */
+        margin-left: 0; /* Reset margin for centered alignment */
+        margin-top: 5px; /* Add some spacing */
+    }
+}
 .input-search .input-group-btn {
     position: absolute;
     display: block;

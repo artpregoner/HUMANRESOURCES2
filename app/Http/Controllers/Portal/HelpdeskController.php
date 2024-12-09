@@ -16,4 +16,7 @@ class HelpdeskController extends Controller
     public function update(){
         return view('portal.helpdesk.update');
     }
+    public function responseHelpdesk(){
+        return view('portal.helpdesk.response');
+    }
 }

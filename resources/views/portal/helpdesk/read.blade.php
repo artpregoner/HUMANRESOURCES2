@@ -59,7 +59,7 @@
                                                     <i class="far fa-trash-alt"></i>
                                                 </button>
                                             </form>
-                                            <a href="{{ url('portal.helpdesk.response') }}" class="btn btn-sm btn-outline-light tooltip-container"><i class="far fas fa-reply"></i><span class="tooltip-text">reponse</span></a>
+                                            <a href="{{ route('portal.helpdesk.response') }}" class="btn btn-sm btn-outline-light tooltip-container"><i class="far fas fa-reply"></i><span class="tooltip-text">reponse</span></a>
                                             {{-- <a href="{{ url('user.helpdesk.show', $ticket->id) }}" class="btn btn-sm btn-outline-light">Reply</a> --}}
                                         </div>
                                     </td>

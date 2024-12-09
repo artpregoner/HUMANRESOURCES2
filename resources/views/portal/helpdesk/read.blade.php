@@ -16,7 +16,7 @@
                 <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                     <div class="email-title"><span class="icon"><i class="fas fa-inbox"></i></span> My tickets <span class="new-messages">0 all tickets</span> </div>
                     {{-- <div class="email-title"><span class="icon"><i class="fas fa-inbox"></i></span> My tickets <span class="new-messages">({{ $totalTickets }} all tickets)</span> </div> --}}
-                    <button type="button" class="btn btn-space btn-primary" onclick="window.location.href='{{ route('create') }}'">new ticket</button>
+                    <button type="button" class="btn btn-space btn-primary" onclick="window.location.href='{{ route('helpdesk.create') }}'">new ticket</button>
                     {{-- <button type="button" class="btn btn-space btn-primary" onclick="window.location.href='{{ route('helpdesk.create') }}'">Submit new Ticket</button> --}}
                 </div>
                 <div class="card-body">
@@ -50,7 +50,7 @@
                                     <td></td>
                                     <td>
                                         <div class="btn-group ml-auto">
-                                            <a href="{{ url('helpdesk.edit') }}" class="btn btn-sm btn-outline-light">Edit</a>
+                                            <a href="{{ route('helpdesk.update') }}" class="btn btn-sm btn-outline-light">Edit</a>
                                             {{-- <a href="{{ route('helpdesk.edit', $ticket->id) }}" class="btn btn-sm btn-outline-light">Edit</a> --}}
                                             <form action="{{ url('helpdesk.destroy') }}" method="POST" >
                                                 @csrf

@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 
 class HelpdeskController extends Controller
 {
+    public function create(){
+        return view('portal.helpdesk.create');
+    }
     public function read(){
         return view('portal.helpdesk.read');
     }
-    public function create(){
-        return view('portal.helpdesk.create');
+    public function update(){
+        return view('portal.helpdesk.update');
     }
 }

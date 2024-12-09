@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title','Helpdesk - Create Ticket')
-@section('header','Helpdesk')<!--pageheader-->
-@section('active-header', 'Submit new Ticket')<!--active pageheader-->
+@section('title', 'Helpdesk - Update Ticket')
+@section('header', 'Helpdesk')<!--pageheader-->
+@section('active-header', 'Edit ticket') <!--active pageheader-->
 
 @section('content')
     <div class="row">

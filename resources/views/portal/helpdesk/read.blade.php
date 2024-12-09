@@ -50,16 +50,16 @@
                                     <td></td>
                                     <td>
                                         <div class="btn-group ml-auto">
-                                            <a href="{{ route('helpdesk.update') }}" class="btn btn-sm btn-outline-light">Edit</a>
+                                            <a href="{{ route('helpdesk.update') }}" class="btn btn-sm btn-outline-light tooltip-container"><span class="tooltip-text">update this ticket</span>Edit</a>
                                             {{-- <a href="{{ route('helpdesk.edit', $ticket->id) }}" class="btn btn-sm btn-outline-light">Edit</a> --}}
                                             <form action="{{ url('helpdesk.destroy') }}" method="POST" >
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-outline-light" onclick="return confirm('Are you sure you want to delete this ticket?');">
+                                                <button type="submit" class="btn btn-sm btn-outline-light tooltip-container" onclick="return confirm('Are you sure you want to delete this ticket?');"><span class="tooltip-text">delete this ticket</span>
                                                     <i class="far fa-trash-alt"></i>
                                                 </button>
                                             </form>
-                                            <a href="{{ url('user.helpdesk.show') }}" class="btn btn-sm btn-outline-light">Reply</a>
+                                            <a href="{{ url('portal.helpdesk.response') }}" class="btn btn-sm btn-outline-light tooltip-container"><i class="far fas fa-reply"></i><span class="tooltip-text">reponse</span></a>
                                             {{-- <a href="{{ url('user.helpdesk.show', $ticket->id) }}" class="btn btn-sm btn-outline-light">Reply</a> --}}
                                         </div>
                                     </td>

@@ -1,17 +1,18 @@
 <!doctype html>
 <html lang="en">
- 
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Login - HR 2</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../template/assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link href="../template/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="../template/assets/libs/css/style.css">
-    <link rel="stylesheet" href="../template/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
-    <link rel="icon" href="https://hr2.fareastcafeshop.com/template/images/storelogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('template/assets/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link href="{{ asset('template/assets/vendor/fonts/circular-std/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('template/assets/libs/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/assets/vendor/fonts/fontawesome/css/fontawesome-all.css') }}">
+    <link rel="icon" href="{{ asset('template/images/storelogo.png') }}" type="image/x-icon">
 
     <style>
     html,
@@ -37,7 +38,7 @@
 
     .splash-container .card-header {
         padding: 10px;
-    
+
     }
 
     .splash-description {
@@ -46,7 +47,7 @@
         line-height: 20px;
         font-size: 1rem;
         margin-top: 20px;
-        
+
     }
 
     .splash-title {
@@ -81,6 +82,9 @@
                     </div>
                     <div class="form-group">
                     </div>
+                    <button type="button" onclick="window.location.href='{{ route('home')}}'" class="btn btn-primary btn-lg btn-block" style="background-color: #b49a86; border: 2px solid #463426;">Portal</button>
+                    <button type="button" onclick="window.location.href='{{ url('') }}'" class="btn btn-primary btn-lg btn-block" style="background-color: #b86627; border: 2px solid #463426;">Manager</button>
+                    <button type="button" onclick="window.location.href='{{ url('') }}'" class="btn btn-primary btn-lg btn-block" style="background-color: #1a1c8a; border: 2px solid #463426;">Admin</button>
                     <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #463426; border: 2px solid #463426;">Sign in</button>
                 </form>
             </div>
@@ -93,12 +97,12 @@
     <script>
         const togglePassword = document.querySelector('#togglePassword');
         const passwordField = document.querySelector('#yourPassword');
-    
+
         togglePassword.addEventListener('click', function () {
             // Toggle the type attribute
             const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordField.setAttribute('type', type);
-            
+
             // Toggle the eye icon
             this.querySelector('i').classList.toggle('fa-eye-slash');
         });

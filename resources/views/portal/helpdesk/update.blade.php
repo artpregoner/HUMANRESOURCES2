@@ -9,7 +9,7 @@
             <div class="card">
                 <h5 class="card-header">Submit new Ticket</h5>
                 <div class="card-body">
-                    <form action="{{ url('helpdesk.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('portal.helpdesk.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="subject" class="col-form-label">Subject</label>
@@ -76,7 +76,7 @@
                         <div class="form-group row text-right">
                             <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0 ml-auto">
                                 <button type="submit" class="btn btn-space btn-primary">Submit</button>
-                                <a href="{{ route('helpdesk.read')}}" class="btn btn-space btn-secondary">Cancel</a>
+                                <a href="{{ route('portal.helpdesk.read')}}" class="btn btn-space btn-secondary">Cancel</a>
                             </div>
                         </div>
                     </form>

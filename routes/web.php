@@ -8,3 +8,4 @@ require __DIR__ . '/auth.php';
 // employee portal
 require __DIR__ . '/portal/dashboard.php';
 require __DIR__ . '/portal/helpdesk.php';
+require __DIR__ . '/portal/claims.php';

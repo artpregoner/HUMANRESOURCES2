@@ -44,7 +44,7 @@
                     <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
                     <li class="nav-divider">Claims</li>
                     <li class="nav-item ">
-                        <a class="nav-link {{ request()->is('portal/expense/list/requests') ? 'active' : '' }}" href="{{url('portal/expense/list/requests')}}" aria-expanded="false"><i class="fas fa-dollar-sign"></i>Expenses<span class="badge badge-success">6</span></a>
+                        <a class="nav-link {{ request()->is('portal/claims/*') ? 'active' : '' }}" href="{{ route('portal.claims.read')}}" aria-expanded="false"><i class="fas fa-dollar-sign"></i>Expenses<span class="badge badge-success">6</span></a>
                     </li>
                     <!-- ============================================================== -->
                     <!-- Helpdesk -->

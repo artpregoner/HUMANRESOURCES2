@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
- 
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <link rel="stylesheet" href="{{ asset('asset/libs/css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('template/assets/vendor/charts/chartist-bundle/chartist.css') }}">
@@ -21,6 +21,12 @@
     <link href="{{ asset('template/assets/vendor/full-calendar/css/fullcalendar.print.css') }}" rel='stylesheet' media='print' />
     <link href="{{ asset('template/assets/vendor/full-calendar/css/fullcalendar.css') }}" rel='stylesheet' />
     <link rel="icon" href="{{ asset('template/images/storelogo.png') }}" type="image/x-icon">
+    <!-- TAble CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/datatables/css/dataTables.bootstrap4.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/datatables/css/buttons.bootstrap4.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/datatables/css/select.bootstrap4.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/datatables/css/fixedHeader.bootstrap4.css') }}">
+    @stack('styles')
     @yield('styles')
 
     <title>@yield('title')</title>
@@ -75,8 +81,18 @@
     <script src="{{ asset('template/assets/vendor/full-calendar/js/calendar.js') }}"></script>
 
     <script src="{{ asset('asset/libs/js/javascript.js') }}"></script>
+    <script src="{{ asset('template/assets/vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
+    <script src="{{ asset('template/assets/vendor/slimscroll/jquery.slimscroll.js') }}"></script>
+    <script src="{{ asset('template/assets/vendor/multi-select/js/jquery.multi-select.js') }}"></script>
+    <script src="{{ asset('template/assets/libs/js/main-js.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('template/assets/vendor/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="{{ asset('template/assets/vendor/datatables/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('template/assets/vendor/datatables/js/data-table.js') }}"></script>
     @yield('scripts')
+    @stack('scripts')
 
 </body>
- 
+
 </html>

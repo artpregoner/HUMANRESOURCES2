@@ -85,7 +85,7 @@
         </div>
     </div>
 @endsection
-@section('scripts')
+@push('scripts')
 <script>
     document.getElementById('department').addEventListener('change', function() {
         // Kunin ang napiling department
@@ -109,4 +109,4 @@
         document.getElementById('category').value = ""; // I-reset ang category
     });
 </script>
-@endsection
+@endpush

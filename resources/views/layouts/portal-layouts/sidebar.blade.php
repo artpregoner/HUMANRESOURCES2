@@ -15,7 +15,7 @@
                         <a class="nav-link {{ request()->is('portal') ? 'active' : '' }}" href="{{ route('home')}}" aria-expanded="false"><i class="fa fa-fw fas fa-home"></i>Home </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link {{ request()->is('portal/employee/profile') ? 'active' : '' }}" href="{{url('portal/employee/profile')}}" aria-expanded="false"><i class="fa fa-fw fas fa-user"></i>My Profile </a>
+                        <a class="nav-link {{ request()->is('portal/myprofile') ? 'active' : '' }}" href="{{ route('portal.myprofile')}}" aria-expanded="false"><i class="fa fa-fw fas fa-user"></i>My Profile </a>
                     </li>
                     <!-- ============================================================== -->
                     <!-- Employee Self-service -->

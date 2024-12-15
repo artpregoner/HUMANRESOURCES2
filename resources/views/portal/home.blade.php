@@ -2,7 +2,6 @@
 @section('title','Home')
 @section('header','Portal')<!--pageheader-->
 @section('active-header', 'Home')
-@section('content')
 
 @section('content')
 <div class="influence-profile">

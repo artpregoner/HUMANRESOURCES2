@@ -8,7 +8,7 @@ D = no context
 ## Employee Portal routes
 Portal
 - /portal
-- portal/employee/profile
+- portal/myprofile
 
 Self-service
 

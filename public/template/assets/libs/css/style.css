@@ -901,6 +901,10 @@ Background Color / Color
     background-color: #2e2f39 !important;
 }
 
+.bg-lightdark {
+    background-color: #88888d !important;
+}
+
 .bg-primary-light {
     background-color: #dbdeff !important;
     color: #fff !important;

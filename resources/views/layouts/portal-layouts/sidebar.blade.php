@@ -12,28 +12,43 @@
                     <!-- Dashboard -->
                     <!-- ============================================================== -->
                     <li class="nav-item ">
-                        <a class="nav-link {{ request()->is('portal') ? 'active' : '' }}" href="{{ route('home')}}" aria-expanded="false"><i class="fa fa-fw fas fa-home"></i>Home </a>
+                        <a class="nav-link {{ request()->is('portal') ? 'active' : '' }}" href="{{ route('home')}}" aria-expanded="false">
+                            <i class="fa fa-fw fas fa-home"></i>
+                            Home
+                        </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link {{ request()->is('portal/myprofile') ? 'active' : '' }}" href="{{ route('portal.myprofile')}}" aria-expanded="false"><i class="fa fa-fw fas fa-user"></i>My Profile </a>
+                        <a class="nav-link {{ request()->is('portal/myprofile') ? 'active' : '' }}" href="{{ route('portal.myprofile')}}" aria-expanded="false">
+                            <i class="fa fa-fw fas fa-user"></i>
+                            My Profile
+                        </a>
                     </li>
                     <!-- ============================================================== -->
                     <!-- Employee Self-service -->
                     <!-- ============================================================== -->
                     <li class="nav-divider">SELF-SERVICE</li> <!-- Title -->
-                    <li class="nav-item ">
-                        <a class="nav-link {{ request()->is('portal/schedule') ? 'active' : '' }}" href="{{url('portal/schedule')}}" aria-expanded="false"><i class="fa fa-fw fas fa-calendar-alt"></i>Schedule </a>
+                    <li class="nav-item "><!-- Payslip -->
+                        <a class="nav-link {{ request()->is('portal/self-service/payslip*') ? 'active' : '' }}" href="{{ route('portal.ess.read')}}" aria-expanded="false">
+                            <i class="fa fa-fw fas fa-print"></i>
+                            Payslip
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('portal/leave/list*') ? 'active' : '' }}" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2">
-                            <i class="far fas fa-plane"></i>Time Off & Leave </a>
-                        <div id="submenu-2" class="collapse submenu {{ request()->is('portal/leave/list*') ? 'show' : '' }}">
+                    <li class="nav-item"><!-- Time off and Leave -->
+                        <a class="nav-link {{ request()->is('portal/self-service/leave/*') ? 'active' : '' }}" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2">
+                            <i class="far fas fa-plane"></i>
+                            Time Off & Leave
+                        </a>
+                        <div id="submenu-2" class="collapse submenu {{ request()->is('portal/self-service/leave/*') ? 'show' : '' }}">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('portal/leave/list/requests') ? 'active' : '' }}" href="{{ url('portal/leave/list/requests') }}">Request</a>
+                                    <a class="nav-link {{ request()->is('portal/self-service/leave') ? 'active' : '' }}" href="{{ url('portal/self-service/leave/list/requests') }}">
+                                        Request
+                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('portal/leave/list/history') ? 'active' : '' }}" href="{{ url('portal/leave/list/history') }}">History</a>
+                                    <a class="nav-link {{ request()->is('portal/self-service/leave') ? 'active' : '' }}" href="{{ url('portal/self-service/leave/list/history') }}">
+                                        History
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -42,17 +57,23 @@
                     <!-- Claims & Reimbursement -->
                     <!-- ============================================================== -->
                     <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
-                    <li class="nav-divider">Claims</li>
-                    <li class="nav-item ">
-                        <a class="nav-link {{ request()->is('portal/claims/*') ? 'active' : '' }}" href="{{ route('portal.claims.read')}}" aria-expanded="false"><i class="fas fa-dollar-sign"></i>Expenses<span class="badge badge-success">6</span></a>
+                    <li class="nav-divider">Claims</li> <!-- Title -->
+                    <li class="nav-item "><!-- Claims -->
+                        <a class="nav-link {{ request()->is('portal/claims/*') ? 'active' : '' }}" href="{{ route('portal.claims.read')}}" aria-expanded="false">
+                            <i class="fas fa-dollar-sign"></i>
+                            Expenses
+                        </a>
                     </li>
                     <!-- ============================================================== -->
                     <!-- Helpdesk -->
                     <!-- ============================================================== -->
                     <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
-                    <li class="nav-divider">Helpdesk</li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('portal/helpdesk/*') ? 'active' : '' }}" href="{{ route('portal.helpdesk.read')}}" aria-expanded="false"><i class="fas fa-fw  fa-envelope"></i>Tickets</a>
+                    <li class="nav-divider">Helpdesk</li><!-- Title -->
+                    <li class="nav-item"><!-- helpdesk -->
+                        <a class="nav-link {{ request()->is('portal/helpdesk/*') ? 'active' : '' }}" href="{{ route('portal.helpdesk.read')}}" aria-expanded="false">
+                            <i class="fas fa-fw  fa-envelope"></i>
+                            Tickets
+                        </a>
                     </li>
                 </ul>
             </div>

@@ -12,8 +12,10 @@ Portal
 
 Self-service
 
-- portal/leave/list/requests
-- portal/leave/list/history
+- portal/self-service/payslip
+- portal/self-service/leave/list/requests
+- portal/self-service/leave/list/history
+
 
 Claims
 

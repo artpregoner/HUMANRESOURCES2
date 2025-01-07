@@ -83,7 +83,7 @@
                     <div class="form-group">
                     </div>
                     <button type="button" onclick="window.location.href='{{ route('home')}}'" class="btn btn-primary btn-lg btn-block" style="background-color: #b49a86; border: 2px solid #463426;">Portal</button>
-                    <button type="button" onclick="window.location.href='{{ url('') }}'" class="btn btn-primary btn-lg btn-block" style="background-color: #1a1c8a; border: 2px solid #463426;">Admin</button>
+                    <button type="button" onclick="window.location.href='{{ url('') }}'" class="btn btn-primary btn-lg btn-block" style="background-color: #1a1c8a; border: 2px solid #463426;">HR2</button>
                     <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #463426; border: 2px solid #463426;">Sign in</button>
                 </form>
             </div>

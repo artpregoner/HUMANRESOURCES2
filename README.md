@@ -1,8 +1,12 @@
 ## CRUD
-C = create new, add new, etc.
-R = list of things you create; view of everything you've created
-U = updating the content you've created
-D = no context
+used for filename 
+C = Show a form to create a new resource.
+R = Display a specific resource. list of things you create; view of everything you've created
+U = Show a form to edit an existing resource.
+D = Delete a specific resource from the database.
+## CRUD 
+used for controller
+- php artisan make:controller UserController --resource
 
 ## PORTAL
 ESS portal

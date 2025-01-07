@@ -1,17 +1,17 @@
-## CRUD
-used for filename 
-C = Show a form to create a new resource.
-R = Display a specific resource. list of things you create; view of everything you've created
-U = Show a form to edit an existing resource.
-D = Delete a specific resource from the database.
-## CRUD 
+## LIST of PORTAL
+- ESS portal    | DashboardController
+- HR2 portal    | DashboardController
+- Admin portal  | DashboardController
+
+## CRU Create, Read, Update
+used for filename
+- ├── index.blade.php    # List of tickets
+- ├── create.blade.php   # Form to create a new ticket
+- ├── show.blade.php     # View details of a specific ticket
+- ├── edit.blade.php     # Form to edit a ticket
+## CRUD in CONTROLLER
 used for controller
 - php artisan make:controller UserController --resource
-
-## PORTAL
-ESS portal
-HR2 portal
-Admin portal
 
 ## Employee Portal routes
 Portal

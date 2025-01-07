@@ -1,10 +1,12 @@
 ## LIST of PORTAL
 - **ESS portal**:
+  - https://hr2.fareastcafeshop.com/portal
   - PortalController: Controller for portal dashboard and etc...
-  - home.blade.php
+  - home.blade.php: Name of Folder
 - **HR2 portal**:
+  - https://hr2.fareastcafeshop.com/hr2
   - HR2Controller: Controller for HR2 dashboard
-  - index.blade.php
+  - index.blade.php: Name of Folder
 - **Admin portal**:
   - AdminController: Controller for Admin dashboard
   -

@@ -7,10 +7,45 @@ use Illuminate\Http\Request;
 
 class ClaimsController extends Controller
 {
-    public function create(){
+    // Display a listing of users.
+    public function index()
+    {
+        return view('portal.claims.index');
+    }
+
+    // Show the form for creating a new user.
+    public function create()
+    {
         return view('portal.claims.create');
     }
-    public function read(){
-        return view('portal.claims.read');
+
+    // Store a newly created user in the database.
+    public function store(Request $request)
+    {
+        // Code to save the new user
+    }
+
+    // Display a specific user.
+    public function show($id)
+    {
+        // Code to display a user's details
+    }
+
+    // Show the form for editing a user.
+    public function edit($id)
+    {
+        // Code to show the edit form
+    }
+
+    // Update a specific user in the database.
+    public function update(Request $request, $id)
+    {
+        // Code to update a user
+    }
+
+    // Remove a user from the database.
+    public function destroy($id)
+    {
+        // Code to delete a user
     }
 }

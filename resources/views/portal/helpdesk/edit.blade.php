@@ -76,7 +76,7 @@
                         <div class="form-group row text-right">
                             <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0 ml-auto">
                                 <button type="submit" class="btn btn-space btn-primary">Submit</button>
-                                <a href="{{ route('portal.helpdesk.read')}}" class="btn btn-space btn-secondary">Cancel</a>
+                                <a href="{{ route('portal.helpdesk.index')}}" class="btn btn-space btn-secondary">Cancel</a>
                             </div>
                         </div>
                     </form>

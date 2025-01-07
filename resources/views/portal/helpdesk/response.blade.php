@@ -13,7 +13,7 @@
                         <span class="icon"><i class="fas fa-inbox"></i></span>
                         Ticket Reply for:
                     </div>
-                    <button type="button" class="btn btn-primary btn-space" onclick="window.location.href='{{ route('portal.helpdesk.read') }}'">
+                    <button type="button" class="btn btn-primary btn-space" onclick="window.location.href='{{ route('portal.helpdesk.index') }}'">
                         Return to Ticket Lists
                     </button>
                 </div>
@@ -56,7 +56,7 @@
                 <button class="btn btn-primary btn-space" type="submit">
                     <i class="icon s7-mail"></i> Send
                 </button>
-                <button type="button" class="btn btn-secondary btn-space" onclick="window.location.href='{{ route('portal.helpdesk.read') }}'">
+                <button type="button" class="btn btn-secondary btn-space" onclick="window.location.href='{{ route('portal.helpdesk.index') }}'">
                     <i class="icon s7-close"></i> Cancel
                 </button>
             </div>

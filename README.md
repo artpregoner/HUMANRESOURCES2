@@ -1,12 +1,12 @@
 ## LIST of PORTAL
 - **ESS portal**:
-  - DashboardController
+  - PortalController: Controller for portal dashboard and etc...
   - home.blade.php
 - **HR2 portal**:
-  - DashboardController
-  - dashboard.blade.php
+  - HR2Controller: Controller for HR2 dashboard
+  - index.blade.php
 - **Admin portal**:
-  - DashboardController
+  - AdminController: Controller for Admin dashboard
   -
 
 ## FILENAME for RESOURCES

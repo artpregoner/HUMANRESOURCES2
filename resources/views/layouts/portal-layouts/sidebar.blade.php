@@ -28,7 +28,7 @@
                     <!-- ============================================================== -->
                     <li class="nav-divider">SELF-SERVICE</li> <!-- Title -->
                     <li class="nav-item "><!-- Payslip -->
-                        <a class="nav-link {{ request()->is('portal/self-service/payslip*') ? 'active' : '' }}" href="{{ route('portal.ess.read')}}" aria-expanded="false">
+                        <a class="nav-link {{ request()->is('portal/self-service/payslip*') ? 'active' : '' }}" href="{{ route('portal.ess.index')}}" aria-expanded="false">
                             <i class="fa fa-fw fas fa-print"></i>
                             Payslip
                         </a>
@@ -59,7 +59,7 @@
                     <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
                     <li class="nav-divider">Claims</li> <!-- Title -->
                     <li class="nav-item "><!-- Claims -->
-                        <a class="nav-link {{ request()->is('portal/claims/*') ? 'active' : '' }}" href="{{ route('portal.claims.read')}}" aria-expanded="false">
+                        <a class="nav-link {{ request()->is('portal/claims/*') ? 'active' : '' }}" href="{{ route('portal.claims.index')}}" aria-expanded="false">
                             <i class="fas fa-dollar-sign"></i>
                             Expenses
                         </a>
@@ -70,7 +70,7 @@
                     <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
                     <li class="nav-divider">Helpdesk</li><!-- Title -->
                     <li class="nav-item"><!-- helpdesk -->
-                        <a class="nav-link {{ request()->is('portal/helpdesk/*') ? 'active' : '' }}" href="{{ route('portal.helpdesk.read')}}" aria-expanded="false">
+                        <a class="nav-link {{ request()->is('portal/helpdesk/*') ? 'active' : '' }}" href="{{ route('portal.helpdesk.index')}}" aria-expanded="false">
                             <i class="fas fa-fw  fa-envelope"></i>
                             Tickets
                         </a>

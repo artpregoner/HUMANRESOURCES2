@@ -47,7 +47,7 @@
                                     <td></td>
                                     <td>
                                         <div class="btn-group ml-auto">
-                                            <a href="{{ route('portal.helpdesk.update') }}" class="btn btn-sm btn-outline-light tooltip-container"><span class="tooltip-text">update this ticket</span>Edit</a>
+                                            <a href="{{ route('portal.helpdesk.edit') }}" class="btn btn-sm btn-outline-light tooltip-container"><span class="tooltip-text">update this ticket</span>Edit</a>
                                             {{-- <a href="{{ route('helpdesk.edit', $ticket->id) }}" class="btn btn-sm btn-outline-light">Edit</a> --}}
                                             <form action="{{ url('helpdesk.destroy') }}" method="POST" >
                                                 @csrf

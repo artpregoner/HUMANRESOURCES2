@@ -7,15 +7,41 @@ use Illuminate\Http\Request;
 
 class HelpdeskController extends Controller
 {
-    public function create(){
+    public function index()
+    {
+        return view ('portal.helpdesk.index');
+    }
+
+    public function create()
+    {
         return view('portal.helpdesk.create');
     }
-    public function read(){
-        return view('portal.helpdesk.read');
+
+    public function store(Request $request)
+    {
+        // Store new claim
     }
-    public function update(){
-        return view('portal.helpdesk.update');
+
+    public function show($id)
+    {
+        // Show details of a specific claim
     }
+
+    public function edit()
+    {
+        return view('portal.helpdesk.edit');
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Update an existing claim
+    }
+
+    public function destroy($id)
+    {
+        // Delete a claim
+    }
+
     public function responseHelpdesk(){
         return view('portal.helpdesk.response');
     }

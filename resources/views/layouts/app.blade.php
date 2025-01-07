@@ -36,8 +36,8 @@
     <div class="dashboard-main-wrapper">
         {{-- @include('layouts.admin-layouts.topbar') <!-- Topbar included here / this is for admin -->
         @include('layouts.admin-layouts.sidebar') <!-- Sidebar included here / this is for admin -->
-        @include('layouts.manager-layouts.topbar') <!-- Topbar included here / this is for manager -->
-        @include('layouts.manager-layouts.sidebar') <!-- Sidebar included here / this is for manager --> --}}
+        @include('layouts.hr2-layouts.topbar') <!-- Topbar included here / this is for hr2 -->
+        @include('layouts.hr2-layouts.sidebar') <!-- Sidebar included here / this is for hr2 --> --}}
         @include('layouts.portal-layouts.topbar') <!-- Topbar included here / this is for employee -->
         @include('layouts.portal-layouts.sidebar') <!-- Sidebar included here / this is for employee -->
         <div class="dashboard-wrapper">

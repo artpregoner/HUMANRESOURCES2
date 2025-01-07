@@ -4,6 +4,10 @@ R = list of things you create; view of everything you've created
 U = updating the content you've created
 D = no context
 
+## PORTAL
+ESS portal
+HR2 portal
+Admin portal
 
 ## Employee Portal routes
 Portal

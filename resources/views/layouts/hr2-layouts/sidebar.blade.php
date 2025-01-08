@@ -14,8 +14,15 @@
                         <!-- Dashboard -->
                         <!-- ============================================================== -->
                     <li class="nav-item ">
-                        <a class="nav-link {{ request()->is('admin/maindash') ? 'active' : '' }}" href="{{url('admin/maindash')}}" aria-expanded="false" ><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
+                        <a class="nav-link {{ request()->is('hr2') ? 'active' : '' }}" href="{{route('hr2.index')}}" aria-expanded="false" ><i class="fa fa-fw fas fa-home"></i>Dashboard</a>
                     </li>
+                        <!-- ============================================================== -->
+                        <!-- myprofile -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item ">
+                            <a class="nav-link {{ request()->is('hr2/myprofile') ? 'active' : '' }}" href="{{route('hr2.myprofile')}}" aria-expanded="false" ><i class="fa fa-fw fa-user-circle"></i>My Profile</a>
+                        </li>
+                    <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
                         <!-- ============================================================== -->
                         <!-- Workforce Analytics -->
                         <!-- ============================================================== -->
@@ -92,7 +99,7 @@
                         <a class="nav-link" href="{{url('admin/helpdesk/tickets')}}" aria-expanded="false"><i class="fas fa-fw  fa-envelope"></i>Ticket</a>
                     </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->Is('admin/helpdesk/tickets') ? 'active' : '' }}" href="{{url('admin/helpdesk/tickets')}}" aria-expanded="false" ><i class="fas fa-inbox"></i>Inbox <span class="badge badge-secondary">New</span></a>
+                        <a class="nav-link {{ request()->Is('admin/helpdesk/tickets') ? 'active' : '' }}" href="{{url('admin/helpdesk/tickets')}}" aria-expanded="false" ><i class="fas fa-inbox"></i>Tickets <span class="badge badge-secondary">New</span></a>
                     </li>
                 </ul>
             </div>

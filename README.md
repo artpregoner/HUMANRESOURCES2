@@ -2,11 +2,11 @@
 - **ESS portal**:
   - https://hr2.fareastcafeshop.com/portal
   - PortalController: Controller for portal dashboard and etc...
-  - home.blade.php: Name of Folder
+  - home.blade.php: Name of main dashboard file
 - **HR2 portal**:
   - https://hr2.fareastcafeshop.com/hr2
   - HR2Controller: Controller for HR2 dashboard
-  - index.blade.php: Name of Folder
+  - index.blade.php: Name of main dashboard file
 - **Admin portal**:
   - AdminController: Controller for Admin dashboard
   -
@@ -76,5 +76,22 @@ Helpdesk
 - portal/helpdesk/create
 
 
+## HR2 Portal routes
+Portal
+- /hr2
 
-- <span style="color: yellow;">**├── EXAMPLE**</span>: Delete a specific resource.
+Self-service
+
+- /hr2/self-service/payslip
+- /hr2/self-service/leave/list/requests
+- /hr2/self-service/leave/list/history
+
+
+Claims
+
+- /hr2/expense/list/requests
+
+Helpdesk
+
+- /hr2/helpdesk/list
+- /hr2/helpdesk/create

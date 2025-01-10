@@ -86,7 +86,7 @@
                         Claims & Reimbursement
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link {{ request()->Is('claims&reimbursement/requests') ? 'active' : '' }}" href="{{url('claims&reimbursement/requests')}}" aria-expanded="false" ><i class="fas fa-dollar-sign"></i>Claims & Reimbursement<span class="badge badge-success">6</span></a>
+                        <a class="nav-link {{ request()->Is('hr2/claims/*') ? 'active' : '' }}" href="{{ route('hr2.claims.index')}}" aria-expanded="false" ><i class="fas fa-dollar-sign"></i>Claims & Reimbursement</a>
                     </li>
                     <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
                         <!-- ============================================================== -->

@@ -1,9 +1,7 @@
 @extends('layouts.app')
-@section('title')Claims & Reimbursement @endsection
-@section('header')Claims & Reimbursement @endsection <!--pageheader-->
-@section('active-header')Requests @endsection <!--active pageheader-->
-@section('styles')
-@endsection
+@section('title', 'Claims & Reimbursement')
+@section('header', 'Claims & Reimbursement')
+@section('active-header', 'Requests')
 
 @section('content')
 <div class="row">
@@ -27,7 +25,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr style="cursor: pointer" onclick="window.location='{{ route('hr2.index')}}'">
                                 <td>Art Pregoner </td>
                                 <td>Travel</td>
                                 <td>$320,800</td>
@@ -52,5 +50,3 @@
 </div>
 @endsection
 
-@section('scripts')
-@endsection

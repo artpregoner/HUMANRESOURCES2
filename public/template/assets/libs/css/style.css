@@ -1446,7 +1446,7 @@ Top Header
     .topnav-dropdown {
         display: inline-block; /* Show the dropdown icon only on mobile */
         position: absolute;
-        top: 15px;
+        top: 8px;
         right: 10px;
         transform-origin: center;
         padding: 5px; /* Space around the icon */

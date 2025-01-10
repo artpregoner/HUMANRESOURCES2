@@ -1,6 +1,6 @@
 <div class="dashboard-header">
     <nav class="navbar navbar-expand-lg bg-white fixed-top">
-        <a class="navbar-brand" href="index.html">ECOMPANY</a>
+        <a class="navbar-brand" href="https://hr2.fareastcafeshop.com/">ECOMPANY</a>
         {{-- <img src="{{ asset('template\images\storelogo.png') }}" alt="" style="width: 100px; padding-left: 10px;"> --}}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fa fa-fw fa-user-circle"></span>

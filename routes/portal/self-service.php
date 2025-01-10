@@ -6,4 +6,6 @@ use App\Http\Controllers\Portal\SelfServiceController;
 
 
 
-Route::get('/portal/self-service/payslip', [SelfServiceController::class,'index'])->name('portal.ess.index');
+Route::prefix('portal/self-service')->group(function(){
+    Route::get('/payslip', [SelfServiceController::class,'index'])->name('portal.ess.index');
+});

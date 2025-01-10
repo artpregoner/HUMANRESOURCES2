@@ -99,7 +99,7 @@
                         <a class="nav-link" href="{{url('admin/helpdesk/tickets')}}" aria-expanded="false"><i class="fas fa-fw  fa-envelope"></i>Ticket</a>
                     </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->Is('admin/helpdesk/tickets') ? 'active' : '' }}" href="{{url('admin/helpdesk/tickets')}}" aria-expanded="false" ><i class="fas fa-inbox"></i>Tickets <span class="badge badge-secondary">New</span></a>
+                        <a class="nav-link {{ request()->Is('hr2/helpdesk/*') ? 'active' : '' }}" href="{{ route('hr2.helpdesk.index')}}" aria-expanded="false" ><i class="fas fa-inbox"></i>Tickets</a>
                     </li>
                 </ul>
             </div>

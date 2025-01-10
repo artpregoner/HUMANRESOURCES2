@@ -83,10 +83,7 @@
     <script src="{{ asset('template/assets/vendor/full-calendar/js/calendar.js') }}"></script>
 
     <script src="{{ asset('asset/libs/js/javascript.js') }}"></script>
-    <script src="{{ asset('template/assets/vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
-    <script src="{{ asset('template/assets/vendor/slimscroll/jquery.slimscroll.js') }}"></script>
     <script src="{{ asset('template/assets/vendor/multi-select/js/jquery.multi-select.js') }}"></script>
-    <script src="{{ asset('template/assets/libs/js/main-js.js') }}"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('template/assets/vendor/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>

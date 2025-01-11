@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Claims&Reimbursement')
-@section('header','Claims&Reimbursement')
-@section('active-header', 'my expenses')
+@section('title', 'Claims')
+@section('header','Claims')
+@section('active-header', 'My Expenses')
 
 @section('content')
 <div class="row">
@@ -24,7 +24,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr style="cursor: pointer" onclick="window.location='{{ route('portal.index')}}'">
+                            <tr style="cursor: pointer" data-toggle="modal" data-target="#showClaims">
                                 <td>09/12/2024</td>
                                 <td>Pamasahe papuntang sm fairview</td>
                                 <td>Fuel</td>
@@ -34,6 +34,7 @@
                         </tbody>
                     </table>
                 </div>
+                @include('portal.claims.show')
             </div>
         </div>
     </div>
@@ -43,3 +44,4 @@
 @push('scripts')
 
 @endpush
+

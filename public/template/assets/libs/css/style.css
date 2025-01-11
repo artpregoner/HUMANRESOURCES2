@@ -7332,6 +7332,150 @@ Media Query
     border-color: #303f9f;
 }
 
+@media (max-width: 767px) {
+    .claim-header {
+        background-color: #f8f9fa;
+        padding: 10px;
+        margin-bottom: 15px;
+        font-weight: bold;
+        border-bottom: 2px solid #dee2e6;
+    }
+
+    .claim-header span {
+        font-size: 0.9rem;
+    }
+
+    .claim-line {
+        background-color: #fff;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .claim-line > div {
+        margin-bottom: 10px;
+    }
+
+    /* Hide desktop labels on mobile */
+    .d-none.d-md-block {
+        display: none !important;
+    }
+
+    .delete-line {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+}
+
+.delete-line {
+    font-size: 1.1rem;
+}
+
+.delete-line:hover {
+    color: #dc3545 !important;
+}
+
+/* Basic styling for the file upload area */
+.upload-container {
+    border: 2px dashed #007bff;
+    padding: 30px;
+    text-align: center;
+    width: 100rem;
+    margin: 50px auto;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    transition: width 0.3s ease; /* Smooth transition for width change */
+}
+
+.upload-container:hover {
+    background-color: #e9f7ff;
+}
+
+.upload-container p {
+    font-size: 16px;
+    color: #555;
+}
+
+.upload-container .drop-area {
+    font-size: 18px;
+    color: #007bff;
+}
+
+.upload-container .file-input {
+    display: none;
+}
+
+.upload-container .file-input-label {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.file-info {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.file-info span {
+    font-weight: bold;
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 767px) {
+    .upload-container {
+        width: 80%; /* Increase width on small screens */
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+
+    .upload-container p {
+        font-size: 14px; /* Smaller font size on mobile */
+    }
+
+    .upload-container .drop-area {
+        font-size: 16px; /* Adjust font size for drop area */
+    }
+
+    .upload-container .file-input-label {
+        font-size: 14px; /* Adjust button font size for mobile */
+        padding: 8px 16px; /* Smaller padding for mobile */
+    }
+
+    .file-info {
+        font-size: 12px; /* Smaller font size for file info on mobile */
+    }
+}
+
+/* For very small screens (extra mobile screens like phones in portrait mode) */
+@media (max-width: 480px) {
+    .upload-container {
+        width: 90%; /* Further increase the width on very small screens */
+    }
+
+    .upload-container p {
+        font-size: 12px; /* Even smaller font size */
+    }
+
+    .upload-container .drop-area {
+        font-size: 14px; /* Adjust font size further */
+    }
+
+    .upload-container .file-input-label {
+        font-size: 12px; /* Further decrease button font size */
+        padding: 6px 12px; /* Even smaller padding for small screens */
+    }
+
+    .file-info {
+        font-size: 10px; /* Smaller font size for file info */
+    }
+}
 
 
 

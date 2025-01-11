@@ -212,7 +212,9 @@
                                 <div class="card-body">
                                     <form action="#" id="basicform" data-parsley-validate="">
                                         <div class="form-group col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
-                                            <label for="inputClaimTo">Send Claim To *</label>
+                                            <label for="inputClaimTo">Send Claim To *<button class="btn btn-xs m-b-xs btn-outline btn-link" data-content="You can send your expense claim to multiple portal administrators, but try to only send to your normal manager/supervisor who usually approves your expenses." data-placement="top" data-toggle="popover" tabindex="-1" type="button" data-original-title="" title="">
+                                                <i class="fa fa-question-circle"></i>
+                                                </button></label>
                                             <input id="inputClaimTo" type="text" name="name" data-parsley-trigger="change" required="" placeholder="Enter user name" autocomplete="off" class="form-control">
                                         </div>
                                         <div class="form-group col-sm-3 pb-2 pb-sm-4 pb-lg-0 pr-0">
@@ -229,66 +231,6 @@
                                         </div>
                                     </form>
                                 </div>
-
-                                <div class="card-body border-top">
-                                    <form class="needs-validation" method="POST" action="{{ route('claims.store') }}" novalidate>
-                                        @csrf
-                                        <div id="claimLines">
-                                            <div class="form-row claim-line">
-                                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                                                    <label for="claimsCategory">Category *</label>
-                                                    <select class="custom-select d-block w-100" name="claims[0][category]" required>
-                                                        <option value="">Choose...</option>
-                                                        <option value="Fuel">Fuel</option>
-                                                        <option value="Medical">Medical</option>
-                                                        <option value="Fare">Fare</option>
-                                                    </select>
-                                                    <div class="invalid-feedback">
-                                                        Please provide a valid Category.
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                                                    <label for="claimsDetails">Details</label>
-                                                    <input type="text" class="form-control" name="claims[0][details]" placeholder="Enter Details" required>
-                                                </div>
-                                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                                                    <label for="claimsAmount">Amount *</label>
-                                                    <input type="number" class="form-control amount-input" name="claims[0][amount]" placeholder="Enter Amount" required>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-row">
-                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                                                <a href="#" class="btn btn-primary btn-sm" id="addNewLine">Add A New Line</a>
-                                            </div>
-                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                                                <label>Total</label>
-                                            </div>
-                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                                                <label id="totalAmount">0</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="card-body border-top">
-                                            <div class="row">
-                                                <div class="col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
-                                                    <label class="be-checkbox custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" name="reimbursement_required">
-                                                        <span class="custom-control-label">Reimbursement is required for this expense claim</span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-6 pl-0">
-                                                    <p class="text-right">
-                                                        <button type="submit" class="btn btn-space btn-success">Submit</button>
-                                                        <button type="button" class="btn btn-space btn-light">Cancel</button>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-
                                 <!-- claims details, category, amount -->
                                 <div class="card-body border-top">
                                     <form class="needs-validation" novalidate>

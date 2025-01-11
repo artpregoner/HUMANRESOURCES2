@@ -6004,6 +6004,7 @@ Vertical Timeline - by CodyHouse.co
     margin: 3px 0 0;
     font-size: 22px;
     font-weight: 300;
+
 }
 
 .email-title .icon {
@@ -6361,7 +6362,22 @@ Vertical Timeline - by CodyHouse.co
     background-color: transparent;
 }
 
+@media (max-width: 768px) {
+    .btn-space {
+        padding: 8px 16px; /* Smaller padding for mobile */
+        font-size: 14px; /* Smaller font size for mobile */
+        width: 100%; /* Optional: make it full width */
+    }
 
+    .card-header {
+        flex-direction: column; /* Stack elements vertically on mobile */
+        align-items: flex-start; /* Align to the left */
+    }
+
+    .email-title {
+        margin-bottom: 10px; /* Add space between elements */
+    }
+}
 
 
 /*-------------------

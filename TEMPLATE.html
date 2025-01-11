@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
- 
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -15,6 +15,38 @@
     <link rel="stylesheet" href="public/template/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="public/template/assets/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="public/template/assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
+    <style>
+        @media (max-width: 767px) {
+            .claim-header {
+                background-color: #f8f9fa;
+                padding: 10px;
+                margin-bottom: 15px;
+                font-weight: bold;
+                border-bottom: 2px solid #dee2e6;
+            }
+
+            .claim-header span {
+                font-size: 0.9rem;
+            }
+
+            .claim-line {
+                background-color: #fff;
+                padding: 10px;
+                margin-bottom: 15px;
+                border-radius: 4px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            }
+
+            .claim-line > div {
+                margin-bottom: 10px;
+            }
+
+            /* Hide desktop labels on mobile */
+            .d-none.d-md-block {
+                display: none !important;
+            }
+        }
+        </style>
     <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
 </head>
 
@@ -40,11 +72,11 @@
                                 <input class="form-control" type="text" placeholder="Search..">
                             </div>
                         </li>
-            
+
                         <!-- Notification Dropdown -->
                         <li class="nav-item dropdown notification">
                             <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-fw fa-bell"></i> 
+                                <i class="fas fa-fw fa-bell"></i>
                                 <span class="indicator"></span>
                                 <span class="topnav-dropdown m-r-10 mdi mdi-arrow-down-drop-circle"></span>
                             </a>
@@ -94,7 +126,7 @@
                                 </li>
                             </ul>
                         </li>
-            
+
                         <!-- User Dropdown -->
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -114,7 +146,7 @@
                     </ul>
                 </div>
             </nav>
-            
+
         </div>
         <!-- ============================================================== -->
         <!-- end navbar -->
@@ -167,6 +199,178 @@
                             </div>
                         </div>
                     </div>
+                    <!-- ============================================================== -->
+                    <!-- End pageheader  -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <!-- ============================================================== -->
+                        <!-- basic form -->
+                        <!-- ============================================================== -->
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">Claims Request</h5>
+                                <div class="card-body">
+                                    <form action="#" id="basicform" data-parsley-validate="">
+                                        <div class="form-group col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
+                                            <label for="inputClaimTo">Send Claim To *</label>
+                                            <input id="inputClaimTo" type="text" name="name" data-parsley-trigger="change" required="" placeholder="Enter user name" autocomplete="off" class="form-control">
+                                        </div>
+                                        <div class="form-group col-sm-3 pb-2 pb-sm-4 pb-lg-0 pr-0">
+                                            <label for="inputClaimDate">Expense Claim Date *</label>
+                                            <input id="inputClaimDate" type="date" name="date" data-parsley-trigger="change" required="" autocomplete="off" class="form-control">
+                                        </div>
+                                        <div class="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <label for="inputDescription" class="col-form-label">Description *</label>
+                                            <input id="inputDescription" type="text" class="form-control" placeholder="Specify an overall reason for this expense claim. You can expand on this further down the page.">
+                                        </div>
+                                        <div class="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <label for="inputComments">Comments (Optional)</label>
+                                            <textarea class="form-control" id="inputComments" rows="3"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="card-body border-top">
+                                    <form class="needs-validation" method="POST" action="{{ route('claims.store') }}" novalidate>
+                                        @csrf
+                                        <div id="claimLines">
+                                            <div class="form-row claim-line">
+                                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                    <label for="claimsCategory">Category *</label>
+                                                    <select class="custom-select d-block w-100" name="claims[0][category]" required>
+                                                        <option value="">Choose...</option>
+                                                        <option value="Fuel">Fuel</option>
+                                                        <option value="Medical">Medical</option>
+                                                        <option value="Fare">Fare</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please provide a valid Category.
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                    <label for="claimsDetails">Details</label>
+                                                    <input type="text" class="form-control" name="claims[0][details]" placeholder="Enter Details" required>
+                                                </div>
+                                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                    <label for="claimsAmount">Amount *</label>
+                                                    <input type="number" class="form-control amount-input" name="claims[0][amount]" placeholder="Enter Amount" required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <a href="#" class="btn btn-primary btn-sm" id="addNewLine">Add A New Line</a>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <label>Total</label>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <label id="totalAmount">0</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body border-top">
+                                            <div class="row">
+                                                <div class="col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
+                                                    <label class="be-checkbox custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" name="reimbursement_required">
+                                                        <span class="custom-control-label">Reimbursement is required for this expense claim</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-6 pl-0">
+                                                    <p class="text-right">
+                                                        <button type="submit" class="btn btn-space btn-success">Submit</button>
+                                                        <button type="button" class="btn btn-space btn-light">Cancel</button>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!-- claims details, category, amount -->
+                                <div class="card-body border-top">
+                                    <form class="needs-validation" novalidate>
+                                        <div class="form-row">
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <label for="claimsCategory">Category *</label>
+                                                <select class="custom-select d-block w-100" id="claimsCategory" required="">
+                                                    <option value="">Choose...</option>
+                                                    <option>Fuel</option>
+                                                    <option>Medical</option>
+                                                    <option>Fare</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Please provide a valid Category.
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <label for="claimsDetails">Details</label>
+                                                <input type="text" class="form-control" id="claimsDetails" placeholder="Enter Details" required>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <label for="claimsAmount">Amount *</label>
+                                                <input type="number" class="form-control" id="claimsAmount" placeholder="Enter Amount" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <label for="claimsCategory">Category *</label>
+                                                <select class="custom-select d-block w-100" id="claimsCategory" required="">
+                                                    <option value="">Choose...</option>
+                                                    <option>Fuel</option>
+                                                    <option>Medical</option>
+                                                    <option>Fare</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Please provide a valid Category.
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <label for="claimsDetails">Details</label>
+                                                <input type="text" class="form-control" id="claimsDetails" placeholder="Enter Details" required>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <label for="claimsAmount">Amount *</label>
+                                                <input type="number" class="form-control" id="claimsAmount" placeholder="Enter Amount" required>
+                                            </div>
+                                        </div>
+                                        <!-- add new line -->
+                                        <div class="form-row">
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <a href="#" class="btn btn-primary btn-sm">Add A New Line</a>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <label for="claimsDetails">Total</label>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <label for="claimsAmount">100</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="card-body border-top">
+                                    <div class="row">
+                                        <div class="col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
+                                            <label class="be-checkbox custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Reimbursement is required for this expense claim</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-6 pl-0">
+                                            <p class="text-right">
+                                                <button type="submit" class="btn btn-space btn-success">Submit</button>
+                                                <button class="btn btn-space btn-light">Cancel</button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <!-- ============================================================== -->
+                        <!-- end basic form -->
+                        <!-- ============================================================== -->
                     <div class="row">
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                             <a href="fdf.com" class="card-link">
@@ -271,6 +475,62 @@
         <!-- end wrapper  -->
         <!-- ============================================================== -->
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let lineCount = 0;
+            const claimLines = document.getElementById('claimLines');
+            const addNewLine = document.getElementById('addNewLine');
+            const totalAmountLabel = document.getElementById('totalAmount');
+
+            function updateTotal() {
+                const amounts = document.querySelectorAll('.amount-input');
+                let total = 0;
+                amounts.forEach(input => {
+                    total += parseFloat(input.value) || 0;
+                });
+                totalAmountLabel.textContent = total.toFixed(2);
+            }
+
+            addNewLine.addEventListener('click', function(e) {
+                e.preventDefault();
+                lineCount++;
+
+                const newLine = document.createElement('div');
+                newLine.className = 'form-row claim-line';
+                newLine.innerHTML = `
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                        <select class="custom-select d-block w-100" name="claims[${lineCount}][category]" required>
+                            <option value="">Choose...</option>
+                            <option value="Fuel">Fuel</option>
+                            <option value="Medical">Medical</option>
+                            <option value="Fare">Fare</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please provide a valid Category.
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                        <input type="text" class="form-control" name="claims[${lineCount}][details]" placeholder="Enter Details" required>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                        <input type="number" class="form-control amount-input" name="claims[${lineCount}][amount]" placeholder="Enter Amount" required>
+                    </div>
+                `;
+
+                claimLines.appendChild(newLine);
+
+                // Add event listener to new amount input
+                const newAmountInput = newLine.querySelector('.amount-input');
+                newAmountInput.addEventListener('input', updateTotal);
+            });
+
+            // Add event listeners to initial amount inputs
+            document.querySelectorAll('.amount-input').forEach(input => {
+                input.addEventListener('input', updateTotal);
+            });
+        });
+        </script>
+
     <!-- ============================================================== -->
     <!-- end main wrapper  -->
     <!-- ============================================================== -->
@@ -296,5 +556,5 @@
     <script src="public/template/assets/vendor/charts/c3charts/C3chartjs.js"></script>
     <script src="public/template/assets/libs/js/dashboard-ecommerce.js"></script>
 </body>
- 
+
 </html>

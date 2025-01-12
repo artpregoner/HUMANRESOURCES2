@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/summernote/css/summernote-bs4.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/select2/css/select2.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/datepicker/tempusdominus-bootstrap-4.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/bootstrap-select/css/bootstrap-select.css') }}">
 @endpush
 
 @section('content')
@@ -21,11 +23,10 @@
                 <form action="#" id="basicform" data-parsley-validate="">
                     <div class="form-group col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
                         <label for="inputClaimTo">Send Claim To *</label>
-                        {{-- <input id="inputClaimTo" type="text" name="name" data-parsley-trigger="change" required="" placeholder="Enter user name" autocomplete="off" class="form-control"> --}}
                         <div class="form-group row pt-0">
                             <div class="col-md-11">
-                                <select class="js-example-basic-multiple" multiple="multiple">
-                                    <option value="Admin" selected="selected" >Admin</option>
+                                <select class="selectpicker" multiple>
+                                    <option value="admin" selected>Admin</option>
                                     <option value="HR">HR</option>
                                 </select>
                             </div>
@@ -33,7 +34,13 @@
                     </div>
                     <div class="form-group col-sm-3 pb-2 pb-sm-4 pb-lg-0 pr-0">
                         <label for="inputClaimDate">Expense Claim Date *</label>
-                        <input id="inputClaimDate" type="date" name="date" data-parsley-trigger="change" required="" autocomplete="off" class="form-control">
+                        <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" />
+                            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                            </div>
+                        </div>
+                        {{-- <input id="inputClaimDate" type="date" name="date" data-parsley-trigger="change" required="" autocomplete="off" class="form-control"> --}}
                     </div>
                     <div class="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <label for="inputDescription" class="col-form-label">Description *</label>
@@ -222,4 +229,8 @@
 </script>
     <script src="{{ asset('template/assets/vendor/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('template/assets/vendor/summernote/js/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('template/assets/vendor/datepicker/moment.js') }}"></script>
+    <script src="{{ asset('template/assets/vendor/datepicker/tempusdominus-bootstrap-4.js') }}"></script>
+    <script src="{{ asset('template/assets/vendor/datepicker/datepicker.js') }}"></script>
+    <script src="{{ asset('template/assets/vendor/bootstrap-select/js/bootstrap-select.js') }}"></script>
 @endpush

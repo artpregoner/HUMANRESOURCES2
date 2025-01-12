@@ -29,7 +29,16 @@
                                 <td>Pamasahe papuntang sm fairview</td>
                                 <td>Fuel</td>
                                 <td>$320,800</td>
-                                <td>Approved</td>
+                                <td><span class="badge badge-success">Approved</span></td>
+                                {{-- <td>
+                                    @if ($request->status == 'Approved')
+                                        <span class="badge badge-success">Approved</span>
+                                    @elseif ($request->status == 'Pending')
+                                        <span class="badge badge-info">Pending</span>
+                                    @elseif ($request->status == 'Rejected')
+                                        <span class="badge badge-danger">Rejected</span>
+                                    @endif
+                                </td> --}}
                             </tr>
                         </tbody>
                     </table>

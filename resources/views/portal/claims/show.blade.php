@@ -12,6 +12,15 @@
                         </div>
                         <div class="float-right">
                             <h3 class="mb-0"><span class="badge badge-success">Approve</span></h3>
+                            {{-- <h3 class="mb-0">
+                                @if ($request->status == 'Approved')
+                                    <span class="badge badge-success">Approve</span>
+                                @elseif ($request->status == 'Pending')
+                                    <span class="badge badge-info">Pending</span>
+                                @elseif ($request->status == 'Rejected')
+                                    <span class="badge badge-danger">Reject</span>
+                                @endif
+                            </h3> --}}
                             <span>by: cute</span>
                         </div>
                     </div>
@@ -19,7 +28,7 @@
                         <div class="row mb-4">
                             <div class="card-body">
                                 <form action="#" id="basicform" data-parsley-validate="">
-                                    <div class="form-group col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
+                                    <div class="form-group col-sm-4 pb-2 pb-sm-4 pb-lg-0 pr-0">
                                         <label for="inputClaimTo">Send Claim To</label>
                                         {{-- <input id="inputClaimTo" type="text" name="name" data-parsley-trigger="change" required="" placeholder="Enter user name" autocomplete="off" class="form-control"> --}}
                                         <div class="alert alert-secondary" role="alert">

@@ -3154,6 +3154,28 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
     box-shadow: 0 0 0 1px rgb(46, 47, 57);
 }
 
+/*--- btn outline code3 --*/
+
+.btn-outline-code3 {
+    color: #1877F2;
+    background-color: transparent;
+    border-color: #1877F2;
+}
+
+.btn-outline-code3:hover {
+    color: #fff;
+    background-color: #1877F2;
+    border-color: #1877F2;
+}
+
+.btn-outline-code3.focus,
+.btn-outline-code3:focus {
+    color: #fff;
+    background-color: #1877F2;
+    border-color: #1877F2;
+    box-shadow: 0 0 0 1px rgba(24, 119, 242, 0.5);
+}
+
 
 /*--- btn size --*/
 
@@ -7132,7 +7154,7 @@ Media Query
 /*--- btn code3 --*/
 .btn-code3 {
     color: #fff;
-    background-color: #03a9f4; /* Light Blue */
+    background-color: #1877F2; /* Light Blue */
     border-color: #03a9f4;
 }
 

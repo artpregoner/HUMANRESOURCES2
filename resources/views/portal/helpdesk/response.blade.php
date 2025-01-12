@@ -15,7 +15,7 @@
                 </h4>
                 <div class="toolbar ml-auto">
                     <a href="{{ route('portal.helpdesk.index') }}" class="btn btn-space btn-light">Return to Ticket List</a>
-                    <button class="btn btn-space btn-primary btn-sm new-chat-btn">
+                    <button class="btn btn-space btn-code3 btn-sm new-chat-btn">
                         <i class="fas fa-reply"></i> Reply
                     </button>
                 </div>
@@ -33,10 +33,10 @@
                     <div class="reply-input-container">
                         <textarea class="form-control mb-2" rows="4" placeholder="Type your reply here..."></textarea>
                         <div class="reply-actions">
-                            <button class="btn btn-secondary mr-2" onclick="discardReply()">
+                            <button class="btn btn-light mr-2" onclick="discardReply()">
                                 <i class="fas fa-times"></i> Discard
                             </button>
-                            <button class="btn btn-primary" onclick="sendReply()">
+                            <button class="btn btn-code3" onclick="sendReply()">
                                 <i class="fas fa-paper-plane"></i> Send
                             </button>
                         </div>

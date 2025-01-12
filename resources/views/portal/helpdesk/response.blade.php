@@ -94,5 +94,45 @@
             discardReply();
         }
     }
+    function sendReply() {
+    const textarea = document.querySelector('.reply-input-container textarea');
+    const message = textarea.value.trim();
+
+    if (message) {
+        // Sample data for new message (sa actual implementation, gamitin ang server-side logic)
+        const newMessage = {
+            author: "You",
+            avatar: "{{ asset('template/assets/images/admin.webp') }}",
+            text: message,
+            time: new Date().toLocaleString(), // Format: MM/DD/YYYY HH:mm
+        };
+
+        // Append the new message to the top of the chatbox
+        const chatboxMessages = document.querySelector('.chatbox-messages');
+        chatboxMessages.insertAdjacentHTML('afterbegin', `
+            <div class="chat-message sent">
+                <img src="${newMessage.avatar}" alt="${newMessage.author}" class="chat-avatar">
+                <div class="chat-details">
+                    <span class="message-author">${newMessage.author}</span>
+                    <p class="message-text">${newMessage.text}</p>
+                    <span class="message-time">${newMessage.time}</span>
+                </div>
+            </div>
+            <hr class="message-divider">
+        `);
+
+        // Scroll to the bottom of the chatbox
+        chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+
+        // Clear the input field and hide reply box
+        textarea.value = '';
+        discardReply();
+
+        console.log('Message sent:', newMessage);
+    } else {
+        alert('Please enter a message before sending.');
+    }
+}
+
 </script>
 @endpush

@@ -14,24 +14,28 @@
 @section('content')
 <div class="row">
     <!-- ============================================================== -->
-    <!-- basic form -->
+    <!-- Claims -->
     <!-- ============================================================== -->
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="card">
             <h5 class="card-header">Claims Request</h5>
             <div class="card-body">
+                <!-- Form for basic claim request details -->
                 <form action="#" id="basicform" data-parsley-validate="">
+                    <!-- Select recipient of the claim -->
                     <div class="form-group col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
                         <label for="inputClaimTo">Send Claim To *</label>
                         <div class="form-group row pt-0">
                             <div class="col-md-11">
-                                <select class="selectpicker" multiple>
+                                <select class="selectpicker" multiple data-style="btn-outline-code3">
                                     <option value="admin" selected>Admin</option>
                                     <option value="HR">HR</option>
                                 </select>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Expense claim date input -->
                     <div class="form-group col-sm-3 pb-2 pb-sm-4 pb-lg-0 pr-0">
                         <label for="inputClaimDate">Expense Claim Date *</label>
                         <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
@@ -40,19 +44,25 @@
                                 <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                             </div>
                         </div>
-                        {{-- <input id="inputClaimDate" type="date" name="date" data-parsley-trigger="change" required="" autocomplete="off" class="form-control"> --}}
                     </div>
+
+                    <!-- Description of the claim -->
                     <div class="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <label for="inputDescription" class="col-form-label">Description *</label>
-                        <input id="inputDescription" type="text" class="form-control" placeholder="Specify an overall reason for this expense claim.">
+                        <label for="inputDescription" class="col-form-label">Description *<button class="btn btn-xs m-b-xs btn-outline btn-link" data-content="Specify an overall reason for this expense claim." data-placement="top" data-toggle="popover" tabindex="-1" type="button" data-original-title="" title="">
+                            <i class="fa fa-question-circle"></i>
+                            </button></label>
+                        <input id="inputDescription" type="text" class="form-control" placeholder="">
                     </div>
+
+                    <!-- Optional comments field -->
                     <div class="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <label for="inputComments">Comments (Optional)</label>
                         <textarea class="form-control" id="inputComments" rows="3"></textarea>
                     </div>
                 </form>
             </div>
-            <!-- claims details, category, amount -->
+
+            <!-- Section for adding claims details, category, and amount -->
             <div class="card-body border-top">
                 <form class="needs-validation"novalidate>
                     <!-- Header for mobile -->
@@ -66,8 +76,10 @@
                         </div>
                     </div>
 
+                    <!-- Initial claim line row -->
                     <div id="claimLines">
                         <div class="form-row claim-line">
+                            <!-- Category dropdown -->
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
                                 <label for="claimsCategory" class="d-none d-md-block">Category *</label>
                                 <select class="custom-select d-block w-100" name="claims[0][category]" required>
@@ -80,10 +92,16 @@
                                     Please provide a valid Category.
                                 </div>
                             </div>
+
+                            <!-- Details input field -->
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                                <label for="claimsDetails" class="d-none d-md-block">Details</label>
+                                <label for="claimsDetails" class="d-none d-md-block">Details<button class="btn btn-xs m-b-xs btn-outline btn-link" data-content="Details for this expense." data-placement="top" data-toggle="popover" tabindex="-1" type="button" data-original-title="" title="">
+                                    <i class="fa fa-question-circle"></i>
+                                    </button></label>
                                 <input type="text" class="form-control" name="claims[0][details]" placeholder="Enter Details" required>
                             </div>
+
+                            <!-- Amount input field -->
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
                                 <label for="claimsAmount" class="d-none d-md-block">Amount *<button class="btn btn-xs m-b-xs btn-outline btn-link" data-content="Philippine peso" data-placement="top" data-toggle="popover" tabindex="-1" type="button" data-original-title="" title="">
                                     <i class="fa fa-question-circle"></i>
@@ -93,6 +111,7 @@
                         </div>
                     </div>
 
+                    <!-- Section to add a new claim line and display total amount -->
                     <div class="form-row">
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
                             <a href="#" class="btn btn-code3 btn-sm" id="addNewLine">Add A New Line</a>
@@ -105,6 +124,7 @@
                         </div>
                     </div>
 
+                    <!-- Footer section with checkboxes and submit/cancel buttons -->
                     <div class="card-body border-top">
                         <div class="row">
                             <div class="col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
@@ -115,12 +135,14 @@
                             </div>
                             <div class="col-sm-6 pl-0">
                                 <p class="text-right">
-                                    <button type="submit" class="btn btn-space btn-success">Submit</button>
+                                    <button type="submit" class="btn btn-space btn-code3">Submit</button>
                                     <button type="button" class="btn btn-space btn-light" onclick="window.location.href='{{ route('portal.claims.index')}}'">Cancel</button>
                                 </p>
                             </div>
                         </div>
                     </div>
+
+                    <!-- File upload section for receipts -->
                     <div class="card-body border-top">
                         <div class="row">
                             <div class="upload-container">
@@ -128,11 +150,15 @@
                                 <div class="drop-area" id="drop-area">
                                     Drop files (or click/tap) here to upload.
                                 </div>
-                                <input type="file" id="file-input" class="file-input" multiple accept="image/*,application/pdf" />
+                                <input type="file" id="file-input" class="file-input" multiple accept="image/*" />
                                 <label for="file-input" class="file-input-label">Choose Files</label>
 
                                 <div class="file-info" id="file-info">
                                     <p>File size limit: <span>200MB</span></p>
+                                </div>
+
+                                <div class="image-preview" id="image-preview">
+                                    <!-- Images will be previewed here -->
                                 </div>
                             </div>
                         </div>
@@ -224,6 +250,39 @@
         $('#summernote').summernote({
             height: 300
 
+        });
+    });
+</script>
+<script>
+    const fileInput = document.getElementById('file-input');
+    const imagePreview = document.getElementById('image-preview');
+
+    fileInput.addEventListener('change', (event) => {
+        const files = event.target.files;
+        imagePreview.innerHTML = ''; // Clear existing previews
+
+        Array.from(files).forEach((file) => {
+            // Check if the file is of type jpeg, png, or webp
+            if (
+                file.type === 'image/jpeg' ||
+                file.type === 'image/png' ||
+                file.type === 'image/webp'
+            ) {
+                const reader = new FileReader();
+
+                reader.onload = (e) => {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.maxWidth = '100px'; // Optional: Adjust preview size
+                    img.style.margin = '5px'; // Optional: Add spacing between images
+                    imagePreview.appendChild(img);
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                // Alert if the file format is not supported
+                alert('Only JPEG, PNG, and WEBP formats are allowed.');
+            }
         });
     });
 </script>

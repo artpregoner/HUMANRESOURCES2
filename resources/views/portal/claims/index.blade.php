@@ -3,13 +3,17 @@
 @section('header','Claims')
 @section('active-header', 'My Expenses')
 
+@push('styles')
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/bootstrap-select/css/bootstrap-select.css') }}">
+@endpush
+
 @section('content')
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="card">
             <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                 <div class="email-title"><span class="icon"><i class="fas fa-hand-holding-usd"></i></span> Claims & Reimbursement</div>
-                <button type="button" class="btn btn-space btn-primary" onclick="window.location.href='{{ route('portal.claims.create') }}'"><i class="fas fa-plus"></i> Add Expense Claim</button>
+                <button type="button" class="btn btn-space btn-code3" onclick="window.location.href='{{ route('portal.claims.create') }}'"><i class="fas fa-plus"></i> Add Expense Claim</button>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -51,6 +55,6 @@
 @endsection
 
 @push('scripts')
-
+    <script src="{{ asset('template/assets/vendor/bootstrap-select/js/bootstrap-select.js') }}"></script>
 @endpush
 

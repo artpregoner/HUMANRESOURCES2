@@ -7405,7 +7405,7 @@ Media Query
     border: 2px dashed #007bff;
     padding: 30px;
     text-align: center;
-    width: 100rem;
+    width: 100%;
     margin: 50px auto;
     border-radius: 10px;
     background-color: #f9f9f9;
@@ -7450,10 +7450,26 @@ Media Query
     font-weight: bold;
 }
 
+.image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.image-preview img {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 5px;
+    border: 2px solid #ddd;
+    object-fit: cover;
+}
+
 /* Responsive styles for mobile devices */
 @media (max-width: 767px) {
     .upload-container {
-        width: 80%; /* Increase width on small screens */
+        width: 90%; /* Increase width on small screens */
         padding: 20px; /* Adjust padding for smaller screens */
     }
 
@@ -7517,7 +7533,7 @@ Media Query
     margin: 3% auto; /* adjust ang margin depende sa gusto mo*/
     max-width: 1000px; /* Increased width for wider content */
     background: #ffffff; /* Modal background color */
-    border-radius: 10px; /* Rounded corners */
+    border-radius: 5px; /* Rounded corners */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow */
     overflow: hidden; /* Ensure no overflow */
 }

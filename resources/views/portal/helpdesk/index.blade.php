@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Helpdesk - My Tickets')
-@section('header', 'Helpdesk')<!--pageheader-->
-@section('active-header', 'My Tickets...') <!--active pageheader-->
+@section('header', 'Helpdesk')
+@section('active-header', 'My Tickets...')
 @push('styles')
 
 @endpush
@@ -12,22 +12,18 @@
             <div class="card">
                 <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                     <div class="email-title"><span class="icon"><i class="fas fa-inbox"></i></span> My tickets <span class="new-messages">0 all tickets</span> </div>
-                    {{-- <div class="email-title"><span class="icon"><i class="fas fa-inbox"></i></span> My tickets <span class="new-messages">({{ $totalTickets }} all tickets)</span> </div> --}}
                     <button type="button" class="btn btn-space btn-primary" onclick="window.location.href='{{ route('portal.helpdesk.create') }}'">new ticket</button>
-                    {{-- <button type="button" class="btn btn-space btn-primary" onclick="window.location.href='{{ route('helpdesk.create') }}'">Submit new Ticket</button> --}}
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered first">
+                        <table id="example" class="table table-striped table-bordered second" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Subject</th>
-                                    <th>Description</th>
-                                    <th>Department</th>
-                                    <th style="width: 80px;">Priority</th>
-                                    <th style="width: 80px;">Category</th>
-                                    <th style="width: 100px;">Created at</th>
-                                    <th style="width: 90px;">Actions</th>
+                                    <th class="center">Subject</th>
+                                    <th style="width: 105px;">Created at</th>
+                                    <th style="width: 105px;">Updated at</th>
+                                    <th style="width: 60px;">Status</th>
+                                    <th class="right" style="width: 90px;">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,15 +35,13 @@
                                     <td>{{ $ticket->priority }}</td>
                                     <td>{{ $ticket->category }}</td>
                                     <td>{{ $ticket->created_at->format('Y/m/d') }}</td> --}}
+                                    <td class="center"></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
+                                    <td class="right">
                                         <div class="btn-group ml-auto">
-                                            <a href="{{ route('portal.helpdesk.edit') }}" class="btn btn-sm btn-outline-light tooltip-container"><span class="tooltip-text">update this ticket</span>Edit</a>
+                                            {{-- <a href="{{ route('portal.helpdesk.edit') }}" class="btn btn-sm btn-outline-light tooltip-container"><span class="tooltip-text">update this ticket</span>Edit</a> --}}
                                             {{-- <a href="{{ route('helpdesk.edit', $ticket->id) }}" class="btn btn-sm btn-outline-light">Edit</a> --}}
                                             <form action="{{ url('helpdesk.destroy') }}" method="POST" >
                                                 @csrf

@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('title', 'Helpdesk - Update Ticket')
-@section('header', 'Helpdesk')<!--pageheader-->
-@section('active-header', 'Edit ticket') <!--active pageheader-->
+@section('header', 'Helpdesk')
+@section('active-header', 'Edit ticket')
 
 @section('content')
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
                 <h5 class="card-header">Submit new Ticket</h5>
@@ -83,7 +83,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
 @push('scripts')
 <script>

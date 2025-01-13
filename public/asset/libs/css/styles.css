@@ -1,3 +1,12 @@
+/* gamitin to para sa small icon para sa navbar  */
+.icon-small {
+    font-size: 1em; /* Default size */
+}
+
+.navbar-nav .nav-item .nav-link .icon-small {
+    font-size: 0.8em; /* Smaller size for navbar */
+}
+
 .tooltip-container {
     position: relative;
     display: inline-block;

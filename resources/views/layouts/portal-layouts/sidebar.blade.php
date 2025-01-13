@@ -42,12 +42,12 @@
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->is('portal/self-service/leave') ? 'active' : '' }}" href="{{ url('portal/self-service/leave/list/requests') }}">
-                                        Request
+                                        <i class="fas fa-play icon-small"></i>Request
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->is('portal/self-service/leave') ? 'active' : '' }}" href="{{ url('portal/self-service/leave/list/history') }}">
-                                        History
+                                        <i class="fas fa-play icon-small"></i>History
                                     </a>
                                 </li>
                             </ul>

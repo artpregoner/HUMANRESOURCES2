@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title','Payslip')
-@section('header','Payslip')<!--pageheader-->
+@section('header','Payslip')
 @section('active-header', 'My Payslip')
 
 @section('content')

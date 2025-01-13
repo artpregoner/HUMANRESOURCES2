@@ -28,7 +28,7 @@
                     <!-- ============================================================== -->
                     <li class="nav-divider">SELF-SERVICE</li> <!-- Title -->
                     <li class="nav-item "><!-- Payslip -->
-                        <a class="nav-link {{ request()->is('portal/self-service/payslip*') ? 'active' : '' }}" href="{{ route('portal.ess.index')}}" aria-expanded="false">
+                        <a class="nav-link {{ request()->is('portal/self-service/payslip*') ? 'active' : '' }}" href="{{ route('portal.ess.payslip.index')}}" aria-expanded="false">
                             <i class="fa fa-fw fas fa-print"></i>
                             Payslip
                         </a>

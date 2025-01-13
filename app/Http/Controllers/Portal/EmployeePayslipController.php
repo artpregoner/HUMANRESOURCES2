@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Portal;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class SelfServiceController extends Controller
+class EmployeePayslipController extends Controller
 {
     public function index()
     {
-        return view('portal.self-service.payslip.index');
+        return view('portal.self-service.employee-payslip.index');
     }
 
     public function create()

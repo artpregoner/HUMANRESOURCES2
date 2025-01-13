@@ -13,13 +13,13 @@
                     <!-- ============================================================== -->
                     <li class="nav-item ">
                         <a class="nav-link {{ request()->is('portal') ? 'active' : '' }}" href="{{ route('home')}}" aria-expanded="false">
-                            <i class="fa fa-fw fas fa-home"></i>
+                            <i class="m-r-10 mdi mdi-view-dashboard"></i>
                             Home
                         </a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link {{ request()->is('portal/myprofile') ? 'active' : '' }}" href="{{ route('portal.myprofile')}}" aria-expanded="false">
-                            <i class="fa fa-fw fas fa-user"></i>
+                            <i class="m-r-10 mdi mdi-account-settings-variant"></i>
                             My Profile
                         </a>
                     </li>
@@ -29,13 +29,13 @@
                     <li class="nav-divider">SELF-SERVICE</li> <!-- Title -->
                     <li class="nav-item "><!-- Payslip -->
                         <a class="nav-link {{ request()->is('portal/self-service/payslip*') ? 'active' : '' }}" href="{{ route('portal.ess.payslip.index')}}" aria-expanded="false">
-                            <i class="fa fa-fw fas fa-print"></i>
+                            <i class="m-d-10 mdi mdi-printer"></i>
                             Payslip
                         </a>
                     </li>
                     <li class="nav-item"><!-- Time off and Leave -->
                         <a class="nav-link {{ request()->is('portal/self-service/leave/*') ? 'active' : '' }}" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2">
-                            <i class="far fas fa-plane"></i>
+                            <i class="m-r-10 mdi mdi-airplane-takeoff"></i>
                             Time Off & Leave
                         </a>
                         <div id="submenu-2" class="collapse submenu {{ request()->is('portal/self-service/leave/*') ? 'show' : '' }}">
@@ -60,8 +60,7 @@
                     <li class="nav-divider">Claims</li> <!-- Title -->
                     <li class="nav-item "><!-- Claims -->
                         <a class="nav-link {{ request()->is('portal/claims/*') ? 'active' : '' }}" href="{{ route('portal.claims.index')}}" aria-expanded="false">
-                            <i class="fas fa-dollar-sign"></i>
-                            Expenses
+                            <i class="m-r-10 mdi mdi-currency-usd"></i>Expenses
                         </a>
                     </li>
                     <!-- ============================================================== -->
@@ -71,7 +70,7 @@
                     <li class="nav-divider">Helpdesk</li><!-- Title -->
                     <li class="nav-item"><!-- helpdesk -->
                         <a class="nav-link {{ request()->is('portal/helpdesk/*') ? 'active' : '' }}" href="{{ route('portal.helpdesk.index')}}" aria-expanded="false">
-                            <i class="fas fa-fw  fa-envelope"></i>
+                            <i class="m-r-10 mdi mdi-ticket-account"></i>
                             Tickets
                         </a>
                     </li>

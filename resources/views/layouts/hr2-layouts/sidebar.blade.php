@@ -14,7 +14,7 @@
                         <!-- Dashboard -->
                         <!-- ============================================================== -->
                     <li class="nav-item ">
-                        <a class="nav-link {{ request()->is('hr2') ? 'active' : '' }}" href="{{route('hr2.index')}}" aria-expanded="false" ><i class="fa fa-fw fas fa-home"></i>Dashboard</a>
+                        <a class="nav-link {{ request()->is('hr2') ? 'active' : '' }}" href="{{route('hr2.index')}}" aria-expanded="false" ><i class="m-r-10 mdi mdi-view-dashboard"></i>Dashboard</a>
                     </li>
                         <!-- ============================================================== -->
                         <!-- myprofile -->

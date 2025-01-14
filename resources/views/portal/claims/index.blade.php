@@ -86,7 +86,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="table-responsive-sm">
-                                            <table class="table table-striped">
+                                            <table class="table table-striped table-bordered first">
                                                 <thead>
                                                     <tr>
                                                         <th class="center">Claim ID</th>
@@ -129,7 +129,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="table-responsive-sm">
-                                            <table class="table table-striped">
+                                            <table class="table table-striped table-bordered first">
                                                 <thead>
                                                     <tr>
                                                         <th class="center">Claim ID</th>
@@ -172,7 +172,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="table-responsive-sm">
-                                            <table class="table table-striped">
+                                            <table class="table table-striped table-bordered first">
                                                 <thead>
                                                     <tr>
                                                         <th class="center">Claim ID</th>

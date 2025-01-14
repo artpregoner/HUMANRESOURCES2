@@ -1900,7 +1900,7 @@ Leftsidebar - dark
 .sidebar-dark.nav-left-sidebar .navbar-nav .nav-item .badge{
     position: absolute;
     right: 40px;
-    display: none;
+    /* display: none; */
 }
 
 /*-----navigation dark ---*/
@@ -4183,6 +4183,17 @@ Pills vertical
 .badge-light[href]:hover {
     color: #2e2f39;
     background-color: #d7d7df;
+    text-decoration: none;
+}
+
+.badge-code8 {
+    background-color: #607d8b;
+}
+
+.badge-code8[href]:focus,
+.badge-code8[href]:hover {
+    color: #fff;
+    background-color: #546e7a;
     text-decoration: none;
 }
 

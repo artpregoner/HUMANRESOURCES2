@@ -58,106 +58,145 @@
             </div>
         </div>
     </div>
-
-    {{-- ITO AY PARA SA MGA SORTED TABLE NA NAKA DEPENDE SA STATUS --}}
-    <div class="accordion-regular">
-        <div id="accordion3">
-            <!-- Approved Claims History -->
-            <div class="card">
-                <div class="card-header" id="headingSeven">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven"
-                            aria-expanded="false" aria-controls="collapseSeven">
-                            <span class="fas mr-3 fa-angle-down"></span>APPROVE CLAIMS HISTORY
-                        </button>
-                        <div class="float-right">
-                            <h3 class="mb-0"><span class="badge badge-success">Approve</span></h3>
-                        </div>
-                    </h5>
-                </div>
-                <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion3">
-                    <div class="card-body">
-                        <!-- Table for Approved Claims History -->
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Claim date</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">09/12/2024</th>
-                                    <td>Pamasahe papuntang SM Fairview</td>
-                                    <td>Fuel</td>
-                                    <td>$320.80</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">09/14/2024</th>
-                                    <td>Taxi fare to office</td>
-                                    <td>Transport</td>
-                                    <td>$120.50</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">09/16/2024</th>
-                                    <td>Hotel accommodation for business trip</td>
-                                    <td>Accommodation</td>
-                                    <td>$500.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+    <div class="row">
+        <!-- ============================================================== -->
+        <!-- accrodions style one -->
+        <!-- ============================================================== -->
+        <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="section-block">
+                <h5 class="section-title">SORTED TABLE FOR CLAIMS HISTORY</h5>
             </div>
-
-            <!-- Deleted Claims History -->
-            <div class="card mb-2">
-                <div class="card-header bg-code1" id="headingEight">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight"
-                            aria-expanded="false" aria-controls="collapseEight">
-                            <span class="fas mr-3 fa-angle-down"></span>DELETED CLAIMS HISTORY
-                        </button>
-                        <div class="float-right">
-                            <h3 class="mb-0"><span class="badge badge-danger">DELETED</span></h3>
+            <div class="accrodion-regular">
+                <div id="accordion3">
+                    <div class="card">
+                        <div class="card-header" id="headingSeven">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven"
+                                    aria-expanded="true" aria-controls="collapseSeven">
+                                    <span class="fas mr-3 fa-angle-up"></span>APPROVE CLAIMS HISTORY
+                                </button>
+                                <div class="float-right">
+                                    <h3 class="mb-0"><span class="badge badge-success">APPROVE</span></h3>
+                                </div>
+                            </h5>
                         </div>
-                    </h5>
-                </div>
-                <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion3">
-                    <div class="card-body">
-                        <!-- Table for Deleted Claims History -->
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Claim date</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">09/10/2024</th>
-                                    <td>Client dinner expense</td>
-                                    <td>Meal</td>
-                                    <td>$150.00</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">09/11/2024</th>
-                                    <td>Office supplies purchase</td>
-                                    <td>Office Supplies</td>
-                                    <td>$80.00</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">09/13/2024</th>
-                                    <td>Conference registration fee</td>
-                                    <td>Event</td>
-                                    <td>$250.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div id="collapseSeven" class="collapse show" aria-labelledby="headingSeven"
+                            data-parent="#accordion3" style="">
+                            <div class="card-body">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-responsive-sm">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="center">Claim ID</th>
+                                                        <th>Claim Date</th>
+                                                        <th>Description</th>
+                                                        <th class="right">Category</th>
+                                                        <th class="center">Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="center">C200</td>
+                                                        <td class="left strong">JUNE 29 2025</td>
+                                                        <td class="left">Travel Qc to FAirview</td>
+                                                        <td class="right">Fare</td>
+                                                        <td class="center">100</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-2">
+                        <div class="card-header" id="headingEight">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight"
+                                    aria-expanded="false" aria-controls="collapseEight">
+                                    <span class="fas fa-angle-down mr-3"></span>REJECTED CLAIMS HISTORY
+                                </button>
+                                <div class="float-right">
+                                    <h3 class="mb-0"><span class="badge badge-code8">REJECTED</span></h3>
+                                </div>
+                            </h5>
+                        </div>
+                        <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion3">
+                            <div class="card-body">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-responsive-sm">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="center">Claim ID</th>
+                                                        <th>Claim Date</th>
+                                                        <th>Description</th>
+                                                        <th class="right">Category</th>
+                                                        <th class="center">Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="center">C200</td>
+                                                        <td class="left strong">JUNE 29 2025</td>
+                                                        <td class="left">Travel Qc to FAirview</td>
+                                                        <td class="right">Fare</td>
+                                                        <td class="center">100</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-2">
+                        <div class="card-header" id="headingNine">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine"
+                                    aria-expanded="false" aria-controls="collapseNine">
+                                    <span class="fas fa-angle-down mr-3"></span>DELETED CLAIMS HISTORY
+                                </button>
+                                <div class="float-right">
+                                    <h3 class="mb-0"><span class="badge badge-danger">DELETED</span></h3>
+                                </div>
+                            </h5>
+                        </div>
+                        <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion3">
+                            <div class="card-body">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-responsive-sm">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="center">Claim ID</th>
+                                                        <th>Claim Date</th>
+                                                        <th>Description</th>
+                                                        <th class="right">Category</th>
+                                                        <th class="center">Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="center">C200</td>
+                                                        <td class="left strong">JUNE 29 2025</td>
+                                                        <td class="left">Travel Qc to FAirview</td>
+                                                        <td class="right">Fare</td>
+                                                        <td class="center">100</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

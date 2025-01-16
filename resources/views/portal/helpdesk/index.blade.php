@@ -41,7 +41,8 @@
                                     <td>Account Information</td>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
+                                    <td>
+                                    </td>
                                     <td class="right">
                                         <div class="btn-group ml-auto">
                                             {{-- <a href="{{ route('portal.helpdesk.edit') }}" class="btn btn-sm btn-outline-light tooltip-container"><span class="tooltip-text">update this ticket</span>Edit</a> --}}

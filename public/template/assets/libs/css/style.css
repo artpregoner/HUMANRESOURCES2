@@ -4261,8 +4261,8 @@ Pills vertical
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
-    background-color: #5969ff;
-    border-color: #5969ff;
+    background-color: #1877F2;
+    border-color: #1877F2;
 }
 
 
@@ -6034,6 +6034,7 @@ Vertical Timeline - by CodyHouse.co
 
 .email-title {
     display: block;
+    color: #3d405c;
     margin: 3px 0 0;
     font-size: 22px;
     font-weight: 300;
@@ -6042,12 +6043,12 @@ Vertical Timeline - by CodyHouse.co
 
 .email-title .icon {
     font-size: 22px;
-    color: #71738d;
+    color: #3d405c;
 }
 
 .email-title .new-messages {
     font-size: 1rem;
-    color: #3d405c;
+    color: #71738d;
     margin-left: 3px;
     display: inline-block; /* Ensure it's inline initially */
 }

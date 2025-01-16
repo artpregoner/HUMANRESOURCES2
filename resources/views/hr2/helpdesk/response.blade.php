@@ -1,68 +1,147 @@
 @extends('layouts.app')
-@section('title','Helpdesk - Response')
-@section('header','Helpdesk') <!--pageheader-->
-@section('active-header', 'Response') <!--active pageheader-->
+@section('title','Helpdesk - Reply')
+{{-- @section('header','Helpdesk') --}}
+{{-- @section('active-header')
+    <div class="d-flex justify-content-between align-items-center">
+        <a href="{{ url('your.button.route') }}" class="btn btn-primary btn-sm">
+            <i class="fas fa-plus"></i> Add New
+        </a>
+    </div>
+@endsection --}}
+
+@push('styles')
+@endpush
 
 @section('content')
-<div class="chat-module">
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <div class="email-title">
-                        <span class="icon"><i class="fas fa-inbox"></i></span>
-                        Ticket Reply for:
-                    </div>
-                    <button type="button" class="btn btn-primary btn-space" onclick="window.location.href='{{ route('hr2.helpdesk.index') }}'">
-                        Return to Ticket Lists
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex">
+                <h4 class="card-header-title">
+                    <i class="fas fa-inbox"></i> Ticket Reply for:
+                </h4>
+                <div class="toolbar ml-auto">
+                    <button type="button" class="btn btn-space btn-light btn-sm" onclick="window.location.href='{{ route('hr2.helpdesk.index')}}'">
+                        Return to Ticket List
                     </button>
+                    <button class="btn btn-space btn-code3 btn-sm new-chat-btn">
+                        <i class="fas fa-reply"></i> Reply
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="reply-box" class="reply-box" style="display: none;">
+                    <div class="reply-tools">
+                        <button class="btn btn-sm btn-light mr-2" onclick="document.getElementById('image-input').click();">
+                            <i class="fas fa-image"></i> Add Image
+                        </button>
+                        <button class="btn btn-sm btn-light mr-2" onclick="document.getElementById('file-input').click();">
+                            <i class="fas fa-paperclip"></i> Add File
+                        </button>
+                    </div>
+                    <div class="reply-input-container">
+                        <textarea class="form-control mb-2" rows="4" placeholder="Type your reply here..."></textarea>
+                        <div class="reply-actions">
+                            <button class="btn btn-light mr-2" onclick="discardReply()">
+                                <i class="fas fa-times"></i> Discard
+                            </button>
+                            <button class="btn btn-code3" onclick="sendReply()">
+                                <i class="fas fa-paper-plane"></i> Send
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="chatbox">
+                    <div class="chatbox-messages">
+                        <div class="chat-message received">
+                            <img src="{{ asset('template/assets/images/user1.png') }}" alt="Admin" class="chat-avatar">
+                            <div class="chat-details">
+                                <span class="message-author">Admin</span>
+                                <p class="message-text">Hello, how can I assist you?</p>
+                                <span class="message-time">01/12/2025 15:55</span>
+                            </div>
+                        </div>
+                        <hr class="message-divider">
+                        <div class="chat-message sent">
+                            <img src="{{ asset('template/assets/images/admin.webp') }}" alt="You" class="chat-avatar">
+                            <div class="chat-details">
+                                <span class="message-author">You</span>
+                                <p class="message-text">I need help with my account.</p>
+                                <span class="message-time">01/12/2025 15:56</span>
+                            </div>
+                        </div>
+                        <hr class="message-divider">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="chat-module-top">
-        <div class="chat-module-body">
-            {{-- @if ($ticket->replies && count($ticket->replies) > 0) --}}
-                {{-- @foreach($ticket->replies->reverse() as $reply) <!-- Reverse the order of replies --> --}}
-                    <div class="media chat-item ">
-                        <img alt=""
-                             src=""
-                             class="rounded-circle user-avatar-lg">
-                        <div class="media-body">
-                            <div class="chat-item-title">
-                                <span class="chat-item-author"></span>
-                                <span class="text-muted"></span>
-                            </div>
-                            <div class="chat-item-body">
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                {{-- @endforeach --}}
-            {{-- @else --}}
-                <p class="text-muted">No replies yet.</p>
-            {{-- @endif --}}
-        </div>
-    </div>
-
-    <div class="email editor">
-        <form action="{{ url('ticket.reply.store') }}" method="POST">
-            @csrf
-            <div class="form-group">
-                <textarea class="form-control" name="reply" rows="6" placeholder="Write your reply!" required></textarea>
-            </div>
-            <div class="action-send">
-                <button class="btn btn-primary btn-space" type="submit">
-                    <i class="icon s7-mail"></i> Send
-                </button>
-                <button type="button" class="btn btn-secondary btn-space" onclick="window.location.href='{{ route('hr2.helpdesk.index') }}'">
-                    <i class="icon s7-close"></i> Cancel
-                </button>
-            </div>
-        </form>
-    </div>
 </div>
 @endsection
+
 @push('scripts')
+<script>
+    document.querySelector('.new-chat-btn').addEventListener('click', () => {
+        const replyBox = document.getElementById('reply-box');
+        replyBox.style.display = 'block';
+        replyBox.querySelector('textarea').focus();
+    });
+
+    function discardReply() {
+        const replyBox = document.getElementById('reply-box');
+        replyBox.style.display = 'none';
+        replyBox.querySelector('textarea').value = '';
+    }
+
+    function sendReply() {
+        const textarea = document.querySelector('.reply-input-container textarea');
+        const message = textarea.value.trim();
+
+        if (message) {
+            console.log('Sending message:', message);
+            textarea.value = '';
+            discardReply();
+        }
+    }
+    function sendReply() {
+    const textarea = document.querySelector('.reply-input-container textarea');
+    const message = textarea.value.trim();
+
+    if (message) {
+        // Sample data for new message (sa actual implementation, gamitin ang server-side logic)
+        const newMessage = {
+            author: "You",
+            avatar: "{{ asset('template/assets/images/admin.webp') }}",
+            text: message,
+            time: new Date().toLocaleString(), // Format: MM/DD/YYYY HH:mm
+        };
+
+        // Append the new message to the top of the chatbox
+        const chatboxMessages = document.querySelector('.chatbox-messages');
+        chatboxMessages.insertAdjacentHTML('afterbegin', `
+            <div class="chat-message sent">
+                <img src="${newMessage.avatar}" alt="${newMessage.author}" class="chat-avatar">
+                <div class="chat-details">
+                    <span class="message-author">${newMessage.author}</span>
+                    <p class="message-text">${newMessage.text}</p>
+                    <span class="message-time">${newMessage.time}</span>
+                </div>
+            </div>
+            <hr class="message-divider">
+        `);
+
+        // Scroll to the bottom of the chatbox
+        chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+
+        // Clear the input field and hide reply box
+        textarea.value = '';
+        discardReply();
+
+        console.log('Message sent:', newMessage);
+    } else {
+        alert('Please enter a message before sending.');
+    }
+}
+
+</script>
 @endpush

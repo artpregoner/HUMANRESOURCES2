@@ -1017,6 +1017,9 @@ Borders
     color: #ffa811;
 }
 
+.text-code3 {
+    color: #1877F2 !important;
+}
 
 /*-----------------------
 Borders
@@ -1946,7 +1949,7 @@ Sidebar Page Navigations
     background: #fff;
     font-size: 14px;
     color: #3d405c;
-    border: 1px solid #e6e6f2;
+    border: 1px solid #707070;
 }
 
 .dropdown-item {
@@ -1973,7 +1976,7 @@ Sidebar Page Navigations
 .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #5969ff;
+    background-color: #9295aa;
 }
 
 

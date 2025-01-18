@@ -62,7 +62,7 @@
                                         @endif
                                     </td> --}}
                                     <td class="zero-space">
-                                        <a href="#" class="btn btn-rounded btn-code3 btn-sm"><i class="fas fa-search"></i> View</a>
+                                        <a href="{{ route('hr2.claims.show')}}" class="btn btn-rounded btn-code3 btn-sm"><i class="fas fa-search"></i> View</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -72,6 +72,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 
 @push('scripts')

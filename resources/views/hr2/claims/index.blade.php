@@ -25,7 +25,8 @@
                                     <th>Amount</th>
                                     <th>Created</th>
                                     <th>Actioned By</th>
-                                    <th colspan="2">Status</th>
+                                    <th>Status</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,7 +37,7 @@
                                                   <img src="{{ asset('template/assets/images/user1.png')}}" alt="User Avatar" class="user-avatar-lg rounded-circle">
                                             </span>
                                             <div class="account-summary">
-                                                <h5 class="account-name">John Abraham</h5>
+                                                <h5 class="account-name">John Abraham ddawdawd</h5>
                                                 <span class="account-description">Department</span>
                                             </div>
                                         </a>
@@ -61,7 +62,7 @@
                                         @endif
                                     </td> --}}
                                     <td class="zero-space">
-                                        <a href="#" class="btn btn-rounded btn-code3"><i class="fas fa-search"></i> View</a>
+                                        <a href="#" class="btn btn-rounded btn-code3 btn-sm"><i class="fas fa-search"></i> View</a>
                                     </td>
                                 </tr>
                             </tbody>

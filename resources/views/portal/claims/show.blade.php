@@ -2,6 +2,8 @@
 <div class="modal fade" id="showClaims" tabindex="-1" role="dialog" aria-labelledby="showClaimsLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+            <!-- Preloader -->
+            @include('partials.preloader.modal-preloader', ['id' => 'showClaimsPreloader', 'text' => 'Loading expenses data...'])
             <!-- Header -->
             <div class="card-header p-2">
                 <div class="float-left">
@@ -140,3 +142,20 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script>
+$(document).ready(function () {
+    // Dynamic event listener for all modals
+    $('[data-toggle="modal"]').on('click', function () {
+        var modalId = $(this).data('target').substring(1); // Get the modal id (remove the '#')
+        var preloaderId = modalId + 'Preloader'; // Generate unique ID for the preloader
+
+        // Show the preloader when the modal is about to open
+        showPreloader(preloaderId);
+
+        // Hide the preloader after 3 seconds (can be adjusted)
+        setTimeout(() => hidePreloader(preloaderId), 3000);
+    });
+});
+</script>
+@endpush

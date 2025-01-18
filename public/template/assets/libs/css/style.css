@@ -7774,3 +7774,7 @@ Media Query
 }
 
 
+/* zero space class para sa tbody td space */
+.zero-space{
+    width: 0%;
+}

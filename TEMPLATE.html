@@ -229,6 +229,9 @@
                     <!-- End pageheader  -->
                     <!-- ============================================================== -->
                     <div class="row">
+                        @section('back-button')
+                            <a href="{{ route('hr2.helpdesk.index') }}" class="btn btn-space btn-code8 btn-sm float-right">Return to Ticket List</a>
+                        @endsection
                         <!-- ============================================================== -->
                         <!-- accrodions style one -->
                         <!-- ============================================================== -->

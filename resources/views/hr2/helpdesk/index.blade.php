@@ -20,7 +20,7 @@
                         <table id="example" class="table table-striped table-bordered first" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th style="width: 70px;" class="center">Ticket ID</th>
+                                    <th style="width: 70px;" class="center">Employee</th>
                                     <th class="center">Subject</th>
                                     <th style="width: 105px;">Created at</th>
                                     <th style="width: 105px;">Updated at</th>
@@ -37,7 +37,17 @@
                                     <td>{{ $ticket->priority }}</td>
                                     <td>{{ $ticket->category }}</td>
                                     <td>{{ $ticket->created_at->format('Y/m/d') }}</td> --}}
-                                    <td class="center">T200</td>
+                                    <td class="zero-space">
+                                        <a href="#" class="btn-account" role="button">
+                                            <span class="user-avatar">
+                                                  <img src="{{ asset('template/assets/images/user1.png')}}" alt="User Avatar" class="user-avatar-lg rounded-circle">
+                                            </span>
+                                            <div class="account-summary">
+                                                <h5 class="account-name">John Abraham ddawdawd</h5>
+                                                <span class="account-description">Department</span>
+                                            </div>
+                                        </a>
+                                    </td>
                                     <td>Account Information</td>
                                     <td></td>
                                     <td></td>

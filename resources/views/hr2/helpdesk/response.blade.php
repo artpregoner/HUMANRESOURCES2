@@ -1,13 +1,10 @@
 @extends('layouts.app')
 @section('title','Helpdesk - Reply')
-{{-- @section('header','Helpdesk') --}}
-{{-- @section('active-header')
-    <div class="d-flex justify-content-between align-items-center">
-        <a href="{{ url('your.button.route') }}" class="btn btn-primary btn-sm">
-            <i class="fas fa-plus"></i> Add New
-        </a>
-    </div>
-@endsection --}}
+@section('header','Helpdesk')
+@section('active-header', 'Ticket Response')
+@section('back-button')
+    <a href="{{ route('hr2.helpdesk.index') }}" class="btn btn-space btn-code8 btn-sm float-right">Return to Ticket List</a>
+@endsection
 
 @push('styles')
 @endpush
@@ -17,13 +14,21 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header d-flex">
-                <h4 class="card-header-title">
-                    <i class="fas fa-inbox"></i> Ticket Reply for:
-                </h4>
+                <div class="email-title">
+                    <span class="icon"><i class="fas fa-inbox"></i></span>
+                    Ticket response for: Cute
+                </div>
                 <div class="toolbar ml-auto">
-                    <button type="button" class="btn btn-space btn-light btn-sm" onclick="window.location.href='{{ route('hr2.helpdesk.index')}}'">
-                        Return to Ticket List
-                    </button>
+                        <button type="button" data-toggle="dropdown" class="btn btn-outline-code3 dropdown-toggle">Select</button>
+                        <div class="dropdown-menu">
+                            <a href="" class="dropdown-item text-code3">
+                                Resolved
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="" class="dropdown-item text-danger">
+                                Closed
+                            </a>
+                        </div>
                     <button class="btn btn-space btn-code3 btn-sm new-chat-btn">
                         <i class="fas fa-reply"></i> Reply
                     </button>
@@ -38,6 +43,17 @@
                         <button class="btn btn-sm btn-light mr-2" onclick="document.getElementById('file-input').click();">
                             <i class="fas fa-paperclip"></i> Add File
                         </button>
+                        <small class="text-muted ml-2">Maximum 10 files total</small>
+                        <input type="file" id="image-input" accept="image/jpeg,image/png,image/webp" style="display: none;" onchange="previewImage(event)" multiple>
+                        <input type="file" id="file-input" style="display: none;" onchange="displayFileName(event)" multiple>
+                    </div>
+                    <div id="image-preview" style="display: none; margin-bottom: 10px;">
+                        <strong>Images:</strong>
+                        <div id="image-display"></div>
+                    </div>
+                    <div id="file-name" style="display: none; margin-bottom: 10px;">
+                        <strong>Selected Files:</strong>
+                        <div id="file-display"></div>
                     </div>
                     <div class="reply-input-container">
                         <textarea class="form-control mb-2" rows="4" placeholder="Type your reply here..."></textarea>
@@ -53,20 +69,37 @@
                 </div>
                 <div class="chatbox">
                     <div class="chatbox-messages">
+                        <!-- Example message with image and file attachments -->
                         <div class="chat-message received">
-                            <img src="{{ asset('template/assets/images/user1.png') }}" alt="Admin" class="chat-avatar">
+                            <img src="{{ asset('template/assets/images/user1.png') }}" alt="Admin" class="user-avatar-lg rounded-circle">
                             <div class="chat-details">
                                 <span class="message-author">Admin</span>
                                 <p class="message-text">Hello, how can I assist you?</p>
+                                <div class="message-attachment">
+                                    <img src="{{ asset('template/assets/images/admin.webp') }}" alt="Attached Image" class="message-image">
+                                </div>
+                                <div class="message-attachment">
+                                    <i class="fas fa-paperclip"></i>
+                                    <span class="attached-file">document.pdf</span>
+                                </div>
                                 <span class="message-time">01/12/2025 15:55</span>
                             </div>
                         </div>
                         <hr class="message-divider">
+
+                        <!-- Example response with attachments -->
                         <div class="chat-message sent">
-                            <img src="{{ asset('template/assets/images/admin.webp') }}" alt="You" class="chat-avatar">
+                            <img src="{{ asset('template/assets/images/admin.webp') }}" alt="You" class="user-avatar-lg rounded-circle">
                             <div class="chat-details">
                                 <span class="message-author">You</span>
                                 <p class="message-text">I need help with my account.</p>
+                                <div class="message-attachment">
+                                    <img src="{{ asset('template/assets/images/admin.webp') }}" alt="Attached Image" class="message-image">
+                                </div>
+                                <div class="message-attachment">
+                                    <i class="fas fa-paperclip"></i>
+                                    <span class="attached-file">screenshot.png</span>
+                                </div>
                                 <span class="message-time">01/12/2025 15:56</span>
                             </div>
                         </div>
@@ -81,67 +114,279 @@
 
 @push('scripts')
 <script>
-    document.querySelector('.new-chat-btn').addEventListener('click', () => {
-        const replyBox = document.getElementById('reply-box');
-        replyBox.style.display = 'block';
-        replyBox.querySelector('textarea').focus();
-    });
+// Global variables to track attachments
+let selectedImages = [];
+let selectedFiles = [];
+const MAX_ATTACHMENTS = 10;
 
-    function discardReply() {
-        const replyBox = document.getElementById('reply-box');
-        replyBox.style.display = 'none';
-        replyBox.querySelector('textarea').value = '';
+// Show the reply box when the reply button is clicked
+document.querySelector('.new-chat-btn').addEventListener('click', () => {
+    const replyBox = document.getElementById('reply-box');
+    replyBox.style.display = 'block';
+    replyBox.querySelector('textarea').focus();
+});
+
+// Discard the reply and hide the reply box
+function discardReply() {
+    const replyBox = document.getElementById('reply-box');
+    replyBox.style.display = 'none';
+
+    // Clear the textarea and reset the preview sections
+    document.querySelector('.reply-input-container textarea').value = '';
+    document.getElementById('image-input').value = '';  // Clear image input field
+    document.getElementById('file-input').value = '';   // Clear file input field
+    document.getElementById('image-preview').style.display = 'none';
+    document.getElementById('file-name').style.display = 'none';
+    document.getElementById('image-display').innerHTML = ''; // Clear image preview display
+    document.getElementById('file-display').innerHTML = '';  // Clear file preview display
+
+    // Reset the arrays for selected images and files
+    selectedImages = [];
+    selectedFiles = [];
+}
+
+// Function to preview the selected image
+function previewImage(event) {
+    const files = event.target.files;
+    const totalFiles = selectedImages.length + selectedFiles.length + files.length;
+
+    if (totalFiles > MAX_ATTACHMENTS) {
+        alert(`You can only attach up to ${MAX_ATTACHMENTS} files in total.`);
+        event.target.value = '';
+        return;
     }
 
-    function sendReply() {
-        const textarea = document.querySelector('.reply-input-container textarea');
-        const message = textarea.value.trim();
-
-        if (message) {
-            console.log('Sending message:', message);
-            textarea.value = '';
-            discardReply();
+    for (let file of files) {
+        if (!file.type.match('image/(jpeg|png|webp)')) {
+            alert('Only JPEG, PNG, and WEBP images are allowed.');
+            continue;
         }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            selectedImages.push({
+                name: file.name,
+                url: e.target.result
+            });
+            updatePreview();
+        };
+        reader.readAsDataURL(file);
     }
-    function sendReply() {
+}
+
+// Function to display the selected file name
+function displayFileName(event) {
+    const files = event.target.files;
+    const totalFiles = selectedImages.length + selectedFiles.length + files.length;
+
+    if (totalFiles > MAX_ATTACHMENTS) {
+        alert(`You can only attach up to ${MAX_ATTACHMENTS} files in total.`);
+        event.target.value = '';
+        return;
+    }
+
+    for (let file of files) {
+        selectedFiles.push(file.name);
+    }
+    updatePreview();
+}
+
+// Function to update preview of all attachments
+function updatePreview() {
+    const imagePreview = document.getElementById('image-preview');
+    const fileDisplay = document.getElementById('file-display');
+    const fileNameContainer = document.getElementById('file-name');
+
+    // Update image previews
+    if (selectedImages.length > 0) {
+        imagePreview.style.display = 'block';
+        imagePreview.innerHTML = selectedImages.map((img, index) =>
+            `<div class="file-preview-item" style="display: flex; align-items: center; margin-bottom: 10px;">
+                <img src="${img.url}" alt="Preview" style="max-width: 100px; margin-right: 10px;">
+                <span>${img.name}</span>
+                <button type="button" class="btn btn-sm btn-danger remove-file" onclick="removeImage(${index})" style="margin-left: auto;">×</button>
+            </div>`).join('');
+    } else {
+        imagePreview.style.display = 'none';
+    }
+
+    // Update file list
+    if (selectedFiles.length > 0) {
+        fileNameContainer.style.display = 'block';
+        fileDisplay.innerHTML = selectedFiles.map((filename, index) =>
+            `<div class="file-preview-item" style="display: flex; align-items: center; margin-bottom: 10px;">
+                <span>${filename}</span>
+                <button type="button" class="btn btn-sm btn-danger remove-file" onclick="removeFile(${index})" style="margin-left: auto;">×</button>
+            </div>`).join('');
+    } else {
+        fileNameContainer.style.display = selectedImages.length > 0 ? 'block' : 'none';
+    }
+}
+
+// Remove image from the preview
+function removeImage(index) {
+    selectedImages.splice(index, 1);
+    updatePreview();
+}
+
+// Remove file from the preview
+function removeFile(index) {
+    selectedFiles.splice(index, 1);
+    updatePreview();
+}
+
+// Function to send reply with attachments
+function sendReply() {
     const textarea = document.querySelector('.reply-input-container textarea');
     const message = textarea.value.trim();
 
-    if (message) {
-        // Sample data for new message (sa actual implementation, gamitin ang server-side logic)
-        const newMessage = {
-            author: "You",
-            avatar: "{{ asset('template/assets/images/admin.webp') }}",
-            text: message,
-            time: new Date().toLocaleString(), // Format: MM/DD/YYYY HH:mm
-        };
+    let messageContent = '';
 
-        // Append the new message to the top of the chatbox
+    if (message) {
+        messageContent += `<p class="message-text">${message}</p>`;
+    }
+
+    // Add images (only those that were selected)
+    selectedImages.forEach(img => {
+        messageContent += `
+            <div class="message-attachment">
+                <img src="${img.url}" alt="Attached Image" class="message-image">
+            </div>
+        `;
+    });
+
+    // Add files (only those that were selected)
+    selectedFiles.forEach(filename => {
+        messageContent += `
+            <div class="message-attachment">
+                <i class="fas fa-paperclip"></i>
+                <span class="attached-file">${filename}</span>
+            </div>
+        `;
+    });
+
+    // If there is content (text + images/files), send the message
+    if (messageContent) {
         const chatboxMessages = document.querySelector('.chatbox-messages');
         chatboxMessages.insertAdjacentHTML('afterbegin', `
             <div class="chat-message sent">
-                <img src="${newMessage.avatar}" alt="${newMessage.author}" class="chat-avatar">
+                <img src="{{ asset('template/assets/images/admin.webp') }}" alt="You" class="chat-avatar">
                 <div class="chat-details">
-                    <span class="message-author">${newMessage.author}</span>
-                    <p class="message-text">${newMessage.text}</p>
-                    <span class="message-time">${newMessage.time}</span>
+                    <span class="message-author">You</span>
+                    ${messageContent}
+                    <span class="message-time">${new Date().toLocaleString()}</span>
                 </div>
             </div>
             <hr class="message-divider">
         `);
 
-        // Scroll to the bottom of the chatbox
-        chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+        // Reset the arrays after sending the reply to prevent old files from being sent again
+        selectedImages = [];
+        selectedFiles = [];
 
-        // Clear the input field and hide reply box
-        textarea.value = '';
+        // Also call discardReply to hide the reply box and clear inputs
         discardReply();
-
-        console.log('Message sent:', newMessage);
     } else {
-        alert('Please enter a message before sending.');
+        alert('Please enter a message or attach a file before sending.');
     }
 }
 
+
+
+// Additional handling for file inputs (image and general file upload handling)
+document.addEventListener('DOMContentLoaded', function() {
+    const MAX_FILES = 10;
+    let totalFiles = 0;
+    const filePreviewsContainer = document.getElementById('file-previews');
+
+    // Handle image selection
+    document.getElementById('addImageBtn').addEventListener('click', function() {
+        if (totalFiles >= MAX_FILES) {
+            alert('Maximum 10 images allowed.');
+            return;
+        }
+        document.getElementById('image-input').click();
+    });
+
+    // Handle file selection
+    document.getElementById('addFileBtn').addEventListener('click', function() {
+        if (totalFiles >= MAX_FILES) {
+            alert('Maximum 10 files allowed.');
+            return;
+        }
+        document.getElementById('file-input').click();
+    });
+
+    // Handle image preview and validation
+    document.getElementById('image-input').addEventListener('change', function(event) {
+        handleFileSelection(event.target.files, true);
+    });
+
+    // Handle file preview and validation
+    document.getElementById('file-input').addEventListener('change', function(event) {
+        handleFileSelection(event.target.files, false);
+    });
+
+    function handleFileSelection(files, isImage) {
+        const remainingSlots = MAX_FILES - totalFiles;
+        const filesToProcess = Math.min(files.length, remainingSlots);
+
+        if (files.length > remainingSlots) {
+            alert(`Only ${remainingSlots} more file(s) can be added.`);
+        }
+
+        for (let i = 0; i < filesToProcess; i++) {
+            const file = files[i];
+
+            // Check for image type validation
+            if (isImage && !['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+                alert('Only JPEG, PNG, and WEBP images are allowed.');
+                continue;
+            }
+
+            const fileDiv = document.createElement('div');
+            fileDiv.className = 'file-preview-item mb-2 d-flex align-items-center';
+
+            if (isImage && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    fileDiv.innerHTML = `
+                        <img src="${e.target.result}" alt="Preview" style="height: 50px; width: 50px; object-fit: cover; margin-right: 10px;">
+                        <span class="file-name">${file.name}</span>
+                        <button type="button" class="btn btn-sm btn-danger ml-auto remove-file">×</button>
+                    `;
+                    // Attach remove functionality here after the image is loaded
+                    fileDiv.querySelector('.remove-file').addEventListener('click', function() {
+                        fileDiv.remove();
+                        totalFiles--;
+                    });
+                };
+                reader.readAsDataURL(file);
+            } else {
+                fileDiv.innerHTML = `
+                    <i class="fas fa-file mr-2"></i>
+                    <span class="file-name">${file.name}</span>
+                    <button type="button" class="btn btn-sm btn-danger ml-auto remove-file">×</button>
+                `;
+                // Attach remove functionality for regular files
+                fileDiv.querySelector('.remove-file').addEventListener('click', function() {
+                    fileDiv.remove();
+                    totalFiles--;
+                });
+            }
+
+            filePreviewsContainer.appendChild(fileDiv);
+            totalFiles++;
+        }
+    }
+
+    // Form submission validation
+    document.getElementById('ticketForm').addEventListener('submit', function(event) {
+        if (totalFiles > MAX_FILES) {
+            event.preventDefault();
+            alert('Maximum 10 files allowed. Please remove some files.');
+        }
+    });
+});
 </script>
 @endpush

@@ -7691,7 +7691,7 @@ Media Query
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
-    max-height: 400px;
+    max-height: 1000px;
     overflow-y: auto;
 }
 
@@ -7773,6 +7773,27 @@ Media Query
     text-align: right;
 }
 
+.message-attachment {
+    margin: 5px 0;
+    padding: 5px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.attached-file {
+    margin-left: 5px;
+    color: #0056b3;
+    border-radius: 4px;
+    border: 3px solid #ccc;
+    padding: 2px 4px;
+}
+
+
+.message-image {
+    max-width: 150px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
 
 /* zero space class para sa tbody td space */
 .zero-space{

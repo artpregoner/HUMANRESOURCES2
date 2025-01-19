@@ -6478,7 +6478,7 @@ Vertical Timeline - by CodyHouse.co
 .media-attachment {
     padding-left: 0.75rem;
     align-items: center;
-    border-left: 4px solid #E9EEF2;
+    border-left: 4px #E9EEF2;
 }
 
 .chat-item .media-attachment {
@@ -6487,7 +6487,7 @@ Vertical Timeline - by CodyHouse.co
 .chat-item-author{color: #333;}
 
 .media-attachment:not(:first-child) {
-    margin-top: 0.75rem;
+    margin-top: 0%;
 }
 
 .media-attachment div.avatar {

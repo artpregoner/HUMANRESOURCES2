@@ -88,7 +88,6 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th class="center">ID</th>
                                 <th>Category</th>
                                 <th>Details</th>
                                 <th class="right">Amount</th>
@@ -96,40 +95,52 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="center">1</td>
                                 <td class="left strong">Origin License</td>
                                 <td class="left">Extended License</td>
                                 <td class="right">0</td>
                             </tr>
                             <tr>
-                                <td class="center">2</td>
                                 <td class="left">Custom Services</td>
                                 <td class="left">Installation and Customization (cost per hour)</td>
                                 <td class="right">0</td>
                             </tr>
+                            <tr> <!--Total Row-->
+                                <td></td>
+                                <td><strong class="text-dark">Total</strong></td>
+                                <td><strong class="text-dark">0</strong></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
-                <!-- Total Row -->
                 <div class="row">
-                    <div class="col-lg-4 col-sm-5 ml-auto">
-                        <table class="table table-striped">
-                            <tbody>
-                                <tr>
-                                    <td class="center"><strong class="text-dark">Total</strong></td>
-                                    <td class="right"><strong class="text-dark">0</strong></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <!-- Checkbox for reimbursement -->
+                    <div class="col-sm-6 d-flex align-items-center">
+                        <label class="custom-control custom-checkbox mb-0">
+                            <input type="checkbox" class="custom-control-input" name="reimbursement_required" checked disabled>
+                            <span class="custom-control-label">Reimbursement is required for this expense
+                                claim</span>
+                        </label>
                     </div>
                 </div>
             </div>
             <div class="card-body border-top">
                 <div class="row">
-                    <div class="upload-container">
-                        <p>Uploaded Receipts </p>
-                        <div class="image-preview" id="image-preview">
-                            <!-- Images will be previewed here -->
+                    <div class="media media-attachment">
+                        <div class="avatar bg-primary">
+                            <i class="far fa-file-image"></i>
+                        </div>
+                        <div class="media-body">
+                            <a href="#" class="">receipt.png</a>
+                            <span>24kb Document</span>
+                        </div>
+                    </div>
+                    <div class="media media-attachment">
+                        <div class="avatar bg-primary">
+                            <i class="far fa-file-image"></i>
+                        </div>
+                        <div class="media-body">
+                            <a href="#" class="">receipt.png</a>
+                            <span>24kb Document</span>
                         </div>
                     </div>
                 </div>

@@ -112,6 +112,38 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="row">
+                        <!-- Checkbox for reimbursement -->
+                        <div class="col-sm-6 d-flex align-items-center">
+                            <label class="custom-control custom-checkbox mb-0">
+                                <input type="checkbox" class="custom-control-input" name="reimbursement_required" checked disabled>
+                                <span class="custom-control-label">Reimbursement is required for this expense
+                                    claim</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="card-body border-top">
+                        <div class="row">
+                            <div class="media media-attachment">
+                                <div class="avatar bg-primary">
+                                    <i class="far fa-file-image"></i>
+                                </div>
+                                <div class="media-body">
+                                    <a href="#" class="">receipt.png</a>
+                                    <span>24kb Document</span>
+                                </div>
+                            </div>
+                            <div class="media media-attachment">
+                                <div class="avatar bg-primary">
+                                    <i class="far fa-file-image"></i>
+                                </div>
+                                <div class="media-body">
+                                    <a href="#" class="">receipt.png</a>
+                                    <span>24kb Document</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

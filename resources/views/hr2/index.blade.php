@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title','Human Resources')
-@section('header','Human Resources')<!--pageheader-->
-@section('active-header', 'Dashboard')
+{{-- @section('header','Human Resources')
+@section('active-header', 'Dashboard') --}} <!--Example :)-->
 
 @section('content')
 <!-- Dashboard Metrics Section -->

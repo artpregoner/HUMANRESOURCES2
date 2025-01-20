@@ -7541,6 +7541,7 @@ Media Query
     height: 100%;
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.5); /* Dim background */
+    backdrop-filter: blur(10px); /* Blur effect */
 }
 
 .modal-dialog {

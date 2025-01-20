@@ -1,0 +1,59 @@
+/* Premium Styling for Messages */
+.modalThisImage {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modalThisImage:hover {
+    transform: scale(1.02); /* Much smaller scale */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Slightly more subtle shadow */
+}
+
+
+/* Modal Container nasa mismong main styles na*/
+
+
+/* Show Modal */
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+/* Modal Image */
+#modalImg {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+
+/* @push('styles')
+    <link rel="stylesheet" href="{{asset('asset/vendor/image-modal/style.css')}}">
+@endpush */
+
+/* ipasok mo ito sa specific page na merong view modal */
+
+/* Paano Magdagdag ng Higit Pang Images
+1 Lagyan ng class="modalThisImage" ang bawat image na gusto mong lagyan ng modal. */
+
+/* Sa iyong HTML file, siguraduhin na kasama ang modal structure: para mas less code gamitin ang @include*/
+
+/* @include('components.modal.image-modal') */
+
+/* <div id="imageModal" class="modal">
+        <button class="close-btn btn btn-dark btn-rounded"><i class="fas fa-times"></i></button>
+        <img id="modalImg" alt="Modal Image">
+    </div> */

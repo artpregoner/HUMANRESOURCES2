@@ -1,10 +1,15 @@
 @extends('layouts.app')
 @section('title','My Profile')
-@section('header','Portal')<!--pageheader-->
+@section('header','HR2')
 @section('active-header', 'My Profile')
+
+@push('styles')
+    <link rel="stylesheet" href="{{asset('asset/vendor/image-modal/style.css')}}">
+@endpush
 
 @section('content')
 <div class="row">
+    @include('components.modal.image-modal')
     <!-- Profile Section -->
     <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12">
         <div class="card influencer-profile-data">
@@ -12,7 +17,7 @@
                 <div class="row">
                     <!-- Profile Image -->
                     <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-12 text-center">
-                        <img src="{{ asset('template/assets/images/admin.webp') }}" alt="User Avatar" class="rounded-circle user-avatar-xxl">
+                        <img src="{{ asset('template/assets/images/user1.png') }}" alt="User Avatar" class="rounded-circle user-avatar-xxl modalThisImage">
                     </div>
                     <!-- Profile Info -->
                     <div class="col-xl-10 col-lg-8 col-md-8 col-sm-8 col-12">
@@ -54,3 +59,6 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+    <script src="{{ asset('asset/vendor/image-modal/scripts.js')}}"></script>
+@endpush

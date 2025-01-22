@@ -7,6 +7,7 @@
 @endsection
 
 @push('styles')
+<link rel="stylesheet" href="{{asset('asset/vendor/image-modal/style.css')}}">
 @endpush
 
 @section('content')
@@ -19,16 +20,16 @@
                     Ticket response for: Cute
                 </div>
                 <div class="toolbar ml-auto">
-                        <button type="button" data-toggle="dropdown" class="btn btn-outline-code3 dropdown-toggle">Select</button>
-                        <div class="dropdown-menu">
-                            <a href="" class="dropdown-item text-code3">
-                                Resolved
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="" class="dropdown-item text-danger">
-                                Closed
-                            </a>
-                        </div>
+                    <button type="button" data-toggle="dropdown" class="btn btn-outline-code3 dropdown-toggle">Select</button>
+                    <div class="dropdown-menu">
+                        <a href="" class="dropdown-item text-code3">
+                            Resolved
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="" class="dropdown-item text-danger">
+                            Closed
+                        </a>
+                    </div>
                     <button class="btn btn-space btn-code3 btn-sm new-chat-btn">
                         <i class="fas fa-reply"></i> Reply
                     </button>
@@ -68,6 +69,11 @@
                     </div>
                 </div>
                 <div class="chatbox">
+                    @include('components.modal.image-modal')
+                    <div id="imageModal" class="modal">
+                        <button class="close-btn btn btn-dark btn-rounded"><i class="fas fa-times"></i></button>
+                        <img id="modalImg" alt="Modal Image">
+                    </div>
                     <div class="chatbox-messages">
                         <!-- Example message with image and file attachments -->
                         <div class="chat-message received">
@@ -76,11 +82,16 @@
                                 <span class="message-author">Admin</span>
                                 <p class="message-text">Hello, how can I assist you?</p>
                                 <div class="message-attachment">
-                                    <img src="{{ asset('template/assets/images/admin.webp') }}" alt="Attached Image" class="message-image">
+                                    <img src="{{ asset('template/assets/images/admin.webp') }}" alt="Attached Image" class="message-image modalThisImage">
                                 </div>
-                                <div class="message-attachment">
-                                    <i class="fas fa-paperclip"></i>
-                                    <span class="attached-file">document.pdf</span>
+                                <div class="media media-attachment">
+                                    <div class="avatar bg-primary">
+                                        <i class="far fa-file-image"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <a href="#" class="">receipt.png</a>
+                                        <span>24kb Document</span>
+                                    </div>
                                 </div>
                                 <span class="message-time">01/12/2025 15:55</span>
                             </div>
@@ -94,11 +105,16 @@
                                 <span class="message-author">You</span>
                                 <p class="message-text">I need help with my account.</p>
                                 <div class="message-attachment">
-                                    <img src="{{ asset('template/assets/images/admin.webp') }}" alt="Attached Image" class="message-image">
+                                    <img src="{{ asset('template/assets/images/admin.webp') }}" alt="Attached Image" class="message-image modalThisImage">
                                 </div>
-                                <div class="message-attachment">
-                                    <i class="fas fa-paperclip"></i>
-                                    <span class="attached-file">screenshot.png</span>
+                                <div class="media media-attachment">
+                                    <div class="avatar bg-primary">
+                                        <i class="far fa-file-image"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <a href="#" class="">receipt.png</a>
+                                        <span>24kb Document</span>
+                                    </div>
                                 </div>
                                 <span class="message-time">01/12/2025 15:56</span>
                             </div>
@@ -113,6 +129,7 @@
 @endsection
 
 @push('scripts')
+<script src="{{ asset('asset/vendor/image-modal/scripts.js')}}"></script>
 <script>
 // Global variables to track attachments
 let selectedImages = [];
@@ -250,7 +267,7 @@ function sendReply() {
     selectedImages.forEach(img => {
         messageContent += `
             <div class="message-attachment">
-                <img src="${img.url}" alt="Attached Image" class="message-image">
+                <img src="${img.url}" alt="Attached Image" class="message-image modalThisImage">
             </div>
         `;
     });
@@ -258,9 +275,14 @@ function sendReply() {
     // Add files (only those that were selected)
     selectedFiles.forEach(filename => {
         messageContent += `
-            <div class="message-attachment">
-                <i class="fas fa-paperclip"></i>
-                <span class="attached-file">${filename}</span>
+            <div class="media media-attachment">
+                <div class="avatar bg-primary">
+                    <i class="far fa-file-image"></i>
+                </div>
+                <div class="media-body">
+                    <a href="#" class="">${filename}</a>
+                    <span>24kb Document</span>
+                </div>
             </div>
         `;
     });

@@ -3,8 +3,7 @@
 @section('header', 'Helpdesk')
 @section('active-header', 'Response...')
 @push('styles')
-<style>
-</style>
+    <link rel="stylesheet" href="{{asset('asset/vendor/image-modal/style.css')}}">
 @endpush
 
 @section('content')
@@ -56,6 +55,7 @@
                     </div>
                 </div>
                 <div class="chatbox">
+                    @include('components.modal.image-modal')
                     <div class="chatbox-messages">
                         <!-- Example message with image and file attachments -->
                         <div class="chat-message received">
@@ -64,11 +64,16 @@
                                 <span class="message-author">Admin</span>
                                 <p class="message-text">Hello, how can I assist you?</p>
                                 <div class="message-attachment">
-                                    <img src="{{ asset('template/assets/images/admin.webp') }}" alt="Attached Image" class="message-image">
+                                    <img src="{{ asset('template/assets/images/admin.webp') }}" alt="Attached Image" class="message-image modalThisImage">
                                 </div>
-                                <div class="message-attachment">
-                                    <i class="fas fa-paperclip"></i>
-                                    <span class="attached-file">document.pdf</span>
+                                <div class="media media-attachment">
+                                    <div class="avatar bg-primary">
+                                        <i class="far fa-file-image"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <a href="#" class="">receipt.png</a>
+                                        <span>24kb Document</span>
+                                    </div>
                                 </div>
                                 <span class="message-time">01/12/2025 15:55</span>
                             </div>
@@ -82,11 +87,16 @@
                                 <span class="message-author">You</span>
                                 <p class="message-text">I need help with my account.</p>
                                 <div class="message-attachment">
-                                    <img src="{{ asset('template/assets/images/admin.webp') }}" alt="Attached Image" class="message-image">
+                                    <img src="{{ asset('template/assets/images/admin.webp') }}" alt="Attached Image" class="message-image modalThisImage">
                                 </div>
-                                <div class="message-attachment">
-                                    <i class="fas fa-paperclip"></i>
-                                    <span class="attached-file">screenshot.png</span>
+                                <div class="media media-attachment">
+                                    <div class="avatar bg-primary">
+                                        <i class="far fa-file-image"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <a href="#" class="">receipt.png</a>
+                                        <span>24kb Document</span>
+                                    </div>
                                 </div>
                                 <span class="message-time">01/12/2025 15:56</span>
                             </div>
@@ -238,7 +248,7 @@ function sendReply() {
     selectedImages.forEach(img => {
         messageContent += `
             <div class="message-attachment">
-                <img src="${img.url}" alt="Attached Image" class="message-image">
+                <img src="${img.url}" alt="Attached Image" class="message-image modalThisImage">
             </div>
         `;
     });
@@ -246,9 +256,14 @@ function sendReply() {
     // Add files (only those that were selected)
     selectedFiles.forEach(filename => {
         messageContent += `
-            <div class="message-attachment">
-                <i class="fas fa-paperclip"></i>
-                <span class="attached-file">${filename}</span>
+            <div class="media media-attachment">
+                <div class="avatar bg-primary">
+                    <i class="far fa-file-image"></i>
+                </div>
+                <div class="media-body">
+                    <a href="#" class="">${filename}</a>
+                    <span>24kb Document</span>
+                </div>
             </div>
         `;
     });
@@ -377,4 +392,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<script src="{{ asset('asset/vendor/image-modal/scripts.js')}}"></script>
 @endpush

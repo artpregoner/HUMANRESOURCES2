@@ -35,7 +35,7 @@
                             </div>
                         </div>
 
-                        <!-- Ticket Response-->
+                        {{-- for ticket response section  --}}
                         <div class="form-group">
                             <label for="reply-box" class="col-form-label">Response</label>
                             <div class="reply-box">
@@ -60,6 +60,7 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- end for ticket response section  --}}
 
                         <!-- Send Ticket to -->
                         <div class="row">

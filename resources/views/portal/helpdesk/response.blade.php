@@ -54,6 +54,7 @@
                         </div>
                     </div>
                 </div>
+                {{-- ticket response section  --}}
                 <div class="chatbox">
                     @include('components.modal.image-modal')
                     <div class="chatbox-messages">
@@ -104,6 +105,7 @@
                         <hr class="message-divider">
                     </div>
                 </div>
+                {{-- end ticket response section  --}}
             </div>
         </div>
     </div>

@@ -22,6 +22,8 @@
                 </div>
             </div>
             <div class="card-body">
+
+                {{-- end submit response ticket --}}
                 <div id="reply-box" class="reply-box" style="display: none;">
                     <div class="reply-tools">
                         <button class="btn btn-sm btn-light mr-2" onclick="document.getElementById('image-input').click();">
@@ -54,7 +56,9 @@
                         </div>
                     </div>
                 </div>
-                {{-- ticket response section  --}}
+                {{-- end submit response ticket --}}
+
+                {{-- response section  --}}
                 <div class="chatbox">
                     @include('components.modal.image-modal')
                     <div class="chatbox-messages">
@@ -105,7 +109,8 @@
                         <hr class="message-divider">
                     </div>
                 </div>
-                {{-- end ticket response section  --}}
+                {{-- end response section  --}}
+
             </div>
         </div>
     </div>

@@ -20,7 +20,6 @@
                         <table id="example" class="table table-striped table-bordered first" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th style="width: 70px;" class="center">Ticket ID</th>
                                     <th class="center">Subject</th>
                                     <th style="width: 105px;">Created at</th>
                                     <th style="width: 105px;">Updated at</th>
@@ -37,7 +36,6 @@
                                     <td>{{ $ticket->priority }}</td>
                                     <td>{{ $ticket->category }}</td>
                                     <td>{{ $ticket->created_at->format('Y/m/d') }}</td> --}}
-                                    <td class="center">T200</td>
                                     <td>Account Information</td>
                                     <td></td>
                                     <td></td>

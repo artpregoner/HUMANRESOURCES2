@@ -22,7 +22,6 @@
                         <table class="table table-striped table-bordered first">
                             <thead>
                                 <tr>
-                                    <th>Claim ID</th>
                                     <th>Claim Date</th>
                                     <th>Description</th>
                                     <th>Category</th>
@@ -32,7 +31,6 @@
                             </thead>
                             <tbody>
                                 <tr style="cursor: pointer" data-toggle="modal" data-target="#showClaims">
-                                    <td>C200</td>
                                     <td>09/12/2024</td>
                                     <td>Pamasahe papuntang sm fairview</td>
                                     <td>Fuel</td>

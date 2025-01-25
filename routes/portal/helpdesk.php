@@ -13,4 +13,4 @@ Route::prefix('portal/helpdesk')->group(function () {
     //reponse in helpdesk
     Route::get('/canned-response',[HelpdeskController::class, 'responseHelpdesk'])->name('portal.helpdesk.response');
 });
-
+// ->middleware(['auth', 'role:employee'])

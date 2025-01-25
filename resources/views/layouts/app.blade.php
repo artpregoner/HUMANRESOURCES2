@@ -11,14 +11,16 @@
     <link rel="stylesheet" href="{{ asset('asset/libs/css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('template/assets/vendor/charts/chartist-bundle/chartist.css') }}">
     <link rel="stylesheet" href="{{ asset('template/assets/vendor/charts/morris-bundle/morris.css') }}">
-    <link rel="stylesheet" href="{{ asset('template/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('template/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/assets/vendor/charts/c3charts/c3.css') }}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('template/assets/vendor/bootstrap/css/bootstrap.min.css') }}">
     <link href="{{ asset('template/assets/vendor/fonts/circular-std/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('template/assets/libs/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('template/assets/vendor/fonts/fontawesome/css/fontawesome-all.css') }}">
-    <link href="{{ asset('template/assets/vendor/full-calendar/css/fullcalendar.print.css') }}" rel='stylesheet' media='print' />
+    <link href="{{ asset('template/assets/vendor/full-calendar/css/fullcalendar.print.css') }}" rel='stylesheet'
+        media='print' />
     <link href="{{ asset('template/assets/vendor/full-calendar/css/fullcalendar.css') }}" rel='stylesheet' />
     <link rel="icon" href="{{ asset('template/images/storelogo.png') }}" type="image/x-icon">
     <!-- TAble CSS -->
@@ -27,13 +29,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/datatables/css/select.bootstrap4.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/datatables/css/fixedHeader.bootstrap4.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/summernote/css/summernote-bs4.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('template/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/select2/css/select2.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('template/assets/vendor/datepicker/tempusdominus-bootstrap-4.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('template/assets/vendor/bootstrap-select/css/bootstrap-select.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/datepicker/tempusdominus-bootstrap-4.css') }}">
+    <link rel="stylesheet" type="text/css href="{{ asset('template/assets/vendor/bootstrap-select/css/bootstrap-select.css') }}">
     @stack('styles')
     @yield('styles')
 
@@ -42,23 +41,31 @@
 
 <body>
     <div class="dashboard-main-wrapper">
-        {{-- @include('layouts.admin-layouts.topbar') <!-- Topbar included here / this is for admin -->
-        @include('layouts.admin-layouts.sidebar') <!-- Sidebar included here / this is for admin --> --}}
-{{--
-        @include('layouts.hr2-layouts.topbar') <!-- Topbar included here / this is for hr2 -->
-        @include('layouts.hr2-layouts.sidebar') <!-- Sidebar included here / this is for hr2 --> --}}
+        @if (Auth::check())
+            @php
+                $role = Auth::user()->role;
+            @endphp
 
-        @include('layouts.portal-layouts.topbar') <!-- Topbar included here / this is for employee -->
-        @include('layouts.portal-layouts.sidebar') <!-- Sidebar included here / this is for employee -->
-        <div class="dashboard-wrapper">
-            <div class="dashboard-ecommerce">
-                <div class="container-fluid dashboard-content ">
-                    @include('layouts.pageheader') <!--pageheader -->
-                    @yield('content')<!--Content of dashboard-->
+            @if ($role == 'admin')
+                @include('layouts.admin-layouts.topbar') <!-- Topbar for admin -->
+                @include('layouts.admin-layouts.sidebar') <!-- Sidebar for admin -->
+            @elseif($role == 'hr')
+                @include('layouts.hr2-layouts.topbar') <!-- Topbar for HR -->
+                @include('layouts.hr2-layouts.sidebar') <!-- Sidebar for HR -->
+            @elseif($role == 'employee')
+                @include('layouts.portal-layouts.topbar') <!-- Topbar for employee -->
+                @include('layouts.portal-layouts.sidebar') <!-- Sidebar for employee -->
+            @endif
+            <div class="dashboard-wrapper">
+                <div class="dashboard-ecommerce">
+                    <div class="container-fluid dashboard-content ">
+                        @include('layouts.pageheader') <!--pageheader -->
+                        @yield('content')<!--Content of dashboard-->
+                    </div>
                 </div>
+                @include('layouts.footer') <!-- Shared footer -->
             </div>
-            @include('layouts.footer') <!-- Shared footer -->
-        </div>
+        @endif
     </div>
 
     <!-- Optional JavaScript -->

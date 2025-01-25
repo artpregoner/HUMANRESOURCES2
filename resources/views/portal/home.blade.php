@@ -5,6 +5,7 @@
 
 @section('content')
 <div class="influence-profile">
+    @include('components.alert.success')
     <div class="row">
         <!-- ============================================================== -->
         <!-- Employee HOME Dashboard -->

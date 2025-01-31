@@ -83,7 +83,7 @@
                             href="{{ route('portal.helpdesk.index') }}" aria-expanded="false">
                             <i class="m-r-10 mdi mdi-ticket-account"></i>
                             Tickets
-                            <span class="badge badge-code8 badge-pill">14</span>
+                            <span class="badge badge-code8 badge-pill">{{ $ticketCount }}</span>
                         </a>
                     </li>
                 </ul>

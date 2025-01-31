@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/select2/css/select2.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/datepicker/tempusdominus-bootstrap-4.css') }}">
-    <link rel="stylesheet" type="text/css href="{{ asset('template/assets/vendor/bootstrap-select/css/bootstrap-select.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/bootstrap-select/css/bootstrap-select.css') }}">
     @stack('styles')
     @yield('styles')
 

@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
 class UserSeeder extends Seeder
@@ -16,7 +14,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Create an employee
-        User::create([
+        User::factory()->create([
             'name' => 'Art Javar Pogi',
             'email' => 'pregoner@user.com',
             'password' => Hash::make('user12345678'),
@@ -24,7 +22,7 @@ class UserSeeder extends Seeder
         ]);
 
         // Create an HR user (HR2)
-        User::create([
+        User::factory()->create([
             'name' => 'Jane Smith',
             'email' => 'hrmanager@user.com',
             'password' => Hash::make('user12345678'),
@@ -32,7 +30,7 @@ class UserSeeder extends Seeder
         ]);
 
         // Create an Admin user
-        User::create([
+        User::factory()->create([
             'name' => 'Malupweton Juwil',
             'email' => 'bcp@admin.com',
             'password' => Hash::make('admin12345678'),

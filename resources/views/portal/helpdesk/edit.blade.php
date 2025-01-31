@@ -110,3 +110,85 @@
     });
 </script>
 @endpush
+                        {{-- End submit response ticket --}}
+
+                        {{-- <!-- Send Ticket to user with admin and HR role -->
+                        <label for="reply-box" class="col-form-label">Send Ticket To:</label><button
+                        class="btn btn-xs m-b-xs btn-outline btn-link"
+                        data-content="Select Admin/HR. You can select also a specific HR user." data-placement="top"
+                        data-toggle="popover" tabindex="-1" type="button" data-original-title=""
+                        title="">
+                        <i class="fa fa-question-circle"></i>
+                        </button> --}}
+
+
+                        {{-- i dont use this anymore but keep this section comment --}}
+                        {{-- <div class="input-group mb-3">
+                            <!-- Fixed: Always Send to All Admins -->
+                            <input type="hidden" name="assigned_to[]" value="admin">
+
+                            <div class="input-group-prepend be-addon">
+                                <div class="form-group row pt-0">
+                                    <div class="col-md-1">
+                                        <select class="selectpicker" multiple data-style="btn-outline-code3">
+                                            <option value="admin" selected disabled>Admin</option> <!--disabled means all users who are admin are see this ticket-->
+                                            <option value="HR">HR</option> <!--if user select also HR, all user has role hr can see his ticket-->
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- HR User Selection, user can send this ticket for specific hr user.-->
+                            @if($hrs->isNotEmpty())
+                                <select id="hr_users" class="js-example-basic-multiple form-control" multiple="multiple" name="assigned_to[]">
+                                    @foreach($hrs as $hr)
+                                        <option value="{{ $hr->id }}">{{ $hr->name }} (HR)</option>
+                                    @endforeach
+                                </select>
+                            @else
+                                <p class="text-danger ml-2">No HR users available.</p>
+                            @endif
+                        </div> --}}
+
+
+                                            {{-- response section working 100% --}}
+                    {{-- <div class="chatbox">
+                        @include('components.modal.image-modal')
+                        @foreach ($responses as $response)
+                            <div class="chatbox-messages">
+                                <!-- Example message with image and file attachments -->
+                                <div class="chat-message received">
+                                    <img src="{{ asset('template/assets/images/user1.png') }}" alt="Admin" class="user-avatar-lg rounded-circle">
+                                    {{-- <img src="{{ asset($response->user->avatar) }}" alt="User" class="user-avatar-lg rounded-circle"> --}}
+                                    <div class="chat-details">
+                                        <span class="message-author">{{ $response->user->name }}</span>
+                                        <p class="message-text">{{ $response->response_text }}</p>
+
+                                        <!-- Displaying images inline -->
+                                        <div class="message-attachment">
+                                            @foreach ($response->files as $file)
+                                            @if (in_array($file->file_type, ['image/jpeg', 'image/png', 'image/gif']))
+                                                <!-- Displaying images inline -->
+                                                <img src="{{ asset('storage/' . $file->file_path) }}" alt="Attached Image" class="message-image modalThisImage">
+                                            @else
+                                                <!-- For non-image files (e.g., documents) -->
+                                                <div class="media media-attachment">
+                                                    <div class="avatar bg-primary">
+                                                        <i class="far fa-file-image"></i>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <a href="{{ asset('storage/' . $file->file_path) }}" target="_blank">{{ $file->file_name }}</a>
+                                                        <span>{{ number_format($file->size / 1024, 2) }} KB</span>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                            @endforeach
+                                        </div>
+                                        <span class="message-time">{{ $response->created_at->format('d/m/Y H:i') }}</span>
+                                    </div>
+                                </div>
+                                <hr class="message-divider">
+                            </div>
+                        @endforeach
+                    </div> --}}
+                    {{-- end response section  --}}

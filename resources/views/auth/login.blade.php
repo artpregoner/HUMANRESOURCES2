@@ -21,7 +21,8 @@
     }
 
     body {
-        background-image: url('/asset/images/hr_bg.jpg');
+        background: linear-gradient(to bottom right, #2563eb, #9333ea);
+        /* background: #1e40af; */
         display: -ms-flexbox;
         display: flex;
         -ms-flex-align: center;
@@ -68,7 +69,10 @@
 <body>
     <div class="splash-container">
         <div class="card">
-            <div class="card-header text-center"><a href="#"><img src="../template/assets/images/storelogo.png" alt="logo" style="width: 200px"></a><span class="splash-description">Please enter your user information.</span></div>
+            <div class="card-header text-center"><a href="#">
+                <a class="navbar-brand" href="https://hr2.fareastcafeshop.com/">ECOMPANY</a>
+                </a><span class="splash-description">Please enter your user information.</span>
+            </div>
             <div class="card-body" id="loginForm">
                 @include('components.alert.alert')
                 <form action="{{ route('submitLogin')}}" method="POST">

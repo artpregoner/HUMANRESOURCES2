@@ -16,12 +16,20 @@
                     <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span>
                         <span class="topnav-dropdown m-r-10 mdi mdi-arrow-down-drop-circle"></span>
                     </a>
-                    @include('layouts.portal-layouts.partials.notification')
+                    @include('layouts.partials.notification')
                 </li>
                 <li class="nav-item dropdown nav-user">
-                    <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('template/assets/images/user1.png') }}" alt="" class="user-avatar-md rounded-circle">
+                    <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <!-- Check if the user is admin or HR, and show their specific avatar -->
+                        @if(auth()->user()->role == 'admin' || auth()->user()->role == 'hr')
+                            <img src="{{ asset('template/assets/images/admin.webp') }}" alt="" class="user-avatar-md rounded-circle">
+                        @else
+                            <!-- Default avatar for employees -->
+                            <img src="{{ asset('template/assets/images/user1.png') }}" alt="" class="user-avatar-md rounded-circle">
+                        @endif
                         <span class="topnav-dropdown m-r-10 mdi mdi-arrow-down-drop-circle"></span>
                     </a>
+
                     <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                         <div class="nav-user-info">
                             {{-- <h5 class="mb-0 text-white nav-user-name">{{ Auth::user()->name }}</h5>

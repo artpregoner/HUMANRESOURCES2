@@ -46,14 +46,10 @@
                 $role = Auth::user()->role;
             @endphp
 
-            @if ($role == 'admin')
-                @include('layouts.admin-layouts.topbar') <!-- Topbar for admin -->
-                @include('layouts.admin-layouts.sidebar') <!-- Sidebar for admin -->
-            @elseif($role == 'hr')
-                @include('layouts.hr2-layouts.topbar') <!-- Topbar for HR -->
-                @include('layouts.hr2-layouts.sidebar') <!-- Sidebar for HR -->
+            @include('layouts.topbar')
+            @if ($role == 'admin' || $role == 'hr')
+                @include('layouts.hr2-layouts.sidebar') <!-- Sidebar for admin and HR-->
             @elseif($role == 'employee')
-                @include('layouts.portal-layouts.topbar') <!-- Topbar for employee -->
                 @include('layouts.portal-layouts.sidebar') <!-- Sidebar for employee -->
             @endif
             <div class="dashboard-wrapper">

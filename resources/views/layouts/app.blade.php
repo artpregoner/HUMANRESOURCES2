@@ -47,8 +47,10 @@
             @endphp
 
             @include('layouts.topbar')
-            @if ($role == 'admin' || $role == 'hr')
+            @if ($role == 'hr')
                 @include('layouts.hr2-layouts.sidebar') <!-- Sidebar for admin and HR-->
+            @elseif ($role == 'admin')
+                @include('layouts.admin-layouts.sidebar') <!--Admin-->
             @elseif($role == 'employee')
                 @include('layouts.portal-layouts.sidebar') <!-- Sidebar for employee -->
             @endif

@@ -37,9 +37,9 @@
                             <h5 class="mb-0 text-white nav-user-name">Hello</h5>
                             <span class="status"></span><span class="ml-2">email@gail.cpm</span>
                         </div>
-                        <a class="dropdown-item" href="{{ url('user.account.settings') }}"><i class="m-r-10 mdi mdi-account-settings-variant" style="font-size: 20px;"></i>Account Settings</a>
+                        {{-- <a class="dropdown-item" href="{{ url('user.account.settings') }}"><i class="m-r-10 mdi mdi-account-settings-variant" style="font-size: 20px;"></i>Account Settings</a> --}}
                         <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-power-off mr-2"></i>Logout</a>
-                        <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
                     </div>

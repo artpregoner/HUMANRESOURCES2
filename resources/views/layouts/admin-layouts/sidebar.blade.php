@@ -26,7 +26,7 @@
                     <!-- Workforce Analytics -->
                     <!-- ============================================================== -->
                     {{-- <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div> --}}
-                    {{-- <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link {{ request()->is('workforce/*') ? 'active' : '' }}" href="#"
                             data-toggle="collapse" data-target="#workforce-submenu" aria-expanded="false">
                             <i class="m-r-10 mdi mdi-chart-bar" aria-controls="workforce-submenu"></i>Workforce Analytics
@@ -47,7 +47,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li> --}}
+                    </li>
 
 
                     <!-- ============================================================== -->
@@ -66,9 +66,7 @@
                     <!-- ============================================================== -->
                     <!-- Emloyee Self-service -->
                     <!-- ============================================================== -->
-
-
-                    {{-- <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
+                    <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
                     <li class="nav-divider">
                         Self-Service
                     </li>
@@ -83,12 +81,12 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" href="../leave-requests.html">All Leave Requests</a>
                                             </li>
-                                            <li class="nav-item">
+                                            {{-- <li class="nav-item">
                                                 <a class="nav-link" href="../leave-approve.html">Approve Leave</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="../leave-history.html">Leave History</a>
-                                            </li>
+                                            </li> --}}
                                         </ul>
                                     </div>
                                 </li>
@@ -97,15 +95,13 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../leave-policy.html"><i class="m-r-10 mdi mdi-account-plus"></i>Add new Employee</a>
-                    </li> --}}
+                    </li>
 
 
                     <!-- ============================================================== -->
                     <!-- Employee Engagement -->
                     <!-- ============================================================== -->
-
-
-                    {{-- <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
+                    <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('employee-engagement/*') ? 'active' : '' }}" href="#"
                             data-toggle="collapse" aria-expanded="false" data-target="#employee-engagement-submenu"
@@ -121,12 +117,12 @@
                                     </a>
                                 </li>
                                 <!-- Example of an additional item; Uncomment if needed -->
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link" href="form-validation.html">Engagement Metrics Overview</a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
-                    </li> --}}
+                    </li>
 
 
                     <!-- ============================================================== -->

@@ -4,6 +4,7 @@
 @section('active-header', 'Dashboard') --}} <!--Example :)-->
 
 @section('content')
+@include('components.alert.alert')
 <!-- Dashboard Metrics Section -->
 <div class="row">
     <!-- Total Employee -->

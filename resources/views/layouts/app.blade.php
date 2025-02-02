@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/bootstrap-select/css/bootstrap-select.css') }}">
     @stack('styles')
     @yield('styles')
+    @livewireStyles
 
     <title>@yield('title')</title>
 </head>
@@ -110,6 +111,7 @@
     <script src="{{ asset('template/assets/vendor/datepicker/datepicker.js') }}"></script>
     @yield('scripts')
     @stack('scripts')
+    @livewireScripts
 
 </body>
 

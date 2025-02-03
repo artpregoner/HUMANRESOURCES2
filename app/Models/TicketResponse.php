@@ -16,6 +16,10 @@ class TicketResponse extends Model
         'responded_at'
     ];
 
+    protected $casts = [
+        'responded_at' => 'datetime', // This ensures the attribute is cast to a Carbon instance
+    ];
+
     public function ticket()
     {
         return $this->belongsTo(Ticket::class);

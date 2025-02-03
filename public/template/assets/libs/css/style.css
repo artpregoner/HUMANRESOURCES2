@@ -6037,7 +6037,7 @@ Vertical Timeline - by CodyHouse.co
 
 .email-title {
     display: block;
-    color: #3d405c;
+    color: #71738d;
     margin: 3px 0 0;
     font-size: 22px;
     font-weight: 300;
@@ -6046,12 +6046,12 @@ Vertical Timeline - by CodyHouse.co
 
 .email-title .icon {
     font-size: 22px;
-    color: #3d405c;
+    color: #71738d;
 }
 
 .email-title .new-messages {
     font-size: 1rem;
-    color: #71738d;
+    color: #111111;
     margin-left: 3px;
     display: inline-block; /* Ensure it's inline initially */
 }

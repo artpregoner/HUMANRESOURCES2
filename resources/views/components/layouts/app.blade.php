@@ -4,11 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>{{ $title ?? 'Page Title' }}</title>
-        @livewireStyles
+        {{-- <title>{{ $title ?? '| HR2' }}</title> --}}
     </head>
     <body>
-        {{-- {{ $slot }} --}}
-        @livewireScripts
+        {{ $slot }}
     </body>
 </html>

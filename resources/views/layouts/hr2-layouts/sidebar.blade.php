@@ -139,7 +139,10 @@
                     <li class="nav-item">
                         <a class="nav-link {{ request()->Is('hr2/helpdesk/*') ? 'active' : '' }}"
                             href="{{ route('hr2.helpdesk.index') }}" aria-expanded="false"><i
-                            class="m-r-10 mdi mdi-ticket-account"></i>Tickets</a>
+                            class="m-r-10 mdi mdi-ticket-account"></i>Tickets
+                            <span class="badge badge-code8 badge-pill">{{ $ticketCount }}</span>
+                        </a>
+
                     </li>
 
 

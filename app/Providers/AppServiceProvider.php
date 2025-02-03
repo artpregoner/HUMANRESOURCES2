@@ -22,9 +22,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Share the ticket count across all views that use the 'layouts.app' layout
         View::composer('layouts.app', function ($view) {
-            $view->with('ticketCount', Ticket::where('user_id', Auth::id())->count());
+            if (Auth::check()) {
+                $user = Auth::user();
+                $role = $user->role;
+
+                if ($role === 'admin' || $role === 'hr') {
+                    $view->with('ticketCount', Ticket::count());
+                } else {
+                    $view->with('ticketCount', Ticket::where('user_id', $user->id)->count());
+                }
+            }
         });
     }
+
 }

@@ -19,9 +19,8 @@
     <link href="{{ asset('template/assets/vendor/fonts/circular-std/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('template/assets/libs/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('template/assets/vendor/fonts/fontawesome/css/fontawesome-all.css') }}">
-    <link href="{{ asset('template/assets/vendor/full-calendar/css/fullcalendar.print.css') }}" rel='stylesheet'
-        media='print' />
-    <link href="{{ asset('template/assets/vendor/full-calendar/css/fullcalendar.css') }}" rel='stylesheet' />
+    {{-- <link href="{{ asset('template/assets/vendor/full-calendar/css/fullcalendar.print.css') }}" rel='stylesheet' media='print' />
+    <link href="{{ asset('template/assets/vendor/full-calendar/css/fullcalendar.css') }}" rel='stylesheet' /> --}}
     <link rel="icon" href="{{ asset('template/images/storelogo.png') }}" type="image/x-icon">
     <!-- TAble CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/vendor/datatables/css/dataTables.bootstrap4.css') }}">
@@ -91,10 +90,10 @@
     <script src="{{ asset('template/assets/vendor/charts/c3charts/C3chartjs.js') }}"></script>
     <script src="{{ asset('template/assets/libs/js/dashboard-ecommerce.js') }}"></script>
 
-    <script src="{{ asset('template/assets/vendor/full-calendar/js/moment.min.js') }}"></script>
+    {{-- <script src="{{ asset('template/assets/vendor/full-calendar/js/moment.min.js') }}"></script>
     <script src="{{ asset('template/assets/vendor/full-calendar/js/fullcalendar.js') }}"></script>
     <script src="{{ asset('template/assets/vendor/full-calendar/js/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('template/assets/vendor/full-calendar/js/calendar.js') }}"></script>
+    <script src="{{ asset('template/assets/vendor/full-calendar/js/calendar.js') }}"></script> --}}
 
     <script src="{{ asset('asset/libs/js/javascript.js') }}"></script>
     <script src="{{ asset('template/assets/vendor/multi-select/js/jquery.multi-select.js') }}"></script>

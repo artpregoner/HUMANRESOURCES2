@@ -1,43 +1,45 @@
 <?php
 
-namespace App\Http\Livewire\Auth;
+namespace App\Livewire\Auth;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
 class Login extends Component
 {
-    public $email, $password;
+    public $email;
+    public $password;
+    public $errorMessage;
 
     protected $rules = [
         'email' => 'required|email',
         'password' => 'required|min:8',
     ];
 
-    public function login()
+    protected $messages = [
+        'email.required' => 'Email is required.',
+        'email.email' => 'Please enter a valid email address.',
+        'password.required' => 'Password is required.',
+        'password.min' => 'Password must be at least 8 characters.',
+    ];
+
+    public function submitLogin()
     {
         $this->validate();
 
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
-            session()->regenerate();
             $user = Auth::user();
+            session()->flash('success', 'Welcome: ' . $user->name);
 
-            if ($user->role === 'employee') {
-                return redirect()->route('home')->with('success', 'Welcome: ' . $user->name);
-            } elseif ($user->role === 'hr') {
-                return redirect()->route('hr2.index');
-            } elseif ($user->role === 'admin') {
-                return redirect()->route('admin');
-            }
+            return redirect()->route(match ($user->role) {
+                'employee' => 'home',
+                'hr' => 'hr2.index',
+                'admin' => 'admin.index',
+                default => 'login',
+            });
         }
 
-        $this->addError('email', 'The provided credentials do not match our records.');
-    }
-
-    public function logout()
-    {
-        Auth::logout();
-        return redirect('/');
+        $this->errorMessage = 'The provided credentials do not match our records.';
     }
 
     public function render()

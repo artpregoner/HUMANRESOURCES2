@@ -75,7 +75,8 @@
             </div>
             <div class="card-body" id="loginForm">
                 @include('components.alert.alert')
-                <form action="{{ route('submitLogin')}}" method="POST">
+                @livewire('auth.login')
+                {{-- <form action="{{ route('submitLogin')}}" method="POST">
                     @csrf
                     <div class="form-group">
                         <input class="form-control form-control-lg" name="email" id="yourEmail" type="email" placeholder="Email" autocomplete="off" required>
@@ -89,7 +90,7 @@
                     <div class="form-group">
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #463426; border: 2px solid #463426;">Sign in</button>
-                </form>
+                </form> --}}
             </div>
         </div>
     </div>

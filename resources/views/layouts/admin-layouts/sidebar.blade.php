@@ -17,7 +17,7 @@
                     <!-- Dashboard -->
                     <!-- ============================================================== -->
                     <li class="nav-item ">
-                        <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" href="{{ route('admin.index') }}"
+                        <a wire:navigate class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" href="{{ route('admin.index') }}"
                             aria-expanded="false"><i class="m-r-10 mdi mdi-view-dashboard"></i>Dashboard</a>
                     </li>
 
@@ -34,15 +34,15 @@
                         <div id="workforce-submenu" class="collapse submenu {{ request()->is('workforce*') ? 'show' : '' }}" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('workforce/skill-gap') ? 'active' : '' }}"
+                                    <a wire:navigate class="nav-link {{ request()->is('workforce/skill-gap') ? 'active' : '' }}"
                                         href="{{ url('workforce/skill-gap') }}">Skill Analysis Tool</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('workforce/employee-metrics') ? 'active' : '' }}"
+                                    <a wire:navigate class="nav-link {{ request()->is('workforce/employee-metrics') ? 'active' : '' }}"
                                         href="{{ url('workforce/employee-metrics') }}">Employee Metrics<span class="badge badge-secondary">New</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('workforce/turnover-hiring') ? 'active' : '' }}"
+                                    <a wire:navigate class="nav-link {{ request()->is('workforce/turnover-hiring') ? 'active' : '' }}"
                                         href="{{ url('workforce/turnover-hiring') }}">Turnover & Hiring Needs</a>
                                 </li>
                             </ul>
@@ -58,7 +58,7 @@
                         Claims & Reimbursement
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link {{ request()->Is('hr2/claims/*') ? 'active' : '' }}"
+                        <a wire:navigate class="nav-link {{ request()->Is('hr2/claims/*') ? 'active' : '' }}"
                             href="{{ route('hr2.claims.index') }}" aria-expanded="false"><i
                             class="m-r-10 mdi mdi-currency-usd"></i>Claims & Reimbursement</a>
                     </li>
@@ -79,7 +79,7 @@
                                     <div id="self-service-submenu-1" class="collapse submenu" style="">
                                         <ul class="nav flex-column">
                                             <li class="nav-item">
-                                                <a class="nav-link" href="../leave-requests.html">All Leave Requests</a>
+                                                <a wire:navigate class="nav-link" href="../leave-requests.html">All Leave Requests</a>
                                             </li>
                                             {{-- <li class="nav-item">
                                                 <a class="nav-link" href="../leave-approve.html">Approve Leave</a>
@@ -94,7 +94,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../leave-policy.html"><i class="m-r-10 mdi mdi-account-plus"></i>Add new Employee</a>
+                        <a wire:navigate class="nav-link" href="../leave-policy.html"><i class="m-r-10 mdi mdi-account-plus"></i>Add new Employee</a>
                     </li>
 
 
@@ -111,7 +111,7 @@
                         <div id="employee-engagement-submenu" class="collapse submenu {{ request()->is('employee-engagement*') ? 'show' : '' }}" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('employee-engagement/recognition') ? 'active' : '' }}"
+                                    <a wire:navigate class="nav-link {{ request()->is('employee-engagement/recognition') ? 'active' : '' }}"
                                         href="{{ url('employee-engagement/recognition') }}">
                                         Recognition and Rewards Programs
                                     </a>
@@ -133,7 +133,7 @@
                         Helpdesk
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->Is('helpdesk/*') ? 'active' : '' }}"
+                        <a wire:navigate class="nav-link {{ request()->Is('helpdesk/*') ? 'active' : '' }}"
                             href="{{ route('admin.helpdesk.index') }}" aria-expanded="false"><i
                             class="m-r-10 mdi mdi-ticket-account"></i>Tickets
                             <span class="badge badge-code8 badge-pill">{{ $ticketCount }}</span>
@@ -146,7 +146,7 @@
                     <!-- ============================================================== -->
                     <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
                     <li class="nav-item ">
-                        <a class="nav-link {{ request()->is('myprofile') ? 'active' : '' }}"
+                        <a wire:navigate class="nav-link {{ request()->is('myprofile') ? 'active' : '' }}"
                             href="{{ route('admin.myprofile') }}" aria-expanded="false"><i
                             class="m-r-10 mdi mdi-account-settings-variant"></i>My Profile</a>
                     </li>

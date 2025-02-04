@@ -36,9 +36,9 @@ class AuthController extends Controller
             if ($user->role === 'employee') {
                 return redirect()->route('home')->with('success', 'Welcome: ' . $user->name);
             } elseif ($user->role === 'hr') {
-                return redirect()->route('hr2.index');
+                return redirect()->route('hr2.index')->with('success', 'Welcome HR: ' . $user->name);
             } elseif ($user->role === 'admin') {
-                return redirect()->route('admin');
+                return redirect()->route('admin.index')->with('success', 'Welcome Admin: ' . $user->name);
             }
 
         }

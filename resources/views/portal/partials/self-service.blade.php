@@ -10,7 +10,7 @@
             <div class="card-body">
                 <div class="d-inline-block">
                     <h5 class="text-muted">My Tickets</h5>
-                    <h2 class="mb-0">0</h2>
+                    <h2 class="mb-0">{{ Auth::user()->tickets->count() }}</h2>
                 </div>
                 <div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
                     <i class="fas fa-ticket-alt fa-fw fa-sm text-info"></i>

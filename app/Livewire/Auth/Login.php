@@ -10,6 +10,8 @@ class Login extends Component
     public $email;
     public $password;
     public $errorMessage;
+    public $passwordVisible = false;
+
 
     protected $rules = [
         'email' => 'required|email',
@@ -40,6 +42,11 @@ class Login extends Component
         }
 
         $this->errorMessage = 'The provided credentials do not match our records.';
+    }
+
+    public function togglePasswordVisibility()
+    {
+        $this->passwordVisible = !$this->passwordVisible;
     }
 
     public function render()

@@ -98,7 +98,7 @@
     <script src="{{ asset('template/assets/vendor/jquery/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('template/assets/vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('asset/libs/js/javascript.js') }}"></script>
-    <script>
+    {{-- <script>
         const togglePassword = document.querySelector('#togglePassword');
         const passwordField = document.querySelector('#yourPassword');
 
@@ -110,7 +110,6 @@
             // Toggle the eye icon
             this.querySelector('i').classList.toggle('fa-eye-slash');
         });
-    </script>
-
+    </script> --}}
 </body>
 </html>

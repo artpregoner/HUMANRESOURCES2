@@ -32,10 +32,8 @@
 
                     <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                         <div class="nav-user-info">
-                            {{-- <h5 class="mb-0 text-white nav-user-name">{{ Auth::user()->name }}</h5>
-                            <span class="status"></span><span class="ml-2">{{ Auth::user()->email }}</span> --}}
-                            <h5 class="mb-0 text-white nav-user-name">Hello</h5>
-                            <span class="status"></span><span class="ml-2">email@gail.cpm</span>
+                            <h5 class="mb-0 text-white nav-user-name">{{ Auth::user()->name }}</h5>
+                            <span class="status"></span><span class="ml-2">{{ Auth::user()->email }}</span>
                         </div>
                         {{-- <a class="dropdown-item" href="{{ url('user.account.settings') }}"><i class="m-r-10 mdi mdi-account-settings-variant" style="font-size: 20px;"></i>Account Settings</a> --}}
                         <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-power-off mr-2"></i>Logout</a>

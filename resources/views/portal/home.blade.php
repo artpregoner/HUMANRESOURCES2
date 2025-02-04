@@ -21,7 +21,7 @@
                             class="rounded-circle user-avatar-xxl">
                     </div>
                     <div class="text-center">
-                        <h2 class="font-24 mb-0">BORAT</h2>
+                        <h2 class="font-24 mb-0">{{ Auth::user()->name }}</h2>
                         {{-- <p>Project Manager @Influnce</p> --}}
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                     <h3 class="font-16">Contact Information</h3>
                     <div class="">
                         <ul class="list-unstyled mb-0">
-                            <li class="mb-2"><i class="fas fa-fw fa-envelope mr-2"></i>cutiecakes@email</li>
+                            <li class="mb-2"><i class="fas fa-fw fa-envelope mr-2"></i>{{ Auth::user()->email }}</li>
                             <li class="mb-2"><i class="fas fa-fw fa-phone mr-2"></i>096666666</li>
                             <li class="mb-0"><i class="fas fa-map-marker-alt mr-2"></i>Quezon City</li>
                         </ul>

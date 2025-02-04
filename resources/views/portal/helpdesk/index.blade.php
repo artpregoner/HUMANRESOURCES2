@@ -3,6 +3,12 @@
 @section('header', 'Helpdesk')
 @section('active-header', 'My Tickets')
 @push('styles')
+<style>
+    th, td {
+        white-space: nowrap; /* Prevent text wrapping for better spacing */
+        text-align: center; /* Center align text */
+    }
+</style>
 @endpush
 
 @section('content')

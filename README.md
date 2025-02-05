@@ -95,3 +95,10 @@ Helpdesk
 
 - /hr2/helpdesk/list
 - /hr2/helpdesk/create
+
+
+php artisan route:clear
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
+php artisan optimize

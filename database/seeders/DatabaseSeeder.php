@@ -17,10 +17,8 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'POGI Art User 2',
-            'email' => 'artjavar@user.com',
-            'password' => Hash::make('user12345678'),
-            'role' => 'employee', // Employee role
+            'name' => 'example',
+            'email' => 'example@email.com',
         ]);
 
     }

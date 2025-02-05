@@ -114,15 +114,16 @@ class HelpdeskController extends Controller
             foreach ($request->file('files') as $file) {
                 $filePath = $file->store('responses', 'public');
 
-                // Save file to TicketResponseFile
                 \App\Models\TicketResponseFile::create([
                     'ticket_response_id' => $ticketResponse->id,
                     'file_path' => $filePath,
                     'file_name' => $file->getClientOriginalName(),
                     'file_type' => $file->getClientMimeType(),
+                    'file_size' => $file->getSize(), // Save file size in bytes
                 ]);
             }
         }
+
 
         // Fetch the newly created response, including file details
         $response = $ticketResponse->load('files');
@@ -148,29 +149,65 @@ class HelpdeskController extends Controller
 
     public function destroy(Ticket $ticket)
     {
-        // Check if the ticket belongs to the logged-in user
         if ($ticket->user_id !== Auth::id()) {
             abort(403, 'Unauthorized action.');
         }
 
-        // Retrieve all related ticket responses and their files
-        $ticketResponses = $ticket->responses;
+        // Soft delete the ticket (responses & files remain)
+        $ticket->update(['deleted_by' => Auth::id()]);
+        $ticket->delete();
+
+        return redirect()->route('portal.helpdesk.index')->with('success', 'Ticket archived successfully.');
+    }
+
+    public function forceDelete($id)
+    {
+        // Find the ticket in the trashed records
+        $ticket = Ticket::onlyTrashed()->findOrFail($id);
+
+        if ($ticket->user_id !== Auth::id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        // Retrieve all related responses
+        $ticketResponses = $ticket->responses()->withTrashed()->get();
 
         foreach ($ticketResponses as $ticketResponse) {
-            $ticketResponseFiles = $ticketResponse->files; // Assuming a relationship for files
+            $ticketResponseFiles = $ticketResponse->files()->withTrashed()->get();
 
             foreach ($ticketResponseFiles as $file) {
-                // Delete the file from the storage
+                // Delete the file from storage
                 if (Storage::disk('public')->exists($file->file_path)) {
                     Storage::disk('public')->delete($file->file_path);
                 }
+                // Permanently delete the file record
+                $file->forceDelete();
             }
+
+            // Permanently delete the response
+            $ticketResponse->forceDelete();
         }
 
-        // Delete the ticket after removing attachments
-        $ticket->delete();
+        // Permanently delete the ticket
+        $ticket->forceDelete();
 
-        return redirect()->route('portal.helpdesk.index')->with('error', 'Ticket deleted successfully.');
+        return redirect()->route('portal.helpdesk.trash')->with('success', 'Ticket permanently deleted.');
+    }
+
+
+    //archive dashboard
+    public function trash()
+    {
+        $tickets = Ticket::onlyTrashed()->with(['category', 'deletedByUser'])->get();
+        return view('portal.helpdesk.trash', compact('tickets'));
+    }
+
+    //restore deleted ticket
+    public function restore($id)
+    {
+        $ticket = Ticket::onlyTrashed()->findOrFail($id);
+        $ticket->restore();
+        return redirect()->route('portal.helpdesk.trash')->with('success', 'Ticket restored successfully.');
     }
 
 }

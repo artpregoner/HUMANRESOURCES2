@@ -20,6 +20,13 @@ class UserSeeder extends Seeder
             'password' => Hash::make('user12345678'),
             'role' => 'employee', // Employee role
         ]);
+        User::factory()->create([
+            'name' => 'POGI Art User 2',
+            'email' => 'artjavar@user.com',
+            'password' => Hash::make('user12345678'),
+            'role' => 'employee', // Employee role
+        ]);
+
 
         // Create an HR user (HR2)
         User::factory()->create([

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('title', 'Helpdesk - My Tickets')
 @section('header', 'Helpdesk')
-@section('active-header', 'My Tickets')
+@section('active-header', 'Archived Tickets')
+
 @push('styles')
 <style>
     th, td {
@@ -17,10 +18,10 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
                 <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
-                    <div class="email-title"><span class="icon"><i class="fas fa-inbox"></i></span> My tickets <span
-                            class="new-messages">{{ $tickets->count() }} all tickets</span> </div>
-                    <button type="button" class="btn btn-space btn-code3"
-                        onclick="window.location.href='{{ route('portal.helpdesk.create') }}'">new ticket</button>
+                    <div class="email-title">
+                        <span class="icon"><i class="fas fa-inbox"></i></span>
+                        Recently deleted tickets <span class="new-messages">{{ $tickets->count() }}</span>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -28,9 +29,8 @@
                             <thead>
                                 <tr>
                                     <th class="center">Subject</th>
-                                    <th style="width: 105px;">Created at</th>
-                                    <th style="width: 105px;">Updated at</th>
-                                    <th style="width: 60px;">Status</th>
+                                    <th style="width: 105px;">Deleted at</th>
+                                    <th style="width: 105px;">Deleted by</th>
                                     <th class="right" style="width: 90px;">Actions</th>
                                 </tr>
                             </thead>
@@ -38,30 +38,33 @@
                                 @foreach ($tickets as $ticket)
                                     <tr>
                                         <td>{{ $ticket->title }}</td>
-                                        <td>{{ $ticket->created_at->format('Y/m/d') }}</td>
+                                        <td>{{ $ticket->deleted_at->format('d/m/Y H:i A') }}</td>
                                         <td>
-                                            @if($ticket->responses->isNotEmpty())
-                                                {{ $ticket->responses->first()->created_at->format('d/m/Y H:i') }} <!-- Display the latest response time -->
-                                            @endif
+                                            {{ $ticket->deletedByUser->id === Auth::id() ? 'You' : $ticket->deletedByUser->name ?? 'Unknown' }}
                                         </td>
-                                        <td>{{ ucfirst($ticket->status) }}</td>
                                         <td class="right">
                                             <div class="btn-group ml-auto">
-                                                <form action="{{ route('portal.helpdesk.destroy', $ticket->id) }}" method="POST">
+                                                <!-- Force Delete Form -->
+                                                <form action="{{ route('portal.helpdesk.forceDelete', $ticket->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
                                                         class="btn btn-sm btn-outline-light tooltip-container"
-                                                        onclick="return confirm('Are you sure you want to delete this ticket?');">
-                                                        <span class="tooltip-text">Archive this ticket</span>
+                                                        onclick="return confirm('Are you sure you want to delete this ticket? This will permanently delete it.');">
+                                                        <span class="tooltip-text">Force delete</span>
                                                         <i class="far fa-trash-alt"></i>
                                                     </button>
                                                 </form>
-                                                <a href="{{ route('portal.helpdesk.show', $ticket->id) }}"
-                                                    class="btn btn-sm btn-outline-light tooltip-container">
-                                                    <i class="far fas fa-reply"></i>
-                                                    <span class="tooltip-text">Response</span>
-                                                </a>
+
+                                                <!-- Restore Button -->
+                                                <!-- Restore Form -->
+                                                <form action="{{ route('portal.helpdesk.restore', $ticket->id) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-outline-light tooltip-container">
+                                                        <i class="far fa-share-square"></i>
+                                                        <span class="tooltip-text">Restore</span>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
@@ -76,7 +79,7 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="section-block">
-                <a href="{{ route('portal.helpdesk.trash')}}" class="btn btn-outline-dark btn-lg">Archived Tickets</a>
+                <a href="{{ route('portal.helpdesk.index')}}" class="btn btn-outline-dark btn-lg">Return to ickets</a>
             </div>
         </div>
     </div>

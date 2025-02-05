@@ -17,6 +17,14 @@ Route::prefix('portal/helpdesk/')->group(function () {
     // Add a response to a specific ticket
     Route::post('ticket/{ticket}/respond', [HelpdeskController::class, 'respond'])->name('portal.helpdesk.respond');
 
-    // Delete a ticket
+    // softdelete a ticket
     Route::delete('ticket/{ticket}', [HelpdeskController::class, 'destroy'])->name('portal.helpdesk.destroy');
+
+    //archived tickets
+    Route::get('trash', [HelpdeskController::class, 'trash'])->name('portal.helpdesk.trash');
+    Route::post('restore/{id}', [HelpdeskController::class, 'restore'])->name('portal.helpdesk.restore');
+
+    // force delete a ticket
+    Route::delete('force-delete/{ticket}', [HelpdeskController::class, 'forceDelete'])->name('portal.helpdesk.forceDelete');
+
 });

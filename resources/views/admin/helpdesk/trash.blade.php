@@ -66,7 +66,7 @@
                                         <td class="right">
                                             <div class="btn-group ml-auto">
                                                 <!-- Force Delete Form -->
-                                                <form action="{{ route('portal.helpdesk.forceDelete', $ticket->id) }}" method="POST">
+                                                <form action="{{ route('admin.helpdesk.forceDelete', $ticket->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
@@ -79,7 +79,7 @@
 
                                                 <!-- Restore Button -->
                                                 <!-- Restore Form -->
-                                                <form action="{{ route('portal.helpdesk.restore', $ticket->id) }}" method="POST" class="d-inline">
+                                                <form action="{{ route('admin.helpdesk.restore', $ticket->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     <button type="submit" class="btn btn-sm btn-outline-light tooltip-container">
                                                         <i class="far fa-share-square"></i>
@@ -100,7 +100,7 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="section-block">
-                <a wire:navigate href="{{ route('portal.helpdesk.index')}}" class="btn btn-outline-dark btn-lg">Return to ickets</a>
+                <a wire:navigate href="{{ route('admin.helpdesk.index')}}" class="btn btn-outline-dark btn-lg">Return to ickets</a>
             </div>
         </div>
     </div>

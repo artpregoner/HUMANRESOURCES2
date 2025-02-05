@@ -50,6 +50,8 @@
                                                         {{ $deletedUser->name }} (HR)
                                                     @elseif ($deletedUser->role === 'admin')
                                                         {{ $deletedUser->name }} (Admin)
+                                                    @elseif ($deletedUser->role === 'employee')
+                                                        {{ $deletedUser->name }} (Employee)
                                                     @elseif ($deletedUser->id === Auth::id())
                                                         You
                                                     @else
@@ -65,21 +67,8 @@
 
                                         <td class="right">
                                             <div class="btn-group ml-auto">
-                                                <!-- Force Delete Form -->
-                                                <form action="{{ route('portal.helpdesk.forceDelete', $ticket->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"
-                                                        class="btn btn-sm btn-outline-light tooltip-container"
-                                                        onclick="return confirm('Are you sure you want to delete this ticket? This will permanently delete it.');">
-                                                        <span class="tooltip-text">Force delete</span>
-                                                        <i class="far fa-trash-alt"></i>
-                                                    </button>
-                                                </form>
-
-                                                <!-- Restore Button -->
                                                 <!-- Restore Form -->
-                                                <form action="{{ route('portal.helpdesk.restore', $ticket->id) }}" method="POST" class="d-inline">
+                                                <form action="{{ route('hr2.helpdesk.restore', $ticket->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     <button type="submit" class="btn btn-sm btn-outline-light tooltip-container">
                                                         <i class="far fa-share-square"></i>
@@ -100,7 +89,7 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="section-block">
-                <a wire:navigate href="{{ route('portal.helpdesk.index')}}" class="btn btn-outline-dark btn-lg">Return to ickets</a>
+                <a wire:navigate href="{{ route('hr2.helpdesk.index')}}" class="btn btn-outline-dark btn-lg">Return to ickets</a>
             </div>
         </div>
     </div>

@@ -79,7 +79,7 @@
                                                         </div>
                                                         <div class="media-body">
                                                             <a href="{{ asset('storage/' . $file->file_path) }}" target="_blank">{{ $file->file_name }}</a>
-                                                            <span>{{ number_format($file->size / 1024, 2) }} KB</span>
+                                                            <span>{{ number_format($file->file_size / 1024, 2) }} KB</span>  <!-- Use file_size directly -->
                                                         </div>
                                                     </div>
                                                 @endif

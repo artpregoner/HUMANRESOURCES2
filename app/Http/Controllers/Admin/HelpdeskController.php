@@ -111,26 +111,70 @@ class HelpdeskController extends Controller
      */
     public function destroy(Ticket $ticket)
     {
+        // Check if the current user has permission to delete
+        // Check if the logged-in user is an admin
+        if (Auth::user()->role !== 'admin') {
+            abort(403, 'Unauthorized action.');
+        }
 
-        // Retrieve all related ticket responses and their files
-        $ticketResponses = $ticket->responses;
+        // Set the deleted_by field to the current user's ID (admin who is deleting)
+        $ticket->deleted_by = Auth::id();  // Ensure this is set
+        $ticket->save();  // Save the ticket to update the deleted_by field
+
+        // Soft delete the ticket
+        $ticket->delete();
+
+        // Redirect to the helpdesk index with a success message
+        return redirect()->route('admin.helpdesk.index')->with('success', 'Ticket archived successfully.');
+    }
+
+
+    public function forceDelete($id)
+    {
+        // Find the ticket in the trashed records
+        $ticket = Ticket::onlyTrashed()->findOrFail($id);
+
+        // Retrieve all related responses
+        $ticketResponses = $ticket->responses()->withTrashed()->get();
 
         foreach ($ticketResponses as $ticketResponse) {
-            $ticketResponseFiles = $ticketResponse->files; // Assuming a relationship for files
+            $ticketResponseFiles = $ticketResponse->files()->withTrashed()->get();
 
             foreach ($ticketResponseFiles as $file) {
-                // Delete the file from the storage
+                // Delete the file from storage
                 if (Storage::disk('public')->exists($file->file_path)) {
                     Storage::disk('public')->delete($file->file_path);
                 }
+                // Permanently delete the file record
+                $file->forceDelete();
             }
+
+            // Permanently delete the response
+            $ticketResponse->forceDelete();
         }
 
-        // Delete the ticket after removing attachments
-        $ticket->delete();
+        // Permanently delete the ticket
+        $ticket->forceDelete();
 
-        return redirect()->route('admin.helpdesk.index')->with('error', 'Ticket deleted successfully.');
+        return redirect()->route('admin.helpdesk.trash')->with('success', 'Ticket permanently deleted.');
     }
+
+
+    //archive dashboard
+    public function trash()
+    {
+        $tickets = Ticket::onlyTrashed()->with(['category', 'deletedByUser'])->get();
+        return view('admin.helpdesk.trash', compact('tickets'));
+    }
+
+    //restore deleted ticket
+    public function restore($id)
+    {
+        $ticket = Ticket::onlyTrashed()->findOrFail($id);
+        $ticket->restore();
+        return redirect()->route('admin.helpdesk.trash')->with('success', 'Ticket restored successfully.');
+    }
+
 
     // public function updateStatus(Request $request, Ticket $ticket)
     // {

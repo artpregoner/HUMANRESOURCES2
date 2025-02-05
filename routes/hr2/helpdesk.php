@@ -24,5 +24,9 @@ Route::prefix('hr2/helpdesk')->group(function(){
     //update ticket status
     Route::patch('/helpdesk/{ticket}/update-status', [HelpdeskController::class, 'updateStatus'])->name('hr2.helpdesk.updateStatus');
 
+    //archived tickets
+    Route::get('trash', [HelpdeskController::class, 'trash'])->name('hr2.helpdesk.trash');
+    Route::post('restore/{id}', [HelpdeskController::class, 'restore'])->name('hr2.helpdesk.restore');
+
 });
 

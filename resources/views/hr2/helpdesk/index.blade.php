@@ -69,16 +69,6 @@
                                     </td>
                                     <td class="right">
                                         <div class="btn-group ml-auto">
-                                            <form action="{{ route('hr2.helpdesk.destroy', $ticket->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="btn btn-sm btn-outline-light tooltip-container"
-                                                    onclick="return confirm('Are you sure you want to delete this ticket?');">
-                                                    <span class="tooltip-text">Archive this ticket</span>
-                                                    <i class="far fa-trash-alt"></i>
-                                                </button>
-                                            </form>
                                             <a href="{{ route('hr2.helpdesk.show', $ticket->id) }}"
                                                 class="btn btn-sm btn-outline-light tooltip-container">
                                                 <i class="far fas fa-reply"></i>
@@ -92,6 +82,13 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="section-block">
+                <a wire:navigate href="{{ route('hr2.helpdesk.trash')}}" class="btn btn-outline-dark btn-lg">Archived Tickets</a>
             </div>
         </div>
     </div>

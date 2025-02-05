@@ -17,5 +17,12 @@ Route::prefix('helpdesk')->group(function(){
     //update ticket status
     Route::patch('/helpdesk/{ticket}/update-status', [HelpdeskController::class, 'updateStatus'])->name('admin.helpdesk.updateStatus');
 
+    //archived tickets
+    Route::get('trash', [HelpdeskController::class, 'trash'])->name('admin.helpdesk.trash');
+    Route::post('restore/{id}', [HelpdeskController::class, 'restore'])->name('admin.helpdesk.restore');
+
+    // force delete a ticket
+    Route::delete('force-delete/{ticket}', [HelpdeskController::class, 'forceDelete'])->name('admin.helpdesk.forceDelete');
+
 });
 

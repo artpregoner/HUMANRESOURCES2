@@ -76,7 +76,7 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="section-block">
-                <a href="{{ route('portal.helpdesk.trash')}}" class="btn btn-outline-dark btn-lg">Archived Tickets</a>
+                <a wire:navigate href="{{ route('portal.helpdesk.trash')}}" class="btn btn-outline-dark btn-lg">Archived Tickets</a>
             </div>
         </div>
     </div>

@@ -144,5 +144,19 @@ class HelpdeskController extends Controller
         return redirect()->route('hr2.helpdesk.show', $ticket->id)->with('success', 'Ticket status updated successfully.');
     }
 
+        //archive dashboard
+        public function trash()
+        {
+            $tickets = Ticket::onlyTrashed()->with(['category', 'deletedByUser'])->get();
+            return view('hr2.helpdesk.trash', compact('tickets'));
+        }
+
+        //restore deleted ticket
+        public function restore($id)
+        {
+            $ticket = Ticket::onlyTrashed()->findOrFail($id);
+            $ticket->restore();
+            return redirect()->route('hr2.helpdesk.trash')->with('success', 'Ticket restored successfully.');
+        }
 
 }

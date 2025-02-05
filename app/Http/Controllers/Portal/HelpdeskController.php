@@ -37,11 +37,13 @@ class HelpdeskController extends Controller
             'category_id' => 'required|exists:ticket_categories,id',
             'response' => 'required|string',
             'files.*' => 'nullable|file|max:2048',
+            'assigned_to' => 'nullable|exists:users,id',
         ]);
 
         // Create ticket
         $ticket = Ticket::create([
             'user_id' => Auth::id(),
+            'assigned_to' => $request->assigned_to,
             'ticket_category_id' => $request->category_id,
             'title' => $request->title,
             'description' => $request->response,
@@ -69,6 +71,7 @@ class HelpdeskController extends Controller
                     'file_path' => $filePath,
                     'file_name' => $file->getClientOriginalName(),
                     'file_type' => $file->getClientMimeType(),
+                    'file_size' => $file->getSize(),
                 ]);
             }
         }

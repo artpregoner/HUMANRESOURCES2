@@ -13,14 +13,14 @@
                     <!-- Dashboard -->
                     <!-- ============================================================== -->
                     <li class="nav-item ">
-                        <a wire:navigate class="nav-link {{ request()->is('portal') ? 'active' : '' }}" href="{{ route('home') }}"
+                        <a class="nav-link {{ request()->is('portal') ? 'active' : '' }}" href="{{ route('home') }}"
                             aria-expanded="false">
                             <i class="m-r-10 mdi mdi-view-dashboard"></i>
                             Home
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a wire:navigate class="nav-link {{ request()->is('portal/myprofile') ? 'active' : '' }}"
+                        <a class="nav-link {{ request()->is('portal/myprofile') ? 'active' : '' }}"
                             href="{{ route('portal.myprofile') }}" aria-expanded="false">
                             <i class="m-r-10 mdi mdi-account-settings-variant"></i>
                             My Profile
@@ -31,7 +31,7 @@
                     <!-- ============================================================== -->
                     <li class="nav-divider">SELF-SERVICE</li> <!-- Title -->
                     <li class="nav-item "><!-- Payslip -->
-                        <a wire:navigate class="nav-link {{ request()->is('portal/self-service/payslip*') ? 'active' : '' }}"
+                        <a class="nav-link {{ request()->is('portal/self-service/payslip*') ? 'active' : '' }}"
                             href="{{ route('portal.ess.payslip.index') }}" aria-expanded="false">
                             <i class="m-d-10 mdi mdi-printer"></i>
                             Payslip
@@ -48,13 +48,13 @@
                             class="collapse submenu {{ request()->is('portal/self-service/leave/*') ? 'show' : '' }}">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a wire:navigate class="nav-link {{ request()->is('portal/self-service/leave') ? 'active' : '' }}"
+                                    <a class="nav-link {{ request()->is('portal/self-service/leave') ? 'active' : '' }}"
                                         href="{{ url('portal/self-service/leave/list/requests') }}">
                                         <i class="fas fa-play icon-small"></i>Request
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a wire:navigate class="nav-link {{ request()->is('portal/self-service/leave') ? 'active' : '' }}"
+                                    <a class="nav-link {{ request()->is('portal/self-service/leave') ? 'active' : '' }}"
                                         href="{{ url('portal/self-service/leave/list/history') }}">
                                         <i class="fas fa-play icon-small"></i>History
                                     </a>
@@ -68,7 +68,7 @@
                     <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
                     <li class="nav-divider">Claims</li> <!-- Title -->
                     <li class="nav-item "><!-- Claims -->
-                        <a wire:navigate class="nav-link {{ request()->is('portal/claims/*') ? 'active' : '' }}"
+                        <a class="nav-link {{ request()->is('portal/claims/*') ? 'active' : '' }}"
                             href="{{ route('portal.claims.index') }}" aria-expanded="false">
                             <i class="m-r-10 mdi mdi-currency-usd"></i>Expenses
                         </a>
@@ -79,7 +79,7 @@
                     <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
                     <li class="nav-divider">Helpdesk</li><!-- Title -->
                     <li class="nav-item"><!-- helpdesk -->
-                        <a wire:navigate class="nav-link {{ request()->is('portal/helpdesk/*') ? 'active' : '' }}"
+                        <a class="nav-link {{ request()->is('portal/helpdesk/*') ? 'active' : '' }}"
                             href="{{ route('portal.helpdesk.index') }}" aria-expanded="false">
                             <i class="m-r-10 mdi mdi-ticket-account"></i>
                             Tickets

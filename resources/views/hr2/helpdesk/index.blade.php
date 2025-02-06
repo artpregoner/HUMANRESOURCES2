@@ -19,7 +19,8 @@
                 <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                     <div class="email-title"><span class="icon">
                             <i class="fas fa-inbox"></i></span> My tickets
-                        <span class="new-messages">{{ $tickets->count() }} all tickets</span>
+                        <span class="new-messages badge badge-info badge-pill">{{ $tickets->count() }}</span>
+                        <span class=" new-messages">all tickets</span>
                     </div>
                 </div>
                 <div class="card-body">
@@ -85,6 +86,61 @@
             </div>
         </div>
     </div>
+    {{-- <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form class="needs-validation" novalidate="">
+                                <div class="row">
+                                    <div class="col-md-3 mb-4">
+                                        <label for="country">Subject</label>
+                                        <input type="text" class="form-control" id="zip" placeholder="" required="">
+                                        <div class="invalid-feedback">
+                                            Please select a valid country.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label for="state">category</label>
+                                        <select class="custom-select d-block w-100" id="state" required="">
+                                            <option value="">Choose...</option>
+                                            <option>California</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid state.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="zip">Response</label>
+                                        <input type="text" class="form-control" id="zip" placeholder="" required="">
+                                        <div class="invalid-feedback">
+                                            Zip code required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="zip">Send to</label>
+                                        <select class="js-example-basic-multiple" multiple="multiple">
+                                            <option value="Alabama">Alabama</option>
+                                            <option value="Alaska" selected="selected">Alaska</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 mb-3">
+                                        <label for="zip">submit</label>
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-secondary btn-sm">Send</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
     <div class="row">
         <div class="col-xl-12">
             <div class="section-block">
@@ -94,4 +150,9 @@
     </div>
 @endsection
 @push('scripts')
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2({ tags: true });
+    });
+    </script>
 @endpush

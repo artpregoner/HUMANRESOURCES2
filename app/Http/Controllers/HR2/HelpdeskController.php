@@ -57,37 +57,37 @@ class HelpdeskController extends Controller
         ]);
     }
 
-    public function respond(Request $request, Ticket $ticket)
-    {
-        $request->validate([
-            'response' => 'required|string|max:5000',
-            'files.*' => 'nullable|file|max:2048',
-        ]);
+    // public function respond(Request $request, Ticket $ticket)
+    // {
+    //     $request->validate([
+    //         'response' => 'required|string|max:5000',
+    //         'files.*' => 'nullable|file|max:2048',
+    //     ]);
 
-        // Create a new response
-        $ticketResponse = TicketResponse::create([
-            'ticket_id' => $ticket->id,
-            'user_id' => Auth::id(),
-            'response_text' => $request->response,
-            'responded_at' => now(),
-        ]);
+    //     // Create a new response
+    //     $ticketResponse = TicketResponse::create([
+    //         'ticket_id' => $ticket->id,
+    //         'user_id' => Auth::id(),
+    //         'response_text' => $request->response,
+    //         'responded_at' => now(),
+    //     ]);
 
-        // Handle file uploads if any
-        if ($request->hasFile('files')) {
-            foreach ($request->file('files') as $file) {
-                $filePath = $file->store('responses', 'public');
+    //     // Handle file uploads if any
+    //     if ($request->hasFile('files')) {
+    //         foreach ($request->file('files') as $file) {
+    //             $filePath = $file->store('responses', 'public');
 
-                // Save file to TicketResponseFile
-                \App\Models\TicketResponseFile::create([
-                    'ticket_response_id' => $ticketResponse->id,
-                    'file_path' => $filePath,
-                    'file_name' => $file->getClientOriginalName(),
-                    'file_type' => $file->getClientMimeType(),
-                ]);
-            }
-        }
+    //             // Save file to TicketResponseFile
+    //             \App\Models\TicketResponseFile::create([
+    //                 'ticket_response_id' => $ticketResponse->id,
+    //                 'file_path' => $filePath,
+    //                 'file_name' => $file->getClientOriginalName(),
+    //                 'file_type' => $file->getClientMimeType(),
+    //             ]);
+    //         }
+    //     }
 
-    }
+    // }
 
     /**
      * Show the form for editing the specified resource.

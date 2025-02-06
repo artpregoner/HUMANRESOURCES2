@@ -45,8 +45,9 @@
             @php
                 $role = Auth::user()->role;
             @endphp
-
-            @include('layouts.topbar')
+            <div class="dashboard-header" wire:key="topbar">
+                @include('layouts.topbar')
+            </div>
             @if ($role == 'hr')
                 @include('layouts.hr2-layouts.sidebar') <!-- Sidebar for admin and HR-->
             @elseif ($role == 'admin')

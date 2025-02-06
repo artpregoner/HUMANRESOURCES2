@@ -1,8 +1,6 @@
 <?php
 
-// File: app/Http/Livewire/Admin/Helpdesk/Respond.php
-
-namespace App\Livewire\Admin\Helpdesk;
+namespace App\Livewire\Portal\Helpdesk;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -20,7 +18,6 @@ class Respond extends Component
     public $response = '';
     public $files = [];
     public $showReplyBox = false;
-    public $showStatusDropdown = false;
     public $selectedImage = null;
     public $responses;
 
@@ -41,26 +38,6 @@ class Respond extends Component
     public function toggleReplyBox()
     {
         $this->showReplyBox = !$this->showReplyBox;
-    }
-
-    public function toggleStatusDropdown()
-    {
-        $this->showStatusDropdown = !$this->showStatusDropdown;
-    }
-
-    public function updateStatus($status)
-    {
-        if (!in_array($status, ['open', 'in_progress', 'resolved', 'closed'])) {
-            return;
-        }
-
-        $this->ticket->status = $status;
-        $this->ticket->save();
-
-        $this->showStatusDropdown = false;
-
-        // Corrected dispatch for Livewire v3
-        $this->dispatch('alert', type: 'success', message: 'Ticket status updated successfully.');
     }
 
 
@@ -126,10 +103,8 @@ class Respond extends Component
     {
         $this->selectedImage = null;
     }
-
-
     public function render()
     {
-        return view('livewire.admin.helpdesk.respond');
+        return view('livewire.portal.helpdesk.respond');
     }
 }

@@ -97,56 +97,56 @@ class HelpdeskController extends Controller
         ]);
     }
 
-    public function respond(Request $request, Ticket $ticket)
-    {
-        $request->validate([
-            'response' => 'required|string|max:5000',
-            'files.*' => 'nullable|file|max:2048',
-        ]);
+    // public function respond(Request $request, Ticket $ticket)
+    // {
+    //     $request->validate([
+    //         'response' => 'required|string|max:5000',
+    //         'files.*' => 'nullable|file|max:2048',
+    //     ]);
 
-        // Create a new response
-        $ticketResponse = TicketResponse::create([
-            'ticket_id' => $ticket->id,
-            'user_id' => Auth::id(),
-            'response_text' => $request->response,
-            'responded_at' => now(),
-        ]);
+    //     // Create a new response
+    //     $ticketResponse = TicketResponse::create([
+    //         'ticket_id' => $ticket->id,
+    //         'user_id' => Auth::id(),
+    //         'response_text' => $request->response,
+    //         'responded_at' => now(),
+    //     ]);
 
-        // Handle file uploads if any
-        if ($request->hasFile('files')) {
-            foreach ($request->file('files') as $file) {
-                $filePath = $file->store('responses', 'public');
+    //     // Handle file uploads if any
+    //     if ($request->hasFile('files')) {
+    //         foreach ($request->file('files') as $file) {
+    //             $filePath = $file->store('responses', 'public');
 
-                \App\Models\TicketResponseFile::create([
-                    'ticket_response_id' => $ticketResponse->id,
-                    'file_path' => $filePath,
-                    'file_name' => $file->getClientOriginalName(),
-                    'file_type' => $file->getClientMimeType(),
-                    'file_size' => $file->getSize(), // Save file size in bytes
-                ]);
-            }
-        }
+    //             \App\Models\TicketResponseFile::create([
+    //                 'ticket_response_id' => $ticketResponse->id,
+    //                 'file_path' => $filePath,
+    //                 'file_name' => $file->getClientOriginalName(),
+    //                 'file_type' => $file->getClientMimeType(),
+    //                 'file_size' => $file->getSize(), // Save file size in bytes
+    //             ]);
+    //         }
+    //     }
 
 
-        // Fetch the newly created response, including file details
-        $response = $ticketResponse->load('files');
+    //     // Fetch the newly created response, including file details
+    //     $response = $ticketResponse->load('files');
 
-        // Prepare response data
-        $responseData = [
-            'user_name' => $ticketResponse->user->name,
-            'response_text' => $ticketResponse->response_text,
-            'files' => $response->files->map(function($file) {
-                return [
-                    'url' => asset('storage/' . $file->file_path),
-                    'name' => $file->file_name,
-                ];
-            }),
-            'created_at' => $ticketResponse->created_at->format('d/m/Y H:i'),
-        ];
+    //     // Prepare response data
+    //     $responseData = [
+    //         'user_name' => $ticketResponse->user->name,
+    //         'response_text' => $ticketResponse->response_text,
+    //         'files' => $response->files->map(function($file) {
+    //             return [
+    //                 'url' => asset('storage/' . $file->file_path),
+    //                 'name' => $file->file_name,
+    //             ];
+    //         }),
+    //         'created_at' => $ticketResponse->created_at->format('d/m/Y H:i'),
+    //     ];
 
-        // Return the response data as JSON (AJAX)
-        return response()->json($responseData);
-    }
+    //     // Return the response data as JSON (AJAX)
+    //     return response()->json($responseData);
+    // }
 
 
 

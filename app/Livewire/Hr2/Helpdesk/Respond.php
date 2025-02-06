@@ -1,8 +1,6 @@
 <?php
 
-// File: app/Http/Livewire/Admin/Helpdesk/Respond.php
-
-namespace App\Livewire\Admin\Helpdesk;
+namespace App\Livewire\Hr2\Helpdesk;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -127,9 +125,8 @@ class Respond extends Component
         $this->selectedImage = null;
     }
 
-
     public function render()
     {
-        return view('livewire.admin.helpdesk.respond');
+        return view('livewire.hr2.helpdesk.respond');
     }
 }

@@ -7723,6 +7723,15 @@ Media Query
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Current user's message attachment */
+.chat-details.current-user .message-attachment {
+    background: #d6d6d6; /* Background for current user's message attachment */
+}
+
+/* Background for current user's message */
+.chat-details.current-user {
+    background-color: #d6d6d6;  /* Background for current user's messages */
+}
 .message-author {
     font-weight: bold;
     margin-bottom: 5px;

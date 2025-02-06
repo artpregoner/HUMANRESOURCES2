@@ -7,27 +7,8 @@
                 <span class="new-messages">{{ $ticket->title }}</span>
             </div>
             <div class="toolbar ml-auto d-flex align-items-center">
-                <!-- Status Dropdown -->
-                <div class="dropdown">
-                    <button class="btn btn-space btn-outline-code3 dropdown-toggle" type="button" wire:click="toggleStatusDropdown">
-                        {{ ucfirst($ticket->status) }}
-                    </button>
-
-                    @if($showStatusDropdown)
-                    <div class="dropdown-menu show">
-                        <button wire:click="updateStatus('in_progress')" class="dropdown-item {{ $ticket->status == 'in_progress' ? 'text-info' : '' }}">
-                            In Progress
-                        </button>
-                        <button wire:click="updateStatus('resolved')" class="dropdown-item {{ $ticket->status == 'resolved' ? 'text-success' : '' }}">
-                            Resolved
-                        </button>
-                        <div class="dropdown-divider"></div>
-                        <button wire:click="updateStatus('closed')" class="dropdown-item text-danger {{ $ticket->status == 'closed' ? 'active' : '' }}">
-                            Closed
-                        </button>
-                    </div>
-                    @endif
-                </div>
+                <!-- return -->
+                <a href="{{ route('portal.helpdesk.index') }}" class="btn btn-space btn-light btn-sm">Return to Ticket List</a>
 
                 <!-- Reply Button -->
                 <button wire:click="toggleReplyBox" class="btn btn-space btn-code3 btn-sm new-chat-btn ml-2">
@@ -151,6 +132,7 @@
                     </div>
                 @endforeach
             </div>
+
         </div>
     </div>
 

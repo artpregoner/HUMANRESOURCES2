@@ -17,6 +17,9 @@ use App\Livewire\Counter;
 //     Artisan::call('storage:link');
 // });
 
+Route::get('/index', function () {
+    return view('index');
+});
 
 // Authentication routes
 require __DIR__ . '/auth.php';

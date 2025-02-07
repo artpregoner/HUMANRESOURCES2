@@ -9,11 +9,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <link rel="stylesheet" href="{{ asset('asset/libs/css/styles.css') }}">
-    <link rel="stylesheet" href="{{ asset('template/assets/vendor/charts/chartist-bundle/chartist.css') }}">
-    <link rel="stylesheet" href="{{ asset('template/assets/vendor/charts/morris-bundle/morris.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('template/assets/vendor/charts/chartist-bundle/chartist.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/assets/vendor/charts/morris-bundle/morris.css') }}"> --}}
     <link rel="stylesheet"
         href="{{ asset('template/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('template/assets/vendor/charts/c3charts/c3.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('template/assets/vendor/charts/c3charts/c3.css') }}"> --}}
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('template/assets/vendor/bootstrap/css/bootstrap.min.css') }}">
     <link href="{{ asset('template/assets/vendor/fonts/circular-std/style.css') }}" rel="stylesheet">
@@ -46,7 +46,8 @@
                 $role = Auth::user()->role;
             @endphp
             <div class="dashboard-header" wire:key="topbar">
-                @include('layouts.topbar')
+                <livewire:layouts.topbar />
+                {{-- @include('layouts.topbar') --}}
             </div>
             @if ($role == 'hr')
                 @include('layouts.hr2-layouts.sidebar') <!-- Sidebar for admin and HR-->
@@ -67,9 +68,10 @@
         @endif
     </div>
 
+
     <!-- Optional JavaScript -->
     <script src="{{ asset('assets/libs/js/javascript.js') }}"></script>
-    <script src="{{ asset('template/assets/vendor/charts/sparkline/spark-js.js') }}"></script>
+    {{-- <script src="{{ asset('template/assets/vendor/charts/sparkline/spark-js.js') }}"></script> --}}
     <!-- jquery 3.3.1 -->
     <script src="{{ asset('template/assets/vendor/jquery/jquery-3.3.1.min.js') }}"></script>
     <!-- bootstap bundle js -->
@@ -79,16 +81,16 @@
     <!-- main js -->
     <script src="{{ asset('template/assets/libs/js/main-js.js') }}"></script>
     <!-- chart chartist js -->
-    <script src="{{ asset('template/assets/vendor/charts/chartist-bundle/chartist.min.js') }}"></script>
+    {{-- <script src="{{ asset('template/assets/vendor/charts/chartist-bundle/chartist.min.js') }}"></script>
     <!-- sparkline js -->
     <script src="{{ asset('template/assets/vendor/charts/sparkline/jquery.sparkline.js') }}"></script>
     <!-- morris js -->
     <script src="{{ asset('template/assets/vendor/charts/morris-bundle/raphael.min.js') }}"></script>
-    <script src="{{ asset('template/assets/vendor/charts/morris-bundle/morris.js') }}"></script>
+    <script src="{{ asset('template/assets/vendor/charts/morris-bundle/morris.js') }}"></script> --}}
     <!-- chart c3 js -->
-    <script src="{{ asset('template/assets/vendor/charts/c3charts/c3.min.js') }}"></script>
+    {{-- <script src="{{ asset('template/assets/vendor/charts/c3charts/c3.min.js') }}"></script>
     <script src="{{ asset('template/assets/vendor/charts/c3charts/d3-5.4.0.min.js') }}"></script>
-    <script src="{{ asset('template/assets/vendor/charts/c3charts/C3chartjs.js') }}"></script>
+    <script src="{{ asset('template/assets/vendor/charts/c3charts/C3chartjs.js') }}"></script> --}}
     <script src="{{ asset('template/assets/libs/js/dashboard-ecommerce.js') }}"></script>
 
     {{-- <script src="{{ asset('template/assets/vendor/full-calendar/js/moment.min.js') }}"></script>
@@ -112,7 +114,12 @@
     @yield('scripts')
     @stack('scripts')
     @livewireScripts
-
+    <script>
+        document.addEventListener('livewire:navigated', () => {
+            console.log("Navigated");
+            initFLowbite();
+        })
+    </script>
 </body>
 
 </html>

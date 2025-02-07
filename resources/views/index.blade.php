@@ -23,4 +23,5 @@
     Try publishing an event to channel <code>my-channel</code>
     with event name <code>my-event</code>.
   </p>
+  <h1>Commit changes test to pushall</h1>
 </body>

@@ -1,4 +1,8 @@
 <div>
+    @if (session()->has('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+
     @if ($errorMessage)
         <div class="alert alert-danger">{{ $errorMessage }}</div>
     @endif

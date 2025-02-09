@@ -28,6 +28,10 @@ class Login extends Component
         // Redirect logged-in users inside mount() (NOT render)
     public function mount()
     {
+        // Capture session flash messages
+        $this->errorMessage = session('error', null);
+
+
         if (Auth::check()) {
             return redirect()->to(match (Auth::user()->role) {
                 'employee' => route('home'),
@@ -36,6 +40,7 @@ class Login extends Component
                 default => route('login'),
             });
         }
+
     }
 
     public function submitLogin()

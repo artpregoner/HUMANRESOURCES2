@@ -6,14 +6,45 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class RoleMiddleware
 {
     public function handle(Request $request, Closure $next, string $role)
     {
-        if (Auth::check() && Auth::user()->role === $role) {
+        // If user is not authenticated, redirect to login with flash message
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Please log in first.');
+        }
+
+        // If user has the required role, continue the request
+        if (Auth::user()->role === $role) {
             return $next($request);
         }
 
-        return redirect()->route('login');
+        // Redirect unauthorized users to their correct dashboard
+        return redirect()->route(match (Auth::user()->role) {
+            'admin' => 'admin.index',
+            'hr' => 'hr2.index',
+            'employee' => 'home',
+            default => 'login',
+        })->with('error', 'Unauthorized access.');
     }
 }
+
+
+
+// class RoleMiddleware
+// {
+//     public function handle(Request $request, Closure $next, string $role)
+//     {
+//         if (!Auth::check()) {
+//             return redirect()->route('login')->with('error', 'Please log in first.');
+//         }
+
+//         if (Auth::check() && Auth::user()->role === $role) {
+//             return $next($request);
+//         }
+
+//         return redirect()->route('login');
+//     }
+// }

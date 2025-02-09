@@ -21,7 +21,15 @@
                     @if($showNotificationDropdown)
                     <ul class="dropdown-menu dropdown-menu-right notification-dropdown show">
                         <li>
-                            <div class="notification-title">Notification</div>
+                            <div class="card-header d-flex">
+                                <h4 class="mb-0">Notification</h4>
+                                <div class="dropdown ml-auto">
+                                    <a class="toolbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-dots-vertical"></i>  </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="#">Mark all as read</a>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="notification-list">
                                 <div class="list-group">
                                     @foreach($notifications as $notification)
@@ -37,12 +45,30 @@
                                         </div>
                                     </a>
                                     @endforeach
+                                    <a href="#" class="list-group-item list-group-item-action active">
+                                        <div class="notification-info">
+                                            <div class="notification-list-user-img"><img src="../template/assets/images/avatar-2.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                                            <div class="notification-list-user-block"><span class="notification-list-user-name">Pregover Art Javar</span>Request Vacation Leave.
+                                                <div class="notification-date">2 min ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action">
+                                        <div class="notification-info">
+                                            <div class="notification-list-user-img"><img src="../templateassets/images/avatar-3.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                                            <div class="notification-list-user-block"><span class="notification-list-user-name">Whug John</span>Submit new Ticket
+                                                <div class="notification-date">3 min ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
                                     <!-- Additional notifications -->
                                 </div>
                             </div>
                         </li>
                         <li>
-                            <div class="list-footer"><a href="#">View all notifications</a></div>
+                            <div class="list-footer border-top">
+                                <a class="" href="#">View all notifications</a>
+                            </div>
                         </li>
                     </ul>
                     @endif

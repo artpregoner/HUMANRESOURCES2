@@ -3,7 +3,7 @@
 namespace App\Livewire\Layouts;
 
 use Livewire\Component;
-use App\Models\Notification;
+// use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use App\Events\NotificationEvent;
 
@@ -19,10 +19,10 @@ class Topbar extends Component
         'echo-private:notifications.' . 'user_id' . ',notification.received' => 'refreshNotifications',
     ];
 
-    public function mount()
-    {
-        $this->notifications = Notification::where('user_id', Auth::id())->latest()->get();
-    }
+    // public function mount()
+    // {
+    //     $this->notifications = Notification::where('user_id', Auth::id())->latest()->get();
+    // }
 
     public function toggleMobileMenu()
     {
@@ -47,10 +47,10 @@ class Topbar extends Component
         $this->showUserDropdown = false;
     }
 
-    public function refreshNotifications()
-    {
-        $this->notifications = Notification::where('user_id', Auth::id())->latest()->get();
-    }
+    // public function refreshNotifications()
+    // {
+    //     $this->notifications = Notification::where('user_id', Auth::id())->latest()->get();
+    // }
 
     public function logout()
     {

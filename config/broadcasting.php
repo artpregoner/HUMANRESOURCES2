@@ -6,12 +6,12 @@ return [
     'connections' => [
         'pusher' => [
             'driver' => 'pusher',
-            'key' => env('3fc0d65259a728d1e12e'),
-            'secret' => env('b183d222a7b2ef035085'),
-            'app_id' => env('1938374'),
+            'key' => env('PUSHER_APP_KEY'),
+            'secret' => env('PUSHER_APP_SECRET'),
+            'app_id' => env('PUSHER_APP_ID'),
             'options' => [
-            'cluster' => 'ap1',
-            'useTLS' => true
+                'cluster' => env('PUSHER_APP_CLUSTER', 'ap1'),
+                'useTLS' => true,
             ],
         ],
 

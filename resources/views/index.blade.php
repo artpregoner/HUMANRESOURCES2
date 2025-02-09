@@ -7,7 +7,7 @@
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
 
-    var pusher = new Pusher('3fc0d65259a728d1e12e', {
+    var pusher = new Pusher('9f7bc6d1d24ab2691a40', {
       cluster: 'ap1'
     });
 
@@ -23,5 +23,4 @@
     Try publishing an event to channel <code>my-channel</code>
     with event name <code>my-event</code>.
   </p>
-  <h1>Commit changes test to pushall</h1>
 </body>

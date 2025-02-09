@@ -97,14 +97,26 @@ Helpdesk
 - /hr2/helpdesk/create
 
 
+# 🚀 Final Advice
+If your app doesn’t update after changes, run:
+php artisan config:clear
+php artisan view:clear
+php artisan cache:clear
+php artisan route:clear
+
+
+# If your production app is slow, use:
+php artisan optimize
+php artisan config:cache
+
+
+# If something breaks, reset everything with:
+php artisan optimize:clear
+
+
 php artisan serve
 
 
-php artisan view:clear
-php artisan cache:clear
-php artisan config:clear
-php artisan route:clear
-php artisan optimize
 
 php artisan migrate:reset
 php artisan migrate:status

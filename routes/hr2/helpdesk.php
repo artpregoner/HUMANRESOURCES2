@@ -10,7 +10,7 @@ use App\Http\Controllers\HR2\HelpdeskController;
 //     Route::get('/show/{ticketId}', Show::class)->name('hr2.helpdesk.show');
 // });
 
-Route::prefix('hr2/helpdesk')->group(function(){
+Route::prefix('hr2/helpdesk')->middleware(['auth', 'role:hr'])->group(function(){
     Route::get('/list', [HelpdeskController::class, 'index'])->name('hr2.helpdesk.index');
 
     // Show ticket details and responses

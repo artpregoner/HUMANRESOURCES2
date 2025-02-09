@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Portal\PortalController;
 
-Route::get('/portal', [PortalController::class, 'home'])->name('home');
-Route::get('/portal/myprofile',[PortalController::class,'myprofile'])->name('portal.myprofile');
 
+Route::middleware(['auth', 'role:employee'])->group(function(){
+    Route::get('/portal', [PortalController::class, 'home'])->name('home');
+    Route::get('/portal/myprofile',[PortalController::class,'myprofile'])->name('portal.myprofile');
+});
 // other routes
 require __DIR__ . '/self-service.php';
 require __DIR__ . '/helpdesk.php';

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Portal\HelpdeskController;
 
 
-Route::prefix('portal/helpdesk/')->group(function () {
+Route::prefix('portal/helpdesk/')->middleware(['auth', 'role:employee'])->group(function () {
     // shwo ticket
     Route::get('list', [HelpdeskController::class, 'index'])->name('portal.helpdesk.index');
 

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HelpdeskController;
 
-Route::prefix('helpdesk')->group(function(){
+Route::prefix('helpdesk')->middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/list', [HelpdeskController::class, 'index'])->name('admin.helpdesk.index');
 
     // Show ticket details and responses

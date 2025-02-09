@@ -25,6 +25,19 @@ class Login extends Component
         'password.min' => 'Password must be at least 8 characters.',
     ];
 
+        // Redirect logged-in users inside mount() (NOT render)
+    public function mount()
+    {
+        if (Auth::check()) {
+            return redirect()->to(match (Auth::user()->role) {
+                'employee' => route('home'),
+                'hr' => route('hr2.index'),
+                'admin' => route('admin.index'),
+                default => route('login'),
+            });
+        }
+    }
+
     public function submitLogin()
     {
         $this->validate();

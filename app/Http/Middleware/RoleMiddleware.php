@@ -14,6 +14,6 @@ class RoleMiddleware
             return $next($request);
         }
 
-        return abort(403, 'Unauthorized action.');
+        return redirect()->route('login');
     }
 }

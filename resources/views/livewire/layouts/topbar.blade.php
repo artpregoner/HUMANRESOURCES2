@@ -89,7 +89,7 @@
                             <span class="status"></span><span class="ml-2">{{ Auth::user()->email }}</span>
                         </div>
 
-                        <a wire:click="logout" class="dropdown-item cursor-pointer">
+                        <a wire:click="logout" href="javascript:void(0);" class="dropdown-item cursor-pointer">
                             <i class="fas fa-power-off mr-2"></i> Logout
                         </a>
                     </div>
@@ -106,5 +106,4 @@
             }
         });
     </script>
-
 </nav>

@@ -46,8 +46,8 @@
                 $role = Auth::user()->role;
             @endphp
             <div class="dashboard-header" wire:key="topbar">
-                <livewire:layouts.topbar />
-                {{-- @include('layouts.topbar') --}}
+                {{-- <livewire:layouts.topbar /> --}}
+                @include('layouts.topbar')
             </div>
             @if ($role == 'hr')
                 @include('layouts.hr2-layouts.sidebar') <!-- Sidebar for admin and HR-->

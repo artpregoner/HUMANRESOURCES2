@@ -144,7 +144,7 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="section-block">
-                <a wire:navigate href="{{ route('hr2.helpdesk.trash')}}" class="btn btn-outline-dark btn-lg">Archived Tickets</a>
+                <a href="{{ route('hr2.helpdesk.trash')}}" class="btn btn-outline-dark btn-lg">Archived Tickets</a>
             </div>
         </div>
     </div>

@@ -100,7 +100,7 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="section-block">
-                <a wire:navigate href="{{ route('portal.helpdesk.index')}}" class="btn btn-outline-dark btn-lg">Return to ickets</a>
+                <a href="{{ route('portal.helpdesk.index')}}" class="btn btn-outline-dark btn-lg">Return to ickets</a>
             </div>
         </div>
     </div>

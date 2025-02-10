@@ -17,7 +17,7 @@
                     <!-- Dashboard -->
                     <!-- ============================================================== -->
                     <li class="nav-item ">
-                        <a wire:navigate class="nav-link {{ request()->is('hr2') ? 'active' : '' }}" href="{{ route('hr2.index') }}"
+                        <a class="nav-link {{ request()->is('hr2') ? 'active' : '' }}" href="{{ route('hr2.index') }}"
                             aria-expanded="false"><i class="m-r-10 mdi mdi-view-dashboard"></i>Dashboard</a>
                     </li>
 
@@ -58,7 +58,7 @@
                         Claims & Reimbursement
                     </li>
                     <li class="nav-item ">
-                        <a wire:navigate class="nav-link {{ request()->Is('hr2/claims/*') ? 'active' : '' }}"
+                        <a class="nav-link {{ request()->Is('hr2/claims/*') ? 'active' : '' }}"
                             href="{{ route('hr2.claims.index') }}" aria-expanded="false"><i
                             class="m-r-10 mdi mdi-currency-usd"></i>Claims & Reimbursement</a>
                     </li>
@@ -137,7 +137,7 @@
                         Helpdesk
                     </li>
                     <li class="nav-item">
-                        <a wire:navigate class="nav-link {{ request()->Is('hr2/helpdesk/*') ? 'active' : '' }}"
+                        <a class="nav-link {{ request()->Is('hr2/helpdesk/*') ? 'active' : '' }}"
                             href="{{ route('hr2.helpdesk.index') }}" aria-expanded="false"><i
                             class="m-r-10 mdi mdi-ticket-account"></i>Tickets
                             <span class="badge badge-code8 badge-pill">{{ $ticketCount }}</span>
@@ -151,7 +151,7 @@
                     <!-- ============================================================== -->
                     <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
                     <li class="nav-item ">
-                        <a wire:navigate class="nav-link {{ request()->is('hr2/myprofile') ? 'active' : '' }}"
+                        <a class="nav-link {{ request()->is('hr2/myprofile') ? 'active' : '' }}"
                             href="{{ route('hr2.myprofile') }}" aria-expanded="false"><i
                             class="m-r-10 mdi mdi-account-settings-variant"></i>My Profile</a>
                     </li>

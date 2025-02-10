@@ -51,7 +51,7 @@
 
 
                 <!-- User Dropdown -->
-                <li class="nav-item dropdown nav-user" wire.ignore>
+                <li class="nav-item dropdown nav-user">
                     <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                         <img src="{{ asset('template/assets/images/user1.png') }}" alt="User Avatar" class="user-avatar-md rounded-circle">

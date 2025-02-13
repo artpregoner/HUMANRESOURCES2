@@ -4,13 +4,18 @@ namespace App\Http\Controllers\Portal;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Claim;
+use Illuminate\Support\Facades\{Auth, Storage};
+
 
 class ClaimsController extends Controller
 {
     // Display a listing of users.
     public function index()
     {
-        return view('portal.claims.index');
+        $claims = Claim::where('user_id', Auth::id())->with('items.category')->get();
+
+        return view('portal.claims.index', compact('claims'));
     }
 
     // Show the form for creating a new user.

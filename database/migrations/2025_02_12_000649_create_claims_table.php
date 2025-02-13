@@ -27,7 +27,7 @@ return new class extends Migration
             $table->foreignId('submitted_by_id')->constrained('users')->onDelete('cascade'); // User who submitted the claim (HR/Admin or Employee)
             $table->foreignId('assigned_to_id')->nullable()->constrained('users')->onDelete('set null'); // Assigned to employee (for walk-in employees)
             $table->foreignId('approved_by_id')->nullable()->constrained('users')->onDelete('set null'); // Approved by HR/Admin
-            $table->date('expense_date'); // Expense Date
+            $table->dateTime('expense_date'); // Expense Date
             $table->timestamp('submitted_date')->useCurrent(); // Submitted Date
             $table->date('approved_date')->nullable(); // Approved Date
             $table->string('description'); // Description of the claim
@@ -44,7 +44,8 @@ return new class extends Migration
         Schema::create('claim_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('claim_id')->constrained()->onDelete('cascade'); // Link to the claim
-            $table->foreignId('category_id')->constrained('claims_categories')->onDelete('set null'); // Link to the category
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on('claims_categories')->nullOnDelete();
             $table->string('details'); // Details of the expense
             $table->decimal('amount', 10, 2); // Amount of the expense
             $table->enum('currency', ['PHP', 'USD'])->default('PHP'); //currency field

@@ -13,7 +13,7 @@ class ClaimsCategory extends Model
     protected $table = 'claims_categories';
 
     protected $fillable = [
-        'name',
+        'category_name',
         'description',
         'is_active'
     ];

@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Ticket;
+use App\Models\Claim;
 use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
@@ -29,8 +30,10 @@ class AppServiceProvider extends ServiceProvider
 
                 if ($role === 'admin' || $role === 'hr') {
                     $view->with('ticketCount', Ticket::count());
+                    $view->with('claimCount', Claim::count());
                 } else {
                     $view->with('ticketCount', Ticket::where('user_id', $user->id)->count());
+                    $view->with('claimCount', Claim::where('user_id', $user->id)->count());
                 }
             }
         });

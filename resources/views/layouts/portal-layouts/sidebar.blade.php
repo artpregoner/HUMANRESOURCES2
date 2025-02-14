@@ -71,6 +71,7 @@
                         <a class="nav-link {{ request()->is('portal/claims/*') ? 'active' : '' }}"
                             href="{{ route('portal.claims.index') }}" aria-expanded="false">
                             <i class="m-r-10 mdi mdi-currency-usd"></i>Expenses
+                            <span class="badge badge-code8 badge-pill">{{ $claimCount }}</span>
                         </a>
                     </li>
                     <!-- ============================================================== -->

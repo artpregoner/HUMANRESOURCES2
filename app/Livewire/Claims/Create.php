@@ -62,6 +62,7 @@ class Create extends Component
         'claim_lines.*.details.required' => 'The details field is required.',
         'claim_lines.*.amount.required' => 'The amount field is required.',
         'claim_lines.*.amount.min' => 'The amount must be greater than 0.',
+        'description.*.required'=> 'The description field is required.',
     ];
 
 

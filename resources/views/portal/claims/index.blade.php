@@ -3,6 +3,15 @@
 @section('header', 'Claims')
 @section('active-header', 'My Expenses')
 
+@push('styles')
+<style>
+    th, td {
+        white-space: nowrap; /* Prevent text wrapping for better spacing */
+        text-align: center; /* Center align text */
+    }
+</style>
+@endpush
+
 @section('content')
     @include('components.alert.alert')
 
@@ -12,6 +21,8 @@
                 <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                     <div class="email-title">
                         <span class="icon"><i class="fas fa-hand-holding-usd"></i></span> Claims & Reimbursement
+                        <span class="new-messages badge badge-info badge-pill">{{ $claims->count() }}</span>
+                        <span class=" new-messages">all claims</span>
                     </div>
                     <button type="button" class="btn btn-space btn-code3"
                         onclick="window.location.href='{{ route('portal.claims.create') }}'">
@@ -23,16 +34,18 @@
                         <table class="table table-striped table-bordered first">
                             <thead>
                                 <tr>
-                                    <th>Expense Date/Time</th>
+                                    <th class="center" style="width: 105px;">Expense Date/Time</th>
                                     <th>Details</th>
-                                    <th>Total Amount</th>
-                                    <th>Status</th>
+                                    <th style="width: 90px;">Total Amount</th>
+                                    <th style="width: 60px;">Status</th>
+                                    <th class="right" style="width: 90px;">Actions</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($claims as $claim)
-                                    <tr style="cursor: pointer" data-toggle="modal" data-target="#showClaims">
-                                        <td>{{ \Carbon\Carbon::parse($claim->expense_date)->format('m/d/Y h:i A') }}</td>
+                                @foreach ($claims as $claim)
+                                    <tr>
+                                        <td>{{ \Carbon\Carbon::parse($claim->expense_date)->format('M/d/Y - h:i A') }}</td>
                                         <td>
                                             <ul class="mb-0 list-unstyled">
                                                 @foreach ($claim->items as $item)
@@ -52,16 +65,26 @@
                                                 <span class="badge badge-danger">Rejected</span>
                                             @endif
                                         </td>
+                                        <td class="right">
+                                            <div class="btn-group ml-auto">
+                                                <form action="{{ url('portal.claims.destroy') }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="btn btn-danger btn-sm tooltip-container"
+                                                        onclick="return confirm('Are you sure you want to Archive this claim?');">
+                                                        <span class="tooltip-text">Archive this claim</span>
+                                                        <i class="far fa-trash-alt"></i>
+                                                    </button>
+                                                </form>
+                                                <a href="{{ route('portal.claims.show', $claim->id)}}" class="btn btn-rounded btn-code3 btn-sm"><i class="fas fa-search"></i> View</a>
+                                            </div>
+                                        </td>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="4" class="text-center">No claims found.</td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
-                    @include('portal.claims.show')
                 </div>
             </div>
         </div>

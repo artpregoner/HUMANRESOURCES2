@@ -28,7 +28,7 @@ class Claim extends Model
     ];
 
     protected $casts = [
-        'expense_date' => 'date',
+        'expense_date' => 'datetime',
         'submitted_date' => 'datetime',
         'approved_date' => 'datetime',
         'reimbursement_required' => 'boolean',

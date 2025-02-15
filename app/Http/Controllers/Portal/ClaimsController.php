@@ -9,6 +9,7 @@ use App\Models\ClaimsAttachment;
 use App\Models\ClaimsCategory;
 use App\Models\ClaimApprover;
 use Illuminate\Support\Facades\{Auth, Storage};
+use Illuminate\Support\Facades\DB;
 
 
 class ClaimsController extends Controller
@@ -17,9 +18,11 @@ class ClaimsController extends Controller
     public function index()
     {
         $claims = Claim::where('user_id', Auth::id())->with('items.category')->get();
-        $ticketCount = Claim::where('user_id', Auth::id())->count();
+        $claimsCount = Claim::where('user_id', Auth::id())->count();
+        $archivedClaimsCount = Claim::onlyTrashed()->where('user_id', Auth::id())->count();
 
-        return view('portal.claims.index', compact('claims', 'ticketCount'));
+
+        return view('portal.claims.index', compact('claims', 'claimsCount', 'archivedClaimsCount'));
     }
 
     // Show the form for creating a new user.
@@ -47,7 +50,6 @@ class ClaimsController extends Controller
         return view('portal.claims.show', compact('claim'));
     }
 
-
     /**
      * Download the invoice as a PDF.
      */
@@ -71,9 +73,77 @@ class ClaimsController extends Controller
         // Code to update a user
     }
 
+    // Trash UI
+    public function trash()
+    {
+        $claimsCount = Claim::where('user_id', Auth::id())->count();
+
+        $claims = Claim::onlyTrashed()->get();
+        return view('portal.claims.trash', compact('claims', 'claimsCount'));
+    }
+
+
     // Remove a user from the database.
     public function destroy($id)
     {
-        // Code to delete a user
+        $claim = Claim::with(['user', 'attachments', 'items.category'])
+            ->where('user_id', Auth::id())
+            ->findOrFail($id);
+
+        $claim->update(['deleted_by' => Auth::id()]);
+        $claim->delete();
+
+        return redirect()->route('portal.claims.index')->with('success', 'Claim archived successfully.');
+    }
+
+
+
+    public function restore($id)
+    {
+
+        $claim = Claim::onlyTrashed()->findOrFail($id);
+        $claim->restore();
+
+        $claim->items()->onlyTrashed()->restore();
+
+        // Restore associated attachments
+        $claim->attachments()->onlyTrashed()->restore();
+
+        return redirect()->route('portal.claims.trash')->with('success', 'Claim restored successfully.');
+
+    }
+
+    public function forceDelete($id)
+    {
+        try {
+            DB::beginTransaction();
+
+            $claim = Claim::onlyTrashed()->findOrFail($id);
+            $folderPath = 'claims/receipt' . $claim->id; // Define the folder path
+
+            // Delete physical files first
+            foreach ($claim->attachments as $attachment) {
+                if (Storage::disk('public')->exists($attachment->file_path)) {
+                    Storage::disk('public')->delete($attachment->file_path);
+                }
+                $attachment->forceDelete();
+            }
+
+            // Delete the folder if it's empty
+            if (Storage::disk('public')->exists($folderPath) && count(Storage::disk('public')->files($folderPath)) === 0) {
+                Storage::disk('public')->deleteDirectory($folderPath);
+            }
+
+            // Delete associated records
+            $claim->items()->forceDelete();
+            $claim->forceDelete();
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Claim permanently deleted.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            logger()->error('Claim force delete error: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error deleting claim permanently.');
+        }
     }
 }

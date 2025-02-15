@@ -6,8 +6,8 @@
                 <div class="form-group">
                     <label for="currencySelector">
                         Currency *
-                        <button class="btn btn-xs btn-outline btn-link" data-toggle="popover"
-                            data-content="You must select the currency that you have used.">
+                        <button class="btn btn-xs m-b-xs btn-outline btn-link" data-toggle="tooltip" data-placement="right"
+                        title="You must select the currency that you have used." tabindex="-1" type="button">
                             <i class="fa fa-question-circle"></i>
                         </button>
                     </label>
@@ -26,8 +26,8 @@
                     <label for="inputClaimDate">
                         Expense Claim Date *
                         <button class="btn btn-xs m-b-xs btn-outline btn-link"
-                            data-content="Please enter the date of your claim expenses here." data-placement="top"
-                            data-toggle="popover" tabindex="-1" type="button">
+                        title="Please enter the date of your claim expenses here." data-placement="right"
+                            data-toggle="tooltip" tabindex="-1" type="button">
                             <i class="fa fa-question-circle"></i>
                         </button>
                     </label>
@@ -42,8 +42,8 @@
                 <!-- Description -->
                 <div class="form-group">
                     <label for="description" class="col-form-label">Description *
-                        <button class="btn btn-xs btn-outline btn-link" data-toggle="popover"
-                            data-content="Specify an overall reason for this expense claim.">
+                        <button class="btn btn-xs btn-outline btn-link" data-toggle="tooltip" data-placement="right"
+                        title="Specify an overall reason for this expense claim." tabindex="-1" type="button">
                             <i class="fa fa-question-circle"></i>
                         </button>
                     </label>
@@ -66,6 +66,34 @@
 
             <!-- Claim Lines Section -->
             <div class="card-body border-top">
+
+                <!-- Desktop Headers -->
+                <div class="form-row d-none d-md-flex mb-2">
+                    <div class="col-xl-4 col-lg-4 col-md-4">
+                        <label>Category<button class="btn btn-xs btn-outline btn-link" data-toggle="tooltip"
+                            data-placement="top" title="Select the category that best describes this expense."
+                            tabindex="-1" type="button">
+                            <i class="fa fa-question-circle"></i>
+                            </button>
+                        </label>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4">
+                        <label>Details<button class="btn btn-xs btn-outline btn-link" data-toggle="tooltip"
+                            data-placement="top" title="Provide specific details about this expense."
+                            tabindex="-1" type="button">
+                            <i class="fa fa-question-circle"></i>
+                            </button>
+                        </label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3">
+                        <label>Amount<button class="btn btn-xs btn-outline btn-link" data-toggle="tooltip"
+                            data-placement="top" title="Enter the amount cost of this expense."
+                            tabindex="-1" type="button">
+                            <i class="fa fa-question-circle"></i>
+                            </button>
+                        </label>
+                    </div>
+                </div>
 
                 <!-- Mobile Header -->
                 <div class="form-row d-md-none claim-header mb-2">

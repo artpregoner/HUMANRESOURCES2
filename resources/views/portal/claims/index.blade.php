@@ -39,7 +39,6 @@
                                     <th style="width: 90px;">Total Amount</th>
                                     <th style="width: 60px;">Status</th>
                                     <th class="right" style="width: 90px;">Actions</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,14 +66,12 @@
                                         </td>
                                         <td class="right">
                                             <div class="btn-group ml-auto">
-                                                <form action="{{ url('portal.claims.destroy') }}" method="POST">
+                                                <form action="{{ route('portal.claims.destroy', $claim->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit"
-                                                        class="btn btn-danger btn-sm tooltip-container"
-                                                        onclick="return confirm('Are you sure you want to Archive this claim?');">
-                                                        <span class="tooltip-text">Archive this claim</span>
-                                                        <i class="far fa-trash-alt"></i>
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Are you sure you want to archive this claim?');">
+                                                        <i class="far fa-trash-alt"></i> Archive
                                                     </button>
                                                 </form>
                                                 <a href="{{ route('portal.claims.show', $claim->id)}}" class="btn btn-rounded btn-code3 btn-sm"><i class="fas fa-search"></i> View</a>
@@ -87,6 +84,25 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Claims Trash - Show Count of Deleted Claims -->
+    <div class="row">
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <a href="{{ route('portal.claims.trash') }}" class="card-link">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-inline-block">
+                            <h5 class="text-muted">Archived Claims</h5>
+                            <h2 class="mb-0">{{ $archivedClaimsCount }}</h2> <!-- Display deleted claims count -->
+                        </div>
+                        <div class="float-right icon-circle-medium icon-box-lg bg-danger-light mt-1">
+                            <i class="fas fa-archive fa-sm text-danger"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 @endsection

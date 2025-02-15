@@ -48,7 +48,7 @@ class Create extends Component
             'reimbursement_required' => 'boolean',
             'claim_lines.*.category' => 'required|exists:claims_categories,id',
             'claim_lines.*.details' => 'required|string|max:255',
-            'claim_lines.*.amount' => 'required|numeric|min:0.01',
+            'claim_lines.*.amount' => 'required|numeric|min:0.01|max:99999.99',
             'files.*' => 'image|max:4048',
         ];
     }
@@ -62,6 +62,7 @@ class Create extends Component
         'claim_lines.*.details.required' => 'The details field is required.',
         'claim_lines.*.amount.required' => 'The amount field is required.',
         'claim_lines.*.amount.min' => 'The amount must be greater than 0.',
+        'claim_lines.*.amount.max' => 'The maximum amount is 99999.99 per line',
         'description.*.required'=> 'The description field is required.',
     ];
 

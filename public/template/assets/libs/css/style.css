@@ -3314,13 +3314,14 @@ btn-link
 }
 
 .card-link:hover .card {
-    transform: translateX(10px) translateY(10px) rotate(5deg); /* Move and rotate card */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Add shadow for more 3D effect */
-    cursor: pointer; /* Change the cursor to indicate interactivity */
-    background-color: #9c9c9c; /* Light color change on hover */
-    color: #333333; /* Change text color on hover */
-
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    background-color: #e0e0e0;
+    color: #3b3a3a;
 }
+
 
 .toolbar {
     font-size: 18px;

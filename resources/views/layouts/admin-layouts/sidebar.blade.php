@@ -95,9 +95,6 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../leave-policy.html"><i class="m-r-10 mdi mdi-account-plus"></i>Add new Employee</a>
-                    </li>
 
 
                     <!-- ============================================================== -->
@@ -142,15 +139,15 @@
                         </a>
                     </li>
 
-
                     <!-- ============================================================== -->
-                    <!-- myprofile -->
+                    <!-- hr access to portal -->
                     <!-- ============================================================== -->
                     <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
+                    <li class="nav-divider">
+                        Portal
+                    </li>
                     <li class="nav-item ">
-                        <a class="nav-link {{ request()->is('myprofile') ? 'active' : '' }}"
-                            href="{{ route('admin.myprofile') }}" aria-expanded="false"><i
-                            class="m-r-10 mdi mdi-account-settings-variant"></i>My Profile</a>
+                        <a class="nav-link" href="{{ route('home') }}" aria-expanded="false"><i class="m-r-10 mdi mdi-account-settings-variant"></i>Go to Portal</a>
                     </li>
                 </ul>
             </div>

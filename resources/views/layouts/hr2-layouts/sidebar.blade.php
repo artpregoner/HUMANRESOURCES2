@@ -149,13 +149,16 @@
 
 
                     <!-- ============================================================== -->
-                    <!-- myprofile -->
+                    <!-- hr access to portal -->
                     <!-- ============================================================== -->
                     <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
+                    <li class="nav-divider">
+                        Portal
+                    </li>
                     <li class="nav-item ">
-                        <a class="nav-link {{ request()->is('hr2/myprofile') ? 'active' : '' }}"
-                            href="{{ route('hr2.myprofile') }}" aria-expanded="false"><i
-                            class="m-r-10 mdi mdi-account-settings-variant"></i>My Profile</a>
+                        <a class="nav-link"
+                            href="{{ route('home') }}" aria-expanded="false"><i
+                            class="m-r-10 mdi mdi-account-settings-variant"></i>Go to Portal</a>
                     </li>
                 </ul>
             </div>

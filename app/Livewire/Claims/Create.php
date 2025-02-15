@@ -249,13 +249,7 @@ class Create extends Component
             DB::commit();
 
             session()->flash('success', 'Claim submitted successfully!');
-            if (Auth::check()) {
-                return redirect()->to(match (Auth::user()->role) {
-                    'employee' => route('portal.claims.index'),
-                    'hr' => route('hr2.claims.index'),
-                    'admin' => route('claims.index'),
-                });
-            }
+            return redirect()->to(route('portal.claims.index'));
 
         } catch (\Exception $e) {
             DB::rollBack();

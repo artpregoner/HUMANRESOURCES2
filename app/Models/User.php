@@ -75,6 +75,12 @@ class User extends Authenticatable
         return $this->hasMany(Ticket::class);
     }
 
+    public function claims()
+    {
+        return $this->hasMany(Claim::class);
+    }
+
+
     public function responses()
     {
         return $this->hasMany(TicketResponse::class);

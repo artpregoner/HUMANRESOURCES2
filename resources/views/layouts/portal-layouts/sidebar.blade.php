@@ -26,10 +26,12 @@
                             My Profile
                         </a>
                     </li>
+
+
                     <!-- ============================================================== -->
                     <!-- Employee Self-service -->
                     <!-- ============================================================== -->
-                    <li class="nav-divider">SELF-SERVICE</li> <!-- Title -->
+                    {{-- <li class="nav-divider">SELF-SERVICE</li> <!-- Title -->
                     <li class="nav-item "><!-- Payslip -->
                         <a class="nav-link {{ request()->is('portal/self-service/payslip*') ? 'active' : '' }}"
                             href="{{ route('portal.ess.payslip.index') }}" aria-expanded="false">
@@ -61,7 +63,9 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
+
+
                     <!-- ============================================================== -->
                     <!-- Claims & Reimbursement -->
                     <!-- ============================================================== -->
@@ -71,7 +75,7 @@
                         <a class="nav-link {{ request()->is('portal/claims/*') ? 'active' : '' }}"
                             href="{{ route('portal.claims.index') }}" aria-expanded="false">
                             <i class="m-r-10 mdi mdi-currency-usd"></i>Expenses
-                            <span class="badge badge-code8 badge-pill">{{ $claimCount }}</span>
+                            <span class="badge badge-code8 badge-pill">{{ Auth::user()->claims->count() }}</span>
                         </a>
                     </li>
                     <!-- ============================================================== -->
@@ -84,9 +88,35 @@
                             href="{{ route('portal.helpdesk.index') }}" aria-expanded="false">
                             <i class="m-r-10 mdi mdi-ticket-account"></i>
                             Tickets
-                            <span class="badge badge-code8 badge-pill">{{ $ticketCount }}</span>
+                            <span class="badge badge-code8 badge-pill">{{ Auth::user()->tickets->count() }}</span>
                         </a>
                     </li>
+
+                    <!-- ============================================================== -->
+                    <!-- hr access to portal -->
+                    <!-- ============================================================== -->
+                    @if (Auth::check() && in_array(Auth::user()->role, ['admin', 'hr']))
+                        <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
+                        <li class="nav-divider">
+                            Back to HR/Admin
+                        </li>
+                        <li class="nav-item">
+                            @php
+                                $role = Auth::user()->role;
+                                $redirectRoute = match ($role) {
+                                    'admin' => 'admin.index',
+                                    'hr' => 'hr2.index',
+                                    default => null,
+                                };
+                            @endphp
+
+                            @if ($redirectRoute)
+                                <a class="nav-link" href="{{ route($redirectRoute) }}" aria-expanded="false">
+                                    <i class="m-r-10 mdi mdi-view-dashboard"></i>Back to Main
+                                </a>
+                            @endif
+                        </li>
+                    @endif
                 </ul>
             </div>
         </nav>

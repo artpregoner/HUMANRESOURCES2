@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.portal')
 @section('title', 'Helpdesk - Create Ticket')
 @section('header', 'Helpdesk')
 @section('active-header', 'Submit new Ticket')

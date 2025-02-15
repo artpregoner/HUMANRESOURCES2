@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.portal')
 @section('title', 'Claims')
 @section('header', 'Claims')
 @section('active-header', 'Request Expenses')

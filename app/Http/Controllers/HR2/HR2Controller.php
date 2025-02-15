@@ -14,10 +14,6 @@ class HR2Controller extends Controller
     {
         return view('hr2.index');
     }
-    public function myprofile()
-    {
-        return view ('hr2.myprofile');
-    }
 
     /**
      * Show the form for creating a new resource.

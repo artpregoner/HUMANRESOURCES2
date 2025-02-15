@@ -46,24 +46,19 @@
                 $role = Auth::user()->role;
             @endphp
             <div class="dashboard-header" wire:key="topbar">
-                {{-- <livewire:layouts.topbar /> --}}
                 @include('layouts.topbar')
             </div>
-            @if ($role == 'hr')
-                @include('layouts.hr2-layouts.sidebar') <!-- Sidebar for admin and HR-->
-            @elseif ($role == 'admin')
-                @include('layouts.admin-layouts.sidebar') <!--Admin-->
-            {{-- @elseif($role == 'employee')
-                @include('layouts.portal-layouts.sidebar') <!-- Sidebar for employee --> --}}
-            @endif
+
+            @include('layouts.portal-layouts.sidebar') <!-- Unified Sidebar -->
+
             <div class="dashboard-wrapper">
                 <div class="dashboard-ecommerce">
                     <div class="container-fluid dashboard-content ">
-                        @include('layouts.pageheader') <!--pageheader -->
-                        @yield('content')<!--Content of dashboard-->
+                        @include('layouts.pageheader') <!-- Page Header -->
+                        @yield('content') <!-- Main Content -->
                     </div>
                 </div>
-                @include('layouts.footer') <!-- Shared footer -->
+                @include('layouts.footer') <!-- Shared Footer -->
             </div>
         @endif
     </div>

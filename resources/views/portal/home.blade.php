@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.portal')
 @section('title','Home')
 @section('header','Portal')<!--pageheader-->
 @section('active-header', 'Home')

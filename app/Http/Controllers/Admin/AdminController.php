@@ -14,10 +14,6 @@ class AdminController extends Controller
     {
         return view('admin.index');
     }
-    public function myprofile()
-    {
-        return view ('admin.myprofile');
-    }
 
     /**
      * Show the form for creating a new resource.

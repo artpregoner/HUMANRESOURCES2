@@ -196,18 +196,7 @@
                     </div>
                     <div class="col-sm-6 text-right">
                         <button type="submit" class="btn btn-primary btn-space">Submit</button>
-                        @if (Auth::check())
-                            @php
-                                $role = Auth::user()->role;
-                                $redirectRoute = match ($role) {
-                                    'admin' => 'admin.claims.index',
-                                    'hr' => 'hr.claims.index',
-                                    'employee' => 'portal.claims.index',
-                                };
-                            @endphp
-
-                            <a href="{{ route($redirectRoute) }}" class="btn btn-light btn-space">Cancel</a>
-                        @endif
+                        <a href="{{ route('portal.claims.index') }}" class="btn btn-light btn-space">Cancel</a>
                     </div>
                 </div>
             </div>

@@ -58,8 +58,8 @@
                         Claims & Reimbursement
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link {{ request()->Is('hr2/claims/*') ? 'active' : '' }}"
-                            href="{{ route('hr2.claims.index') }}" aria-expanded="false"><i
+                        <a class="nav-link {{ request()->Is('claims/*') ? 'active' : '' }}"
+                            href="{{ route('admin.claims.index') }}" aria-expanded="false"><i
                             class="m-r-10 mdi mdi-currency-usd"></i>Claims Request
                             <span class="badge badge-code8 badge-pill">{{ $claimCount }}</span>
                         </a>

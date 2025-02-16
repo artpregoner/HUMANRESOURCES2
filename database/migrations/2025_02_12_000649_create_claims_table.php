@@ -32,7 +32,7 @@ return new class extends Migration
             $table->date('approved_date')->nullable(); // Approved Date
             $table->string('description'); // Description of the claim
             $table->longText('comments')->nullable(); // Optional comments
-            $table->enum('status', ['submitted', 'pending', 'approved', 'rejected'])->default('submitted'); // Claim status
+            $table->enum('status', ['submitted', 'pending', 'approved', 'rejected', 'unapproved'])->default('submitted'); // Claim status
             $table->boolean('reimbursement_required')->default(true); // Whether reimbursement is required
             $table->decimal('total_amount', 10, 2)->default(0); // Total amount of the claim
             $table->enum('currency', ['PHP', 'USD'])->default('PHP'); //currency field
@@ -70,7 +70,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('claim_id')->constrained()->onDelete('cascade'); // Link to the claim
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // HR/Admin who approved/rejected
-            $table->enum('action', ['approved', 'rejected']); // Action taken
+            $table->enum('action', ['approved', 'rejected', 'unapproved', 'unrejected', 'status_changed']);
             $table->longText('comments')->nullable(); // Optional comments for approval/rejection
             $table->timestamp('action_at')->nullable();
             $table->foreignId('deleted_by')->nullable()->constrained('users')->nullOnDelete()->after('deleted_at');

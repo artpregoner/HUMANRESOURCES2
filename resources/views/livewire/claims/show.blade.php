@@ -1,40 +1,36 @@
-@extends('layouts.portal')
-@section('title', 'Claims')
-@section('header', 'Claims')
-@section('active-header', 'My claims invoice')
-
-@push('styles')
-    {{-- <style>
-    th, td {
-        white-space: nowrap; /* Prevent text wrapping for better spacing */
-        text-align: center; /* Center align text */
-    }
-</style> --}}
-@endpush
-
-@section('content')
+<div>
     <div class="row">
         <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
                 <div class="card-header p-4">
                     <div class="float-left">
                         <h3 class="mb-0">
-                            <span class="badge {{ $statusBadge }}">
-                                {{ ucfirst($claim->status) }}
-                            </span>
+                            @if ($status == 'approved')
+                                <span class="badge badge-success">Approved</span>
+                            @elseif ($status == 'pending')
+                                <span class="badge badge-info">Pending</span>
+                            @elseif ($status == 'submitted')
+                                <span class="badge badge-light">Submitted</span>
+                            @elseif ($status == 'unapproved')
+                                <span class="badge badge-warning">Unapprove</span>
+                            @elseif ($status == 'rejected')
+                                <span class="badge badge-danger">Rejected</span>
+                            @endif
                         </h3>
 
-                        <span>
-                            by: {{ $approverName }}
-                        </span>
+                        @if ($status === 'approved' && $approverName)
+                            <span>Approved by: <span class="text-dark font-weight-bold">{{ $approverName }}</span></span>
+                        @elseif ($status === 'rejected' && $rejectedBy)
+                            <span>Rejected by: <span class="text-dark font-weight-bold">{{ $rejectedBy }}</span></span>
+                        @elseif ($status === 'unapproved' && $unapprovedBy)
+                            <span>Unapproved by: <span class="text-dark font-weight-bold">{{ $unapprovedBy }}</span></span>
+                        @endif
                     </div>
-
                     <div class="float-right">
                         <h3 class="mb-0">Invoice #{{ $claim->id }}</h3>
                         Claims
                     </div>
                 </div>
-
                 <div class="card-body">
                     <!-- User Information -->
                     <div class="row">
@@ -44,16 +40,16 @@
                                     <img src="{{ $claim->user->avatar_url ?? asset('template/assets/images/user1.png') }}" alt="User Avatar" class="user-avatar-lg rounded-circle">
                                 </span>
                                 <div class="account-summary">
-                                    <h5 class="account-name">{{ $claim->user->name }}</h5>
-                                    <span class="account-description">{{ $claim->user->email }}</span>
+                                    <h5 class="account-name">{{ $claim->user->name ?? 'N/A' }}</h5>
+                                    <span class="account-description">{{ $claim->user->email ?? 'N/A' }}</span>
                                     @if($claim->assigned_to_id)
-                                        <small class="text-muted d-block">Assigned to: {{ $claim->assignedTo->name }}</small>
-                                    @endif
+                                    <small class="text-muted d-block">Assigned to: {{ $claim->assignedTo->name ?? 'N/A' }}</small>
+                                     @endif
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 text-right">
-                            <small class="text-muted">Submitted by: {{ $claim->submittedBy->name }}</small>
+                            <small class="text-muted">Submitted by: {{ $claim->submittedBy->name ?? 'N/A' }}</small>
                         </div>
                     </div>
 
@@ -125,74 +121,80 @@
                         </table>
                     </div>
                 </div>
-
-                @if($claim->reimbursement_required)
-                <div class="card-body border-top">
-                    <div class="row">
-                        <div class="col-sm-6 d-flex align-items-center">
-                            <label class="custom-control custom-checkbox mb-0">
-                                <input type="checkbox" class="custom-control-input" name="reimbursement_required" checked
-                                    disabled>
-                                <span class="custom-control-label">Reimbursement is required for this expense
-                                    claim</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                @endif
-
-
-                <!-- Attachments Section -->
-                <div class="card-body border-top">
-                    <div class="row">
-                        @forelse($claim->attachments as $attachment)
-                        <div class="media media-attachment">
-                            <div class="avatar bg-primary">
-                                <i class="far fa-file-image"></i>
-                            </div>
-                            <div class="media-body">
-                                <a href="{{ Storage::url($attachment->file_path) }}" class="d-block text-truncate" target="_blank">
-                                    {{ $attachment->file_name }}
-                                </a>
-                                <span class="text-muted">
-                                    {{ number_format($attachment->file_size / 1048576, 2) }} MB
-                                    <small class="text-muted ml-2">{{ $attachment->file_type }}</small>
-                                </span>
-                            </div>
-                        </div>
-                        @empty
-                        <div class="col-12">
-                            <p class="text-muted mb-0">No attachments found</p>
-                        </div>
-                        @endforelse
-                    </div>
-                </div>
             </div>
         </div>
-    </div>
-
-
-    <div class="row">
-
     </div>
     <div class="row">
         <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
-                <!-- Footer Section -->
                 <div class="card-body border-top">
-                    <div class="row">
-                        <div class="col-sm-6 col-sm-6 text-left">
-                            <a href="{{ route('portal.claims.index') }}" class="btn btn-code3 btn-space">Download</a>
+                    <div class="form-group row text-right">
+                        <div class="col-sm-6 text-left">
+                            @if (!$isOwner) {{-- Only show if the logged-in user is NOT the owner --}}
+                                @if($status !== 'rejected')
+                                    <button wire:click="approve" class="btn btn-space {{ $status === 'approved' ? 'btn-warning' : 'btn-code3' }}">
+                                        {{ $status === 'approved' ? 'Unapprove' : 'Approve' }}
+                                    </button>
+                                @endif
+                                @if($status !== 'approved')
+                                    <button wire:click="reject" class="btn btn-space {{ $status === 'rejected' ? 'btn-warning' : 'btn-danger' }}">
+                                        {{ $status === 'rejected' ? 'Unreject' : 'Reject' }}
+                                    </button>
+                                @endif
+                            @endif
                         </div>
-                        <div class="col-sm-6 text-right">
-                            <a href="{{ route('portal.claims.index') }}" class="btn btn-light btn-space">Cancel</a>
-                        </div>
+                        @php
+                            $role = Auth::user()->role;
+                            $redirectRoute = match ($role) {
+                                'admin' => 'admin.claims.index',
+                                'hr' => 'hr2.claims.index',
+                                default => null,
+                            };
+                        @endphp
+                        @if ($redirectRoute)
+                            <div class="col-sm-6 text-right">
+                                <a href="{{ route($redirectRoute) }}" class="btn btn-light btn-space">Cancel</a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
 
-@push('scripts')
-@endpush
+    {{-- <div class="row">
+        <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body border-top">
+                    <div class="form-group row text-right">
+                        <div class="col-sm-6 col-sm-6 text-left">
+                            @if($status !== 'rejected')
+                                <button wire:click="approve" class="btn btn-space {{ $status === 'approved' ? 'btn-warning' : 'btn-code3' }}">
+                                    {{ $status === 'approved' ? 'Unapprove' : 'Approve' }}
+                                </button>
+                            @endif
+                            @if($status !== 'approved')
+                                <button wire:click="reject" class="btn btn-space {{ $status === 'rejected' ? 'btn-warning' : 'btn-danger' }}">
+                                    {{ $status === 'rejected' ? 'Unreject' : 'Reject' }}
+                                </button>
+                            @endif
+                        </div>
+                        @php
+                            $role = Auth::user()->role;
+                            $redirectRoute = match ($role) {
+                                'admin' => 'admin.claims.index',
+                                'hr' => 'hr2.claims.index',
+                                default => null,
+                            };
+                        @endphp
+                        @if ($redirectRoute)
+                            <div class="col-sm-6 col-sm-6 text-right">
+                                <a href="{{ route($redirectRoute) }}" class="btn btn-light btn-space">Cancel</a>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+</div>

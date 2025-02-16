@@ -35,43 +35,64 @@ class Claim extends Model
         'total_amount' => 'decimal:2',
         'deleted_at' => 'datetime',
     ];
+
+    // The employee who submitted the claim
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
+
+    // Who submitted the claim (HR/Admin if on behalf of someone else)
     public function submittedBy()
     {
         return $this->belongsTo(User::class, 'submitted_by_id');
     }
 
+    // Who is assigned to review the claim
     public function assignedTo()
     {
         return $this->belongsTo(User::class, 'assigned_to_id');
     }
 
+    // Who approved the claim
     public function approvedBy()
     {
         return $this->belongsTo(User::class, 'approved_by_id');
     }
 
+    // Who deleted the claim (if SoftDeletes is used)
     public function deletedBy()
     {
         return $this->belongsTo(User::class, 'deleted_by');
     }
 
+    // Claim items (expenses inside the claim)
     public function items()
     {
         return $this->hasMany(ClaimItem::class);
     }
 
+    // Attachments related to the claim
     public function attachments()
     {
         return $this->hasMany(ClaimsAttachment::class);
     }
 
-    public function approvers()
+    public function approver()
     {
-        return $this->hasMany(ClaimApprover::class);
+        return $this->hasOne(ClaimApprover::class)->where('action', 'approved')->latest();
     }
+
+    public function rejector()
+    {
+        return $this->hasOne(ClaimApprover::class)->where('action', 'rejected')->latest();
+    }
+
+    public function actions()
+    {
+        return $this->hasMany(ClaimApprover::class, 'claim_id');
+    }
+
+
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\HR2;
 
 use App\Http\Controllers\Controller;
+use App\Models\Claim;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\{Auth, Storage};
 
 class ClaimsController extends Controller
 {
@@ -12,7 +14,14 @@ class ClaimsController extends Controller
      */
     public function index()
     {
-        return view('hr2.claims.index');
+        $claimsCount = Claim::count();
+        $archivedClaimsCount = Claim::onlyTrashed()->count();
+
+        $claims = Claim::with(['user' => function($query) {
+            $query->latest()->limit(1); // Get only the latest response for each ticket
+        }])->get(); // Get all tickets
+
+        return view('hr2.claims.index', compact('claims', 'claimsCount', 'archivedClaimsCount'));
     }
 
     /**
@@ -34,9 +43,11 @@ class ClaimsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show($id)
     {
-        return view('hr2.claims.show');
+        $claim = Claim::with(['user', 'attachments', 'items.category'])->findOrFail($id);
+
+        return view('hr2.claims.show', compact('claim'));
     }
 
     /**
@@ -61,5 +72,29 @@ class ClaimsController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function trash()
+    {
+        $claimsCount = Claim::where('user_id', Auth::id())->count();
+
+        $claims = Claim::onlyTrashed()->get();
+        return view('portal.claims.trash', compact('claims', 'claimsCount'));
+    }
+
+
+    public function restore($id)
+    {
+
+        $claim = Claim::onlyTrashed()->findOrFail($id);
+        $claim->restore();
+
+        $claim->items()->onlyTrashed()->restore();
+
+        // Restore associated attachments
+        $claim->attachments()->onlyTrashed()->restore();
+
+        return redirect()->route('portal.claims.trash')->with('success', 'Claim restored successfully.');
+
     }
 }

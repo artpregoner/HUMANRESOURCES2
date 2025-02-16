@@ -36,19 +36,44 @@ class ClaimsController extends Controller
     {
         // Code to save the new user
     }
+    private function getStatusBadgeClass(?string $status): string
+    {
+        // Handle null status by providing a default
+        $status = $status ?? 'submitted';
 
+        return match ($status) {
+            'approved' => 'badge-success',
+            'pending' => 'badge-info',
+            'submitted' => 'badge-light',
+            'rejected' => 'badge-danger',
+            'unapproved' => 'badge-warning',
+            default => 'badge-secondary'
+        };
+    }
     // Display a specific user.
     public function show($id)
     {
-        $claim = Claim::with(['user', 'attachments', 'items.category'])
-            ->where(function($query) {
-                $query->where('user_id', Auth::id());
+        // First load the claim
+        $claim = Claim::with([
+            'approver.user',
+            'rejector.user',
+            'user',
+            'attachments',
+            'items.category'
+        ])
+        ->when(Auth::user()->role === 'employee', function ($query) {
+            $query->where('user_id', Auth::id());
+        })
+        ->findOrFail($id);
 
-            })
-            ->findOrFail($id);
+        // Then get the status badge using the loaded claim
+        $statusBadge = $this->getStatusBadgeClass($claim->status);
+        $approverName = optional($claim->approver?->user)->name ?? 'N/A';
 
-        return view('portal.claims.show', compact('claim'));
+        return view('portal.claims.show', compact('claim', 'statusBadge', 'approverName'));
     }
+
+
 
     /**
      * Download the invoice as a PDF.

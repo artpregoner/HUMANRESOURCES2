@@ -54,13 +54,13 @@
                                         </td>
                                         <td>${{ number_format($claim->total_amount, 2) }}</td>
                                         <td>
-                                            @if ($claim->status == 'Approved')
+                                            @if ($claim->status == 'approved')
                                                 <span class="badge badge-success">Approved</span>
-                                            @elseif ($claim->status == 'Pending')
+                                            @elseif ($claim->status == 'pending')
                                                 <span class="badge badge-info">Pending</span>
                                             @elseif ($claim->status == 'submitted')
                                                 <span class="badge badge-light">Submitted</span>
-                                            @elseif ($claim->status == 'Rejected')
+                                            @elseif ($claim->status == 'rejected')
                                                 <span class="badge badge-danger">Rejected</span>
                                             @endif
                                         </td>

@@ -13,7 +13,7 @@ class ClaimApprover extends Model
     protected $fillable = [
         'claim_id',
         'user_id',
-        'action',
+        'action', // e.g., approved/rejected
         'comments',
         'action_at',
         'deleted_by'
@@ -21,19 +21,28 @@ class ClaimApprover extends Model
 
     protected $casts = [
         'action_at' => 'datetime',
-        'deleted_at' => 'datetime',
     ];
+
+    /**
+     * Get the claim associated with this approval/rejection.
+     */
     public function claim()
     {
-        return $this->belongsTo(Claim::class);
+        return $this->belongsTo(Claim::class, 'claim_id');
     }
 
+    /**
+     * Get the user (HR/Admin) who approved/rejected the claim.
+     */
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function deletedBy()
+    /**
+     * Get the user who deleted this record (if applicable).
+     */
+    public function deletedByUser()
     {
         return $this->belongsTo(User::class, 'deleted_by');
     }

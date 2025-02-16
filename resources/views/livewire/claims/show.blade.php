@@ -37,7 +37,8 @@
                         <div class="form-group col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
                             <div class="btn-account">
                                 <span class="user-avatar">
-                                    <img src="{{ $claim->user->avatar_url ?? asset('template/assets/images/user1.png') }}" alt="User Avatar" class="user-avatar-lg rounded-circle">
+                                    <img src="{{ $claim->user->profile_photo_path ? Storage::url($claim->user->profile_photo_path) : asset('template/assets/images/avatar-1.jpg') }}"
+                                    alt="User Avatar" class="user-avatar-lg rounded-circle">
                                 </span>
                                 <div class="account-summary">
                                     <h5 class="account-name">{{ $claim->user->name ?? 'N/A' }}</h5>

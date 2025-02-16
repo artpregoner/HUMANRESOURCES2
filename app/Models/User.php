@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Storage;
 
 // use Illuminate\Notifications\Notifiable;
 
@@ -26,6 +27,16 @@ class User extends Authenticatable
         'role',
         'profile_photo_path',
     ];
+
+        // Add this method to get profile photo URL
+    public function getProfilePhotoUrlAttribute()
+    {
+        if ($this->profile_photo_path && Storage::disk('public')->exists($this->profile_photo_path)) {
+            return Storage::url($this->profile_photo_path);
+        }
+
+        return asset('template/assets/images/avatar-1.jpg');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

@@ -47,7 +47,8 @@
                                     <td class="zero-space">
                                         <a href="#" class="btn-account" role="button">
                                             <span class="user-avatar">
-                                                <img src="{{ asset('template/assets/images/user1.png') }}" alt="User Avatar" class="user-avatar-lg rounded-circle">
+                                                <img src="{{ $claim->user->profile_photo_path ? Storage::url($claim->user->profile_photo_path) : asset('template/assets/images/avatar-1.jpg') }}"
+                                                alt="User Avatar" class="user-avatar-lg rounded-circle">
                                             </span>
                                             <div class="account-summary">
                                                 <h5 class="account-name">{{ $claim->user->name ?? 'Unknown User' }}</h5>

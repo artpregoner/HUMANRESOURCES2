@@ -17,7 +17,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="user-avatar text-center d-block">
-                        <img src="{{ asset('template/assets/images/user1.png') }}" alt="User Avatar"
+                        <img src="{{ Auth::user()->profile_photo_url ?? asset('template/assets/images/avatar-1.jpg') }}" alt="User Avatar"
                             class="rounded-circle user-avatar-xxl">
                     </div>
                     <div class="text-center">

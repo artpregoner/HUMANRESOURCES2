@@ -109,7 +109,7 @@
                 @foreach ($responses->reverse() as $response)
                     <div class="chatbox-messages">
                         <div class="chat-message received">
-                            <img src="{{ asset('template/assets/images/user1.png') }}" alt="Admin" class="user-avatar-lg rounded-circle">
+                            <img src="{{ $response->user->profile_photo_path ? Storage::url($response->user->profile_photo_path) : asset('template/assets/images/avatar-1.jpg') }}" alt="Admin" class="user-avatar-lg rounded-circle">
                             <div class="chat-details {{ Auth::id() === $response->user_id ? 'current-user' : '' }}">
                                 @if (Auth::id() === $response->user_id)
                                     <span class="message-author">You</span>

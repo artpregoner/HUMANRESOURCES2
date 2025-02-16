@@ -54,7 +54,7 @@
                 <li class="nav-item dropdown nav-user">
                     <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ asset('template/assets/images/user1.png') }}" alt="User Avatar" class="user-avatar-md rounded-circle">
+                        <img src="{{ Auth::user()->profile_photo_url ?? asset('template/assets/images/avatar-1.jpg') }}" alt="User Avatar" class="user-avatar-md rounded-circle">
                         <span class="topnav-dropdown mdi mdi-arrow-down-drop-circle"></span>
                     </a>
 

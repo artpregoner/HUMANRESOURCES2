@@ -83,15 +83,18 @@ class Claim extends Model
     {
         return $this->hasOne(ClaimApprover::class)->where('action', 'approved')->latest();
     }
+    public function unapprover()
+    {
+        return $this->hasOne(ClaimApprover::class)->where('action', 'unapproved')->latest();
+    }
 
     public function rejector()
     {
         return $this->hasOne(ClaimApprover::class)->where('action', 'rejected')->latest();
     }
-
-    public function actions()
+    public function unrejector()
     {
-        return $this->hasMany(ClaimApprover::class, 'claim_id');
+        return $this->hasOne(ClaimApprover::class)->where('action', 'unrejected')->latest();
     }
 
 

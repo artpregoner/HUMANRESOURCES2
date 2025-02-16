@@ -17,9 +17,7 @@ class ClaimsController extends Controller
         $claimsCount = Claim::count();
         $archivedClaimsCount = Claim::onlyTrashed()->count();
 
-        $claims = Claim::with(['user' => function($query) {
-            $query->latest()->limit(1); // Get only the latest response for each ticket
-        }])->get(); // Get all tickets
+        $claims = Claim::with(['user'])->get(); // Get all tickets
 
         return view('hr2.claims.index', compact('claims', 'claimsCount', 'archivedClaimsCount'));
     }

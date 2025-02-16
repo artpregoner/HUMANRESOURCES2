@@ -58,7 +58,16 @@
                                             @endforeach
                                         </ul>
                                     </td>
-                                    <td>${{ number_format($claim->total_amount, 2) }}</td>
+                                    <td>
+                                        @php
+                                            $currencySymbols = [
+                                                'USD' => '$',
+                                                'PHP' => '₱',
+                                            ];
+                                            $symbol = $currencySymbols[$claim->currency] ?? $claim->currency;
+                                        @endphp
+                                        {{ $claim->currency }} | {{ $symbol }}{{ number_format($claim->total_amount, 2) }}
+                                    </td>
                                     <td>{{ \Carbon\Carbon::parse($claim->expense_date)->format('M/d/Y - h:i A') }}</td>
                                     <td>
                                         @if ($claim->status == 'approved')

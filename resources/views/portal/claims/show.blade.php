@@ -24,10 +24,9 @@
                             </span>
                         </h3>
 
-                        <span>
-                            by: {{ $approverName }}
-                        </span>
+                        <span>{{ $actionedBy }}</span>
                     </div>
+
 
                     <div class="float-right">
                         <h3 class="mb-0">Invoice #{{ $claim->id }}</h3>

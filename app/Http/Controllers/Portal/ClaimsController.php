@@ -53,10 +53,10 @@ class ClaimsController extends Controller
     // Display a specific user.
     public function show($id)
     {
-        // First load the claim
+        // Load claim with approver, rejector, and other relations
         $claim = Claim::with([
-            'approver.user',
-            'rejector.user',
+            'approver.user',  // For approved claims
+            'rejector.user',  // For rejected claims
             'user',
             'attachments',
             'items.category'
@@ -66,12 +66,29 @@ class ClaimsController extends Controller
         })
         ->findOrFail($id);
 
-        // Then get the status badge using the loaded claim
+        // Get the status badge
         $statusBadge = $this->getStatusBadgeClass($claim->status);
-        $approverName = optional($claim->approver?->user)->name ?? 'N/A';
 
-        return view('portal.claims.show', compact('claim', 'statusBadge', 'approverName'));
+        // Determine the name of the approver or rejector
+        $approverName = optional($claim->approver?->user)->name;
+        $unapproverName = optional($claim->unapprover?->user)->name;
+        $rejectorName = optional($claim->rejector?->user)->name;
+        $unrejectorName = optional($claim->unrejector?->user)->name;
+
+        // Decide which name to display based on the status
+        if ($claim->status === 'approved') {
+            $actionedBy = "by: " . ($approverName ?? 'N/A');
+        } elseif ($claim->status === 'rejected') {
+            $actionedBy = "by: " . ($rejectorName ?? 'N/A');
+        } elseif ($claim->status === 'unapproved') {
+            $actionedBy = "by: " . ($unapproverName ?? 'N/A');
+        } else {
+            $actionedBy = "Unrejected";
+        }
+
+        return view('portal.claims.show', compact('claim', 'statusBadge', 'actionedBy'));
     }
+
 
 
 

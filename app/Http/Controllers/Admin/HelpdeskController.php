@@ -14,12 +14,13 @@ class HelpdeskController extends Controller
     public function index()
     {
         $ticketCount = Ticket::count(); // Count all tickets
+        $archivedTicketCount = Ticket::onlyTrashed()->count();
 
         $tickets = Ticket::with(['user', 'category', 'responses' => function($query) {
             $query->latest()->limit(1); // Get only the latest response for each ticket
         }])->get(); // Get all tickets
 
-        return view('admin.helpdesk.index', compact('tickets', 'ticketCount'));
+        return view('admin.helpdesk.index', compact('tickets', 'ticketCount', 'archivedTicketCount'));
     }
 
 
@@ -164,7 +165,9 @@ class HelpdeskController extends Controller
     public function trash()
     {
         $tickets = Ticket::onlyTrashed()->with(['category', 'deletedByUser'])->get();
-        return view('admin.helpdesk.trash', compact('tickets'));
+        $ticketsCount = Ticket::count();
+
+        return view('admin.helpdesk.trash', compact('tickets', 'ticketsCount'));
     }
 
     //restore deleted ticket

@@ -87,66 +87,24 @@
             </div>
         </div>
     </div>
-    {{-- <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <form class="needs-validation" novalidate="">
-                                <div class="row">
-                                    <div class="col-md-3 mb-4">
-                                        <label for="country">Subject</label>
-                                        <input type="text" class="form-control" id="zip" placeholder="" required="">
-                                        <div class="invalid-feedback">
-                                            Please select a valid country.
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 mb-3">
-                                        <label for="state">category</label>
-                                        <select class="custom-select d-block w-100" id="state" required="">
-                                            <option value="">Choose...</option>
-                                            <option>California</option>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Please provide a valid state.
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="zip">Response</label>
-                                        <input type="text" class="form-control" id="zip" placeholder="" required="">
-                                        <div class="invalid-feedback">
-                                            Zip code required.
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="zip">Send to</label>
-                                        <select class="js-example-basic-multiple" multiple="multiple">
-                                            <option value="Alabama">Alabama</option>
-                                            <option value="Alaska" selected="selected">Alaska</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-1 mb-3">
-                                        <label for="zip">submit</label>
-                                        <div class="input-group">
-                                            <div class="input-group-append">
-                                                <button type="submit" class="btn btn-secondary btn-sm">Send</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+
+
+    <!-- Claims Trash - Show Count of Deleted Claims -->
+    <div class="row">
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <a href="{{ route('hr2.helpdesk.trash')}}" class="card-link">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-inline-block">
+                            <h5 class="text-muted">Archived Tickets</h5>
+                            <h2 class="mb-0">{{ $archivedTicketCount }}</h2> <!-- Display deleted claims count -->
+                        </div>
+                        <div class="float-right icon-circle-medium icon-box-lg bg-danger-light mt-1">
+                            <i class="fas fa-archive fa-sm text-danger"></i>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div> --}}
-    <div class="row">
-        <div class="col-xl-12">
-            <div class="section-block">
-                <a href="{{ route('hr2.helpdesk.trash')}}" class="btn btn-outline-dark btn-lg">Archived Tickets</a>
-            </div>
+            </a>
         </div>
     </div>
 @endsection

@@ -96,11 +96,23 @@
             </div>
         </div>
     </div>
+
+    <!-- Claims Trash - Show Count of Deleted Claims -->
     <div class="row">
-        <div class="col-xl-12">
-            <div class="section-block">
-                <a href="{{ route('admin.helpdesk.trash')}}" class="btn btn-outline-dark btn-lg">Archived Tickets</a>
-            </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <a href="{{ route('admin.helpdesk.trash')}}" class="card-link">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-inline-block">
+                            <h5 class="text-muted">Archived Tickets</h5>
+                            <h2 class="mb-0">{{ $archivedTicketCount }}</h2> <!-- Display deleted claims count -->
+                        </div>
+                        <div class="float-right icon-circle-medium icon-box-lg bg-danger-light mt-1">
+                            <i class="fas fa-archive fa-sm text-danger"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 @endsection

@@ -97,11 +97,22 @@
             </div>
         </div>
     </div>
+    <!-- Claims Index - Show Count of Auth User Claims -->
     <div class="row">
-        <div class="col-xl-12">
-            <div class="section-block">
-                <a href="{{ route('admin.helpdesk.index')}}" class="btn btn-outline-dark btn-lg">Return to ickets</a>
-            </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <a href="{{ route('admin.helpdesk.index')}}" class="card-link">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-inline-block">
+                            <h5 class="text-muted">Ticket</h5>
+                            <h2 class="mb-0">{{ $ticketsCount }}</h2> <!-- Display count -->
+                        </div>
+                        <div class="float-right icon-circle-medium icon-box-lg bg-info-light mt-1">
+                            <i class="fas fa-hand-holding-usd fa-sm text-primary"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 @endsection

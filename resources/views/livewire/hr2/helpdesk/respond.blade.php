@@ -52,6 +52,9 @@
                         <i class="fas fa-paperclip"></i> Add File
                     </label>
                     <small class="text-muted ml-2">Maximum 10 files total</small>
+                    @error('files')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="reply-input-container">
@@ -75,6 +78,11 @@
                         multiple
                     >
 
+                    <!-- Show Loading Indicator While Uploading Files -->
+                    <div wire:loading wire:target="files" class="text-primary">
+                        <i class="fas fa-spinner fa-spin"></i> Uploading files...
+                    </div>
+
                     <!-- File Preview Section -->
                     @if($files)
                     <div class="mt-3">
@@ -97,9 +105,15 @@
                     <button type="button" wire:click="discardReply" class="btn btn-light mr-2">
                         <i class="fas fa-times"></i> Discard
                     </button>
-                    <button type="button" wire:click="sendReply" class="btn btn-code3">
+
+                    <!-- Show Loading Indicator While Sending Reply -->
+                    <button type="button" wire:click="sendReply" class="btn btn-code3" wire:loading.attr="disabled">
                         <i class="fas fa-paper-plane"></i> Send
                     </button>
+
+                    <div wire:loading wire:target="sendReply" class="text-success mt-2">
+                        <i class="fas fa-spinner fa-spin"></i> Sending response...
+                    </div>
                 </div>
             </div>
             @endif

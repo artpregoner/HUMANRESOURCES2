@@ -17,9 +17,20 @@ class ClaimsController extends Controller
     // Display a listing of users.
     public function index()
     {
-        $claims = Claim::where('user_id', Auth::id())->with('items.category')->get();
+        $claims = Claim::where('user_id', Auth::id())->with('items.category')
+            ->orderByRaw("
+                CASE
+                    WHEN status = 'submitted' THEN 1
+                    WHEN status = 'pending' THEN 2
+                    WHEN status = 'approved' THEN 3
+                    WHEN status = 'unapproved' THEN 4
+                    WHEN status = 'rejected' THEN 5
+                ELSE 6 END, created_at DESC") // Sort newest claims within each status
+            ->get();
+
         $claimsCount = Claim::where('user_id', Auth::id())->count();
         $archivedClaimsCount = Claim::onlyTrashed()->where('user_id', Auth::id())->count();
+
 
 
         return view('portal.claims.index', compact('claims', 'claimsCount', 'archivedClaimsCount'));

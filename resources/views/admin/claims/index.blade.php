@@ -23,6 +23,10 @@
                         <span class="new-messages badge badge-info badge-pill">{{$claimsCount}}</span>
                         <span class=" new-messages">all claims</span>
                     </div>
+                    <!-- the modal button-->
+                    <a href="#" class="btn btn-primary btn-space" data-toggle="modal" data-target="#categoryModal">
+                        Add new category
+                    </a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -76,6 +80,8 @@
                                             <span class="badge badge-info">Pending</span>
                                         @elseif ($claim->status == 'submitted')
                                             <span class="badge badge-light">Submitted</span>
+                                        @elseif ($claim->status == 'unapproved')
+                                            <span class="badge badge-warning">Unapproved</span>
                                         @elseif ($claim->status == 'rejected')
                                             <span class="badge badge-danger">Rejected</span>
                                         @endif
@@ -119,7 +125,147 @@
             </a>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="categoryModalLabel">Manage Categories</h5>
+                    <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr class="border-0">
+                                    <th class="border-0">Name</th>
+                                    <th class="border-0">Description</th>
+                                    <th class="border-0">Used Count</th>
+                                    <th class="border-0">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($categories as $category)
+                                <tr>
+                                    <td>{{ $category->name }}</td>
+                                    <td>{{ $category->description }}</td>
+                                    <td>{{ $category->claims_count }}</td>
+                                    <td>
+                                        <!-- Button to trigger update modal -->
+                                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editCategoryModal"
+                                            data-id="{{ $category->id }}" data-name="{{ $category->name }}" data-description="{{ $category->description }}">
+                                            Edit
+                                        </button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#addCategoryModal">
+                        <i class="fas fa-plus"></i> Add New Category
+                    </button>
+                    <a href="#" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Edit Category Modal -->
+    <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="updateCategoryForm" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <input type="hidden" id="editCategoryId" name="category_id">
+                        <div class="form-group">
+                            <label for="editCategoryName">Category Name</label>
+                            <input type="text" id="editCategoryName" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editCategoryDescription">Description</label>
+                            <textarea id="editCategoryDescription" name="description" class="form-control" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Add Category Modal -->
+    <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('admin.categories.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="categoryName">Category Name</label>
+                            <input type="text" id="categoryName" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="categoryDescription">Description</label>
+                            <textarea id="categoryDescription" name="description" class="form-control" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Add Category</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @push('scripts')
+<script>
+    $(document).ready(function() {
+    $('.dataTable').DataTable({
+        "order": [] // Disable automatic sorting
+    });
+});
+</script>
+<script>
+    $('#editCategoryModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var id = button.data('id');
+        var name = button.data('name');
+        var description = button.data('description');
+
+        var modal = $(this);
+        modal.find('#editCategoryId').val(id);
+        modal.find('#editCategoryName').val(name);
+        modal.find('#editCategoryDescription').val(description);
+
+        // Update form action dynamically
+        $('#updateCategoryForm').attr('action', '/claims/categories/' + id);
+    });
+</script>
 @endpush

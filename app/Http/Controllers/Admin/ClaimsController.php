@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Claim;
+use App\Models\ClaimsCategory;
 use Illuminate\Support\Facades\{Auth, Storage};
 use Illuminate\Support\Facades\DB;
 
@@ -12,13 +13,30 @@ class ClaimsController extends Controller
 {
     public function index()
     {
-        $claimsCount = Claim::count();
+        $claimsCount = Claim::where('user_id', '!=', Auth::id())->count();
         $archivedClaimsCount = Claim::onlyTrashed()->count();
 
-        $claims = Claim::with(['user'])->get(); // Get all tickets
+        $claims = Claim::with(['user', 'items'])
+            // ->where('user_id', '!=', Auth::id()) // Exclude admin's own claims
+            ->orderByRaw("
+                CASE
+                    WHEN status = 'submitted' THEN 1
+                    WHEN status = 'pending' THEN 2
+                    WHEN status = 'approved' THEN 3
+                    WHEN status = 'unapproved' THEN 4
+                    WHEN status = 'rejected' THEN 5
+                ELSE 6 END, created_at DESC") // Sort newest claims within each status
+            ->get();
+            $categories = ClaimsCategory::withCount('claims')->get();
 
-        return view('admin.claims.index', compact('claims', 'claimsCount', 'archivedClaimsCount'));
+        // $claims = Claim::with(['user'])
+        //     ->where('user_id', '!=', Auth::id()) // Exclude admin's own claims
+        //     ->get();
+
+        return view('admin.claims.index', compact('claims', 'claimsCount', 'archivedClaimsCount', 'categories'));
     }
+
+
     public function show($id)
     {
         $claim = Claim::with(['user', 'attachments', 'items.category'])->findOrFail($id);
@@ -97,6 +115,35 @@ class ClaimsController extends Controller
             logger()->error('Claim force delete error: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Error deleting claim permanently.');
         }
+    }
+    public function update(Request $request, ClaimsCategory $category)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255|unique:claims_categories,name,' . $category->id,
+            'description' => 'nullable|string',
+        ]);
+
+        $category->update([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->back()->with('success', 'Category updated successfully!');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        ClaimsCategory::create([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->back()->with('success', 'Category added successfully!');
     }
 
 }

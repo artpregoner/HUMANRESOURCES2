@@ -69,6 +69,8 @@
                                                 <span class="badge badge-info">Pending</span>
                                             @elseif ($claim->status == 'submitted')
                                                 <span class="badge badge-light">Submitted</span>
+                                            @elseif ($claim->status == 'unapproved')
+                                                <span class="badge badge-warning">Unapproved</span>
                                             @elseif ($claim->status == 'rejected')
                                                 <span class="badge badge-danger">Rejected</span>
                                             @endif
@@ -115,3 +117,13 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+    $('.dataTable').DataTable({
+        "order": [] // Disable automatic sorting
+    });
+});
+</script>
+@endpush

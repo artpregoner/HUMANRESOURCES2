@@ -12,15 +12,28 @@ class ClaimsController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
-        $claimsCount = Claim::count();
-        $archivedClaimsCount = Claim::onlyTrashed()->count();
+        $claimsCount = Claim::where('user_id', '!=', Auth::id())->count();
+        $archivedClaimsCount = Claim::onlyTrashed()->where('user_id', '!=', Auth::id())->count();
 
-        $claims = Claim::with(['user'])->get(); // Get all tickets
+        $claims = Claim::with(['user', 'items'])
+            // ->where('user_id', '!=', Auth::id()) // Exclude admin's own claims
+            ->orderByRaw("
+                CASE
+                    WHEN status = 'submitted' THEN 1
+                    WHEN status = 'pending' THEN 2
+                    WHEN status = 'approved' THEN 3
+                    WHEN status = 'unapproved' THEN 4
+                    WHEN status = 'rejected' THEN 5
+                ELSE 6 END, created_at DESC") // Sort newest claims within each status
+            ->get();
 
         return view('hr2.claims.index', compact('claims', 'claimsCount', 'archivedClaimsCount'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -74,10 +87,10 @@ class ClaimsController extends Controller
 
     public function trash()
     {
-        $claimsCount = Claim::where('user_id', Auth::id())->count();
+        $claimsCount = Claim::count();
 
         $claims = Claim::onlyTrashed()->get();
-        return view('portal.claims.trash', compact('claims', 'claimsCount'));
+        return view('hr2.claims.trash', compact('claims', 'claimsCount'));
     }
 
 

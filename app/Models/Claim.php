@@ -97,5 +97,10 @@ class Claim extends Model
         return $this->hasOne(ClaimApprover::class)->where('action', 'unrejected')->latest();
     }
 
+    public function category()
+    {
+        return $this->belongsTo(ClaimsCategory::class, 'id');
+    }
+
 
 }

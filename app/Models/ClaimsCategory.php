@@ -13,11 +13,17 @@ class ClaimsCategory extends Model
     protected $table = 'claims_categories';
 
     protected $fillable = [
-        'category_name',
+        'name',
         'description',
         'is_active'
     ];
     protected $casts = [
         'is_active' => 'boolean', // Add casting for boolean
     ];
+    public function claims()
+    {
+        return $this->hasMany(Claim::class, 'id');
+    }
+
+
 }

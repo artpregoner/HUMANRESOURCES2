@@ -13,12 +13,12 @@ Route::prefix('portal/claims')->middleware(['auth'])->group(function(){
 
 
     // softdelete a ticket dont delete the attachments uploaded
-    Route::delete('ticket/{ticket}', [ClaimsController::class, 'destroy'])->name('portal.claims.destroy');
+    Route::delete('ticket/{claims}', [ClaimsController::class, 'destroy'])->name('portal.claims.destroy');
 
     //archived tickets
     Route::get('trash', [ClaimsController::class, 'trash'])->name('portal.claims.trash');
     Route::post('restore/{id}', [ClaimsController::class, 'restore'])->name('portal.claims.restore');
 
     // force delete a ticket including attachments
-    Route::delete('force-delete/{ticket}', [ClaimsController::class, 'forceDelete'])->name('portal.claims.forceDelete');
+    Route::delete('force-delete/{claims}', [ClaimsController::class, 'forceDelete'])->name('portal.claims.forceDelete');
 });

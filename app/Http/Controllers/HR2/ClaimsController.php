@@ -15,7 +15,7 @@ class ClaimsController extends Controller
 
     public function index()
     {
-        $claimsCount = Claim::where('user_id', '!=', Auth::id())->count();
+        $claimsCount = Claim::count();
         $archivedClaimsCount = Claim::onlyTrashed()->where('user_id', '!=', Auth::id())->count();
 
         $claims = Claim::with(['user', 'items'])

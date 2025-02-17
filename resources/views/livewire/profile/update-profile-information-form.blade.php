@@ -1,9 +1,10 @@
 <div>
-    @if (session()->has('message'))
+    {{-- @if (session()->has('message'))
         <div class="alert alert-success">
             {{ session('message') }}
         </div>
-    @endif
+    @endif --}}
+    @include('components.alert.alert')
 
     <form wire:submit.prevent="save">
         <div class="card">

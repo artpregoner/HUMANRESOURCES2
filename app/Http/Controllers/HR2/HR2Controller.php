@@ -4,6 +4,8 @@ namespace App\Http\Controllers\HR2;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Claim;
+use App\Models\User;
 
 class HR2Controller extends Controller
 {
@@ -12,7 +14,19 @@ class HR2Controller extends Controller
      */
     public function index()
     {
-        return view('hr2.index');
+        // Get total user count
+        $totalUsers = User::count();
+
+        // Get total claims count
+        $totalClaims = Claim::count();
+
+        // Get new submitted claims count (claims with 'submitted' status)
+        $newSubmittedClaims = Claim::where('status', 'submitted')->count();
+
+        // Example: Get claims and reimbursement (you can adjust as needed)
+        $paidClaim = Claim::where('status', 'approved')->count();  // Or any other logic
+
+        return view('hr2.index', compact('totalClaims', 'newSubmittedClaims', 'paidClaim', 'totalUsers'));
     }
 
     /**

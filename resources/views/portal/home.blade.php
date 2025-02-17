@@ -64,15 +64,15 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="my-information-tab" data-toggle="pill" href="#my-information"
-                            role="tab" aria-controls="my-information" aria-selected="false">MY INFORMATION</a>
+                            role="tab" aria-controls="my-information" aria-selected="false">INFORMATION</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab"
-                            aria-controls="pills-review" aria-selected="false">My Recognitions</a>
+                            aria-controls="pills-review" aria-selected="false">RECOGNITION</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="pills-msg-tab" data-toggle="pill" href="#pills-msg" role="tab"
-                            aria-controls="pills-msg" aria-selected="false">Employee Feedback</a>
+                            aria-controls="pills-msg" aria-selected="false">FEEDBACK</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
@@ -90,7 +90,7 @@
                             <div class="col-xl-12 col-lg- col-md-7 col-sm-12 col-12">
                                 <div class="section-block">
                                     <div class="card">
-                                        <h5 class="card-header">My Recognitions</h5>
+                                        <h5 class="card-header">Recognitions</h5>
                                         <div class="card-body">
                                             <table class="table table-bordered">
                                                 <thead>
@@ -128,11 +128,11 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="section-block">
                                     <div class="card">
-                                        <h5 class="card-header"><i class="fab fa-rocketchat" style="font-size: 20px;" title="us" id="us"></i> Employee Feedback</h5>
+                                        <h5 class="card-header"><i class="fab fa-rocketchat" style="font-size: 20px;" title="us" id="us"></i>Feedback</h5>
                                         <div class="card-body">
                                             <form>
                                                 <div class="form-group">
-                                                    <label for="employeeFeedbackTextarea">Employee Feedback</label>
+                                                    <label for="employeeFeedbackTextarea">Feedback</label>
                                                     <textarea class="form-control" id="employeeFeedbackTextarea" rows="3" placeholder="Share your thoughts, suggestions, or concerns..."></textarea>
                                                 </div>
                                             </form>

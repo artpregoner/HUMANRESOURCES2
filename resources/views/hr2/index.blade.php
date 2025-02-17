@@ -1,10 +1,11 @@
 @extends('layouts.app')
 @section('title','Human Resources')
-{{-- @section('header','Human Resources')
-@section('active-header', 'Dashboard') --}} <!--Example :)-->
+@section('header','Human Resources')
+@section('active-header', 'Dashboard') <!--Example :)-->
 
 @section('content')
 @include('components.alert.alert')
+
 <!-- Dashboard Metrics Section -->
 <div class="row">
     <!-- Total Employee -->
@@ -13,7 +14,7 @@
             <div class="card-body">
                 <h5 class="text-muted">Total Employee</h5>
                 <div class="metric-value d-inline-block">
-                    <h1 class="mb-1">0</h1>
+                    <h1 class="mb-1">{{ $totalUsers }}</h1>
                 </div>
             </div>
         </div>
@@ -55,6 +56,58 @@
         </div>
     </div>
 </div>
+
+<div class="card-body border-top"></div>
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="section-block">
+            <h3 class="section-title">Claims&Reimbursement Section</h3>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+        <livewire:claims.claims-status-count />
+    </div>
+
+    <!-- Total Employee -->
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+        <div class="card border-3 border-top border-top-primary">
+            <div class="card-body">
+                <h5 class="text-muted">Total Claims</h5>
+                <div class="metric-value d-inline-block">
+                    <h1 class="mb-1">{{ $totalClaims }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Helpdesk Tickets -->
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+        <div class="card border-3 border-top border-top-primary">
+            <div class="card-body">
+                <h5 class="text-muted">New Claims</h5>
+                <div class="metric-value d-inline-block">
+                    <h1 class="mb-1">{{ $newSubmittedClaims }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Claims & Reimbursement -->
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+        <div class="card border-3 border-top border-top-primary">
+            <div class="card-body">
+                <h5 class="text-muted">Claims & Reimbursement</h5>
+                <div class="metric-value d-inline-block">
+                    <h1 class="mb-1">14</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card-body border-top"></div>
+
 
 <!-- Dashboard Cards Section -->
 <div class="row">
@@ -114,6 +167,8 @@
         </div>
     </div>
 </div>
+
+<div class="card-body border-top"></div>
 
 <!-- Employee Feedback Section -->
 <div class="row">

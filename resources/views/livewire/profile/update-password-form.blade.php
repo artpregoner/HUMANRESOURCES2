@@ -10,11 +10,8 @@
         <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
             <div class="card">
                 <div class="card-body">
-                    @if (session()->has('message'))
-                        <div class="alert alert-success">
-                            {{ session('message') }}
-                        </div>
-                    @endif
+
+                    @include('components.alert.alert')
 
                     <form wire:submit.prevent="updatePassword">
                         <div class="form-group">

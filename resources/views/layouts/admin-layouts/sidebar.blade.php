@@ -72,7 +72,7 @@
                     <li class="nav-divider">
                         Self-Service
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#self-service-submenu" aria-controls="self-service-submenu"><i class="m-r-10 mdi mdi-account-settings"></i>Self-Service <span class="badge badge-success">6</span></a>
                         <div id="self-service-submenu" class="collapse submenu" style="">
                             <ul class="nav flex-column">
@@ -83,24 +83,33 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" href="../leave-requests.html">All Leave Requests</a>
                                             </li>
-                                            {{-- <li class="nav-item">
+                                            <li class="nav-item">
                                                 <a class="nav-link" href="../leave-approve.html">Approve Leave</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="../leave-history.html">Leave History</a>
-                                            </li> --}}
+                                            </li>
                                         </ul>
                                     </div>
                                 </li>
+
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
 
+
+                    <!-- ============================================================== -->
+                    <!-- Add Employee -->
+                    <!-- ============================================================== -->
+                    <li class="nav-item ">
+                        <a class="nav-link {{ request()->is('self-service/employee/*') ? 'active' : '' }}" href="{{ route('admin.create.employee') }}"
+                            aria-expanded="false"><i class="m-r-10 mdi mdi-account"></i>Add Employee</a>
+                    </li>
 
                     <!-- ============================================================== -->
                     <!-- Employee Engagement -->
                     <!-- ============================================================== -->
-                    <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
+                    {{-- <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('employee-engagement/*') ? 'active' : '' }}" href="#"
                             data-toggle="collapse" aria-expanded="false" data-target="#employee-engagement-submenu"
@@ -116,12 +125,12 @@
                                     </a>
                                 </li>
                                 <!-- Example of an additional item; Uncomment if needed -->
-                                {{-- <li class="nav-item">
+                                <li class="nav-item">
                                     <a class="nav-link" href="form-validation.html">Engagement Metrics Overview</a>
-                                </li> --}}
+                                </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
 
 
                     <!-- ============================================================== -->

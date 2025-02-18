@@ -185,7 +185,7 @@
                             <a href="{{ route('portal.claims.index') }}" class="btn btn-code3 btn-space">Download</a>
                         </div>
                         <div class="col-sm-6 text-right">
-                            <a href="{{ route('portal.claims.index') }}" class="btn btn-light btn-space">Cancel</a>
+                            <a href="{{ route('portal.claims.index') }}" class="btn btn-light btn-space">Back to Lists</a>
                         </div>
                     </div>
                 </div>

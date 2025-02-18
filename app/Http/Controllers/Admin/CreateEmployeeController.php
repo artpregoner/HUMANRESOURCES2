@@ -111,7 +111,7 @@ class CreateEmployeeController extends Controller
             'status' => 'pending', // Default status
         ]);
 
-        return redirect()->route('admin.create.employee')->with('success', 'Employee request submitted successfully.');
+        return redirect()->route('admin.show.employee', $employeeRequest->id)->with('success', 'Employee request submitted successfully.');
     }
 }
 

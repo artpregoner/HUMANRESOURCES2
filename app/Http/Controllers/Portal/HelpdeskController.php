@@ -77,7 +77,7 @@ class HelpdeskController extends Controller
             }
         }
 
-        return redirect()->route('portal.helpdesk.index')->with('success', 'Ticket created successfully.');
+        return redirect()->route('portal.helpdesk.show', $ticket->id)->with('success', 'Ticket created successfully.');
     }
 
 

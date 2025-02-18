@@ -250,7 +250,7 @@ class Create extends Component
             DB::commit();
 
             session()->flash('success', 'Claim submitted successfully!');
-            return redirect()->to(route('portal.claims.index'));
+            return redirect()->route('portal.claims.show', $claim->id);
 
         } catch (\Exception $e) {
             DB::rollBack();

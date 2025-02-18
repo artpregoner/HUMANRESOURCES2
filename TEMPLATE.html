@@ -229,170 +229,181 @@
                     <!-- End pageheader  -->
                     <!-- ============================================================== -->
                     <div class="row">
-                    @switch($user->status)
-                        @case('rejected')
-                            <p>Rejected</p>
-                            @break
-                        @case('approved')
-                            <p>Approved</p>
-                            @break
-                        @default
-                            <p>Pending</p>
-                    @endswitch
-
-                        @section('back-button')
-                            <a href="{{ route('hr2.helpdesk.index') }}" class="btn btn-space btn-code8 btn-sm float-right">Return to Ticket List</a>
-                        @endsection
-                        <!-- ============================================================== -->
-                        <!-- accrodions style one -->
-                        <!-- ============================================================== -->
-                        <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="section-block">
-                                <h5 class="section-title">SORTED TABLE FOR CLAIMS HISTORY</h5>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="section-block" id="modal">
+                                <h3 class="section-title">Modals</h3>
+                                <p>Use Bootstrap’s JavaScript modal plugin to add dialogs to your site for lightboxes, user notifications, or completely custom content.</p>
                             </div>
-                            <div class="accrodion-regular">
-                                <div id="accordion3">
-                                    <div class="card">
-                                        <div class="card-header" id="headingSeven">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link" data-toggle="collapse"
-                                                    data-target="#collapseSeven" aria-expanded="true"
-                                                    aria-controls="collapseSeven">
-                                                    <span class="fas mr-3 fa-angle-up"></span>APPROVE CLAIMS HISTORY
-                                                </button>
-                                                <div class="float-right">
-                                                    <h3 class="mb-0"><span class="badge badge-success">APPROVE</span>
-                                                    </h3>
-                                                </div>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseSeven" class="collapse show" aria-labelledby="headingSeven"
-                                            data-parent="#accordion3" style="">
-                                            <div class="card-body">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="table-responsive-sm">
-                                                            <table class="table table-striped table-bordered first">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th class="center">Claim ID</th>
-                                                                        <th>Claim Date</th>
-                                                                        <th>Description</th>
-                                                                        <th class="right">Category</th>
-                                                                        <th class="center">Amount</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="center">C200</td>
-                                                                        <td class="left strong">JUNE 29 2025</td>
-                                                                        <td class="left">Travel Qc to FAirview</td>
-                                                                        <td class="right">Fare</td>
-                                                                        <td class="center">100</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
+                            <div class="card">
+                                <h5 class="card-header">Examples</h5>
+                                <div class="card-body">
+                                    <div class="">
+                                        <h4>Live Demo</h4>
+                                        <!-- Button trigger modal -->
+                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                    without size
+                                                </a>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                        <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </a>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Woohoo, You are readng this text in a modal! Use Bootstrap’s JavaScript modal plugin to add dialogs to your site for lightboxes, user notifications, or completely custom content.</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a href="#" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                        <a href="#" class="btn btn-primary">Save changes</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="card mb-2">
-                                        <div class="card-header" id="headingEight">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link collapsed" data-toggle="collapse"
-                                                    data-target="#collapseEight" aria-expanded="false"
-                                                    aria-controls="collapseEight">
-                                                    <span class="fas fa-angle-down mr-3"></span>REJECTED CLAIMS HISTORY
-                                                </button>
-                                                <div class="float-right">
-                                                    <h3 class="mb-0"><span class="badge badge-code8">REJECTED</span>
-                                                    </h3>
-                                                </div>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseEight" class="collapse" aria-labelledby="headingEight"
-                                            data-parent="#accordion3">
-                                            <div class="card-body">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="table-responsive-sm">
-                                                            <table class="table table-striped table-bordered first">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th class="center">Claim ID</th>
-                                                                        <th>Claim Date</th>
-                                                                        <th>Description</th>
-                                                                        <th class="right">Category</th>
-                                                                        <th class="center">Amount</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="center">C200</td>
-                                                                        <td class="left strong">JUNE 29 2025</td>
-                                                                        <td class="left">Travel Qc to FAirview</td>
-                                                                        <td class="right">Fare</td>
-                                                                        <td class="center">100</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
+
+
+                                        <!-- Button trigger modal -->
+                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#lgModal">
+                                            modal-lg
+                                        </a>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="lgModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                        <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </a>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Woohoo, You are readng this text in a modal! Use Bootstrap’s JavaScript modal plugin to add dialogs to your site for lightboxes, user notifications, or completely custom content.</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a href="#" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                        <a href="#" class="btn btn-primary">Save changes</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="card mb-2">
-                                        <div class="card-header" id="headingNine">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link collapsed" data-toggle="collapse"
-                                                    data-target="#collapseNine" aria-expanded="false"
-                                                    aria-controls="collapseNine">
-                                                    <span class="fas fa-angle-down mr-3"></span>DELETED CLAIMS HISTORY
-                                                </button>
-                                                <div class="float-right">
-                                                    <h3 class="mb-0"><span class="badge badge-danger">DELETED</span>
-                                                    </h3>
-                                                </div>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseNine" class="collapse" aria-labelledby="headingNine"
-                                            data-parent="#accordion3">
-                                            <div class="card-body">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="table-responsive-sm">
-                                                            <table class="table table-striped table-bordered first">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th class="center">Claim ID</th>
-                                                                        <th>Claim Date</th>
-                                                                        <th>Description</th>
-                                                                        <th class="right">Category</th>
-                                                                        <th class="center">Amount</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="center">C200</td>
-                                                                        <td class="left strong">JUNE 29 2025</td>
-                                                                        <td class="left">Travel Qc to FAirview</td>
-                                                                        <td class="right">Fare</td>
-                                                                        <td class="center">100</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
+
+
+                                        <!-- Button trigger modal -->
+                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#smModal">
+                                            modal-sm
+                                        </a>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="smModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-sm" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                        <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </a>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Woohoo, You are readng this text in a modal! Use Bootstrap’s JavaScript modal plugin to add dialogs to your site for lightboxes, user notifications, or completely custom content.</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a href="#" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                        <a href="#" class="btn btn-primary">Save changes</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
+
+
+                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#fullscreenModal">
+                                            fullscreen
+                                        </a>
+                                        <!-- Fullscreen Modal -->
+                                        <div class="modal fade" id="fullscreenModal" tabindex="-1">
+                                            <div class="modal-dialog modal-fullscreen">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title">Fullscreen Modal</h5>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">This is a fullscreen modal.</div>
+                                            </div>
+                                            </div>
+                                        </div>
+
+
+                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#xxlModal">
+                                            XXL Modal
+                                        </a>
+                                        <!-- XXL Modal -->
+                                        <div class="modal fade" id="xxlModal" tabindex="-1">
+                                            <div class="modal-dialog modal-xxl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title">XXL Modal (1200px)</h5>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">This is an XXL modal.</div>
+                                            </div>
+                                            </div>
+                                        </div>
+
+                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#xxlModal">
+                                            XL Modal
+                                        </a>
+                                        <!-- XL Modal -->
+                                        <div class="modal fade" id="xxlModal" tabindex="-1">
+                                            <div class="modal-dialog modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title">XL Modal (1000px)</h5>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">This is an XL modal.</div>
+                                            </div>
+                                            </div>
+                                        </div>
+
+                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#mdModal">
+                                            MD Modal
+                                        </a>
+                                        <!-- MD Modal -->
+                                        <div class="modal fade" id="mdModal" tabindex="-1">
+                                            <div class="modal-dialog modal-md">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title">MD Modal (600px)</h5>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">This is a medium-sized modal.</div>
+                                            </div>
+                                            </div>
+                                        </div>
+
+                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#xsModal">
+                                            XS Modal
+                                        </a>
+                                        <!-- XS Modal -->
+                                        <div class="modal fade" id="xsModal" tabindex="-1">
+                                            <div class="modal-dialog modal-xs">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title">XS Modal (400px)</h5>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">This is an extra small modal.</div>
+                                            </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <!-- ============================================================== -->
                     <!-- end basic form -->

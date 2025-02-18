@@ -121,3 +121,6 @@ php artisan serve
 php artisan migrate:reset
 php artisan migrate:status
 php artisan migrate:fresh
+
+# To refresh Laravel’s class map, run:
+- composer dump-autoload

@@ -97,30 +97,33 @@ Helpdesk
 - /hr2/helpdesk/create
 
 
+# Add random employee
+- \App\Models\EmployeeRequest::factory()->count(10)->create();
+
 # 🚀 Final Advice
 If your app doesn’t update after changes, run:
-php artisan config:clear
-php artisan view:clear
-php artisan cache:clear
-php artisan route:clear
+- php artisan config:clear
+- php artisan view:clear
+- php artisan cache:clear
+- php artisan route:clear
 
 
 # If your production app is slow, use:
-php artisan optimize
-php artisan config:cache
+- php artisan optimize
+- php artisan config:cache
 
 
 # If something breaks, reset everything with:
-php artisan optimize:clear
+- php artisan optimize:clear
 
 
-php artisan serve
+- php artisan serve
 
 
 
-php artisan migrate:reset
-php artisan migrate:status
-php artisan migrate:fresh
+- php artisan migrate:reset
+- php artisan migrate:status
+- php artisan migrate:fresh
 
 # To refresh Laravel’s class map, run:
 - composer dump-autoload

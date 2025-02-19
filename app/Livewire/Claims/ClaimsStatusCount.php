@@ -36,7 +36,7 @@ class ClaimsStatusCount extends Component
             'labels' => array_keys($allStatuses),
             'data' => array_values($allStatuses),
             'colors' => [
-                '#f9f9ff',  // Approved (badge-success)
+                '#f0f0f8',  // Approved (badge-success)
                 '#17a2b8',  // Pending (badge-info)
                 '#2ec551',  // Submitted (badge-light)
                 '#dc3545',  // Unapproved (badge-warning)

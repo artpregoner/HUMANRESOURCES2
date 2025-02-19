@@ -4,6 +4,12 @@
 @section('active-header', 'Employee lists')
 
 @push('styles')
+<style>
+    th, td {
+        white-space: nowrap; /* Prevent text wrapping for better spacing */
+        text-align: center; /* Center align text */
+    }
+</style>
 @endpush
 
 @section('content')
@@ -29,6 +35,7 @@
                                 <th class="border-0">Employee Name</th>
                                 <th class="border-0">Email</th>
                                 <th class="border-0">Phone number</th>
+                                <th class="border-0">Status</th>
                                 <th class="border-0">Action</th>
                             </tr>
                         </thead>
@@ -39,18 +46,23 @@
                                     <td>{{ $employeeRequest->email }}</td> <!-- Assuming you want the email here -->
                                     <td>{{ $employeeRequest->phone }}</td> <!-- Assuming you want the phone number here -->
                                     <td>
-                                        <div class="dropdown float-right">
-                                            <a href="#" class="dropdown-toggle  card-drop" data-toggle="dropdown"
-                                                aria-expanded="true">
-                                                <i class="mdi mdi-dots-vertical"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <!-- item-->
-                                                <a href="{{ route('admin.show.employee', $employeeRequest->id) }}" class="dropdown-item">Show</a>
-                                                <!-- item-->
-                                            </div>
-                                        </div>
+                                        @php
+                                            $user = $employeeRequest->user; // Fetch the related user
+                                        @endphp
+
+                                        @if ($user)
+                                            @if ($user->role == 'hr')
+                                                <span class="badge text-success">HR Staff</span>
+                                            @elseif ($user->role == 'admin')
+                                                <span class="badge text-success">Admin</span>
+                                            @elseif ($user->role == 'employee')
+                                                <span class="badge text-success">Registered Employee</span>
+                                            @endif
+                                        @else
+                                            <span class="badge text-danger">Unregistered</span> <!-- Default role when no user exists -->
+                                        @endif
                                     </td>
+                                    <td><a href="{{ route('admin.show.employee', $employeeRequest->id) }}" class="btn btn-code3">Show</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

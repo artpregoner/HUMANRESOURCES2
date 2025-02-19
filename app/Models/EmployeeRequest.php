@@ -22,6 +22,7 @@ class EmployeeRequest extends Model
         'address',
         'social_media',
         'department',
+        'role',
 
         // Emergency Contact
         'emergency_name',

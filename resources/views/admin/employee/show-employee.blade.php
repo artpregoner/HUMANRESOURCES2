@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Employee List')
+@section('title', 'Employee Details')
 @section('header', 'Employee')
-@section('active-header', 'Employee lists')
+@section('active-header', 'Employee Details')
 
 @push('styles')
 @endpush
@@ -28,7 +28,15 @@
                     <div class="text-center">
                         <!-- Display the employee's first and last name -->
                         <h2 class="font-24 mb-0">{{ $employeeRequest->first_name ?? 'Not Assigned' }} {{ $employeeRequest->last_name ?? 'Not Assigned' }}</h2>
-                        <p>{{ $employeeRequest->department ?? 'Not Assigned' }}</p>
+                    </div>
+                </div>
+                <div class="card-body border-top">
+                    <h3 class="font-16">Department & Desired Position</h3>
+                    <div class="">
+                        <ul class="mb-0 list-unstyled">
+                            <li class="mb-2"><i class="fas fa-building mr-2"></i>{{ $employeeRequest->department ?? 'Not Assigned' }}</li>
+                            <li class="mb-2"><i class="fas fa-male mr-2"></i>{{ $employeeRequest->role ?? 'Not Assigned' }}</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="card-body border-top">
@@ -37,10 +45,10 @@
                         <ul class="list-unstyled mb-0">
                             <!-- Display employee email and phone number -->
                             <li class="mb-2"><i class="fas fa-fw fa-envelope mr-2"></i>{{ $employeeRequest->email ?? 'Not Assigned' }}</li>
-                            <li class="mb-0"><i class="fas fa-fw fa-phone mr-2"></i>{{ $employeeRequest->phone ?? 'Not Assigned' }}</li>
-                            <li class="mb-0"><i class="fas fa-fw fa-address-card mr-2"></i>{{ $employeeRequest->address ?? 'Not Assigned' }}</li>
-                            <li class="mb-0"><i class="fas fa-fw fa-link mr-2"></i>{{ $employeeRequest->social_media ?? 'Not Assigned' }}</li>
-                            <li class="mb-0"><i class="fas fa-fw fa-birthday-cake mr-2"></i>{{ $employeeRequest->birthdate ?? 'Not Assigned' }}</li>
+                            <li class="mb-2"><i class="fas fa-fw fa-phone mr-2"></i>{{ $employeeRequest->phone ?? 'Not Assigned' }}</li>
+                            <li class="mb-2"><i class="fas fa-fw fa-address-card mr-2"></i>{{ $employeeRequest->address ?? 'Not Assigned' }}</li>
+                            <li class="mb-2"><i class="fas fa-fw fa-link mr-2"></i>{{ $employeeRequest->social_media ?? 'Not Assigned' }}</li>
+                            <li class="mb-2"><i class="fas fa-fw fa-birthday-cake mr-2"></i>{{ $employeeRequest->birthdate ?? 'Not Assigned' }}</li>
                         </ul>
                     </div>
                 </div>
@@ -49,9 +57,9 @@
                     <div class="">
                         <ul class="mb-0 list-unstyled">
                             <li class="mb-2"><i class="fas fa-fw fa-user mr-2"></i>{{ $employeeRequest->emergency_name ?? 'Not Assigned' }}</li>
-                            <li class="mb-0"><i class="fas fa-fw fa-phone mr-2"></i>{{ $employeeRequest->emergency_phone ?? 'Not Assigned' }}</li>
-                            <li class="mb-0"><i class="fas fa-fw fa-address-card mr-2"></i>{{ $employeeRequest->emergency_address ?? 'Not Assigned' }}</li>
-                            <li class="mb-0"><i class="fas fa-fw fa-users mr-2"></i>{{ $employeeRequest->emergency_relationship ?? 'Not Assigned' }}</li>
+                            <li class="mb-2"><i class="fas fa-fw fa-phone mr-2"></i>{{ $employeeRequest->emergency_phone ?? 'Not Assigned' }}</li>
+                            <li class="mb-2"><i class="fas fa-fw fa-address-card mr-2"></i>{{ $employeeRequest->emergency_address ?? 'Not Assigned' }}</li>
+                            <li class="mb-2"><i class="fas fa-fw fa-users mr-2"></i>{{ $employeeRequest->emergency_relationship ?? 'Not Assigned' }}</li>
                         </ul>
                     </div>
                 </div>
@@ -105,8 +113,6 @@
 
                         <button type="submit" class="btn btn-primary">Create User</button>
                     </form>
-                </div>
-
                 </div>
             </div>
         </div>

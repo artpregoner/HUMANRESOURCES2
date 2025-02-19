@@ -82,6 +82,7 @@ class CreateEmployeeController extends Controller
             'address' => 'required|string',
             'social_media' => 'nullable|string',
             'department' => 'required|string',
+            'role' => 'required|string', //if department request users, it should be required to put his user_type/role in their website/system
             'emergency_name' => 'required|string',
             'emergency_address' => 'required|string',
             'emergency_phone' => 'required|numeric',
@@ -101,6 +102,7 @@ class CreateEmployeeController extends Controller
             'address' => $request->address,
             'social_media' => $request->social_media,
             'department' => $request->department,
+            'role' => $request->role,
 
             // Emergency Contact
             'emergency_name' => $request->emergency_name,

@@ -14,13 +14,13 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Create an employee
-        User::factory()->create([
+        User::create([
             'name' => 'Art Javar Pogi',
             'email' => 'pregoner@user.com',
             'password' => Hash::make('user12345678'),
             'role' => 'employee', // Employee role
         ]);
-        User::factory()->create([
+        User::create([
             'name' => 'POGI Art User 2',
             'email' => 'artjavar@user.com',
             'password' => Hash::make('user12345678'),
@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
 
 
         // Create an HR user (HR2)
-        User::factory()->create([
+        User::create([
             'name' => 'Jane Smith',
             'email' => 'hrmanager@user.com',
             'password' => Hash::make('user12345678'),
@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
         ]);
 
         // Create an Admin user
-        User::factory()->create([
+        User::create([
             'name' => 'Malupweton Juwil',
             'email' => 'bcp@admin.com',
             'password' => Hash::make('admin12345678'),

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->text('address');
             $table->string('social_media')->nullable();
             $table->enum('department', ['admin', 'hr1', 'hr2', 'hr3', 'finance', 'logistic1', 'logistic2', 'core1', 'core2', 'core3']);
+            $table->string('role');
 
             // Emergency Contact
             $table->string('emergency_name');

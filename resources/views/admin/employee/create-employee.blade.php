@@ -89,6 +89,11 @@
                                 <option value="core3">Core3</option>
                             </select>
                         </div>
+                        {{-- if department request users, it should be required to put his user_type/role in their website/system --}}
+                        <div class="form-group">
+                            <label>User role | Applied For?</label>
+                            <input type="text" name="role" class="form-control form-control-lg" required>
+                        </div>
                     </div>
                     <!-- Emergency Contact -->
                     <div class="card-body border-top">
@@ -111,8 +116,8 @@
                         </div>
 
                         <div class="form-group text-right">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <button type="reset" class="btn btn-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-code3">Submit</button>
+                            <button type="reset" class="btn btn-danger">Cancel</button>
                         </div>
                     </div>
                 </form>

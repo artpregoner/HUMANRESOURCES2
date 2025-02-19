@@ -24,7 +24,7 @@
                         <span class=" new-messages">all claims</span>
                     </div>
                     <!-- the modal button-->
-                    <a href="#" class="btn btn-primary btn-space" data-toggle="modal" data-target="#categoryModal">
+                    <a href="#" class="btn btn-code3 btn-space" data-toggle="modal" data-target="#categoryModal">
                         Add new category
                     </a>
                 </div>
@@ -43,7 +43,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($claims as $claim)
-                                <tr>
+                                <tr class="view-claim" data-claim-id="{{ $claim->id }}" style="cursor: pointer">
                                     <td class="zero-space">
                                         <a href="#" class="btn-account" role="button">
                                             <span class="user-avatar">
@@ -91,12 +91,12 @@
                                         <form action="{{ route('admin.claims.destroy', $claim->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
+                                            <button type="submit" class="btn btn-danger btn-sm except-button"
                                                 onclick="return confirm('Are you sure you want to archive this claim?');">
                                                 <i class="far fa-trash-alt"></i> Archive
                                             </button>
                                         </form>
-                                        <a href="{{ route('admin.claims.show', $claim->id)}}" class="btn btn-rounded btn-code3 btn-sm"><i class="fas fa-search"></i> View</a>
+                                        <a href="{{ route('admin.claims.show', $claim->id)}}" class="btn btn-rounded btn-code3 btn-sm except-button"><i class="fas fa-search"></i> View</a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -129,7 +129,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="categoryModalLabel">Manage Categories</h5>
@@ -156,7 +156,7 @@
                                     <td>{{ $category->claims_count }}</td>
                                     <td>
                                         <!-- Button to trigger update modal -->
-                                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editCategoryModal"
+                                        <button class="btn btn-sm btn-code3" data-toggle="modal" data-target="#editCategoryModal"
                                             data-id="{{ $category->id }}" data-name="{{ $category->name }}" data-description="{{ $category->description }}">
                                             Edit
                                         </button>
@@ -168,10 +168,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-success" data-toggle="modal" data-target="#addCategoryModal">
+                    <button class="btn btn-code3" data-toggle="modal" data-target="#addCategoryModal">
                         <i class="fas fa-plus"></i> Add New Category
                     </button>
-                    <a href="#" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">Close</a>
                 </div>
             </div>
         </div>
@@ -203,8 +203,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Update</button>
                     </div>
                 </form>
             </div>
@@ -235,7 +235,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success">Add Category</button>
                     </div>
                 </form>
@@ -243,16 +243,31 @@
         </div>
     </div>
 
+    <!-- Modal -->
+    <!-- Claim Details Modal -->
+    <div class="modal fade" id="claimModal" tabindex="-1" role="dialog" aria-labelledby="claimModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="claimModalLabel">Claim Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="loading-spinner text-center">
+                        <i class="dashboard-spinner spinner-info spinner-md"></i>
+                    </div>
+                    <div id="claimDetails" style="display: none;">
+                        <!-- Claim details will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')
-<script>
-    $(document).ready(function() {
-    $('.dataTable').DataTable({
-        "order": [] // Disable automatic sorting
-    });
-});
-</script>
 <script>
     $('#editCategoryModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
@@ -267,6 +282,49 @@
 
         // Update form action dynamically
         $('#updateCategoryForm').attr('action', '/claims/categories/' + id);
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        // Initialize DataTable
+        $('.dataTable').DataTable({
+            "order": []
+        });
+
+        // Handle claim view clicks
+        $('.view-claim').click(function() {
+            const claimId = $(this).data('claim-id');
+            const modal = $('#claimModal');
+
+
+            // Prevent modal from opening if clicking Delete or View
+            if ($(event.target).closest('.except-button').length) {
+                return;
+            }
+            // Show modal with loading state
+            modal.modal('show');
+            $('#claimDetails').hide();
+            $('.loading-spinner').show();
+
+            // Fetch claim details
+            $.ajax({
+                url: `/claims/${claimId}/details`,
+                method: 'GET',
+                success: function(response) {
+                    // Hide loading spinner and show claim details
+                    $('.loading-spinner').hide();
+                    $('#claimDetails').html(response).show();
+
+                },
+                error: function(xhr) {
+                    // Handle error
+                    $('.loading-spinner').hide();
+                    $('#claimDetails').html(
+                        '<div class="alert alert-danger">Failed to load claim details. Please try again.</div>'
+                    ).show();
+                }
+            });
+        });
     });
 </script>
 @endpush

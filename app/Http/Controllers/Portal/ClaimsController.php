@@ -199,4 +199,10 @@ class ClaimsController extends Controller
             return redirect()->back()->with('error', 'Error deleting claim permanently.');
         }
     }
+
+    // Add this method to your ClaimsController.php
+    public function getDetails(Claim $claim)
+    {
+        return view('portal.claims.claim_details', compact('claim'));
+    }
 }

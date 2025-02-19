@@ -25,4 +25,6 @@ Route::prefix('claims')->middleware(['auth', 'role:admin'])->group(function(){
 
     Route::post('/categories/store', [ClaimsController::class, 'store'])->name('admin.categories.store');
 
+    //modal ajax
+    Route::get('/{claim}/details', [ClaimsController::class, 'getDetails'])->name('admin.claims.details');
 });

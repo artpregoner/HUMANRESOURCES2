@@ -147,5 +147,8 @@ class ClaimsController extends Controller
 
         return redirect()->back()->with('success', 'Category added successfully!');
     }
-
+    public function getDetails(Claim $claim)
+    {
+        return view('admin.claims.claim_details', compact('claim'));
+    }
 }

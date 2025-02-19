@@ -14,4 +14,7 @@ Route::prefix('hr2/claims')->middleware(['auth', 'role:hr'])->group(function(){
     //archived tickets
     Route::get('trash', [ClaimsController::class, 'trash'])->name('hr2.claims.trash');
     Route::post('restore/{id}', [ClaimsController::class, 'restore'])->name('hr2.claims.restore');
+
+    //modal ajax
+    Route::get('/{claim}/details', [ClaimsController::class, 'getDetails'])->name('hr2.claims.details');
 });

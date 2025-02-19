@@ -108,4 +108,8 @@ class ClaimsController extends Controller
         return redirect()->route('portal.claims.trash')->with('success', 'Claim restored successfully.');
 
     }
+    public function getDetails(Claim $claim)
+    {
+        return view('hr2.claims.claim_details', compact('claim'));
+    }
 }

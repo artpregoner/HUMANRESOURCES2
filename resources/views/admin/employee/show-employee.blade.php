@@ -112,6 +112,11 @@
                         </div>
 
                         <button type="submit" class="btn btn-primary">Create User</button>
+                        {{-- @if (!$userExists)
+                            <a href="{{ route('admin.create.user', ['employeeId' => $employeeRequest->id]) }}" class="btn btn-success">
+                                Create User
+                            </a>
+                        @endif --}}
                     </form>
                 </div>
             </div>

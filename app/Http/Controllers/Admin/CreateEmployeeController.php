@@ -8,6 +8,9 @@ use App\Models\EmployeeRequest; //to display/create etc... employee
 use App\Models\User; //from employee to Users in my system
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash; //matic nato syempre
+use Illuminate\Support\Facades\Http;
+
+
 class CreateEmployeeController extends Controller
 {
     public function index()
@@ -21,6 +24,36 @@ class CreateEmployeeController extends Controller
         return view('admin.employee.index-employee', compact('EmployeeList'));
     }
 
+    // public function employeeList()
+    // {
+    //     // Get local database employees with their user relationships
+    //     $localEmployeeList = EmployeeRequest::with('user')->get();
+
+    //     try {
+    //         // Get API employees
+    //         $response = Http::get('https://hr2.fareastcafeshop.com/api/employee-requests');
+
+    //         if ($response->successful()) {
+    //             $apiEmployeeList = $response->json()['data']['data'] ?? [];
+    //             // Convert API data to collection
+    //             $apiEmployeeCollection = collect($apiEmployeeList);
+
+    //             // Merge both lists
+    //             $combinedEmployeeList = $localEmployeeList->concat($apiEmployeeCollection);
+    //         } else {
+    //             // If API fails, just use local data
+    //             $combinedEmployeeList = $localEmployeeList;
+    //             session()->flash('warning', 'Could not retrieve HR2 employee data. Showing local data only.');
+    //         }
+    //     } catch (\Exception $e) {
+    //         // If API request fails, just use local data
+    //         $combinedEmployeeList = $localEmployeeList;
+    //         session()->flash('warning', 'Could not connect to HR2 system. Showing local data only.');
+    //     }
+
+    //     return view('admin.employee.index-employee', compact('combinedEmployeeList'));
+    // }
+
     public function show($id)
     {
         $employeeRequest = EmployeeRequest::with('user')->findOrFail($id);
@@ -30,6 +63,38 @@ class CreateEmployeeController extends Controller
 
         return view('admin.employee.show-employee', compact('employeeRequest', 'userExists'));
     }
+
+    // public function show($id)
+    // {
+    //     try {
+    //         // First try to find in local database
+    //         $employeeRequest = EmployeeRequest::with('user')->find($id);
+
+    //         if ($employeeRequest) {
+    //             // If found in local DB, check if user exists
+    //             $userExists = User::where('email', $employeeRequest->email)->exists();
+    //             return view('admin.employee.show-employee', compact('employeeRequest', 'userExists'));
+    //         }
+
+    //         // If not found in local DB, try to fetch from API
+    //         $response = Http::get("https://hr2.fareastcafeshop.com/api/employee-requests/{$id}");
+
+    //         if ($response->successful()) {
+    //             $apiEmployee = $response->json()['data'];
+    //             // Convert API data to object for consistent view handling
+    //             $employeeRequest = (object) $apiEmployee;
+    //             $userExists = User::where('email', $employeeRequest->email)->exists();
+
+    //             return view('admin.employee.show-employee', compact('employeeRequest', 'userExists'));
+    //         }
+
+    //         // If not found in either source
+    //         return redirect()->route('admin.index.employee')->with('error', 'Employee not found.');
+
+    //     } catch (\Exception $e) {
+    //         return redirect()->route('admin.index.employee')->with('error', 'Error retrieving employee details.');
+    //     }
+    // }
 
 
     public function createUser(Request $request)

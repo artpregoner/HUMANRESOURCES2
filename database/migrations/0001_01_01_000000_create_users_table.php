@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('profile_photo_path', 2048)->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->timestamp('last_login')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -39,6 +41,53 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        Schema::create('departments', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 100)->unique();
+            $table->text('description')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('employee_details', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->unsignedBigInteger('department_id')->nullable(); // Define as nullable first
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('set null'); // Then add foreign key
+            $table->string('designation', 100);
+            $table->date('joining_date');
+            $table->string('employee_code', 20)->unique()->nullable();
+            $table->string('employment_status', 20)->nullable();
+            $table->string('work_location', 100)->nullable();
+            $table->decimal('salary', 10, 2)->nullable();
+            $table->string('bank_account_number', 50)->nullable();
+            $table->string('bank_name', 100)->nullable();
+            $table->string('tax_id', 50)->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('personal_information', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('first_name', 50);
+            $table->string('middle_name', 50)->nullable();
+            $table->string('last_name', 50);
+            $table->date('date_of_birth')->nullable();
+            $table->string('gender', 20)->nullable();
+            $table->string('marital_status', 20)->nullable();
+            $table->string('blood_group', 5)->nullable();
+            $table->string('nationality', 50)->nullable();
+            $table->text('address')->nullable();
+            $table->string('city', 50)->nullable();
+            $table->string('state', 50)->nullable();
+            $table->string('country', 50)->nullable();
+            $table->string('postal_code', 20)->nullable();
+            $table->string('phone_number', 20)->nullable();
+            $table->string('emergency_contact_name', 100)->nullable();
+            $table->string('emergency_contact_number', 20)->nullable();
+            $table->string('emergency_relationship')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -46,8 +95,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('personal_information');
+        Schema::dropIfExists('employee_details');
+        Schema::dropIfExists('departments');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('users');
     }
 };

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Model;
 
 // use Illuminate\Notifications\Notifiable;
 
@@ -26,7 +27,10 @@ class User extends Authenticatable
         'password',
         'role',
         'profile_photo_path',
+        'is_active',
+        'last_login'
     ];
+
 
         // Add this method to get profile photo URL
     public function getProfilePhotoUrlAttribute()
@@ -100,6 +104,18 @@ class User extends Authenticatable
     public function notifications()
     {
         return $this->hasMany(Notification::class);
+    }
+
+    // Relationship with employee details
+    public function employeeDetails()
+    {
+        return $this->hasOne(EmployeeDetails::class);
+    }
+
+    // Relationship with personal information
+    public function personalInformation()
+    {
+        return $this->hasOne(PersonalInformation::class);
     }
 
 }

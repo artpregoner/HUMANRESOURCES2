@@ -49,6 +49,11 @@ class Login extends Component
 
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
             $user = Auth::user();
+
+            /** @var \App\Models\User $user */
+            $user->last_login = now();
+            $user->save();
+
             session()->flash('success', 'Welcome: ' . $user->name);
 
             return redirect()->route(match ($user->role) {

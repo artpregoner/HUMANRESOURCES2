@@ -21,6 +21,10 @@
                             <i class="fas fa-inbox"></i></span> My tickets
                         <span class="new-messages">{{ $tickets->count() }} all tickets</span>
                     </div>
+                    <!-- the modal button-->
+                    <a href="#" class="btn btn-code3 btn-space" data-toggle="modal" data-target="#categoryModal">
+                        Add new category
+                    </a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -115,6 +119,38 @@
             </a>
         </div>
     </div>
+    @livewire('helpdesk.manage-categories')
 @endsection
 @push('scripts')
+<script>
+    document.addEventListener('livewire:initialized', () => {
+        // Listen for custom events
+        Livewire.on('closeModal', () => {
+            $('#categoryModal').modal('hide');
+            $('#addCategoryModal').modal('hide');
+            $('#editCategoryModal').modal('hide');
+        });
+
+        Livewire.on('showEditModal', () => {
+            $('#editCategoryModal').modal('show');
+        });
+    });
+</script>
+<script>
+    window.addEventListener('close-modal', event => {
+        $('#categoryModal').modal('hide');
+        $('#addCategoryModal').modal('hide');
+        $('#editCategoryModal').modal('hide');
+    });
+</script>
+<script>
+    window.addEventListener('close-add-category-modal', event => {
+        $('#addCategoryModal').modal('hide');
+    });
+
+    window.addEventListener('close-edit-category-modal', event => {
+        $('#editCategoryModal').modal('hide');
+    });
+</script>
+
 @endpush

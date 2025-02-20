@@ -4,11 +4,20 @@ namespace App\Http\Controllers\Portal;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PortalController extends Controller
 {
     public function home(){
-        return view('portal.home');
+
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+
+        if ($user) {
+            $user->load(['employeeDetails.department', 'personalInformation']);
+        }
+
+        return view('portal.home', compact('user'));
     }
     public function myprofile(){
         return view('portal.myprofile');

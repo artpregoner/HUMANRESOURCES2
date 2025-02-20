@@ -8,35 +8,39 @@
                         <tbody>
                             <tr>
                                 <th>Code</th>
-                                <td>EMP0002</td>
+                                <td>{{ Auth::user()->employeeDetails->employee_code ?? 'N/A' }}</td>
                             </tr>
                             <tr>
                                 <th>Department</th>
-                                <td>IT </td>
+                                <td>{{ Auth::user()->employeeDetails->department->name ?? 'N/A' }}</td>
                             </tr>
                             <tr>
                                 <th>Location</th>
-                                <td>Main Office</td>
+                                <td>{{ Auth::user()->employeeDetails->work_location}}</td>
                             </tr>
                             <tr>
                                 <th>Status</th>
-                                <td>Full Time </td>
+                                <td>{{ Auth::user()->employeeDetails->employment_status}}</td>
                             </tr>
                             <tr>
                                 <th>Gender</th>
-                                <td>Male </td>
+                                <td>{{ Auth::user()->personalInformation->gender}}</td>
                             </tr>
                             <tr>
                                 <th>Born</th>
-                                <td>29 Jun 2002</td>
+                                <td>{{ Auth::user()->personalInformation->date_of_birth->format('F d, Y')}}</td>
                             </tr>
                             <tr>
                                 <th>Age</th>
-                                <td>22 years</td>
+                                <td>{{ Auth::user()->personalInformation?->date_of_birth ? \Carbon\Carbon::parse($user->personalInformation->date_of_birth)->age : 'N/A' }}</td>
                             </tr>
                             <tr>
-                                <th>Employed For</th>
-                                <td>1 day</td>
+                                <th>Joining Date</th>
+                                <td>{{ Auth::user()->employeeDetails->joining_date->format('F d, Y') }}</td>
+                            </tr>
+                            <tr>
+                                <th>Employee For</th>
+                                <td>{{ Auth::user()->employeeDetails?->joining_date ? \Carbon\Carbon::parse(Auth::user()->employeeDetails->joining_date)->diffForHumans() : 'N/A' }}</td>
                             </tr>
                         </tbody>
                     </table>

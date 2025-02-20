@@ -18,4 +18,9 @@ class Department extends Model
         return $this->hasMany(EmployeeDetails::class);
     }
 
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
 }

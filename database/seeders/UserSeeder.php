@@ -15,13 +15,13 @@ class UserSeeder extends Seeder
     {
         // Create an employee
         User::create([
-            'name' => 'Art Javar Pogi',
+            'name' => 'Ajcoder2k15',
             'email' => 'pregoner@user.com',
             'password' => Hash::make('user12345678'),
             'role' => 'employee', // Employee role
         ]);
         User::create([
-            'name' => 'POGI Art User 2',
+            'name' => 'Ajcodex2k15 2',
             'email' => 'artjavar@user.com',
             'password' => Hash::make('user12345678'),
             'role' => 'employee', // Employee role
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
 
         // Create an HR user (HR2)
         User::create([
-            'name' => 'Jane Smith',
+            'name' => 'Ate Gay HR',
             'email' => 'hrmanager@user.com',
             'password' => Hash::make('user12345678'),
             'role' => 'hr', // HR role
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
 
         // Create an Admin user
         User::create([
-            'name' => 'Malupweton Juwil',
+            'name' => 'Amil Admin',
             'email' => 'bcp@admin.com',
             'password' => Hash::make('admin12345678'),
             'role' => 'admin', // Admin role

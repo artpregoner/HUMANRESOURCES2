@@ -62,6 +62,8 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'last_login' => 'datetime',
+            'is_active' => 'boolean',
         ];
     }
 
@@ -109,13 +111,13 @@ class User extends Authenticatable
     // Relationship with employee details
     public function employeeDetails()
     {
-        return $this->hasOne(EmployeeDetails::class);
+        return $this->hasOne(EmployeeDetails::class, 'user_id');
     }
 
     // Relationship with personal information
     public function personalInformation()
     {
-        return $this->hasOne(PersonalInformation::class);
+        return $this->hasOne(PersonalInformation::class, 'user_id');
     }
 
 }

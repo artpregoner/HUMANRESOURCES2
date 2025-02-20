@@ -22,7 +22,7 @@
                     </div>
                     <div class="text-center">
                         <h2 class="font-24 mb-0">{{ Auth::user()->name }}</h2>
-                        {{-- <p>Project Manager @Influnce</p> --}}
+                        <p>{{ Auth::user()->employeeDetails->designation }}</p>
                     </div>
                 </div>
                 <div class="card-body border-top">
@@ -30,20 +30,31 @@
                     <div class="">
                         <ul class="list-unstyled mb-0">
                             <li class="mb-2"><i class="fas fa-fw fa-envelope mr-2"></i>{{ Auth::user()->email }}</li>
-                            <li class="mb-2"><i class="fas fa-fw fa-phone mr-2"></i>096666666</li>
-                            <li class="mb-0"><i class="fas fa-map-marker-alt mr-2"></i>Quezon City</li>
+                            <li class="mb-2"><i class="fas fa-fw fa-phone mr-2"></i>{{ Auth::user()->personalInformation->phone_number ?? 'N/A' }}</li>
+                            <li class="mb-2"><i class="fas fa-fw fa-calendar-check mr-2"></i>{{ Auth::user()->personalInformation->date_of_birth->format('F d, Y') ?? 'N/A' }}</li>
+                            <li class="mb-2"><i class="fas fa-fw fa-map-marker-alt mr-2"></i>{{ Auth::user()->personalInformation->address ?? 'N/A' }},
+                                {{ Auth::user()->personalInformation->city ?? 'N/A' }},
+                                {{ Auth::user()->personalInformation->state ?? 'N/A' }},
+                                {{ Auth::user()->personalInformation->country ?? 'N/A' }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body border-top">
+                    <div>
+                        <h3 class="font-16">Emergency Contact Information</h3>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-fw fa-user mr-2"></i>{{ Auth::user()->personalInformation->emergency_contact_name ?? 'N/A' }}</li>
+                            <li class="mb-2"><i class="fas fa-fw fa-phone mr-2"></i>{{ Auth::user()->personalInformation->emergency_contact_number ?? 'N/A' }}</li>
+                            <li class="mb-2"><i class="fas fa-fw fa-handshake mr-2"></i>{{ Auth::user()->personalInformation->emergency_relationship ?? 'N/A' }}</li>
                         </ul>
                     </div>
                 </div>
                 <div class="card-body border-top">
                     <div>
                         <ul class="list-unstyled mb-0">
-                            <h3 class="font-16">Department</h3>
-                            <li class="mb-2"><i class="fas fa-building mr-2"></i>HR</li>
-                            <h3 class="font-16">Position</h3>
-                            <li class="mb-2"><i class="fas fa-shopping-bag mr-2"></i>qpal</li>
-                            <h3 class="font-16">Join Date</h3>
-                            <li class="mb-0"><i class="far fa-calendar-check mr-2"></i>January 15, 2022</li>
+                            <h3 class="font-16">Last Login</h3>
+                            <li class="mb-2"><i class="far fa-calendar-check mr-2"></i>{{ Auth::user()->last_login ? Auth::user()->last_login->format('F d, Y h:i A') : 'Never logged in' }}</li>
                         </ul>
                     </div>
                 </div>
@@ -64,11 +75,11 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="my-information-tab" data-toggle="pill" href="#my-information"
-                            role="tab" aria-controls="my-information" aria-selected="false">INFORMATION</a>
+                            role="tab" aria-controls="my-information" aria-selected="false">EMPLOYEE</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab"
-                            aria-controls="pills-review" aria-selected="false">RECOGNITION</a>
+                            aria-controls="pills-review" aria-selected="false">PERSONAL</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="pills-msg-tab" data-toggle="pill" href="#pills-msg" role="tab"
@@ -80,47 +91,13 @@
                     <div class="tab-pane fade show active" id="self-service" role="tabpanel" aria-labelledby="self-service-tab">
                         @include('portal.partials.self-service')
                     </div>
-                    <!-- partial my information -->
+                    <!-- partial employee information -->
                     <div class="tab-pane fade" id="my-information" role="tabpanel" aria-labelledby="my-information-tab">
-                        @include('portal.partials.my-information')
+                        @include('portal.partials.employee-details')
                     </div>
-                    <!-- home>partial content -->
+                    <!-- partial personal information -->
                     <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
-                        <div class="row">
-                            <div class="col-xl-12 col-lg- col-md-7 col-sm-12 col-12">
-                                <div class="section-block">
-                                    <div class="card">
-                                        <h5 class="card-header">Recognitions</h5>
-                                        <div class="card-body">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Award Type</th>
-                                                        <th scope="col">From</th>
-                                                        <th scope="col">Points</th>
-                                                        <th scope="col">Date</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Performance Award</td>
-                                                        <td>HR Manager</td>
-                                                        <td>100</td>
-                                                        <td>2024-10-24</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Team Player Award</td>
-                                                        <td>Project Manager</td>
-                                                        <td>50</td>
-                                                        <td>2024-10-20</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @include('portal.partials.personal-details')
                     </div>
                     <!-- home>partial content -->
                     <div class="tab-pane fade" id="pills-msg" role="tabpanel" aria-labelledby="pills-msg-tab">

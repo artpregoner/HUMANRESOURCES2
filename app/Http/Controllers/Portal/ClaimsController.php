@@ -10,6 +10,7 @@ use App\Models\ClaimsCategory;
 use App\Models\ClaimApprover;
 use Illuminate\Support\Facades\{Auth, Storage};
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class ClaimsController extends Controller
@@ -204,5 +205,49 @@ class ClaimsController extends Controller
     public function getDetails(Claim $claim)
     {
         return view('portal.claims.claim_details', compact('claim'));
+    }
+
+    public function downloadPDF($id)
+    {
+        // Load claim with all relationships
+        $claim = Claim::with([
+            'approver.user',
+            'rejector.user',
+            'user',
+            'attachments',
+            'items.category'
+        ])
+        ->when(Auth::user()->role === 'employee', function ($query) {
+            $query->where('user_id', Auth::id());
+        })
+        ->findOrFail($id);
+
+        // Get names
+        $approverName = optional($claim->approver?->user)->name;
+        $unapproverName = optional($claim->unapprover?->user)->name;
+        $rejectorName = optional($claim->rejector?->user)->name;
+        $unrejectorName = optional($claim->unrejector?->user)->name;
+
+        // Determine action text
+        $actionedBy = match ($claim->status) {
+            'approved' => "by: " . ($approverName ?? 'N/A'),
+            'rejected' => "by: " . ($rejectorName ?? 'N/A'),
+            'unapproved' => "by: " . ($unapproverName ?? 'N/A'),
+            default => "Unrejected"
+        };
+
+        $data = [
+            'claim' => $claim,
+            'status' => $claim->status,
+            'actionedBy' => $actionedBy,
+            'statusBadge' => $this->getStatusBadgeClass($claim->status),
+            'isOwner' => Auth::id() === $claim->user_id
+        ];
+
+        $pdf = PDF::loadView('pdf.claims.claim-invoice', $data);
+        return response()->streamDownload(
+            fn () => print($pdf->output()),
+            "claim-invoice-{$claim->id}.pdf"
+        );
     }
 }

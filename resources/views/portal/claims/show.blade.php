@@ -171,7 +171,6 @@
         </div>
     </div>
 
-
     <div class="row">
 
     </div>
@@ -182,7 +181,9 @@
                 <div class="card-body border-top">
                     <div class="row">
                         <div class="col-sm-6 col-sm-6 text-left">
-                            <a href="{{ route('portal.claims.index') }}" class="btn btn-code3 btn-space">Download</a>
+                            <a href="{{ route('claims.download-pdf', $claim->id) }}" class="btn btn-code3 btn-space">
+                                Download PDF
+                            </a>
                         </div>
                         <div class="col-sm-6 text-right">
                             <a href="{{ route('portal.claims.index') }}" class="btn btn-light btn-space">Back to Lists</a>

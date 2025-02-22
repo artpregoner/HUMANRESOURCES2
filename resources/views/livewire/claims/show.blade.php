@@ -162,40 +162,42 @@
             </div>
         </div>
     </div>
+</div>
 
-    {{-- <div class="row">
-        <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
-            <div class="card">
-                <div class="card-body border-top">
-                    <div class="form-group row text-right">
-                        <div class="col-sm-6 col-sm-6 text-left">
-                            @if($status !== 'rejected')
-                                <button wire:click="approve" class="btn btn-space {{ $status === 'approved' ? 'btn-warning' : 'btn-code3' }}">
-                                    {{ $status === 'approved' ? 'Unapprove' : 'Approve' }}
-                                </button>
-                            @endif
-                            @if($status !== 'approved')
-                                <button wire:click="reject" class="btn btn-space {{ $status === 'rejected' ? 'btn-warning' : 'btn-danger' }}">
-                                    {{ $status === 'rejected' ? 'Unreject' : 'Reject' }}
-                                </button>
-                            @endif
-                        </div>
-                        @php
-                            $role = Auth::user()->role;
-                            $redirectRoute = match ($role) {
-                                'admin' => 'admin.claims.index',
-                                'hr' => 'hr2.claims.index',
-                                default => null,
-                            };
-                        @endphp
-                        @if ($redirectRoute)
-                            <div class="col-sm-6 col-sm-6 text-right">
-                                <a href="{{ route($redirectRoute) }}" class="btn btn-light btn-space">Cancel</a>
-                            </div>
+
+
+{{-- <div class="row">
+    <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body border-top">
+                <div class="form-group row text-right">
+                    <div class="col-sm-6 col-sm-6 text-left">
+                        @if($status !== 'rejected')
+                            <button wire:click="approve" class="btn btn-space {{ $status === 'approved' ? 'btn-warning' : 'btn-code3' }}">
+                                {{ $status === 'approved' ? 'Unapprove' : 'Approve' }}
+                            </button>
+                        @endif
+                        @if($status !== 'approved')
+                            <button wire:click="reject" class="btn btn-space {{ $status === 'rejected' ? 'btn-warning' : 'btn-danger' }}">
+                                {{ $status === 'rejected' ? 'Unreject' : 'Reject' }}
+                            </button>
                         @endif
                     </div>
+                    @php
+                        $role = Auth::user()->role;
+                        $redirectRoute = match ($role) {
+                            'admin' => 'admin.claims.index',
+                            'hr' => 'hr2.claims.index',
+                            default => null,
+                        };
+                    @endphp
+                    @if ($redirectRoute)
+                        <div class="col-sm-6 col-sm-6 text-right">
+                            <a href="{{ route($redirectRoute) }}" class="btn btn-light btn-space">Cancel</a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
-    </div> --}}
-</div>
+    </div>
+</div> --}}

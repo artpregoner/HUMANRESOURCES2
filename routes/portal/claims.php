@@ -22,4 +22,7 @@ Route::prefix('portal/claims')->middleware(['auth'])->group(function(){
     // force delete a ticket including attachments
     Route::delete('force-delete/{claims}', [ClaimsController::class, 'forceDelete'])->name('portal.claims.forceDelete');
     Route::get('/{claim}/details', [ClaimsController::class, 'getDetails'])->name('portal.claims.details');
+
+    Route::get('/claims/{id}/pdf', [ClaimsController::class, 'downloadPDF'])
+    ->name('claims.download-pdf');
 });

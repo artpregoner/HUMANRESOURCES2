@@ -13,9 +13,9 @@ class PortalController extends Controller
         /** @var \App\Models\User $user */
         $user = Auth::user();
 
-        if ($user) {
-            $user->load(['employeeDetails.department', 'personalInformation']);
-        }
+        // if ($user) {
+        //     $user->load(['employeeDetails.department', 'personalInformation']);
+        // }
 
         return view('portal.home', compact('user'));
     }

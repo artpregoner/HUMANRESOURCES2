@@ -15,13 +15,13 @@ class UserSeeder extends Seeder
     {
         // Create an employee
         User::create([
-            'name' => 'Ajcoder2k15',
+            'name' => 'Art Pregoner',
             'email' => 'pregoner@user.com',
             'password' => Hash::make('user12345678'),
             'role' => 'employee', // Employee role
         ]);
         User::create([
-            'name' => 'Ajcodex2k15 2',
+            'name' => 'PregonerArt 2',
             'email' => 'artjavar@user.com',
             'password' => Hash::make('user12345678'),
             'role' => 'employee', // Employee role

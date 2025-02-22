@@ -49,7 +49,7 @@
             <div class="card-body">
                 <div class="d-inline-block">
                     <h5 class="text-muted">Total Absent</h5>
-                    <h2 class="mb-0"> 2</h2>
+                    <h2 class="mb-0">0</h2>
                 </div>
                 <div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
                     <i class="fas fa-calendar-times fa-fw fa-sm text-primary"></i>

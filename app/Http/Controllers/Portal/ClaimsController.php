@@ -244,10 +244,10 @@ class ClaimsController extends Controller
             'isOwner' => Auth::id() === $claim->user_id
         ];
 
-        $pdf = PDF::loadView('pdf.claims.claim-invoice', $data);
+        $pdf = PDF::loadView('pdf.claims.claim-details', $data);
         return response()->streamDownload(
             fn () => print($pdf->output()),
-            "claim-invoice-{$claim->id}.pdf"
+            "claim-details-{$claim->id}.pdf"
         );
     }
 }

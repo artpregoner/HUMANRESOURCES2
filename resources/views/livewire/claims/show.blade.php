@@ -3,7 +3,7 @@
         <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
                 <div class="card-header p-4">
-                    <div class="float-left">
+                    <div class="float-right">
                         <h3 class="mb-0">
                             @if ($status == 'approved')
                                 <span class="badge badge-success">Approved</span>
@@ -26,9 +26,9 @@
                             <span>Unapproved by: <span class="text-dark font-weight-bold">{{ $unapprovedBy }}</span></span>
                         @endif
                     </div>
-                    <div class="float-right">
-                        <h3 class="mb-0">Invoice #{{ $claim->id }}</h3>
-                        Claims
+                    <div class="float-left">
+                        <h3 class="mb-0">Expense Claim</h3>
+                        Claims #{{ $claim->id }}
                     </div>
                 </div>
                 <div class="card-body">

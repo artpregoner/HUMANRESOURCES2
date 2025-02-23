@@ -17,7 +17,7 @@
         <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
                 <div class="card-header p-4">
-                    <div class="float-left">
+                    <div class="float-right">
                         <h3 class="mb-0">
                             <span class="badge {{ $statusBadge }}">
                                 {{ ucfirst($claim->status) }}
@@ -28,9 +28,9 @@
                     </div>
 
 
-                    <div class="float-right">
-                        <h3 class="mb-0">Invoice #{{ $claim->id }}</h3>
-                        Claims
+                    <div class="float-left">
+                        <h3 class="mb-0">Expense Claim</h3>
+                        Claims # {{ $claim->id }}
                     </div>
                 </div>
 
@@ -85,7 +85,7 @@
                     <!-- expenses date-->
                     <div class="form-row">
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                            <label for="validationCustom03">Expense Data</label>
+                            <label for="validationCustom03">Expense Date</label>
                             <input value="{{ \Carbon\Carbon::parse($claim->expense_date)->format('M/d/Y - h:i A') }}"
                                 type="text" class="form-control" id="validationCustom03" placeholder="date" disabled>
                         </div>
@@ -118,7 +118,7 @@
                                     </tr>
                                 @endforeach
                                 <tr>
-                                    <th scope="row" colspan="2" class="text-right">Total:</th>
+                                    <th scope="row" colspan="2" class="text-right">Total ({{ $claim->currency }}):</th>
                                     <th class="text-right">{{ number_format($claim->total_amount, 2) }}</th>
                                 </tr>
                             </tbody>

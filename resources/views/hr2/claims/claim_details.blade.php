@@ -19,7 +19,7 @@
         </div>
         <div class="col-sm-6 text-right">
             <small class="text-muted">Submitted by: {{ $claim->submittedBy->name }}</small>
-            <h3 class="mb-0">Invoice #{{ $claim->id }}</h3>
+            <h3 class="mb-0">Claims #{{ $claim->id }}</h3>
         </div>
     </div>
 

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Claim Invoice</title>
+    <title>Claim Details</title>
     <style>
         @page {
             size: A4;
@@ -190,8 +190,8 @@
                 <span style="font-size: 14px; color: #666; margin-left: 10px;">{{ $actionedBy }}</span>
             </div>
             <div class="invoice-number">
-                <h2>Invoice #{{ $claim->id }}</h2>
-                <div>Claims</div>
+                <h2>Expense Claim</h2>
+                <div>Claims #{{ $claim->id }}</div>
             </div>
         </div>
 

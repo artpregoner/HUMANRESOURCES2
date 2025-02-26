@@ -17,6 +17,11 @@ return Application::configure(basePath: dirname(__DIR__))
             'employee' => \App\Http\Middleware\EmployeeMiddleware::class,
             'hr' => \App\Http\Middleware\HrMiddleware::class,
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
+            'api' => [
+                \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+                'throttle:api',
+                \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            ],
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

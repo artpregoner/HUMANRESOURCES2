@@ -24,7 +24,12 @@ class Claim extends Model
         'reimbursement_required',
         'total_amount',
         'currency',
-        'deleted_by'
+        'deleted_by',
+        'sent_to_payroll_at',
+        'payroll_status',
+        'paid_date',
+        'payroll_remarks',
+        'processed_by_id',
     ];
 
     protected $casts = [
@@ -102,5 +107,39 @@ class Claim extends Model
         return $this->belongsTo(ClaimsCategory::class, 'id');
     }
 
+    //
+    // Send to Payroll
+    //
+
+    public function processedBy() {
+        return $this->belongsTo(User::class, 'processed_by_id');
+    }
+    public function sendToPayroll()
+    {
+        $this->update([
+            'sent_to_payroll_at' => now(),
+            'payroll_status' => 'processing'
+        ]);
+    }
+
+    // Mark as Paid
+    public function markAsPaid($user_id)
+    {
+        $this->update([
+            'payroll_status' => 'paid',
+            'paid_date' => now(),
+            'processed_by_id' => $user_id
+        ]);
+    }
+
+    // Mark as Rejected by Payroll
+    public function rejectByPayroll($user_id, $remarks)
+    {
+        $this->update([
+            'payroll_status' => 'rejected',
+            'payroll_remarks' => $remarks,
+            'processed_by_id' => $user_id
+        ]);
+    }
 
 }

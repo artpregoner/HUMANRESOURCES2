@@ -37,6 +37,9 @@
                 @error('photo')
                     <p class="text-danger mt-2">{{ $message }}</p>
                 @enderror
+                <div wire:loading wire:target="photo" class="text-primary">
+                    <i class="fas fa-spinner fa-spin"></i> Uploading files...
+                </div>
                 @if ($photo)
                     <p class="text-success">Preview updated! Click save.</p>
                 @endif

@@ -36,6 +36,11 @@ return new class extends Migration
             $table->boolean('reimbursement_required')->default(true); // Whether reimbursement is required
             $table->decimal('total_amount', 10, 2)->default(0); // Total amount of the claim
             $table->enum('currency', ['PHP', 'USD'])->default('PHP'); //currency field
+            $table->timestamp('sent_to_payroll_at')->nullable(); // Sent to Payroll timestamp
+            $table->enum('payroll_status', ['pending', 'processing', 'paid', 'rejected'])->default('pending'); // Payroll processing status
+            $table->timestamp('paid_date')->nullable(); // Date when paid
+            $table->longText('payroll_remarks')->nullable(); // Payroll remarks
+            $table->foreignId('processed_by_id')->nullable()->constrained('users')->nullOnDelete(); // Payroll user who processed it
             $table->foreignId('deleted_by')->nullable()->constrained('users')->nullOnDelete()->after('deleted_at');
             $table->timestamps();
             $table->softDeletes();

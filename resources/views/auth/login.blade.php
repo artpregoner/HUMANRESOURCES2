@@ -178,6 +178,95 @@
                 </div>
             </div>
         </div>
+
+        <div class="card-body d-none d-sm-block"></div>
+
+        {{-- <div class="section-block">
+            <h1 class="text-center text-light display-6 d-none d-lg-block">Job Listings</h1>
+            <!-- Normal h1 and h2 for mobile (Hidden on desktop) -->
+            <h1 class="text-center text-light d-lg-none">Job Listings</h1>
+        </div> --}}
+
+
+        <div class="card-body d-none d-sm-block"></div>
+        <div class="card-body d-none d-sm-block"></div>
+        <div class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-block">
+                            <h1 class="section-title">Job Openings</h1>
+                        </div>
+                    </div>
+                    <!-- Job Listing 1 -->
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card job-card">
+                            <div class="card-body">
+                                <div class="job-info">
+                                    <h3 class="job-title mb-2">Software Engineer</h3>
+                                    <p class="job-description mb-3">We are looking for an experienced software engineer to develop high-quality applications using modern technologies.</p>
+                                    <div class="job-details alert alert-primary mb-3">
+                                        <p><strong>Date Posted:</strong> <span class="text-dark">March 1, 2025</span></p>
+                                        <p><strong>Location:</strong> <span class="text-dark">Manila, Philippines</span></p>
+                                        <p><strong>Openings:</strong> <span class="text-dark">3 positions</span></p>
+                                    </div>
+                                    <button class="btn btn-code3 btn-block">Apply Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Job Listing 2 -->
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card job-card">
+                            <div class="card-body">
+                                <div class="job-info">
+                                    <h3 class="job-title mb-2">UI/UX Designer</h3>
+                                    <p class="job-description mb-3">Join our creative team to design user-friendly interfaces and exceptional user experiences for our products.</p>
+                                    <div class="job-details alert alert-primary mb-3">
+                                        <p><strong>Date Posted:</strong> <span class="text-dark">February 25, 2025</span></p>
+                                        <p><strong>Location:</strong> <span class="text-dark">Cebu City, Philippines</span></p>
+                                        <p><strong>Openings:</strong> <span class="text-dark">2 positions</span></p>
+                                    </div>
+                                    <button class="btn btn-code3 btn-block">Apply Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Job Listing 3 -->
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card job-card">
+                            <div class="card-body">
+                                <div class="job-info">
+                                    <h3 class="job-title mb-2">Digital Marketing Specialist</h3>
+                                    <p class="job-description mb-3">Drive our online marketing campaigns and help grow our digital presence across multiple platforms.</p>
+                                    <div class="job-details alert alert-primary mb-3">
+                                        <p><strong>Date Posted:</strong> <span class="text-dark">February 28, 2025</span></p>
+                                        <p><strong>Location:</strong> <span class="text-dark">Davao City, Philippines</span></p>
+                                        <p><strong>Openings:</strong> <span class="text-dark">1 position</span></p>
+                                    </div>
+                                    <button class="btn btn-code3 btn-block">Apply Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        Copyright © 2025 Company Name. All rights reserved.
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="text-md-right footer-links d-none d-sm-block">
+                            <a href="javascript: void(0);">About</a>
+                            <a href="javascript: void(0);">Support</a>
+                            <a href="javascript: void(0);">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="{{ asset('template/assets/vendor/jquery/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('template/assets/vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>

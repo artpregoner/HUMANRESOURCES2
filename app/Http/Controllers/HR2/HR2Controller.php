@@ -55,7 +55,7 @@ class HR2Controller extends Controller
             ]
         ];
 
-        return view('admin.index', compact(
+        return view('hr2.index', compact(
             'totalClaims',
             'newSubmittedClaims',
             'paidClaim',

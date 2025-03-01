@@ -43,7 +43,7 @@
                                 </li> --}}
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->is('workforce/analytics') ? 'active' : '' }}"
-                                        href="{{ url('workforce/turnover-hiring') }}">Analytics</a>
+                                        href="{{ route('admin.workforce.index') }}">Analytics</a>
                                 </li>
                             </ul>
                         </div>

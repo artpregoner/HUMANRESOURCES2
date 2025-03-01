@@ -15,7 +15,7 @@
                     <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-fw fa-bell"></i>
-                        <span class="indicator"></span><!--heartbeat for notification-->
+                        {{-- <span class="indicator"></span><!--heartbeat for notification--> --}}
                         <span class="topnav-dropdown mdi mdi-arrow-down-drop-circle"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
@@ -23,7 +23,7 @@
                             <div class="notification-title">Notification</div>
                             <div class="notification-list">
                                 <div class="list-group">
-                                    <a href="#" class="list-group-item list-group-item-action active">
+                                    {{-- <a href="#" class="list-group-item list-group-item-action active">
                                         <div class="notification-info">
                                             <div class="notification-list-user-img"><img src="assets/images/avatar-2.jpg" alt="" class="user-avatar-md rounded-circle"></div>
                                             <div class="notification-list-user-block">
@@ -39,7 +39,7 @@
                                                 <div class="notification-date">2 min ago</div>
                                             </div>
                                         </div>
-                                    </a>
+                                    </a> --}}
                                 </div>
                             </div>
                         </li>

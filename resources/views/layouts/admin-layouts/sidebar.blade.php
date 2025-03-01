@@ -33,17 +33,17 @@
                         </a>
                         <div id="workforce-submenu" class="collapse submenu {{ request()->is('workforce*') ? 'show' : '' }}" style="">
                             <ul class="nav flex-column">
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link {{ request()->is('workforce/skill-gap') ? 'active' : '' }}"
                                         href="{{ url('workforce/skill-gap') }}">Skill Analysis Tool</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->is('workforce/employee-metrics') ? 'active' : '' }}"
                                         href="{{ url('workforce/employee-metrics') }}">Employee Metrics<span class="badge badge-secondary">New</span></a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('workforce/turnover-hiring') ? 'active' : '' }}"
-                                        href="{{ url('workforce/turnover-hiring') }}">Turnover & Hiring Needs</a>
+                                    <a class="nav-link {{ request()->is('workforce/analytics') ? 'active' : '' }}"
+                                        href="{{ url('workforce/turnover-hiring') }}">Analytics</a>
                                 </li>
                             </ul>
                         </div>
@@ -68,10 +68,10 @@
                     <!-- ============================================================== -->
                     <!-- Emloyee Self-service -->
                     <!-- ============================================================== -->
-                    <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
+                    {{-- <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
                     <li class="nav-divider">
                         Self-Service
-                    </li>
+                    </li> --}}
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#self-service-submenu" aria-controls="self-service-submenu"><i class="m-r-10 mdi mdi-account-settings"></i>Self-Service <span class="badge badge-success">6</span></a>
                         <div id="self-service-submenu" class="collapse submenu" style="">
@@ -101,10 +101,10 @@
                     <!-- ============================================================== -->
                     <!-- Add Employee -->
                     <!-- ============================================================== -->
-                    <li class="nav-item ">
+                    {{-- <li class="nav-item ">
                         <a class="nav-link {{ request()->is('self-service/employee/*') ? 'active' : '' }}" href="{{ route('admin.create.employee') }}"
                             aria-expanded="false"><i class="m-r-10 mdi mdi-account"></i>Add Employee</a>
-                    </li>
+                    </li> --}}
 
                     <!-- ============================================================== -->
                     <!-- Employee Engagement -->
@@ -156,7 +156,7 @@
                         Portal
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="{{ route('home') }}" aria-expanded="false"><i class="m-r-10 mdi mdi-account-settings-variant"></i>Go to Portal</a>
+                        <a class="nav-link" href="{{ route('home') }}" target="_blank" aria-expanded="false"><i class="m-r-10 mdi mdi-account-settings-variant"></i>Go to Portal</a>
                     </li>
                 </ul>
             </div>

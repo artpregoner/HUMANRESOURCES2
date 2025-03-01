@@ -157,7 +157,7 @@
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link"
-                            href="{{ route('home') }}" aria-expanded="false"><i
+                            href="{{ route('home') }}" target="_blank" aria-expanded="false"><i
                             class="m-r-10 mdi mdi-account-settings-variant"></i>Go to Portal</a>
                     </li>
                 </ul>

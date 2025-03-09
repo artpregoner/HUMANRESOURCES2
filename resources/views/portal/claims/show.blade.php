@@ -172,6 +172,25 @@
     </div>
 
     <div class="row">
+        <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <!-- Footer Section -->
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-sm-6">
+                            <h5 class="mb-2">Payroll Status</h5>
+
+                            <div>Status: Processing</div>
+                            <div>Paid At: June 3 2025</div>
+                            <div>Actioned by: hr manager</div>
+                            <div>Remarks: ok na to!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
 
     </div>
     <div class="row">

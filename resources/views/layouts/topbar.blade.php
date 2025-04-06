@@ -26,8 +26,7 @@
         @php
             $role = Auth::user()->role;
             $redirectRoute = match ($role) {
-                'admin' => 'admin.index',
-                'hr' => 'hr2.index',
+                'admin', 'hr' => 'admin.index',
                 'employee' => 'home',
                 default => null,
             };

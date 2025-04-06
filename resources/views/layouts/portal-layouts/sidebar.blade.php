@@ -4,8 +4,6 @@
     <flux:brand href="#" logo="https://fluxui.dev/img/demo/logo.png" name="Human Resources" class="px-2 dark:hidden" />
     <flux:brand href="#" logo="https://fluxui.dev/img/demo/dark-mode-logo.png" name="Human Resources" class="hidden px-2 dark:flex" />
 
-    <flux:input as="button" variant="filled" placeholder="Search..." icon="magnifying-glass" />
-
     <flux:navlist variant="outline">
 
         <flux:navlist.item icon="home" :href="route('home')"
@@ -31,23 +29,23 @@
     </flux:navlist>
 
     <flux:spacer />
-    @if (Auth::check() && in_array(Auth::user()->role, ['admin', 'hr']))
+    @adminOrHr
+        <flux:navlist variant="outline">
+            <flux:navlist.item icon="home" :href="route('admin.index')" target="_blank">Back to Main</flux:navlist.item>
+        </flux:navlist>
+    @endadminOrHr
+
+    @auth
         @php
-            $role = Auth::user()->role;
-            $redirectRoute = match ($role) {
-                'admin' => 'admin.index',
-                'hr' => 'hr2.index',
-                default => null,
-            };
+            $roleTitle = match (Auth::user()->role){
+                'admim' => 'Admin',
+                'hr' => 'HR',
+                'employee' => 'Employee',
+                default => 'Unknown Role',
+            }
         @endphp
-
-        @if ($redirectRoute)
-            <flux:navlist variant="outline">
-                <flux:navlist.item icon="home" :href="route($redirectRoute)" target="_blank">Back to Main</flux:navlist.item>
-            </flux:navlist>
-        @endif
-    @endif
-
+    <flux:callout variant="success" icon="user" heading="Your Role: {{$roleTitle}}" />
+    @endauth
 
     <flux:separator />
 

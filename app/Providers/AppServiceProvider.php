@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\View;
 use App\Models\Ticket;
 use App\Models\Claim;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Blade;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +23,27 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Blade::if('adminOrHr', function () {
+            return Auth::check() && in_array(Auth::user()->role, ['admin', 'hr']);
+        });
+        Blade::if('adminOrHrOremployee', function () {
+            return Auth::check() && in_array(Auth::user()->role, ['admin', 'hr', 'employee']);
+        });
+        // Check if the user is an Admin
+        Blade::if('admin', function () {
+            return Auth::check() && Auth::user()->role === 'admin';
+        });
+
+        // Check if the user is HR
+        Blade::if('hr', function () {
+            return Auth::check() && Auth::user()->role === 'hr';
+        });
+
+        // Check if the user is an Employee
+        Blade::if('employee', function () {
+            return Auth::check() && Auth::user()->role === 'employee';
+        });
+
         View::composer('layouts.app', function ($view) {
             if (Auth::check()) {
                 $user = Auth::user();

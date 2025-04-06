@@ -37,8 +37,8 @@ class Login extends Component
         if (Auth::check()) {
             return redirect()->to(match (Auth::user()->role) {
                 'employee' => route('home'),
-                'hr' => route('hr2.index'),
-                'admin' => route('admin.index'),
+                // 'hr' => route('hr2.index'),
+                'admin', 'hr' => route('admin.index'),
                 default => route('login'),
             });
         }
@@ -118,8 +118,8 @@ class Login extends Component
 
             return redirect()->route(match ($user->role) {
                 'employee' => 'home',
-                'hr' => 'hr2.index',
-                'admin' => 'admin.index',
+                // 'hr' => 'hr2.index',
+                'admin' , 'hr' => 'admin.index',
                 default => 'login',
             });
         }

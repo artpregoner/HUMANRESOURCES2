@@ -29,8 +29,5 @@ require __DIR__ . '/auth.php';
 require __DIR__ . '/portal/portal.php';
 
 
-// hr2 routes
-require __DIR__ . '/hr2/hr2.php';
-
 // admin routes
 require __DIR__ . '/admin/admin.php';

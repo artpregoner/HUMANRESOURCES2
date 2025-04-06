@@ -19,22 +19,16 @@
 
 <body class="min-h-screen bg-white dark:bg-zinc-800">
 
-    @if (Auth::check())
-        @php
-            $role = Auth::user()->role;
-        @endphp
-        @if ($role == 'hr')
-            @include('layouts.hr2-layouts.sidebar') <!-- Sidebar for admin and HR-->
-        @elseif ($role == 'admin')
-            @include('layouts.admin-layouts.sidebar') <!--Admin-->
-        @endif
+    @adminOrHr
+        @include('layouts.admin-layouts.sidebar') <!--Admin-->
+
         @include('layouts.topbar')
         <flux:main class="p-3 bg-gray-200 dark:bg-gray-900 sm:p-5">
             <div class="max-w-screen-xl p-0 mx-auto"> <!-- Removed px-4 lg:px-12 -->
                 @yield('content')<!--Content of dashboard-->
             </div>
         </flux:main>
-    @endif
+    @endadminOrHr
 
     @yield('scripts')
     @stack('scripts')

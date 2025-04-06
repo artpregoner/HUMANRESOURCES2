@@ -18,17 +18,13 @@
 </head>
 
 <body class="min-h-screen bg-white dark:bg-zinc-800">
-    @if (Auth::check())
-        @php
-            $role = Auth::user()->role;
-        @endphp
-
+    @adminOrHrOremployee
         @include('layouts.portal-layouts.sidebar')
         @include('layouts.topbar')
         <flux:main class="p-3 bg-gray-200 dark:bg-gray-900 sm:p-5">
             @yield('content')<!--Content of dashboard-->
         </flux:main>
-    @endif
+    @endadminOrHrOremployee
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     @yield('scripts')

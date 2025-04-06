@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ClaimsController;
 
 
-Route::prefix('claims')->middleware(['auth', 'role:admin'])->group(function(){
+Route::prefix('claims')->middleware(['auth', 'role:admin|hr'])->group(function(){
     Route::get('/list', [ClaimsController::class, 'index'])->name('admin.claims.index');
 
     Route::get('/show/{claims}', [ClaimsController::class, 'show'])->name('admin.claims.show');

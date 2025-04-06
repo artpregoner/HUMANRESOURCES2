@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\CreateEmployeeController;
 use App\Http\Controllers\Admin\WorkforceController;
 
 
-Route::middleware(['auth', 'role:admin'])->group(function(){
+Route::middleware(['auth', 'role:admin|hr'])->group(function(){
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index');
 
 

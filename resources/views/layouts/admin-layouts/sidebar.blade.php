@@ -33,7 +33,17 @@
     <flux:navlist variant="outline">
         <flux:navlist.item icon="home" :href="route('home')" target="_blank">Portal</flux:navlist.item>
     </flux:navlist>
-
+    @auth
+        @php
+            $roleTitle = match (Auth::user()->role){
+                'admim' => 'Admin',
+                'hr' => 'HR',
+                'employee' => 'Employee',
+                default => 'Unknown Role',
+            }
+        @endphp
+    <flux:callout variant="success" icon="user" heading="Your Role: {{$roleTitle}}" />
+    @endauth
     <flux:separator />
 
     <flux:navlist variant="outline">

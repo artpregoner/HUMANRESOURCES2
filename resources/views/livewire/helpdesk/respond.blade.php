@@ -40,8 +40,7 @@
                         @php
                             $role = Auth::user()->role;
                             $redirectRoute = match ($role) {
-                                'admin' => 'admin.helpdesk.index',
-                                'hr' => 'hr2.helpdesk.index',
+                                'admin', 'hr' => 'admin.helpdesk.index',
                                 'employee' => 'portal.helpdesk.index',
                                 default => null,
                             };
@@ -77,8 +76,7 @@
                     @php
                         $role = Auth::user()->role;
                         $redirectRoute = match ($role) {
-                            'admin' => 'admin.helpdesk.index',
-                            'hr' => 'hr2.helpdesk.index',
+                            'admin', 'hr' => 'admin.helpdesk.index',
                             'employee' => 'portal.helpdesk.index',
                             default => null,
                         };

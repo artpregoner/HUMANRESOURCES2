@@ -3,7 +3,7 @@
     <!-- Expense Claim Card -->
     <div class="max-w-4xl mx-auto mb-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
       <!-- Card Header -->
-      <div class="flex flex-col p-4 border-b md:flex-row md:justify-between md:items-center dark:border-gray-700">
+        <div class="flex flex-col p-4 border-b md:flex-row md:justify-between md:items-center dark:border-gray-700">
         <div>
           <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Expense Claim</h3>
           <p class="text-sm text-gray-600 dark:text-gray-400">Claims #{{ $claim->id }}</p>
@@ -37,10 +37,10 @@
             </p>
           @endif
         </div>
-      </div>
+        </div>
 
       <!-- Card Body -->
-      <div class="p-4 md:p-6">
+        <div class="p-4 md:p-6">
         <!-- User Information -->
         <div class="flex flex-col justify-between mb-6 md:flex-row md:items-center">
           <div class="flex items-center mb-4 md:mb-0">
@@ -133,75 +133,69 @@
             </tbody>
           </table>
         </div>
-      </div>
-      <div class="p-5 border-t border-gray-200 dark:border-gray-700">
-        <h5 class="mb-4 text-base font-semibold text-gray-900 dark:text-white">Attachments</h5>
-        <div class="space-y-3">
-            @forelse($claim->attachments as $attachment)
-            <div class="flex items-center">
-                <div class="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full dark:bg-blue-900">
-                    <svg class="w-5 h-5 text-blue-600 dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M4.5 17H4a3 3 0 0 1-3-3V8.5a3 3 0 0 1 3-3h.5V4c0-1.1.9-2 2-2h7a2 2 0 0 1 2 2v1.5h.5a3 3 0 0 1 3 3V14a3 3 0 0 1-3 3h-.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 4.5 18.5V17Z"/>
-                        <path d="M9 6a1 1 0 1 1 2 0v3h3a1 1 0 1 1 0 2h-3v3a1 1 0 1 1-2 0v-3H6a1 1 0 1 1 0-2h3V6Z"/>
-                    </svg>
-                </div>
-                <div class="ml-3">
-                    <a href="{{ Storage::url($attachment->file_path) }}" target="_blank"
-                        class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">
+        </div>
+        <div class="p-5 border-t border-gray-200 dark:border-gray-700">
+            <h5 class="mb-4 text-base font-semibold text-gray-900 dark:text-white">Attachments</h5>
+            <div class="space-y-3">
+                @forelse($claim->attachments as $attachment)
+                <div class="flex items-center">
+                    <div class="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full dark:bg-blue-900">
+                        <svg class="w-5 h-5 text-blue-600 dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M4.5 17H4a3 3 0 0 1-3-3V8.5a3 3 0 0 1 3-3h.5V4c0-1.1.9-2 2-2h7a2 2 0 0 1 2 2v1.5h.5a3 3 0 0 1 3 3V14a3 3 0 0 1-3 3h-.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 4.5 18.5V17Z"/>
+                            <path d="M9 6a1 1 0 1 1 2 0v3h3a1 1 0 1 1 0 2h-3v3a1 1 0 1 1-2 0v-3H6a1 1 0 1 1 0-2h3V6Z"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <a href="{{ Storage::url($attachment->file_path) }}" target="_blank"
+                            class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">
 
-                        <span class="sm:hidden">{{ Str::limit($attachment->file_name, 30, '...') }}</span> <!-- Shorten for mobile -->
-                        <span class="hidden sm:inline">{{ $attachment->file_name }}</span> <!-- Full name for larger screens -->
-                    </a>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">
-                        {{ number_format($attachment->file_size / 1048576, 2) }} MB
-                        <span class="ml-2">{{ $attachment->file_type }}</span>
-                    </p>
+                            <span class="sm:hidden">{{ Str::limit($attachment->file_name, 30, '...') }}</span> <!-- Shorten for mobile -->
+                            <span class="hidden sm:inline">{{ $attachment->file_name }}</span> <!-- Full name for larger screens -->
+                        </a>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">
+                            {{ number_format($attachment->file_size / 1048576, 2) }} MB
+                            <span class="ml-2">{{ $attachment->file_type }}</span>
+                        </p>
+                    </div>
                 </div>
+                @empty
+                <p class="text-sm text-gray-500 dark:text-gray-400">No attachments found</p>
+                @endforelse
             </div>
-            @empty
-            <p class="text-sm text-gray-500 dark:text-gray-400">No attachments found</p>
-            @endforelse
         </div>
     </div>
-    </div>
 
-    <!-- Action Buttons Card -->
     <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800">
-      <div class="p-4 md:p-6">
-        <div class="flex flex-col justify-between space-y-4 md:flex-row md:space-y-0">
-          <div>
-            @if (!$isOwner) {{-- Only show if the logged-in user is NOT the owner --}}
-              @if($status !== 'rejected')
-                <button wire:click="approve"
-                        class="{{ $status === 'approved' ? 'text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300' : 'text-white bg-green-700 hover:bg-green-800 focus:ring-green-300' }} focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 mb-3 dark:focus:ring-green-800">
-                  {{ $status === 'approved' ? 'Unapprove' : 'Approve' }}
-                </button>
-              @endif
-              @if($status !== 'approved')
-                <button wire:click="reject"
-                        class="{{ $status === 'rejected' ? 'text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300' : 'text-white bg-red-700 hover:bg-red-800 focus:ring-red-300' }} focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-3 dark:focus:ring-red-900">
-                  {{ $status === 'rejected' ? 'Unreject' : 'Reject' }}
-                </button>
-              @endif
-            @endif
-          </div>
-          @php
-            $role = Auth::user()->role;
-            $redirectRoute = match ($role) {
-              'admin' => 'admin.claims.index',
-              'hr' => 'hr2.claims.index',
-              default => null,
-            };
-          @endphp
-          @if ($redirectRoute)
-            <div>
-              <a href="{{ route($redirectRoute) }}"
-                 class="text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-                Cancel
-              </a>
+        <div class="p-4 md:p-6">
+            <!-- Use flex for large screens, stack in mobile -->
+            <div class="flex flex-col justify-between gap-4 space-y-4 md:flex-row md:space-y-0">
+                <!-- Approve/Reject buttons column -->
+                <div class="flex flex-wrap w-full gap-4 md:w-auto">
+                    @if (!$isOwner) {{-- Only show if the logged-in user is NOT the owner --}}
+                        @if($status !== 'rejected')
+                            <button wire:click="approve"
+                                    class="{{ $status === 'approved' ? 'text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300' : 'text-white bg-green-700 hover:bg-green-800 focus:ring-green-300' }} focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-3 dark:focus:ring-green-800 w-full md:w-auto">
+                                {{ $status === 'approved' ? 'Unapprove' : 'Approve' }}
+                            </button>
+                        @endif
+                        @if($status !== 'approved')
+                            <button wire:click="reject"
+                                    class="{{ $status === 'rejected' ? 'text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300' : 'text-white bg-red-700 hover:bg-red-800 focus:ring-red-300' }} focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-3 dark:focus:ring-red-900 w-full md:w-auto">
+                                {{ $status === 'rejected' ? 'Unreject' : 'Reject' }}
+                            </button>
+                        @endif
+                    @endif
+                </div>
+
+                <!-- Cancel button column -->
+                <div class="flex justify-end w-full md:w-auto">
+                    <a href="{{ route('admin.claims.index') }}"
+                       class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 w-full md:w-auto">
+                        Cancel
+                    </a>
+                </div>
             </div>
-          @endif
         </div>
-      </div>
     </div>
+
   </div>

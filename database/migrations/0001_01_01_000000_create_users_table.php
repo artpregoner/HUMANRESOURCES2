@@ -23,8 +23,18 @@ return new class extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamp('last_login')->nullable();
+            //new line for future features based on claude AI
+            $table->string('last_login_ip', 45)->nullable(); // Store IPv6 addresses
+            $table->boolean('mfa_enabled')->default(false);
+            $table->string('mfa_secret')->nullable();
+            $table->integer('failed_login_attempts')->default(0);
+            $table->timestamp('locked_until')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            // Add index for faster security lookups
+            $table->index(['email', 'is_active']);
+            $table->index('last_login');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

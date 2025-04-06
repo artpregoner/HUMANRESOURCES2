@@ -11,16 +11,40 @@ class HelpdeskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $ticketCount = Ticket::count(); // Count all tickets
+        $perPage = $request->input('per_page', 10);
+        $search = $request->input('search');
+
+        $totalTicketCount = Ticket::count();
         $archivedTicketCount = Ticket::onlyTrashed()->count();
 
-        $tickets = Ticket::with(['user', 'category', 'responses' => function($query) {
-            $query->latest()->limit(1); // Get only the latest response for each ticket
-        }])->get(); // Get all tickets
+        $query = Ticket::with([
+            'user',
+            'category',
+            'responses' => function($query) {
+            $query->latest()->limit(1);
+        }]);
 
-        return view('hr2.helpdesk.index', compact('tickets', 'ticketCount', 'archivedTicketCount'));
+        // Apply search filter if provided
+        if ($search) {
+            $query->where('title', 'like', "%$search%")
+                    ->orWhere('description', 'like', "%$search%")
+                    ->orWhereHas('user', function ($q) use ($search) {
+                        $q->where('name', 'like', "%$search%");
+                    });
+        }
+        $filteredTicketCount = $query->count();
+        $tickets = $query->paginate($perPage);
+
+        return view('hr2.helpdesk.index', compact(
+            'tickets',
+            'totalTicketCount',
+            'archivedTicketCount',
+            'perPage',
+            'search',
+            'filteredTicketCount'
+        ));
     }
 
 

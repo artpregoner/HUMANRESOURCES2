@@ -1,92 +1,53 @@
 <div>
-    {{-- @if (session()->has('message'))
-        <div class="alert alert-success">
-            {{ session('message') }}
-        </div>
-    @endif --}}
     @include('components.alert.alert')
 
-    <form wire:submit.prevent="save">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="email-title">Profile Picture</h5>
-            </div>
-            <div class="card-body text-center">
-                <input type="file"
-                       wire:model="photo"
-                       class="d-none"
-                       id="upload-photo"
-                       accept="image/*">
-                <label for="upload-photo"
-                       class="user-avatar d-block"
-                       x-data="{ dragOver: false }"
-                       x-on:dragover.prevent="dragOver = true"
-                       x-on:dragleave.prevent="dragOver = false"
-                       x-on:drop.prevent="dragOver = false; $refs.input.files = $event.dataTransfer.files; $refs.input.dispatchEvent(new Event('change'));"
-                       :class="{ 'drag-over': dragOver }">
-                    @if ($photo)
-                        <img src="{{ $photo->temporaryUrl() }}"
-                             alt="Profile Preview"
-                             class="rounded-circle user-avatar-xxl">
-                    @else
-                        <img src="{{ Auth::user()->profile_photo_url ?? asset('template/assets/images/avatar-1.jpg') }}"
-                             alt="User Avatar"
-                             class="rounded-circle user-avatar-xxl">
-                    @endif
-                </label>
-                @error('photo')
-                    <p class="text-danger mt-2">{{ $message }}</p>
-                @enderror
-                <div wire:loading wire:target="photo" class="text-primary">
-                    <i class="fas fa-spinner fa-spin"></i> Uploading files...
-                </div>
-                @if ($photo)
-                    <p class="text-success">Preview updated! Click save.</p>
-                @endif
-            </div>
-            <div class="card-footer d-flex text-muted">
-                Click the image above or drag & drop a new one. (128x128px recommended, max 5MB)
-            </div>
-        </div>
+    <div class="flex flex-col gap-4 item-center">
+        @livewire('profile.update-user-avatar')
 
-        <div class="row mt-4">
-            <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
-                <div class="section-block" id="cards">
-                    <h3 class="section-title">Profile Information</h3>
-                    <p>Update your account's profile information.</p>
+        <div class="max-w-screen-xl gap-4 md:grid md:grid-cols-2 md:gap-8">
+            <div class="rounded-lg ">
+                <div class="mt-4 md:mt-0">
+                    <h2 class="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+                        Profile Information
+                    </h2>
+                    <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">
+                        Update your account's profile information.
+                    </p>
                 </div>
             </div>
-            <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="inputName" class="col-form-label">Name</label>
-                            <input id="inputName"
-                                   type="text"
-                                   wire:model="name"
-                                   class="form-control form-control-lg">
+            <div class="rounded-lg ">
+                <div class="mt-4 md:mt-0">
+                    <form wire:submit.prevent="save">
+
+                        <div class="w-full p-4 bg-white shadow-lg rounded-xl dark:bg-gray-800">
+                            <h2 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                Edit Name
+                            </h2>
+
+                            <label for="name" class="col-form-label">Name</label>
+                            <input type="text" wire:model="name" name="name" id="inputName"
+                                class="w-full p-3 text-lg text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Enter your name" required>
+
                             @error('name')
-                                <span class="text-danger">{{ $message }}</span>
+                                <p class="mt-2 text-red-500">{{ $message }}</p>
                             @enderror
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
-                            </div>
-                            <div class="col-sm-6 pl-0">
-                                <p class="text-right">
-                                    <button type="submit" class="btn btn-space btn-dark active">SAVE</button>
-                                </p>
+                            <div class="flex justify-end pt-4">
+                                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">SAVE</button>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </form>
 
-    <script>
-        Livewire.on('photoUpdated', () => {
-            alert('Profile photo updated successfully!');
+    </div>
+
+    {{-- <script>
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('photoUpdated', () => {
+                alert('Profile photo updated successfully!');
+            });
         });
-    </script>
+    </script> --}}
 </div>

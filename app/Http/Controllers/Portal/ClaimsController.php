@@ -16,26 +16,43 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class ClaimsController extends Controller
 {
     // Display a listing of users.
-    public function index()
+    public function index(Request $request)
     {
-        $claims = Claim::where('user_id', Auth::id())->with('items.category')
-            ->orderByRaw("
-                CASE
-                    WHEN status = 'submitted' THEN 1
-                    WHEN status = 'pending' THEN 2
-                    WHEN status = 'approved' THEN 3
-                    WHEN status = 'unapproved' THEN 4
-                    WHEN status = 'rejected' THEN 5
-                ELSE 6 END, created_at DESC") // Sort newest claims within each status
-            ->get();
+        // $perPage = $request->input('per_page', 10);
+        // $search = $request->input('search');
 
-        $claimsCount = Claim::where('user_id', Auth::id())->count();
+        $totalClaimsCount = Claim::where('user_id', Auth::id())->count();
         $archivedClaimsCount = Claim::onlyTrashed()->where('user_id', Auth::id())->count();
 
+        // $query = Claim::with([
+        //     'items.category'
+        // ])->where('user_id', Auth::id());
+
+        // // Apply search filter
+        // if ($search) {
+        //     $query->where(function ($q) use ($search) {
+        //         $q->where('status', 'like', "%$search%")
+        //           ->orWhere('total_amount', 'like', "%$search%")
+        //           ->orWhereHas('user', function ($q) use ($search) {
+        //               $q->where('name', 'like', "%$search%");
+        //           });
+        //     });
+        // }
 
 
-        return view('portal.claims.index', compact('claims', 'claimsCount', 'archivedClaimsCount'));
+        // // Paginate results
+        // $claims = $query->paginate($perPage);
+
+        // return view('portal.claims.index', compact(
+        //     'claims',
+        //     'totalClaimsCount',
+        //     'archivedClaimsCount',
+        //     'perPage',
+        //     'search'
+        // ));
+        return view('portal.claims.index', compact('archivedClaimsCount', 'totalClaimsCount'));
     }
+
 
     // Show the form for creating a new user.
     public function create()
@@ -95,7 +112,7 @@ class ClaimsController extends Controller
         } elseif ($claim->status === 'unapproved') {
             $actionedBy = "by: " . ($unapproverName ?? 'N/A');
         } else {
-            $actionedBy = "Unrejected";
+            $actionedBy = "Submitted";
         }
 
         return view('portal.claims.show', compact('claim', 'statusBadge', 'actionedBy'));
@@ -128,12 +145,52 @@ class ClaimsController extends Controller
     }
 
     // Trash UI
-    public function trash()
+    public function trash(Request $request)
     {
+        $perPage = $request->input('per_page', 10);
+        $search = $request->input('search');
+
         $claimsCount = Claim::where('user_id', Auth::id())->count();
 
-        $claims = Claim::onlyTrashed()->get();
-        return view('portal.claims.trash', compact('claims', 'claimsCount'));
+        $query = Claim::onlyTrashed()->where('user_id', Auth::id());
+
+        // Apply search filter
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('status', 'like', "%$search%")
+                    ->orWhere('total_amount', 'like', "%$search%")
+                    ->orWhereHas('user', function ($q) use ($search) {
+                        $q->where('name', 'like', "%$search%");
+                    });
+            });
+        }
+
+        $claims = $query->paginate($perPage);
+
+        // Fetch deleted users
+        foreach ($claims as $claim) {
+            if ($claim->deleted_by) {
+                $deletedUser = \App\Models\User::find($claim->deleted_by);
+                if ($deletedUser) {
+                    $claim->deleted_by_name = $deletedUser->id === Auth::id() ? 'You' : $deletedUser->name;
+                    $claim->deleted_by_role = match ($deletedUser->role) {
+                        'hr' => '(HR)',
+                        'admin' => '(Admin)',
+                        default => '(Employee)',
+                    };
+                } else {
+                    $claim->deleted_by_name = 'Unknown User';
+                    $claim->deleted_by_role = '';
+                }
+            }
+        }
+
+        return view('portal.claims.trash', compact(
+        'claims',
+        'claimsCount',
+        'search',
+        'perPage'
+        ));
     }
 
 

@@ -9,7 +9,7 @@ use App\Models\TicketResponse;
 use App\Models\TicketResponseFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
-
+use Symfony\Component\HttpFoundation\StreamedResponse;
 class Respond extends Component
 {
     use WithFileUploads;
@@ -50,6 +50,17 @@ class Respond extends Component
         $this->showReplyBox = !$this->showReplyBox;
     }
 
+    public function downloadFile($fileId)
+    {
+        $file = TicketResponseFile::findOrFail($fileId); // Kunin ang file mula sa database
+        $filePath = storage_path('app/public/' . $file->file_path); // Path sa storage
+
+        if (file_exists($filePath)) {
+            return response()->download($filePath, $file->file_name);
+        } else {
+            session()->flash('error', 'File not found.');
+        }
+    }
 
     public function removeFile($index)
     {

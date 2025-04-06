@@ -9,17 +9,44 @@ use Illuminate\Support\Facades\{Auth, Storage};
 
 class HelpdeskController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $ticketCount = Ticket::where('user_id', Auth::id())->count();
+        // $perPage = $request->input('per_page', 10);
+        // $search = $request->input('search');
+
+        $totalTicketCount = Ticket::where('user_id', Auth::id())->count();
         $archivedTicketCount = Ticket::onlyTrashed()->where('user_id', Auth::id())->count();
 
-        $tickets = Ticket::with(['category', 'responses' => function($query) {
-            $query->latest()->limit(1); // Get only the latest response for each ticket
-        }])
-        ->where('user_id', Auth::id())->get();
+        // $query = Ticket::with([
+        //     'category',
+        //     'responses' => function($query) {
+        //     $query->latest()->limit(1);
+        // }])
+        // ->where('user_id', Auth::id());
 
-        return view('portal.helpdesk.index', compact('tickets', 'ticketCount', 'archivedTicketCount'));
+        // // Apply search filter if provided
+        // if ($search) {
+        //     $query->where('title', 'like', "%$search%")
+        //             ->orWhere('description', 'like', "%$search%")
+        //             ->orWhereHas('user', function ($q) use ($search) {
+        //                 $q->where('name', 'like', "%$search%");
+        //             });
+        // }
+        // // Get total count AFTER filtering
+        // $filteredTicketCount = $query->count();
+
+        // // Paginate results
+        // $tickets = $query->paginate($perPage);
+
+        // return view('portal.helpdesk.index', compact(
+        //     'tickets',
+        //     'totalTicketCount',
+        //     'archivedTicketCount',
+        //     'filteredTicketCount',
+        //     'perPage',
+        //     'search'
+        // ));
+        return view('portal.helpdesk.index', compact('archivedTicketCount', 'totalTicketCount'));
     }
 
 
@@ -77,7 +104,7 @@ class HelpdeskController extends Controller
             }
         }
 
-        return redirect()->route('portal.helpdesk.show', $ticket->id)->with('success', 'Ticket created successfully.');
+        return redirect()->route('portal.helpdesk.show');
     }
 
 
@@ -200,12 +227,42 @@ class HelpdeskController extends Controller
 
 
     //archive dashboard
-    public function trash()
+    public function trash(Request $request)
     {
-        $ticketsCount = Ticket::where('user_id', Auth::id())->count();
+        $perPage = $request->input('per_page', 10);
+        $search = $request->input('search');
 
-        $tickets = Ticket::onlyTrashed()->with(['category', 'deletedByUser'])->get();
-        return view('portal.helpdesk.trash', compact('tickets', 'ticketsCount'));
+        $totalTicketCount = Ticket::where('user_id', Auth::id())->count();
+        $deletedTicket = Ticket::onlyTrashed()->where('user_id', Auth::id())->count();
+
+
+        $query = Ticket::onlyTrashed()->with([
+            'category',
+            'deletedByUser' => function($query){
+                $query->latest()->limit(1);
+            }]);
+
+        // Apply search filter if provided
+        if ($search) {
+            $query->where('title', 'like', "%$search%")
+                    ->orWhere('description', 'like', "%$search%")
+                    ->orWhereHas('user', function ($q) use ($search) {
+                        $q->where('name', 'like', "%$search%");
+                    });
+        }
+        // Get total count AFTER filtering
+        $filteredTicketCount = $query->count();
+
+        // Paginate results
+        $tickets = $query->paginate($perPage);
+        return view('portal.helpdesk.trash', compact(
+            'tickets',
+            'totalTicketCount',
+            'filteredTicketCount',
+            'deletedTicket',
+            'search',
+            'perPage'
+        ));
     }
 
     //restore deleted ticket

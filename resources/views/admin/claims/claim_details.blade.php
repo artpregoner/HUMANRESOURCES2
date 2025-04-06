@@ -2,7 +2,7 @@
 <div class="card-body">
     <!-- User Information -->
     <div class="row">
-        <div class="form-group col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
+        <div class="pb-2 pr-0 form-group col-sm-6 pb-sm-4 pb-lg-0">
             <div class="btn-account">
                 <span class="user-avatar">
                     <img src="{{ $claim->user->profile_photo_path ? Storage::url($claim->user->profile_photo_path) : asset('template/assets/images/avatar-1.jpg') }}"
@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 text-right">
+        <div class="text-right col-sm-6">
             <small class="text-muted">Submitted by: {{ $claim->submittedBy->name }}</small>
             <h3 class="mb-0">Claims #{{ $claim->id }}</h3>
         </div>
@@ -48,17 +48,17 @@
 
     <!-- Dates -->
     <div class="form-row">
-        <div class="col-md-4 mb-2">
+        <div class="mb-2 col-md-4">
             <label>Expense Date</label>
             <input value="{{ \Carbon\Carbon::parse($claim->expense_date)->format('M/d/Y - h:i A') }}"
                 type="text" class="form-control" disabled>
         </div>
-        <div class="col-md-4 mb-2">
+        <div class="mb-2 col-md-4">
             <label>Submitted Date</label>
             <input value="{{ \Carbon\Carbon::parse($claim->submitted_date)->format('M d, Y - h:i A') }}"
                 type="text" class="form-control" disabled>
         </div>
-        <div class="col-md-4 mb-2">
+        <div class="mb-2 col-md-4">
             <label>Approved Date</label>
             <input value="{{ $claim->approved_date ? \Carbon\Carbon::parse($claim->approved_date)->format('M d, Y') : 'N/A' }}"
                 type="text" class="form-control" disabled>
@@ -66,7 +66,7 @@
     </div>
 
     <!-- Items Table -->
-    <div class="table-responsive-sm mt-4">
+    <div class="mt-4 table-responsive-sm">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -93,7 +93,7 @@
 
     <!-- Reimbursement Checkbox -->
     @if($claim->reimbursement_required)
-        <div class="border-top pt-3">
+        <div class="pt-3 border-top">
             <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" checked disabled>
                 <label class="custom-control-label">Reimbursement is required for this expense claim</label>
@@ -102,7 +102,7 @@
     @endif
 
     <!-- Attachments -->
-    <div class="border-top pt-3">
+    <div class="pt-3 border-top">
         <h6 class="mb-3">Attachments</h6>
         <div class="row">
             @forelse($claim->attachments as $attachment)
@@ -117,14 +117,14 @@
                             </a>
                             <span class="text-muted">
                                 {{ number_format($attachment->file_size / 1048576, 2) }} MB
-                                <small class="text-muted ml-2">{{ $attachment->file_type }}</small>
+                                <small class="ml-2 text-muted">{{ $attachment->file_type }}</small>
                             </span>
                         </div>
                     </div>
                 </div>
             @empty
                 <div class="col-12">
-                    <p class="text-muted mb-0">No attachments found</p>
+                    <p class="mb-0 text-muted">No attachments found</p>
                 </div>
             @endforelse
         </div>

@@ -1,13 +1,10 @@
 @extends('layouts.app')
 @section('title','Human Resources')
-@section('header','Human Resources')
-@section('active-header', 'Dashboard')
 
 @section('content')
     @include('components.alert.alert')
 
-    <div class="ecommerce-widget">
-
+    <div class="gap-4">
         @include('analytics.employee-analytics')
 
         <div class="border-top"></div>

@@ -48,9 +48,10 @@ class ClaimsController extends Controller
     public function trash()
     {
         $claimsCount = Claim::count();
+        $archivedClaimsCount = Claim::onlyTrashed()->count();
 
         $claims = Claim::onlyTrashed()->get();
-        return view('admin.claims.trash', compact('claims', 'claimsCount'));
+        return view('admin.claims.trash', compact('claims', 'claimsCount', 'archivedClaimsCount'));
     }
 
 
@@ -67,7 +68,9 @@ class ClaimsController extends Controller
 
         $claim->delete();
 
-        return redirect()->route('admin.claims.index')->with('success', 'Claim archived successfully.');
+        // return redirect()->route('admin.claims.index')->with('success', 'Claim archived successfully.');
+        return redirect()->back()->with('success', 'Claim archived successfully.');
+
     }
 
     public function restore($id)
@@ -82,7 +85,10 @@ class ClaimsController extends Controller
             $item->category()->onlyTrashed()->restore(); // ✅ Restore category if trashed
         });
 
-        return redirect()->route('admin.claims.trash')->with('success', 'Claim restored successfully.');
+        // return redirect()->route('admin.claims.trash')->with('success', 'Claim restored successfully.');
+        // return redirect()->back()->with('success', 'Category updated successfully!');
+        return redirect()->back()->with('success', 'Claim restored successfully.');
+
     }
 
     public function forceDelete($id)

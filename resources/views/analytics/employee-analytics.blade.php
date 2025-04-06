@@ -2,120 +2,84 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
 @endpush
-<div class="row">
-    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="text-muted">Total Employees</h5>
-                <div class="metric-value d-inline-block">
-                    <h1 class="mb-1">{{ $totalUsers }}</h1>
-                </div>
-                <div class="metric-label d-inline-block float-right text-success font-weight-bold">
-                    <span><i class="fa fa-fw fa-arrow-up"></i></span><span>2.63%</span>
-                </div>
+
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <!-- Total Employees -->
+    <div class="p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <h5 class="text-gray-500 dark:text-gray-400">Total Employees</h5>
+        <div class="flex items-center justify-between mt-2">
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-white">{{ $totalUsers }}</h1>
+            <div class="flex items-center gap-1 font-semibold text-green-500 dark:text-green-400">
+                <i class="fa fa-arrow-up"></i>
+                <span>2.63%</span>
             </div>
-            <div id="sparkline-employees"></div>
         </div>
+        <div id="sparkline-employees" class="mt-2"></div>
     </div>
-    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="text-muted">Active Jobs</h5>
-                <div class="metric-value d-inline-block">
-                    <h1 class="mb-1">4</h1>
-                </div>
-                <div class="metric-label d-inline-block float-right text-primary font-weight-bold">
-                    <span><i class="fa fa-fw fa-arrow-down"></i></span><span>1.08%</span>
-                </div>
+
+    <!-- Active Jobs -->
+    <div class="p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <h5 class="text-gray-500 dark:text-gray-400">Active Jobs</h5>
+        <div class="flex items-center justify-between mt-2">
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-white">4</h1>
+            <div class="flex items-center gap-1 font-semibold text-blue-500 dark:text-blue-400">
+                <i class="fa fa-arrow-down"></i>
+                <span>1.08%</span>
             </div>
-            <div id="sparkline-jobs"></div>
         </div>
+        <div id="sparkline-jobs" class="mt-2"></div>
     </div>
-    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="text-muted">Applications</h5>
-                <div class="metric-value d-inline-block">
-                    <h1 class="mb-1">4</h1>
-                </div>
-                <div class="metric-label d-inline-block float-right text-success font-weight-bold">
-                    <span><i class="fa fa-fw fa-arrow-up"></i></span><span>3.55%</span>
-                </div>
+
+    <!-- Applications -->
+    <div class="p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <h5 class="text-gray-500 dark:text-gray-400">Applications</h5>
+        <div class="flex items-center justify-between mt-2">
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-white">4</h1>
+            <div class="flex items-center gap-1 font-semibold text-green-500 dark:text-green-400">
+                <i class="fa fa-arrow-up"></i>
+                <span>3.55%</span>
             </div>
-            <div id="sparkline-applications"></div>
         </div>
+        <div id="sparkline-applications" class="mt-2"></div>
     </div>
-    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="text-muted">Turnover</h5>
-                <div class="metric-value d-inline-block">
-                    <h1 class="mb-1">4</h1>
-                </div>
-                <div class="metric-label d-inline-block float-right text-danger font-weight-bold">
-                    <span><i class="fa fa-fw fa-arrow-up"></i></span><span>2.00%</span>
-                </div>
+
+    <!-- Turnover -->
+    <div class="p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <h5 class="text-gray-500 dark:text-gray-400">Turnover</h5>
+        <div class="flex items-center justify-between mt-2">
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-white">4</h1>
+            <div class="flex items-center gap-1 font-semibold text-red-500 dark:text-red-400">
+                <i class="fa fa-arrow-up"></i>
+                <span>2.00%</span>
             </div>
-            <div id="sparkline-turnover"></div>
         </div>
+        <div id="sparkline-turnover" class="mt-2"></div>
     </div>
 </div>
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        /* Sparkline Employees */
-        if($("#sparkline-employees").length) {
-            $("#sparkline-employees").sparkline([140, 142, 145, 148, 150, 152, 153, 155, 156, 156, 156, 156], {
-                type: 'line',
-                width: '100%',
-                height: '50',
-                lineColor: '#5969ff',
-                fillColor: 'rgba(89, 105, 255, 0.2)',
-                highlightLineColor: 'rgba(89, 105, 255, 0.1)',
-                highlightSpotColor: 'rgba(89, 105, 255, 0.1)'
-            });
-        }
+        const sparkOptions = (lineColor, fillColor) => ({
+            type: 'line',
+            width: '100%',
+            height: '50',
+            lineColor: lineColor,
+            fillColor: fillColor,
+            highlightLineColor: fillColor.replace('0.2', '0.1'),
+            highlightSpotColor: fillColor.replace('0.2', '0.1'),
+        });
 
-        /* Sparkline Jobs */
-        if($("#sparkline-jobs").length) {
-            $("#sparkline-jobs").sparkline([4, 4, 3, 3, 5, 5, 4, 4, 3, 3, 3, 3], {
-                type: 'line',
-                width: '100%',
-                height: '50',
-                lineColor: '#ff407b',
-                fillColor: 'rgba(255, 64, 123, 0.2)',
-                highlightLineColor: 'rgba(255, 64, 123, 0.1)',
-                highlightSpotColor: 'rgba(255, 64, 123, 0.1)'
-            });
-        }
+        $("#sparkline-employees").sparkline([140, 142, 145, 148, 150, 152, 153, 155, 156, 156, 156, 156],
+            sparkOptions('#5969ff', 'rgba(89, 105, 255, 0.2)'));
 
-        /* Sparkline Applications */
-        if($("#sparkline-applications").length) {
-            $("#sparkline-applications").sparkline([20, 28, 32, 35, 40, 45, 48, 50, 46, 48, 48, 48], {
-                type: 'line',
-                width: '100%',
-                height: '50',
-                lineColor: '#25d5f2',
-                fillColor: 'rgba(37, 213, 242, 0.2)',
-                highlightLineColor: 'rgba(37, 213, 242, 0.1)',
-                highlightSpotColor: 'rgba(37, 213, 242, 0.1)'
-            });
-        }
+        $("#sparkline-jobs").sparkline([4, 4, 3, 3, 5, 5, 4, 4, 3, 3, 3, 3],
+            sparkOptions('#ff407b', 'rgba(255, 64, 123, 0.2)'));
 
-        /* Sparkline Turnover */
-        if($("#sparkline-turnover").length) {
-            $("#sparkline-turnover").sparkline([2, 1, 2, 0, 1, 2, 3, 2, 4, 3, 4, 4], {
-                type: 'line',
-                width: '100%',
-                height: '50',
-                lineColor: '#ffc750',
-                fillColor: 'rgba(255, 199, 80, 0.2)',
-                highlightLineColor: 'rgba(255, 199, 80, 0.1)',
-                highlightSpotColor: 'rgba(255, 199, 80, 0.1)'
-            });
-        }
+        $("#sparkline-applications").sparkline([20, 28, 32, 35, 40, 45, 48, 50, 46, 48, 48, 48],
+            sparkOptions('#25d5f2', 'rgba(37, 213, 242, 0.2)'));
+
+        $("#sparkline-turnover").sparkline([2, 1, 2, 0, 1, 2, 3, 2, 4, 3, 4, 4],
+            sparkOptions('#ffc750', 'rgba(255, 199, 80, 0.2)'));
     });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
+</script>
 @endpush

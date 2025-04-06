@@ -11,16 +11,46 @@ class HelpdeskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $ticketCount = Ticket::count(); // Count all tickets
+        $perPage = $request->input('per_page', 10); // Default 10 per page
+        $search = $request->input('search'); // Get search query
+
+        $totalTicketCount = Ticket::count(); // Total tickets (ignoring search)
         $archivedTicketCount = Ticket::onlyTrashed()->count();
 
-        $tickets = Ticket::with(['user', 'category', 'responses' => function($query) {
-            $query->latest()->limit(1); // Get only the latest response for each ticket
-        }])->get(); // Get all tickets
+        // Build query with relationships
+        $query = Ticket::with([
+            'user',
+            'category',
+            'responses' => function ($query) {
+                $query->latest()->limit(1);
+            }
+        ]);
 
-        return view('admin.helpdesk.index', compact('tickets', 'ticketCount', 'archivedTicketCount'));
+        // Apply search filter if provided
+        if ($search) {
+            $query->where('title', 'like', "%$search%")
+                  ->orWhere('description', 'like', "%$search%")
+                  ->orWhereHas('user', function ($q) use ($search) {
+                      $q->where('name', 'like', "%$search%");
+                  });
+        }
+
+        // Get total count AFTER filtering
+        $filteredTicketCount = $query->count();
+
+        // Paginate results
+        $tickets = $query->paginate($perPage);
+
+        return view('admin.helpdesk.index', compact(
+            'tickets',
+            'totalTicketCount',
+            'filteredTicketCount',
+            'archivedTicketCount',
+            'perPage',
+            'search'
+        ));
     }
 
 
@@ -166,8 +196,8 @@ class HelpdeskController extends Controller
     {
         $tickets = Ticket::onlyTrashed()->with(['category', 'deletedByUser'])->get();
         $ticketsCount = Ticket::count();
-
-        return view('admin.helpdesk.trash', compact('tickets', 'ticketsCount'));
+        $deletedTicket = Ticket::onlyTrashed()->count();
+        return view('admin.helpdesk.trash', compact('tickets', 'ticketsCount', 'deletedTicket'));
     }
 
     //restore deleted ticket

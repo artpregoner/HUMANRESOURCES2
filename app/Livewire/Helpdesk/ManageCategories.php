@@ -4,29 +4,21 @@ namespace App\Livewire\Helpdesk;
 
 use Livewire\Component;
 use App\Models\TicketCategory;
-use App\Models\Ticket;
 use Illuminate\Support\Facades\Session;
+use Livewire\Attributes\On;
 
 class ManageCategories extends Component
 {
-    public $categories, $category_name, $description, $category_id;
+    public $category_name, $description, $category_id;
 
     protected $rules = [
         'category_name' => 'required|string|max:255',
         'description' => 'required|string|max:500',
     ];
 
-    public function mount()
-    {
-        $this->categories = TicketCategory::all();
-    }
-
     public function store()
     {
-        $this->validate([
-            'category_name' => 'required',
-            'description' => 'required',
-        ]);
+        $this->validate();
 
         TicketCategory::create([
             'category_name' => $this->category_name,
@@ -34,12 +26,9 @@ class ManageCategories extends Component
         ]);
 
         session()->flash('success', 'Category added successfully.');
-
-        $this->resetInput(); // Reset form fields
-        $this->dispatch('close-add-category-modal'); // Trigger JavaScript event
-
-        $this->dispatch('refreshCategories'); // Refresh category list
-
+        $this->resetInput();
+        $this->dispatch('close-add-category-modal');
+        $this->dispatch('refreshCategories'); // Notify Livewire to refresh
     }
 
     public function edit($id)
@@ -49,16 +38,12 @@ class ManageCategories extends Component
         $this->category_name = $category->category_name;
         $this->description = $category->description;
 
-        // Updated from $emit to dispatch
         $this->dispatch('showEditModal');
     }
 
     public function update()
     {
-        $this->validate([
-            'category_name' => 'required',
-            'description' => 'required',
-        ]);
+        $this->validate();
 
         if ($this->category_id) {
             $category = TicketCategory::find($this->category_id);
@@ -67,20 +52,20 @@ class ManageCategories extends Component
                 'description' => $this->description,
             ]);
 
-            session()->flash('success', 'Category updated successfully.');
-
+            session()->flash('update', 'Category updated successfully.');
             $this->resetInput();
             $this->dispatch('close-edit-category-modal');
-            $this->dispatch('refreshCategories'); // Refresh category list
-
+            $this->dispatch('refreshCategories'); // Notify Livewire to refresh
         }
     }
 
     public function delete($id)
     {
         TicketCategory::findOrFail($id)->delete();
-        Session::flash('success', 'Category deleted successfully.');
+        session()->flash('delete', 'Category deleted successfully.');
+        $this->dispatch('refreshCategories'); // Notify Livewire to refresh
     }
+
     private function resetInput()
     {
         $this->category_id = null;
@@ -88,11 +73,12 @@ class ManageCategories extends Component
         $this->description = '';
     }
 
+    #[On('refreshCategories')] // 👈 Listen for event and reload data
     public function render()
     {
         return view('livewire.helpdesk.manage-categories', [
-            'categories' => TicketCategory::all(), // Fetch fresh data
+            'categories' => TicketCategory::all(), // Always fetch fresh data
         ]);
     }
-
 }
+

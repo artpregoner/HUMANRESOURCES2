@@ -1,21 +1,18 @@
 @extends('layouts.portal')
 @section('title', 'Helpdesk - My Tickets')
-@section('header', 'Helpdesk')
-@section('active-header', 'Response')
+
+@section('breadcrumbs')
+    <flux:breadcrumbs.item href="#">Helpdesk</flux:breadcrumbs.item>
+    <flux:breadcrumbs.item href="#">Response</flux:breadcrumbs.item>
+    <flux:breadcrumbs.item href="#">{{ Str::limit($ticket->title, 50) }}</flux:breadcrumbs.item>
+@endsection
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('asset/vendor/image-modal/style.css') }}">
 @endpush
 
 @section('content')
-<div class="row">
-    <div class="col-12">
-        @include('components.modal.image-modal')
-        <livewire:portal.helpdesk.respond :ticket="$ticket" />
-    </div>
-</div>
+    @include('components.alert.alert')
+    <livewire:helpdesk.respond :ticket="$ticket" />
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('asset/vendor/image-modal/scripts.js')}}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 @endpush

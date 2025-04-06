@@ -1,140 +1,84 @@
 @extends('layouts.app')
 
 @section('title', 'HR Workforce Analytics')
-@section('header','Workforce')
-@section('active-header', 'Analytics')
-
-@section('styles')
-<style>
-    .analytics-card {
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        margin-bottom: 20px;
-        background-color: white;
-    }
-
-    .chart-container {
-        height: 300px;
-        position: relative;
-    }
-
-    .stats-card {
-        text-align: center;
-        padding: 15px;
-        border-radius: 8px;
-        background-color: white;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .stats-value {
-        font-size: 24px;
-        font-weight: bold;
-        margin: 10px 0;
-    }
-
-    .stats-label {
-        color: #666;
-        font-size: 14px;
-    }
-</style>
+@section('breadcrumbs')
+    <flux:breadcrumbs.item :href="route('admin.workforce.index')">Workforce</flux:breadcrumbs.item>
+    <flux:breadcrumbs.item :href="route('admin.workforce.index')">Analytics</flux:breadcrumbs.item>
 @endsection
 
 @section('content')
-<div class="ecommerce-widget">
-    {{-- <h1 class="mb-4 text-center">HR Workforce Analytics Dashboard</h1> --}}
+<div class="p-4">
+    <div class="space-y-6">
+        <!-- Charts Row -->
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <!-- Attendance Overview -->
+            <div class="bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+                    <h5 class="text-lg font-semibold text-gray-700 dark:text-gray-100">Attendance Overview</h5>
+                </div>
+                <div class="p-4">
+                    <div class="h-[300px] relative">
+                        <canvas id="attendanceChart"></canvas>
+                    </div>
+                </div>
+            </div>
 
-    <div class="row">
-        <!-- Attendance Overview -->
-        <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-            <div class="card">
-                <h5 class="card-header">Attendance Overview</h5>
-                <div class="card-body">
-                    <canvas id="attendanceChart"></canvas>
+            <!-- Performance Metrics -->
+            <div class="bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+                    <h5 class="text-lg font-semibold text-gray-700 dark:text-gray-100">Average Performance</h5>
+                </div>
+                <div class="p-4">
+                    <div class="h-[300px] relative">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Performance Metrics -->
-        <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-            <div class="card">
-                <h5 class="card-header">Average Performance</h5>
-                <div class="card-body">
-                    <canvas id="performanceChart"></canvas>
-                </div>
+        <!-- Department Distribution -->
+        <div class="bg-white rounded-lg shadow-md dark:bg-gray-800">
+            <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+                <h5 class="text-lg font-semibold text-gray-700 dark:text-gray-100">Department Distribution</h5>
             </div>
-        </div>
-    </div>
-
-    <!-- Department Distribution -->
-    <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <div class="card">
-                <h5 class="card-header">Department Distribution</h5>
-                <div class="row">
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="p-4">
+                <div class="grid grid-cols-1 gap-6 xl:grid-cols-12">
+                    <div class="xl:col-span-4">
                         <canvas id="departmentPieChart"></canvas>
                     </div>
-                    <div class="col-xl-8 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="xl:col-span-8">
                         <canvas id="departmentBarChart"></canvas>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Summary Stats -->
-    <div class="row">
-        <!-- Total Employee -->
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-            <div class="card border-3 border-top border-top-primary">
-                <div class="card-body">
-                    <h5 class="text-muted">Total Employee</h5>
-                    <div class="metric-value d-inline-block">
-                        <h1 class="mb-1">4</h1>
+        <!-- Summary Stats -->
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            @php
+                $summaryCards = [
+                    ['label' => 'Total Employee', 'value' => 4],
+                    ['label' => 'Average Rating', 'value' => 0],
+                    ['label' => 'Attendance Rate', 'value' => '92.5%'],
+                    ['label' => 'New Hires', 'value' => 0],
+                ];
+            @endphp
+
+            @foreach($summaryCards as $card)
+            <div class="bg-white border-t-4 border-blue-600 rounded-lg shadow-md dark:bg-gray-800">
+                <div class="p-4">
+                    <h5 class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ $card['label'] }}</h5>
+                    <div class="mt-2">
+                        <h1 class="text-3xl font-bold text-gray-800 dark:text-white">{{ $card['value'] }}</h1>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Helpdesk Tickets -->
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-            <div class="card border-3 border-top border-top-primary">
-                <div class="card-body">
-                    <h5 class="text-muted">Average Rating</h5>
-                    <div class="metric-value d-inline-block">
-                        <h1 class="mb-1">0</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Claims & Reimbursement -->
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-            <div class="card border-3 border-top border-top-primary">
-                <div class="card-body">
-                    <h5 class="text-muted">Attendance Rate</h5>
-                    <div class="metric-value d-inline-block">
-                        <h1 class="mb-1">92.5%</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- New Hires -->
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-            <div class="card border-3 border-top border-top-primary">
-                <div class="card-body">
-                    <h5 class="text-muted">New Hires</h5>
-                    <div class="metric-value d-inline-block">
-                        <h1 class="mb-1">0</h1>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
 @endsection
+
 
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
@@ -183,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             interaction: {
                 mode: 'index',
                 intersect: false,
@@ -236,6 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
                     position: 'top',

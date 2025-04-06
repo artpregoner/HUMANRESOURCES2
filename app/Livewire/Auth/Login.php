@@ -12,8 +12,6 @@ class Login extends Component
 {
     public $email, $password;
     public $errorMessage;
-    public $passwordVisible = false;
-
 
     protected $rules = [
         'email' => 'required|email',
@@ -37,7 +35,6 @@ class Login extends Component
         if (Auth::check()) {
             return redirect()->to(match (Auth::user()->role) {
                 'employee' => route('home'),
-                // 'hr' => route('hr2.index'),
                 'admin', 'hr' => route('admin.index'),
                 default => route('login'),
             });
@@ -130,11 +127,6 @@ class Login extends Component
         ]);
     }
 
-
-    public function togglePasswordVisibility()
-    {
-        $this->passwordVisible = !$this->passwordVisible;
-    }
 
     public function render()
     {

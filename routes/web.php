@@ -1,25 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Authcontroller;
-use App\Livewire\Counter;
-// use Livewire\Livewire;
-// use App\Http\Livewire\Auth\Login;
+use App\Http\Controllers\LandingPageController;
 
-// Livewire::component('auth.login', Login::class);
 
-// Route::get('/login', function () {
-//     return view('livewire.auth.login');
-// })->name('login');
 
 // Route::get('/counter', Counter::class);
 // Route::get('/storage-link', function () {
 //     Artisan::call('storage:link');
 // });
 
+
+Route::get('/', [LandingPageController::class, 'main'])->name('landingpage');
+
 Route::get('/index', function () {
     return view('index');
 });
+
 
 // Authentication routes
 require __DIR__ . '/auth.php';

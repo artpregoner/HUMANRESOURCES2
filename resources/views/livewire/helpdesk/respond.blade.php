@@ -52,7 +52,8 @@
 
                 <!-- Desktop Layout (Inline buttons) -->
                 <div class="flex flex-row gap-2 sm:items-center sm:justify-end max-sm:hidden">
-                    @if (Auth::check() && in_array(Auth::user()->role, ['admin', 'hr']))
+
+                    @adminOrHr
                         <flux:dropdown>
                             <flux:button icon:trailing="chevron-down" size="sm">
                                 Status: {{ ucfirst($ticket->status) }}
@@ -71,7 +72,7 @@
                                 </flux:menu.item>
                             </flux:menu>
                         </flux:dropdown>
-                    @endif
+                    @endadminOrHr
 
                     @php
                         $role = Auth::user()->role;

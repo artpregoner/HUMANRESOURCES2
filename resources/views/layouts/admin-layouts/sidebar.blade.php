@@ -1,8 +1,8 @@
 <flux:sidebar sticky stashable class="border-r bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-700">
     <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
-    <flux:brand href="#" logo="https://fluxui.dev/img/demo/logo.png" name="FAR EAST" class="px-2 dark:hidden" />
-    <flux:brand href="#" logo="https://fluxui.dev/img/demo/dark-mode-logo.png" name="FAR EAST" class="hidden px-2 dark:flex" />
+    <flux:brand :href="route('landingpage')" logo="https://fluxui.dev/img/demo/logo.png" name="FAR EAST" class="px-2 dark:hidden" />
+    <flux:brand :href="route('landingpage')" logo="https://fluxui.dev/img/demo/dark-mode-logo.png" name="FAR EAST" class="hidden px-2 dark:flex" />
 
     <flux:input as="button" variant="filled" placeholder="Search..." icon="magnifying-glass" />
 
@@ -36,13 +36,13 @@
     @auth
         @php
             $roleTitle = match (Auth::user()->role){
-                'admim' => 'Admin',
+                'admin' => 'Admin',
                 'hr' => 'HR',
                 'employee' => 'Employee',
                 default => 'Unknown Role',
             }
         @endphp
-    <flux:callout variant="success" icon="user" heading="Your Role: {{$roleTitle}}" />
+    <flux:callout variant="success" icon="user" heading="User Role: {{$roleTitle}}" />
     @endauth
     <flux:separator />
 

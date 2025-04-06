@@ -19,7 +19,9 @@
                 </form>
             </div>
             <div class="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:space-y-0 md:items-center md:space-x-3">
+                @admin
                 @livewire('helpdesk.manage-categories')
+                @endadmin
                 {{-- <flux:button variant="primary" size="sm" :href="route('portal.helpdesk.create')">Create Ticket</flux:button> --}}
                 <div class="flex items-center w-full space-x-3 md:w-auto">
                     <div>

@@ -144,9 +144,9 @@ class HelpdeskController extends Controller
     {
         // Check if the current user has permission to delete
         // Check if the logged-in user is an admin
-        if (Auth::user()->role !== 'admin') {
-            abort(403, 'Unauthorized action.');
-        }
+        // if (Auth::user()->role !== 'admin') {
+        //     abort(403, 'Unauthorized action.');
+        // }
 
         // Set the deleted_by field to the current user's ID (admin who is deleting)
         $ticket->deleted_by = Auth::id();  // Ensure this is set

@@ -169,14 +169,10 @@
                                 {{ $claim->delete_comments ?? 'No comments' }}
                             </td>
                             <td class="flex gap-2 px-6 py-4">
+                                @if ($claim->canDelete)
                                 <flux:modal.trigger name="delete-claim-{{ $claim->id }}">
                                     <flux:button variant="danger">Delete</flux:button>
                                 </flux:modal.trigger>
-
-                                <flux:modal.trigger name="restore-claim-{{ $claim->id }}">
-                                    <flux:button variant="primary">Restore</flux:button>
-                                </flux:modal.trigger>
-
                                 <flux:modal name="delete-claim-{{ $claim->id }}" class="min-w-[22rem]">
                                     <div class="space-y-6">
                                         <div>
@@ -203,6 +199,10 @@
                                         </div>
                                     </div>
                                 </flux:modal>
+                                @endif
+                                <flux:modal.trigger name="restore-claim-{{ $claim->id }}">
+                                    <flux:button variant="primary">Restore</flux:button>
+                                </flux:modal.trigger>
 
                                 <flux:modal name="restore-claim-{{ $claim->id }}" class="min-w-[22rem]">
                                     <div class="space-y-6">

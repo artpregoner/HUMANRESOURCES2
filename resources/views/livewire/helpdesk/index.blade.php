@@ -156,6 +156,7 @@
                             </flux:badge>
                         </td>
                         <td class="flex gap-2 px-6 py-4">
+                            @if($ticket->canDelete)
                             <flux:modal.trigger name="delete-claim-{{ $ticket->id }}">
                                 <flux:button icon="trash" variant="danger"></flux:button>
                             </flux:modal.trigger>
@@ -185,9 +186,11 @@
                                     </div>
                                 </div>
                             </flux:modal>
+                            @endif
                             <flux:tooltip content="Response">
                                 <flux:button variant="primary" href="{{ route('admin.helpdesk.show', $ticket->id) }}">Response</flux:button>
                             </flux:tooltip>
+
                         </td>
                     </tr>
                     @empty

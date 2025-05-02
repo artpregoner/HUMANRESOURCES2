@@ -16,7 +16,7 @@
     <div class="w-full py-4 max-w-3xs sm:max-w-3xs">
         <a wire:navigate href="{{ route('admin.claims.trash')}}">
             <flux:callout icon="trash" color="red" inline>
-                <flux:callout.heading>Archived Tickets:<flux:badge variant="solid" size="sm" color="red">{{ $archivedClaimsCount }}</flux:badge></flux:callout.heading>
+                <flux:callout.heading>Archived Claims:<flux:badge variant="solid" size="sm" color="red">{{ $archivedClaimsCount }}</flux:badge></flux:callout.heading>
             </flux:callout>
         </a>
     </div>

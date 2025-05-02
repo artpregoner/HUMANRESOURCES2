@@ -32,6 +32,9 @@ class Trash extends Component
     }
     public function render()
     {
+        $user = Auth::user();
+        $isHr = $user->role === 'hr';
+
         $totalClaimsCount = Claim::count();
         $archivedClaimsCount = Claim::onlyTrashed()->count();
 
@@ -57,6 +60,11 @@ class Trash extends Component
         }
         $claims = $query->paginate($this->perPage);
 
+        // Add `canDelete` attribute to each claim
+        foreach ($claims as $claim) {
+            $isOwner = $claim->user_id === $user->id;
+            $claim->canDelete = !$isHr || ($isHr && $isOwner);
+        }
         return view('livewire.claims.trash', compact(
             'claims',
             'totalClaimsCount',

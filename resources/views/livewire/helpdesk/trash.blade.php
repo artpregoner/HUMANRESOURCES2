@@ -113,6 +113,7 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">ID</th>
+                        <th scope="col" class="px-6 py-3">Submitted By</th>
                         <th scope="col" class="px-6 py-3">Subject</th>
                         <th scope="col" class="px-6 py-3">Deleted at</th>
                         <th scope="col" class="px-6 py-3">Deleted by</th>
@@ -123,6 +124,15 @@
                     @forelse ($tickets as $ticket)
                     <tr class=" dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
                         <th scope="row" class="px-6 py-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $ticket->id }}</th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <div class="flex items-center gap-4">
+                                <flux:avatar src="{{ $ticket->user->profile_photo_path ? Storage::url($ticket->user->profile_photo_path) : asset('template/assets/images/avatar-1.jpg') }}" />
+                                <div>
+                                    <flux:heading size="lg">{{ $ticket->user->name ?? 'Unknown User' }}</flux:heading>
+                                    <flux:text>{{ $ticket->user->email ?? 'No Email' }}</flux:text>
+                                </div>
+                            </div>
+                        </th>
                         <td class="px-6 py-4">
                             {{ Str::limit($ticket->title, 50, '...') }}
                         </td>
@@ -153,16 +163,11 @@
                             @endif
                         </td>
                         <td class="flex gap-2 px-6 py-4">
+                            @if ($ticket->canDelete)
                             {{-- force delete ticket button --}}
                                 <flux:modal.trigger name="delete-ticket-{{ $ticket->id }}">
                                     <flux:button variant="danger" icon="trash"></flux:button>
                                 </flux:modal.trigger>
-
-                            {{-- restore ticket  button --}}
-                                <flux:modal.trigger name="restore-ticket-{{ $ticket->id }}">
-                                    <flux:button variant="primary">Restore</flux:button>
-                                </flux:modal.trigger>
-
                             {{-- force delete modal content --}}
                             <flux:modal name="delete-ticket-{{ $ticket->id }}" class="min-w-[22rem]">
                                 <div class="space-y-6">
@@ -189,7 +194,12 @@
                                     </div>
                                 </div>
                             </flux:modal>
+                            @endif
 
+                            {{-- restore ticket  button --}}
+                                <flux:modal.trigger name="restore-ticket-{{ $ticket->id }}">
+                                    <flux:button variant="primary">Restore</flux:button>
+                                </flux:modal.trigger>
                             {{-- restore ticket modal content  --}}
                             <flux:modal name="restore-ticket-{{ $ticket->id }}" class="min-w-[22rem]">
                                 <div class="space-y-6">

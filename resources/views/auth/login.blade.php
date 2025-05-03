@@ -38,7 +38,13 @@
                             Sign in to your account
                         </h1>
                         @livewire('auth.login')
-                        <div class="relative flex items-center justify-center">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-start">
+                            </div>
+                            <a href="{{route('landingpage')}}"
+                                class="text-sm font-medium text-black-600 hover:underline dark:text-white-500">Homepage</a>
+                        </div>
+                        {{-- <div class="relative flex items-center justify-center">
                             <hr class="w-full h-px my-8 bg-gray-300 border-0 dark:bg-gray-700">
                             <span
                                 class="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-800">or</span>
@@ -52,7 +58,7 @@
                                 class="flex-1 text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-red-800 flex justify-center items-center">
                                 <i class="mr-2 fab fa-google"></i> Google
                             </button>
-                        </div>
+                        </div> --}}
                         <flux:radio.group x-data variant="segmented" x-model="$flux.appearance">
                             <flux:radio value="light" icon="sun">Light</flux:radio>
                             <flux:radio value="dark" icon="moon">Dark</flux:radio>

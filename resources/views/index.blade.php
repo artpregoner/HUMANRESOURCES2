@@ -14,7 +14,7 @@
     {{-- from libraries --}}
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600&display=swap" rel="stylesheet" />
     @livewireStyles
-    @fluxAppearance
+    {{-- @fluxAppearance --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/404/404621.png" type="image/x-icon">

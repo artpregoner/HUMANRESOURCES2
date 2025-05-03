@@ -50,9 +50,9 @@
     <flux:separator />
 
     <flux:navlist variant="outline">
-        <flux:radio.group variant="outline" x-data variant="segmented" x-model="$flux.appearance">
-            <flux:radio value="light" icon="sun">Light</flux:radio>
-            <flux:radio value="dark" icon="moon">Dark</flux:radio>
+        <flux:radio.group id="theme-toggle" variant="segmented" x-data="themeToggle" x-on:change="toggleTheme">
+            <flux:radio id="theme-toggle-light-icon" label="Light" icon="sun" x-bind:checked="!isDark" />
+            <flux:radio id="theme-toggle-dark-icon" label="Dark" icon="moon" x-bind:checked="isDark" />
         </flux:radio.group>
     </flux:navlist>
 

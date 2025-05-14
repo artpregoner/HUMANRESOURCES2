@@ -77,7 +77,7 @@
                 </a>
             </div>
             <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-                <img src="https://cdn-icons-png.flaticon.com/512/404/404621.png" alt="mockup" class="rounded-lg">
+                <img src="{{asset ('asset/images/ecom-logo.png')}}" alt="mockup" class="rounded-lg">
             </div>
         </div>
     </section>
@@ -122,6 +122,16 @@
                         <p class="text-gray-500 dark:text-gray-400">Gain valuable insights into your small company's workforce. Track employee performance, optimize resource allocation, and make data-driven decisions to enhance productivity and growth.</p>
                         <a href="#"
                             class="inline-block mt-4 text-blue-700 dark:text-blue-400 hover:underline">Learn more</a>
+                    </div>
+                </div>
+
+                <!-- Employee Self-service -->
+                <div class="overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-700">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="employee self-service" class="object-cover w-full h-48">
+                    <div class="p-6">
+                        <h3 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Employee Self-service</h3>
+                        <p class="text-gray-500 dark:text-gray-400">Empower employees to access and manage their own HR information, such as leave requests, personal data updates, and payroll details. Reduce administrative workload and improve transparency through a user-friendly self-service portal.</p>
+                        <a href="#" class="inline-block mt-4 text-blue-700 dark:text-blue-400 hover:underline">Learn more</a>
                     </div>
                 </div>
 

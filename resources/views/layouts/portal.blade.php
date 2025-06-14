@@ -10,7 +10,8 @@
     <title>@yield('title')</title>
 
     @livewireStyles
-    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+
     {{-- @fluxAppearance --}}
     <script>
         // On page load, check and set the theme based on localStorage or system preference

@@ -21,148 +21,58 @@
 </head>
 
 <body class="bg-gray-50 dark:bg-gray-900">
-    <div class="flex flex-col min-h-screen md:flex-row">
-        <!-- Left Section - Login Form -->
-        <div class="flex items-center justify-center w-full px-6 py-8 md:w-1/2">
-            <div class="w-full max-w-md">
-                <a href="{{route('landingpage')}}" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
-                    <img class="w-8 h-8 mr-2" src="https://cdn-icons-png.flaticon.com/512/404/404621.png"
-                        alt="logo">
-                    FAR EAST
-                </a>
-                <div
-                    class="w-full bg-white rounded-lg shadow dark:border sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-                    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1
-                            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                            Sign in to your account
-                        </h1>
-                        <form class="space-y-4 md:space-y-6" action="#">
-                            <div>
-                                <label for="email"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-                                    email</label>
-                                <div class="relative">
-                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                        <i class="text-gray-500 fas fa-envelope dark:text-gray-400"></i>
-                                    </div>
-                                    {{-- <input type="email" name="email" id="email"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="name@example.com" required=""> --}}
-                                        <flux:input type="email" placeholder="Email" clearable />
-
-                                </div>
-                            </div>
-                            <div>
-                                <label for="password"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                <div class="relative">
-                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                        <i class="text-gray-500 fas fa-lock dark:text-gray-400"></i>
-                                    </div>
-                                    {{-- <input type="password" name="password" id="password" placeholder="••••••••"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        required=""> --}}
-                                        <flux:input type="password" placeholder="Password" viewable />
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-start">
-                                    <div class="flex items-center h-5">
-                                        <input id="remember" aria-describedby="remember" type="checkbox"
-                                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-                                            required="">
-                                    </div>
-                                    <div class="ml-3 text-sm">
-                                        <label for="remember" class="text-gray-500 dark:text-gray-300">Remember
-                                            me</label>
-                                    </div>
-                                </div>
-                                <a href="#"
-                                    class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Forgot
-                                    password?</a>
-                            </div>
-                            <button type="submit"
-                                class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign
-                                in</button>
-                        </form>
-                            <div class="relative flex items-center justify-center">
-                                <hr class="w-full h-px my-8 bg-gray-300 border-0 dark:bg-gray-700">
-                                <span
-                                    class="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-800">or</span>
-                            </div>
-                            <div class="flex space-x-4">
-                                <button type="button"
-                                    class="flex-1 text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800 flex justify-center items-center">
-                                    <i class="mr-2 fab fa-facebook-f"></i> Facebook
-                                </button>
-                                <button type="button"
-                                    class="flex-1 text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-red-800 flex justify-center items-center">
-                                    <i class="mr-2 fab fa-google"></i> Google
-                                </button>
-                            </div>
-                            <flux:radio.group x-data variant="segmented" x-model="$flux.appearance">
-                                <flux:radio value="light" icon="sun">Light</flux:radio>
-                                <flux:radio value="dark" icon="moon">Dark</flux:radio>
-                                <flux:radio value="system" icon="computer-desktop">System</flux:radio>
-                            </flux:radio.group>
-                    </div>
+    <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+    <div class="px-3 py-3 lg:px-5 lg:pl-3">
+        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-start rtl:justify-end">
+            <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                <span class="sr-only">Open sidebar</span>
+                <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+                </svg>
+            </button>
+            <a href="https://flowbite.com" class="flex ms-2 md:me-24">
+            <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" />
+            <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Flowbite</span>
+            </a>
+        </div>
+        <div class="flex items-center">
+            <div class="flex items-center ms-3">
+                <div>
+                <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                    <span class="sr-only">Open user menu</span>
+                    <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+                </button>
+                </div>
+                <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-sm shadow-sm dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
+                <div class="px-4 py-3" role="none">
+                    <p class="text-sm text-gray-900 dark:text-white" role="none">
+                    Neil Sims
+                    </p>
+                    <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
+                    neil.sims@flowbite.com
+                    </p>
+                </div>
+                <ul class="py-1" role="none">
+                    <li>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Dashboard</a>
+                    </li>
+                    <li>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Settings</a>
+                    </li>
+                    <li>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Earnings</a>
+                    </li>
+                    <li>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
+                    </li>
+                </ul>
                 </div>
             </div>
-        </div>
-
-        <!-- Right Section - Security Content -->
-        <div class="flex items-center justify-center w-full px-6 py-8 bg-blue-600 md:w-1/2">
-            <div class="max-w-md p-6 text-white">
-                <div class="mb-8">
-                    <h2 class="mb-6 text-3xl font-bold">Secure Account Protection</h2>
-                    <p class="mb-4 text-lg">Your security is our top priority. Our platform offers industry-leading
-                        protection for your data and privacy.</p>
-                </div>
-
-                <div class="space-y-6">
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0">
-                            <i class="text-2xl text-white fas fa-shield-alt"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="mb-2 text-xl font-semibold">Advanced Encryption</h3>
-                            <p>All your data is protected with end-to-end encryption keeping your information safe and
-                                secure.</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0">
-                            <i class="text-2xl text-white fas fa-fingerprint"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="mb-2 text-xl font-semibold">Two-Factor Authentication</h3>
-                            <p>Add an extra layer of security to your account with our 2FA options.</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0">
-                            <i class="text-2xl text-white fas fa-history"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="mb-2 text-xl font-semibold">Activity Monitoring</h3>
-                            <p>Monitor all login attempts and receive alerts for any suspicious activity.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex items-center p-4 mt-8 bg-blue-700 rounded-lg">
-                    <div class="flex-shrink-0">
-                        <i class="text-2xl fas fa-info-circle"></i>
-                    </div>
-                    <p class="ml-4">Join over 10,000+ users who trust our platform for their personal and business
-                        needs.</p>
-                </div>
             </div>
         </div>
     </div>
+    </nav>
     @fluxScripts
     @livewireScripts
 </body>

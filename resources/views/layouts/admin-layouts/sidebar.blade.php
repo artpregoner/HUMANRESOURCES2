@@ -54,11 +54,15 @@
     </flux:navlist>
 
     <flux:dropdown position="top" align="start" class="max-lg:hidden">
-        <flux:profile avatar="{{ Auth::user()->profile_photo_url ?? asset('template/assets/images/avatar-1.jpg') }}" name="{{  Auth::user()->name }}" />
-            {{-- <flux:profile
-            avatar="{{ Auth::user()->profile_photo_url ? Auth::user()->profile_photo_url : Auth::user()->name }}"
-            name="{{ Auth::user()->name }}"
-        /> --}}
+        @if (Auth::user()->profile_photo_path)
+            <flux:profile
+                avatar="{{ Auth::user()->profile_photo_url }}"
+                name="{{ Auth::user()->name }}"
+            />
+        @else
+            <flux:profile
+            name="{{ Auth::user()->name }}" avatar:color="auto"/>
+        @endif
 
         <flux:menu>
             <flux:subheading>Signed in as</flux:subheading>

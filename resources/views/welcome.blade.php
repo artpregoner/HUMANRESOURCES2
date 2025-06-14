@@ -14,15 +14,8 @@
     {{-- from libraries --}}
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600&display=swap" rel="stylesheet" />
     @livewireStyles
-    {{-- @fluxAppearance --}}
-    <script>
-        // On page load, check and set the theme based on localStorage or system preference
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    </script>
+    @fluxAppearance
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/404/404621.png" type="image/x-icon">

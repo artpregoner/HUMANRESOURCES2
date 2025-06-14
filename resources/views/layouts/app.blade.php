@@ -14,7 +14,7 @@
     <title>@yield('title')</title>
 
     @livewireStyles
-    {{-- @fluxAppearance --}}
+    @fluxAppearance
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')

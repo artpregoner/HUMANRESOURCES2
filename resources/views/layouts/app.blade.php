@@ -7,22 +7,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/404/404621.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=inter:400,500,600&display=swap" rel="stylesheet" />
+
+
     <title>@yield('title')</title>
 
     @livewireStyles
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
     {{-- @fluxAppearance --}}
-    <script>
-        // On page load, check and set the theme based on localStorage or system preference
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    </script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
     @yield('styles')
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        @font-face {
+            font-family: 'Monolisa';
+            src: url('/fonts/MonoLisa-Regular.woff2') format('woff2'),
+                url('/fonts/MonoLisa-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Monolisa';
+            src: '/fonts/MonoLisa-Medium.woff2' format('woff2'),
+                '/fonts/MonoLisa-Medium.woff' format('woff');
+            font-weight: 500;
+            font-style: normal;
+        }
+    </style>
 </head>
 
 <body class="min-h-screen bg-white dark:bg-zinc-800">
@@ -42,38 +59,6 @@
     @stack('scripts')
     @livewireScripts
     @fluxScripts
-
-    <script>
-        document.addEventListener('alpine:init', () => {
-            Alpine.data('themeToggle', () => ({
-                // Get the current theme from localStorage or fallback to system preference
-                isDark: localStorage.getItem('color-theme') === 'dark' ||
-                        (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches),
-
-                init() {
-                    // Apply the theme on page load
-                    if (this.isDark) {
-                        document.documentElement.classList.add('dark');
-                    } else {
-                        document.documentElement.classList.remove('dark');
-                    }
-                },
-
-                toggleTheme() {
-                    // Toggle the dark mode state
-                    this.isDark = !this.isDark;
-
-                    if (this.isDark) {
-                        document.documentElement.classList.add('dark');
-                        localStorage.setItem('color-theme', 'dark');
-                    } else {
-                        document.documentElement.classList.remove('dark');
-                        localStorage.setItem('color-theme', 'light');
-                    }
-                }
-            }));
-        });
-    </script>
 
 </body>
 

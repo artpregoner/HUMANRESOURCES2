@@ -10,7 +10,10 @@ use App\Http\Controllers\LandingPageController;
 //     Artisan::call('storage:link');
 // });
 
-
+Route::get('ui', function () {
+    return view('ui-tester');
+}
+);
 Route::get('/', [LandingPageController::class, 'main'])->name('landingpage');
 
 Route::get('/index', function () {

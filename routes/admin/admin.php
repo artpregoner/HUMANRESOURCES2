@@ -6,8 +6,8 @@ use App\Http\Controllers\Admin\CreateEmployeeController;
 use App\Http\Controllers\Admin\WorkforceController;
 
 
-Route::middleware(['auth', 'role:admin|hr'])->group(function(){
-    Route::get('/dashboard', [AdminController::class, 'index'])->middleware('verified')->name('admin.index');
+Route::middleware(['auth', 'role:admin|hr', 'verified'])->group(function(){
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index');
 
 
     Route::get('/self-service/employee', [CreateEmployeeController::class, 'index'])->name('admin.create.employee');

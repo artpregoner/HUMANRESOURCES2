@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Portal\PortalController;
 
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/portal', [PortalController::class, 'home'])->name('home');
     Route::get('/portal/myprofile',[PortalController::class,'myprofile'])->name('portal.myprofile');
 });

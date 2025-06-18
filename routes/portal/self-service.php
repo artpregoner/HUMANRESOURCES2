@@ -6,6 +6,6 @@ use App\Http\Controllers\Portal\EmployeePayslipController;
 
 
 
-Route::prefix('portal/self-service')->middleware(['auth'])->group(function(){
+Route::prefix('portal/self-service')->middleware(['auth', 'verified'])->group(function(){
     Route::get('/payslip', [EmployeePayslipController::class,'index'])->name('portal.ess.payslip.index');
 });

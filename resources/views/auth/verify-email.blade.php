@@ -58,19 +58,31 @@
                         <div class="alert alert-success">{{ session('message') }}</div>
                     @endif
                     <div class="flex space-x-4">
-                        @if (Auth::user()->profile_photo_path)
-                            <flux:profile
-                                avatar="{{ Auth::user()->profile_photo_url }}"
-                            />
+                        <flux:dropdown position="top" align="start" class="max-lg:hidden">
+                            @if (Auth::user()->profile_photo_path)
+                                <flux:profile
+                                    avatar="{{ Auth::user()->profile_photo_url }}"
+                                    name="{{ Auth::user()->name }}"
+                                />
+                            @else
+                                <flux:profile
+                                name="{{ Auth::user()->name }}" avatar:color="auto"/>
+                            @endif
 
-                        @else
-                            <flux:avatar
-                                name="{{ Auth::user()->name }}"
-                                initials:single
-                            />
-                        @endif
-                        <h2 class="mb-3 text-2xl font-bold text-gray-900 dark:text-white">Hi! {{Auth::user()->name}}</h2>
+                            <flux:menu>
+                                <flux:subheading>Signed in as</flux:subheading>
+                                <flux:heading>{{  Auth::user()->email }}</flux:heading>
+                                <flux:menu.separator />
+                                <flux:menu.item icon="arrow-right-start-on-rectangle" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Logout
+                                </flux:menu.item>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </flux:menu.seperator>
+                        </flux:dropdown>
                     </div>
+
                     <p class="text-base font-normal text-gray-500 dark:text-gray-400">
                         Please check your email for a verification link.
                     </p>

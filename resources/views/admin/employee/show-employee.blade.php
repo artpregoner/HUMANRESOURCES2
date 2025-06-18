@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('title', 'Employee Details')
 @section('header', 'Employee')
 @section('active-header', 'Employee Details')
@@ -8,120 +9,163 @@
 
 @section('content')
     @include('components.alert.alert')
-    <div class="card-header d-flex">
-        <h4 class="card-header-title">Show Employee</h4>
-        <div class="toolbar ml-auto">
-            <a href="{{ route('admin.index.employee') }}" class="btn btn-primary btn-sm ">Employee List</a>
+
+    <!-- Header Section -->
+    <div class="flex justify-between items-center mb-6">
+        <h4 class="text-xl font-semibold text-gray-800">Show Employee</h4>
+        <div class="ml-auto">
+            <a href="{{ route('admin.index.employee') }}" class="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Employee List</a>
         </div>
     </div>
-    <div class="card-body border-top"></div>
-    <div class="row">
-        <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12 col-12">
-            <!-- ============================================================== -->
-            <!-- card profile -->
-            <!-- ============================================================== -->
-            <div class="card">
-                <div class="card-body">
-                    <div class="user-avatar text-center d-block">
-                        <img src="{{ asset('template/assets/images/avatar-1.jpg')}}" alt="User Avatar" class="rounded-circle user-avatar-xxl">
-                    </div>
+
+    <div class="border-t border-gray-200 mb-6"></div>
+
+    <div class="grid grid-cols-12 gap-6">
+        <!-- Profile Card Section -->
+        <div class="col-span-12 xl:col-span-3 lg:col-span-3 md:col-span-5">
+            <!-- Profile Card -->
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                <!-- Avatar Section -->
+                <div class="p-6">
                     <div class="text-center">
-                        <!-- Display the employee's first and last name -->
-                        <h2 class="font-24 mb-0">{{ $employeeRequest->first_name ?? 'Not Assigned' }} {{ $employeeRequest->last_name ?? 'Not Assigned' }}</h2>
+                        <img src="{{ asset('template/assets/images/avatar-1.jpg')}}" alt="User Avatar" class="w-24 h-24 rounded-full mx-auto object-cover">
+                    </div>
+                    <div class="text-center mt-4">
+                        <h2 class="text-xl font-semibold text-gray-900">{{ $employeeRequest->first_name ?? 'Not Assigned' }} {{ $employeeRequest->last_name ?? 'Not Assigned' }}</h2>
                     </div>
                 </div>
-                <div class="card-body border-top">
-                    <h3 class="font-16">Department & Desired Position</h3>
-                    <div class="">
-                        <ul class="mb-0 list-unstyled">
-                            <li class="mb-2"><i class="fas fa-building mr-2"></i>{{ $employeeRequest->department ?? 'Not Assigned' }}</li>
-                            <li class="mb-2"><i class="fas fa-male mr-2"></i>{{ $employeeRequest->role ?? 'Not Assigned' }}</li>
-                        </ul>
-                    </div>
+
+                <!-- Department & Position Section -->
+                <div class="px-6 py-4 border-t border-gray-200">
+                    <h3 class="text-base font-medium text-gray-900 mb-3">Department & Desired Position</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-building w-4 h-4 mr-3 text-gray-400"></i>
+                            {{ $employeeRequest->department ?? 'Not Assigned' }}
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-male w-4 h-4 mr-3 text-gray-400"></i>
+                            {{ $employeeRequest->role ?? 'Not Assigned' }}
+                        </li>
+                    </ul>
                 </div>
-                <div class="card-body border-top">
-                    <h3 class="font-16">Contact Information</h3>
-                    <div class="">
-                        <ul class="list-unstyled mb-0">
-                            <!-- Display employee email and phone number -->
-                            <li class="mb-2"><i class="fas fa-fw fa-envelope mr-2"></i>{{ $employeeRequest->email ?? 'Not Assigned' }}</li>
-                            <li class="mb-2"><i class="fas fa-fw fa-phone mr-2"></i>{{ $employeeRequest->phone ?? 'Not Assigned' }}</li>
-                            <li class="mb-2"><i class="fas fa-fw fa-address-card mr-2"></i>{{ $employeeRequest->address ?? 'Not Assigned' }}</li>
-                            <li class="mb-2"><i class="fas fa-fw fa-link mr-2"></i>{{ $employeeRequest->social_media ?? 'Not Assigned' }}</li>
-                            <li class="mb-2"><i class="fas fa-fw fa-birthday-cake mr-2"></i>{{ $employeeRequest->birthdate ?? 'Not Assigned' }}</li>
-                        </ul>
-                    </div>
+
+                <!-- Contact Information Section -->
+                <div class="px-6 py-4 border-t border-gray-200">
+                    <h3 class="text-base font-medium text-gray-900 mb-3">Contact Information</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-envelope w-4 h-4 mr-3 text-gray-400"></i>
+                            {{ $employeeRequest->email ?? 'Not Assigned' }}
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-phone w-4 h-4 mr-3 text-gray-400"></i>
+                            {{ $employeeRequest->phone ?? 'Not Assigned' }}
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-address-card w-4 h-4 mr-3 text-gray-400"></i>
+                            {{ $employeeRequest->address ?? 'Not Assigned' }}
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-link w-4 h-4 mr-3 text-gray-400"></i>
+                            {{ $employeeRequest->social_media ?? 'Not Assigned' }}
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-birthday-cake w-4 h-4 mr-3 text-gray-400"></i>
+                            {{ $employeeRequest->birthdate ?? 'Not Assigned' }}
+                        </li>
+                    </ul>
                 </div>
-                <div class="card-body border-top">
-                    <h3 class="font-16">Emergency Contact</h3>
-                    <div class="">
-                        <ul class="mb-0 list-unstyled">
-                            <li class="mb-2"><i class="fas fa-fw fa-user mr-2"></i>{{ $employeeRequest->emergency_name ?? 'Not Assigned' }}</li>
-                            <li class="mb-2"><i class="fas fa-fw fa-phone mr-2"></i>{{ $employeeRequest->emergency_phone ?? 'Not Assigned' }}</li>
-                            <li class="mb-2"><i class="fas fa-fw fa-address-card mr-2"></i>{{ $employeeRequest->emergency_address ?? 'Not Assigned' }}</li>
-                            <li class="mb-2"><i class="fas fa-fw fa-users mr-2"></i>{{ $employeeRequest->emergency_relationship ?? 'Not Assigned' }}</li>
-                        </ul>
-                    </div>
+
+                <!-- Emergency Contact Section -->
+                <div class="px-6 py-4 border-t border-gray-200">
+                    <h3 class="text-base font-medium text-gray-900 mb-3">Emergency Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-user w-4 h-4 mr-3 text-gray-400"></i>
+                            {{ $employeeRequest->emergency_name ?? 'Not Assigned' }}
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-phone w-4 h-4 mr-3 text-gray-400"></i>
+                            {{ $employeeRequest->emergency_phone ?? 'Not Assigned' }}
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-address-card w-4 h-4 mr-3 text-gray-400"></i>
+                            {{ $employeeRequest->emergency_address ?? 'Not Assigned' }}
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-users w-4 h-4 mr-3 text-gray-400"></i>
+                            {{ $employeeRequest->emergency_relationship ?? 'Not Assigned' }}
+                        </li>
+                    </ul>
                 </div>
-                <div class="card-body border-top">
-                    <h3 class="font-16">Category</h3>
-                    <div>
-                        <a href="#" class="badge badge-light mr-1">{{ $employeeRequest->gender ?? 'Not Assigned' }}</a>
-                        <a href="#" class="badge badge-light mr-1">{{ $employeeRequest->civil_status ?? 'Not Assigned' }}</a>
+
+                <!-- Category Section -->
+                <div class="px-6 py-4 border-t border-gray-200">
+                    <h3 class="text-base font-medium text-gray-900 mb-3">Category</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="inline-block px-2 py-1 bg-gray-100 text-gray-800 text-xs font-medium rounded">{{ $employeeRequest->gender ?? 'Not Assigned' }}</span>
+                        <span class="inline-block px-2 py-1 bg-gray-100 text-gray-800 text-xs font-medium rounded">{{ $employeeRequest->civil_status ?? 'Not Assigned' }}</span>
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- end card profile -->
-            <!-- ============================================================== -->
         </div>
 
-        <!-- ============================================================== -->
-        <!-- Create User Form -->
-        <!-- ============================================================== -->
-        <div class="col-xl-9 col-lg-9 col-md-7 col-sm-12 col-12">
-                @if ($userExists)
-                <div class="alert alert-warning">
-                    This employee is already registered as a users, you can update his user role.
+        <!-- Create User Form Section -->
+        <div class="col-span-12 xl:col-span-9 lg:col-span-9 md:col-span-7">
+            @if ($userExists)
+                <div class="bg-yellow-50 border border-yellow-200 text-yellow-800 px-4 py-3 rounded-md mb-4">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm">This employee is already registered as a user, you can update their user role.</p>
+                        </div>
+                    </div>
                 </div>
             @endif
-            <div class="card">
-                <div class="card-header d-flex">
-                    <h3>Create User from Employee Data</h3>
+
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <h3 class="text-lg font-medium text-gray-900">Create User from Employee Data</h3>
                 </div>
-                <div class="card-body">
-                    <form method="POST" action="{{ route('admin.create.user') }}">
+                <div class="p-6">
+                    <form method="POST" action="{{ route('admin.create.user') }}" class="space-y-6">
                         @csrf
-                        <div class="form-group">
-                            <label for="role">Role</label>
-                            <select name="role" id="role" class="form-control">
+
+                        <!-- Role Field -->
+                        <div>
+                            <label for="role" class="block text-sm font-medium text-gray-700 mb-2">Role</label>
+                            <select name="role" id="role" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 <option value="employee" {{ old('role', $employeeRequest->role) == 'employee' ? 'selected' : '' }}>Employee</option>
                                 <option value="hr" {{ old('role', $employeeRequest->role) == 'hr' ? 'selected' : '' }}>HR</option>
                                 <option value="admin" {{ old('role', $employeeRequest->role) == 'admin' ? 'selected' : '' }}>Admin</option>
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="name">Display Name</label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Enter name" value="{{ old('name', $employeeRequest->first_name . ' ' . $employeeRequest->last_name) }}">
+                        <!-- Display Name Field -->
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Display Name</label>
+                            <input type="text" name="name" id="name" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter name" value="{{ old('name', $employeeRequest->first_name . ' ' . $employeeRequest->last_name) }}">
                         </div>
 
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter email" value="{{ old('email', $employeeRequest->email) }}">
+                        <!-- Email Field -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" name="email" id="email" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter email" value="{{ old('email', $employeeRequest->email) }}">
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Create User</button>
-                        {{-- @if (!$userExists)
-                            <a href="{{ route('admin.create.user', ['employeeId' => $employeeRequest->id]) }}" class="btn btn-success">
-                                Create User
-                            </a>
-                        @endif --}}
+                        <!-- Submit Button -->
+                        <div class="flex justify-start">
+                            <button type="submit" class="px-6 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Create User</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
     </div>
 @endsection
 

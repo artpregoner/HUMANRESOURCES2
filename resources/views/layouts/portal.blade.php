@@ -42,7 +42,7 @@
     @adminOrHrOremployee
         @include('layouts.portal-layouts.sidebar')
         @include('layouts.topbar')
-        <flux:main class="p-3 bg-gray-200 dark:bg-gray-900 sm:p-5">
+        <flux:main class="p-3 sm:p-5">
             @yield('content')<!--Content of dashboard-->
         </flux:main>
     @endadminOrHrOremployee

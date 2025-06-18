@@ -48,7 +48,7 @@
         @include('layouts.admin-layouts.sidebar') <!--Admin-->
 
         @include('layouts.topbar')
-        <flux:main class="p-3 bg-gray-200 dark:bg-gray-900 sm:p-5">
+        <flux:main class="p-3 sm:p-5">
             <div class="max-w-screen-xl p-0 mx-auto"> <!-- Removed px-4 lg:px-12 -->
                 @yield('content')<!--Content of dashboard-->
             </div>

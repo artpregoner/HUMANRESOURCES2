@@ -26,6 +26,11 @@
             :href="route('admin.helpdesk.index')"
             :current="request()->routeIs('helpdesk') || request()->is('helpdesk/*')" wire:navigate>Tickets
         </flux:navlist.item>
+
+        <flux:navlist.item icon="user" :href="route('admin.index.employee')"
+            :current="request()->is('self-service/employee/*')"
+            wire:navigate>EmployeeList
+        </flux:navlist.item>
     </flux:navlist>
 
     <flux:spacer />

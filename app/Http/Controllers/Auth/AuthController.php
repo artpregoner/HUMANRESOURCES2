@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,6 +46,23 @@ class AuthController extends Controller
         // If authentication fails, redirect back with an error message
         return redirect()->route('login')->with('error', 'The provided credentials do not match our records');
     }
+
+    public function verifyNotice (){
+        return view ('auth.verify-email');
+    }
+
+    public function verifyEmail (EmailVerificationRequest $request) {
+        $request->fulfill();
+
+        return redirect('/dashboard')->with('message', 'Email verified successfully!');
+    }
+
+    public function resendVerification (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+
+        return back()->with('message', 'Verification link sent!');
+    }
+
     // Handle logout
     public function logout(Request $request)
     {

@@ -4,12 +4,12 @@
     </flux:modal.trigger>
 
     <flux:modal name="categoryModal" class="w-full max-w-md p-4 md:max-w-xl lg:max-w-2xl xl:max-w-4xl">
-        <div class="relative shadow-md sm:rounded-lg">
+        <div class="relative">
             @include('components.alert.alert')
             <!-- Make the table container horizontally scrollable on small screens -->
             <div class="max-h-[calc(100vh-100px)] overflow-x-auto rounded-2xl">
-                <table class="w-full min-w-[600px] text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <table class="w-full min-w-[600px] text-sm text-left rtl:text-right">
+                    <thead class="text-xs uppercase">
                         <tr>
                             <th scope="col" class="px-6 py-3">Name</th>
                             <th scope="col" class="px-6 py-3">Description</th>
@@ -20,7 +20,7 @@
                         @foreach ($categories as $category )
                             <tr class="bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                                 wire:key="{{ $category->id }}">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
                                     {{$category->category_name}}
                                 </th>
                                 <td class="px-6 py-4">{{$category->description}}</td>

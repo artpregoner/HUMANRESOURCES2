@@ -18,7 +18,7 @@
                     </thead>
                     <tbody>
                         @foreach ($categories as $category)
-                            <tr wire:key="{{ $category->id }}">
+                            <tr class="bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" wire:key="{{ $category->id }}">
                                 <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
                                     {{$category->name}}
                                 </th>

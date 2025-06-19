@@ -3,18 +3,18 @@
     @include('components.alert.alert')
     <!-- Start coding here -->
 
-    <div class="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
-        <div class="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
+    <div class="relative overflow-hidden bg-white shadow-md dark:bg-zinc-800 sm:rounded-lg">
+        <div class="flex flex-col items-center justify-between p-4 space-y-3 border-b md:flex-row md:space-y-0 md:space-x-4 border-zinc-200 bg-zinc-50 dark:bg-zinc-700 dark:border-zinc-600">
             <div class="w-full md:w-1/2">
                 <form class="flex items-center">
                     <label for="simple-search" class="sr-only">Search</label>
                     <div class="relative w-full">
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <svg aria-hidden="true" class="w-5 h-5 text-zinc-500 dark:text-zinc-400" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                             </svg>
                         </div>
-                        <input type="text" wire:model.live.debounce.500ms="search" placeholder="Search tickets..." class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search" required="">
+                        <input type="text" wire:model.live.debounce.500ms="search" placeholder="Search tickets..." class="block w-full p-2 pl-10 text-sm border rounded-lg text-zinc-900 border-zinc-300 bg-zinc-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search" required="">
                     </div>
                 </form>
             </div>
@@ -22,14 +22,14 @@
                 <flux:button variant="primary" size="sm" :href="route('portal.helpdesk.create')">Create Ticket</flux:button>
                 <div class="flex items-center w-full space-x-3 md:w-auto">
                     <div>
-                        <span class="hidden ml-2 text-sm text-gray-700 sm:inline dark:text-gray-300">show</span>
+                        <span class="hidden ml-2 text-sm text-zinc-700 sm:inline dark:text-zinc-300">show</span>
                         <select wire:model.live="perPage" id="per_page"
-                            class="bg-white border sm border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                            class="bg-white border sm border-zinc-300 focus:outline-none hover:bg-zinc-100 focus:ring-4 focus:ring-zinc-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-zinc-800 dark:text-white dark:border-zinc-600 dark:hover:bg-zinc-700 dark:hover:border-zinc-600 dark:focus:ring-zinc-700">
                             @foreach ([10, 15, 25, 50, 100] as $size)
                                 <option value="{{ $size }}">{{ $size }}</option>
                             @endforeach
                         </select>
-                        <span class="hidden ml-2 text-sm text-gray-700 sm:inline dark:text-gray-300">entries</span>
+                        <span class="hidden ml-2 text-sm text-zinc-700 sm:inline dark:text-zinc-300">entries</span>
                     </div>
                     <flux:dropdown>
                         <flux:button icon:leading="filter" size="sm">Choose Status</flux:button>
@@ -49,68 +49,68 @@
         </div>
         <!-- Loading State - Show when searching or changing per page -->
         <div wire:loading.block wire:target="search, perPage, statusFilter">
-            <div role="status" class="max-w-full p-4 space-y-4 border border-gray-300 divide-y divide-gray-300 rounded-sm shadow-sm animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
+            <div role="status" class="max-w-full p-4 space-y-4 border divide-y rounded-sm shadow-sm border-zinc-300 divide-zinc-300 animate-pulse dark:divide-zinc-700 md:p-6 dark:border-zinc-700">
                 <div class="flex items-center justify-between">
                     <div>
-                        <div class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-800"></div>
+                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
+                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
                     </div>
-                    <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+                    <div class="h-2.5 bg-zinc-300 rounded-full dark:bg-zinc-700 w-12"></div>
                 </div>
                 <div class="flex items-center justify-between pt-4">
                     <div>
-                        <div class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-800"></div>
+                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
+                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
                     </div>
-                    <div class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-700 w-12"></div>
+                    <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-700 w-12"></div>
                 </div>
                 <div class="flex items-center justify-between pt-4">
                     <div>
-                        <div class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-800"></div>
+                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
+                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
                     </div>
-                    <div class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-700 w-12"></div>
+                    <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-700 w-12"></div>
                 </div>
                 <div class="flex items-center justify-between pt-4">
                     <div>
-                        <div class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-800"></div>
+                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
+                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
                     </div>
-                    <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+                    <div class="h-2.5 bg-zinc-300 rounded-full dark:bg-zinc-700 w-12"></div>
                 </div>
                 <div class="flex items-center justify-between pt-4">
                     <div>
-                        <div class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-800"></div>
+                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
+                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
                     </div>
-                    <div class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-700 w-12"></div>
+                    <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-700 w-12"></div>
                 </div>
                 <div class="flex items-center justify-between pt-4">
                     <div>
-                        <div class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-800"></div>
+                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
+                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
                     </div>
-                    <div class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-700 w-12"></div>
+                    <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-700 w-12"></div>
                 </div>
                 <div class="flex items-center justify-between pt-4">
                     <div>
-                        <div class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-800"></div>
+                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
+                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
                     </div>
-                    <div class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-700 w-12"></div>
+                    <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-700 w-12"></div>
                 </div>
                 <div class="flex items-center justify-between pt-4">
                     <div>
-                        <div class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-800"></div>
+                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
+                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
                     </div>
-                    <div class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-700 w-12"></div>
+                    <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-700 w-12"></div>
                 </div>
             </div>
         </div>
         <div class="overflow-x-auto" wire:loading.remove wire:target="search, perPage, statusFilter">
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <table class="w-full text-sm text-left text-zinc-500 dark:text-zinc-400">
+                <thead class="text-xs uppercase text-zinc-700 bg-zinc-50 dark:bg-zinc-700 dark:text-zinc-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">ID</th>
                         <th scope="col" class="px-6 py-3">Subject</th>
@@ -122,8 +122,8 @@
                 </thead>
                 <tbody>
                     @forelse ($tickets as $ticket)
-                    <tr class="dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <tr class="dark:border-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-700">
+                        <th scope="row" class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
                             {{$ticket->id}}
                         </th>
                         <td class="px-6 py-4">
@@ -178,8 +178,8 @@
                         </td>
                     </tr>
                     @empty
-                    <tr class=" dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <th colspan="6" class="px-4 py-3 font-medium text-center text-gray-900 whitespace-nowrap dark:text-white">No data available</th>
+                    <tr class=" dark:border-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-700">
+                        <th colspan="6" class="px-4 py-3 font-medium text-center text-zinc-900 whitespace-nowrap dark:text-white">No data available</th>
                     </tr>
                     @endforelse
                 </tbody>

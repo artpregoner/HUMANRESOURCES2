@@ -54,9 +54,6 @@
             <!-- Card -->
             <div class="w-full max-w-md bg-white rounded-lg shadow md:mt-0 xl:p-0 dark:bg-gray-800">
                 <div class="w-full p-6 sm:p-8">
-                    @if (session('message'))
-                        <div class="alert alert-success">{{ session('message') }}</div>
-                    @endif
                     <div class="flex space-x-4">
                         <flux:dropdown position="top" align="start" class="max-lg:hidden">
                             @if (Auth::user()->profile_photo_path)
@@ -83,19 +80,39 @@
                         </flux:dropdown>
                     </div>
 
-                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">
-                        Please check your email for a verification link.
-                    </p>
-                    <form class="mt-8 space-y-6" action="{{route ('verification.send')}}" method="post">
+                    @if (session('message'))
+                        <flux:callout variant="secondary" icon="information-circle" heading="{{ session('message') }}" />
+                    @endif
+                    <form class="mt-2 space-y-4" action="{{route ('verification.send')}}" method="post">
                         @csrf
-                        {{-- <div>
-                            <label for="profile-lock" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PIN</label>
-                            <input type="text" name="profile-lock" id="profile-lock" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="" required>
-                        </div> --}}
+                        @if (Auth::user()->hasVerifiedEmail())
+                            <flux:callout variant="success" icon="check-circle" heading="Email Already Verified." />
+                                @php
+                                    $role = Auth::user()->role;
+                                    $redirectRoute = match ($role){
+                                        'admin', 'hr' => 'admin.index',
+                                        'employee' => 'home',
+                                        default => null,
+                                    }
+                                @endphp
+                                @if ($redirectRoute)
+                                    <flux:button
+                                        type="button"
+                                        variant="primary"
+                                        color="zinc"
+                                        :href="route($redirectRoute)">
+                                        Dashboard
+                                    </flux:button>
+                                    @else
+                                    <p class="text-red-500">Invalid user role. Please contact support.</p>
+                                @endif
+                        @else
+                            <flux:callout variant="warning" icon="exclamation-circle" heading="Please check your email for a verification link." />
+                            <flux:button type="submit" variant="primary" color="zinc">
+                                Resend Verification Email
+                            </flux:button>
+                        @endif
 
-                        <button type="submit" class="inline-flex items-center justify-center w-full px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                            Resend Verification Email
-                        </button>
                     </form>
                 </div>
             </div>

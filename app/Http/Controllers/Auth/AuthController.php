@@ -54,7 +54,13 @@ class AuthController extends Controller
     public function verifyEmail (EmailVerificationRequest $request) {
         $request->fulfill();
 
-        return redirect('/dashboard')->with('message', 'Email verified successfully!');
+        $user = Auth::user();
+        if ($user->role === 'employee') {
+            return redirect()->route('home')->with('message', 'Email verified successfully!');
+        } elseif ($user->role === 'admin') {
+            return redirect()->route('admin.index')->with('message', 'Email verified successfully!');
+        }
+        // return redirect('/dashboard')->with('message', 'Email verified successfully!');
     }
 
     public function resendVerification (Request $request) {

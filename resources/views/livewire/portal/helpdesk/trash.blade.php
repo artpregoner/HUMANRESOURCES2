@@ -1,9 +1,8 @@
 
 <div class="relative overflow-x-auto sm:rounded-lg">
     @include('components.alert.alert')
-    <!-- Start coding here -->
-    <div class="relative overflow-hidden bg-white shadow-md dark:bg-zinc-800 sm:rounded-lg">
-        <div class="flex flex-col items-center justify-between p-4 space-y-3 border-b md:flex-row md:space-y-0 md:space-x-4 border-zinc-200 bg-zinc-50 dark:bg-zinc-700 dark:border-zinc-600">
+    <x-data-table>
+        <x-slot:header>
             <div class="w-full md:w-1/2">
                 <form class="flex items-center">
                     <label for="simple-search" class="sr-only">Search</label>
@@ -45,189 +44,124 @@
                     </flux:dropdown>
                 </div>
             </div>
-        </div>
-        <!-- Loading State - Show when searching or changing per page -->
-        <div wire:loading.block wire:target="perPage, statusFilter">
-            <div role="status" class="max-w-full p-4 space-y-4 border divide-y rounded-sm shadow-sm border-zinc-300 divide-zinc-300 animate-pulse dark:divide-zinc-700 md:p-6 dark:border-zinc-700">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
-                    </div>
-                    <div class="h-2.5 bg-zinc-300 rounded-full dark:bg-zinc-700 w-12"></div>
-                </div>
-                <div class="flex items-center justify-between pt-4">
-                    <div>
-                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
-                    </div>
-                    <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-700 w-12"></div>
-                </div>
-                <div class="flex items-center justify-between pt-4">
-                    <div>
-                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
-                    </div>
-                    <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-700 w-12"></div>
-                </div>
-                <div class="flex items-center justify-between pt-4">
-                    <div>
-                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
-                    </div>
-                    <div class="h-2.5 bg-zinc-300 rounded-full dark:bg-zinc-700 w-12"></div>
-                </div>
-                <div class="flex items-center justify-between pt-4">
-                    <div>
-                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
-                    </div>
-                    <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-700 w-12"></div>
-                </div>
-                <div class="flex items-center justify-between pt-4">
-                    <div>
-                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
-                    </div>
-                    <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-700 w-12"></div>
-                </div>
-                <div class="flex items-center justify-between pt-4">
-                    <div>
-                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
-                    </div>
-                    <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-700 w-12"></div>
-                </div>
-                <div class="flex items-center justify-between pt-4">
-                    <div>
-                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
-                    </div>
-                    <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-700 w-12"></div>
-                </div>
-            </div>
-        </div>
+        </x-slot:header>
+        <x-slot:head>
+            <tr>
+                <th scope="col" class="px-6 py-3">ID</th>
+                <th scope="col" class="px-6 py-3">Subject</th>
+                <th scope="col" class="px-6 py-3">Deleted at</th>
+                <th scope="col" class="px-6 py-3">Deleted by</th>
+                <th scope="col" class="px-6 py-3">Actions</th>
+            </tr>
+        </x-slot:head>
+                @forelse ($tickets as $ticket)
+                <tr class=" dark:border-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-700">
+                    <th scope="row" class="px-6 py-6 font-medium text-zinc-900 whitespace-nowrap dark:text-white">{{ $ticket->id }}</th>
+                    <td class="px-6 py-4">
+                        {{ Str::limit($ticket->title, 50, '...') }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ $ticket->deleted_at->format('d/m/Y H:i A') }}
+                    </td>
+                    <td class="px-6 py-4">
+                        @if ($ticket->deleted_by)
+                            @php
+                                $deletedUser = \App\Models\User::find($ticket->deleted_by);
+                            @endphp
 
-        <div class="overflow-x-auto" wire:loading.remove wire:target="perPage, statusFilter">
-            <table class="w-full text-sm text-left text-zinc-500 dark:text-zinc-400">
-                <thead class="text-xs uppercase text-zinc-700 bg-zinc-50 dark:bg-zinc-700 dark:text-zinc-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">ID</th>
-                        <th scope="col" class="px-6 py-3">Subject</th>
-                        <th scope="col" class="px-6 py-3">Deleted at</th>
-                        <th scope="col" class="px-6 py-3">Deleted by</th>
-                        <th scope="col" class="px-6 py-3">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($tickets as $ticket)
-                    <tr class=" dark:border-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-700">
-                        <th scope="row" class="px-6 py-6 font-medium text-zinc-900 whitespace-nowrap dark:text-white">{{ $ticket->id }}</th>
-                        <td class="px-6 py-4">
-                            {{ Str::limit($ticket->title, 50, '...') }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $ticket->deleted_at->format('d/m/Y H:i A') }}
-                        </td>
-                        <td class="px-6 py-4">
-                            @if ($ticket->deleted_by)
-                                @php
-                                    $deletedUser = \App\Models\User::find($ticket->deleted_by);
-                                @endphp
-
-                                @if ($deletedUser)
-                                    @if ($deletedUser->role === 'hr')
-                                        {{ $deletedUser->name }} (HR)
-                                    @elseif ($deletedUser->role === 'admin')
-                                        {{ $deletedUser->name }} (Admin)
-                                    @elseif ($deletedUser->id === Auth::id())
-                                        You
-                                    @else
-                                        {{ $deletedUser->name }} (Unknown Role)
-                                    @endif
+                            @if ($deletedUser)
+                                @if ($deletedUser->role === 'hr')
+                                    {{ $deletedUser->name }} (HR)
+                                @elseif ($deletedUser->role === 'admin')
+                                    {{ $deletedUser->name }} (Admin)
+                                @elseif ($deletedUser->id === Auth::id())
+                                    You
                                 @else
-                                    Unknown User
+                                    {{ $deletedUser->name }} (Unknown Role)
                                 @endif
                             @else
-                                No deletion recorded
+                                Unknown User
                             @endif
-                        </td>
-                        <td class="flex gap-2 px-6 py-4">
-                            {{-- force delete ticket button --}}
-                                <flux:modal.trigger name="delete-ticket-{{ $ticket->id }}">
-                                    <flux:button variant="danger" icon="trash"></flux:button>
-                                </flux:modal.trigger>
+                        @else
+                            No deletion recorded
+                        @endif
+                    </td>
+                    <td class="flex gap-2 px-6 py-4">
+                        {{-- force delete ticket button --}}
+                            <flux:modal.trigger name="delete-ticket-{{ $ticket->id }}">
+                                <flux:button variant="danger" icon="trash"></flux:button>
+                            </flux:modal.trigger>
 
-                            {{-- restore ticket  button --}}
-                                <flux:modal.trigger name="restore-ticket-{{ $ticket->id }}">
-                                    <flux:button variant="primary">Restore</flux:button>
-                                </flux:modal.trigger>
+                        {{-- restore ticket  button --}}
+                            <flux:modal.trigger name="restore-ticket-{{ $ticket->id }}">
+                                <flux:button variant="primary">Restore</flux:button>
+                            </flux:modal.trigger>
 
-                            {{-- force delete modal content --}}
-                            <flux:modal name="delete-ticket-{{ $ticket->id }}" class="min-w-[22rem]">
-                                <div class="space-y-6">
-                                    <div>
-                                        <flux:heading size="lg">Delete Ticket?</flux:heading>
+                        {{-- force delete modal content --}}
+                        <flux:modal name="delete-ticket-{{ $ticket->id }}" class="min-w-[22rem]">
+                            <div class="space-y-6">
+                                <div>
+                                    <flux:heading size="lg">Delete Ticket?</flux:heading>
 
-                                        <flux:text class="mt-2">
-                                            <p>You're about to permanently delete this claim.</p>
-                                            <p>This action cannot be undone.</p>
-                                        </flux:text>
-                                    </div>
-
-                                    <div class="flex gap-2">
-                                        <flux:spacer />
-
-                                        <flux:modal.close>
-                                            <flux:button variant="ghost">Cancel</flux:button>
-                                        </flux:modal.close>
-                                        <form action="{{ route('portal.helpdesk.forceDelete', $ticket->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <flux:button type="submit" variant="danger" onclick="\$dispatch('close-modal', 'delete-ticket-{{ $ticket->id }}')">Delete Ticket</flux:button>
-                                        </form>
-                                    </div>
+                                    <flux:text class="mt-2">
+                                        <p>You're about to permanently delete this claim.</p>
+                                        <p>This action cannot be undone.</p>
+                                    </flux:text>
                                 </div>
-                            </flux:modal>
 
-                            {{-- restore ticket modal content  --}}
-                            <flux:modal name="restore-ticket-{{ $ticket->id }}" class="min-w-[22rem]">
-                                <div class="space-y-6">
-                                    <div>
-                                        <flux:heading size="lg">Restore Ticket?</flux:heading>
+                                <div class="flex gap-2">
+                                    <flux:spacer />
 
-                                        <flux:text class="mt-2">
-                                            <p>You're about to restore this claim.</p>
-                                            <p>This action will reactivate the claim.</p>
-                                        </flux:text>
-                                    </div>
-
-                                    <div class="flex gap-2">
-                                        <flux:spacer />
-
-                                        <flux:modal.close>
-                                            <flux:button variant="ghost">Cancel</flux:button>
-                                        </flux:modal.close>
-
-                                        <form action="{{ route('portal.helpdesk.restore', $ticket->id) }}" method="POST">
-                                            @csrf
-                                            <flux:button type="submit" variant="primary" onclick="\$dispatch('close-modal', 'restore-ticket-{{ $ticket->id }}')">Restore Ticket</flux:button>
-                                        </form>
-                                    </div>
+                                    <flux:modal.close>
+                                        <flux:button variant="ghost">Cancel</flux:button>
+                                    </flux:modal.close>
+                                    <form action="{{ route('portal.helpdesk.forceDelete', $ticket->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <flux:button type="submit" variant="danger" onclick="\$dispatch('close-modal', 'delete-ticket-{{ $ticket->id }}')">Delete Ticket</flux:button>
+                                    </form>
                                 </div>
-                            </flux:modal>
-                        </td>
-                    </tr>
-                    @empty
-                    <tr class=" dark:border-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-700">
-                        <th colspan="6" class="px-6 py-4 font-medium text-center text-zinc-900 whitespace-nowrap dark:text-white">No data available</th>
-                    </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-        <div>
-            {{ $tickets->links() }}
-        </div>
-    </div>
+                            </div>
+                        </flux:modal>
+
+                        {{-- restore ticket modal content  --}}
+                        <flux:modal name="restore-ticket-{{ $ticket->id }}" class="min-w-[22rem]">
+                            <div class="space-y-6">
+                                <div>
+                                    <flux:heading size="lg">Restore Ticket?</flux:heading>
+
+                                    <flux:text class="mt-2">
+                                        <p>You're about to restore this claim.</p>
+                                        <p>This action will reactivate the claim.</p>
+                                    </flux:text>
+                                </div>
+
+                                <div class="flex gap-2">
+                                    <flux:spacer />
+
+                                    <flux:modal.close>
+                                        <flux:button variant="ghost">Cancel</flux:button>
+                                    </flux:modal.close>
+
+                                    <form action="{{ route('portal.helpdesk.restore', $ticket->id) }}" method="POST">
+                                        @csrf
+                                        <flux:button type="submit" variant="primary" onclick="\$dispatch('close-modal', 'restore-ticket-{{ $ticket->id }}')">Restore Ticket</flux:button>
+                                    </form>
+                                </div>
+                            </div>
+                        </flux:modal>
+                    </td>
+                </tr>
+                @empty
+                <tr class=" dark:border-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-700">
+                    <th colspan="6" class="px-6 py-4 font-medium text-center text-zinc-900 whitespace-nowrap dark:text-white">No data available</th>
+                </tr>
+                @endforelse
+        <x-slot:footer>
+            <div>
+                {{ $tickets->links() }}
+            </div>
+        </x-slot:footer>
+    </x-data-table>
+
 </div>

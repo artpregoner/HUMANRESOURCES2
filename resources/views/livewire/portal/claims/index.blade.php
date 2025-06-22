@@ -1,8 +1,8 @@
 <div class="relative overflow-x-auto sm:rounded-lg">
     @include('components.alert.alert')
-    <!-- Start coding here -->
-    <div class="relative overflow-hidden bg-white shadow-md dark:bg-zinc-800 sm:rounded-lg">
-        <div class="flex flex-col items-center justify-between p-4 space-y-3 border-b md:flex-row md:space-y-0 md:space-x-4 border-zinc-200 bg-zinc-50 dark:bg-zinc-700 dark:border-zinc-600">
+    <x-data-table>
+
+        <x-slot:header>
             <div class="w-full md:w-1/2">
                 <form class="flex items-center">
                     <label for="simple-search" class="sr-only">Search</label>
@@ -45,161 +45,99 @@
                     </flux:dropdown>
                 </div>
             </div>
-        </div>
-        <!-- Loading State - Show when searching or changing per page -->
-        <div wire:loading.block wire:target="perPage, statusFilter">
-            <div role="status" class="max-w-full p-4 space-y-4 border divide-y rounded-sm shadow-sm border-zinc-300 divide-zinc-300 animate-pulse dark:divide-zinc-700 md:p-6 dark:border-zinc-700">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
-                    </div>
-                    <div class="h-2.5 bg-zinc-300 rounded-full dark:bg-zinc-700 w-12"></div>
-                </div>
-                <div class="flex items-center justify-between pt-4">
-                    <div>
-                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
-                    </div>
-                    <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-700 w-12"></div>
-                </div>
-                <div class="flex items-center justify-between pt-4">
-                    <div>
-                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
-                    </div>
-                    <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-700 w-12"></div>
-                </div>
-                <div class="flex items-center justify-between pt-4">
-                    <div>
-                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
-                    </div>
-                    <div class="h-2.5 bg-zinc-300 rounded-full dark:bg-zinc-700 w-12"></div>
-                </div>
-                <div class="flex items-center justify-between pt-4">
-                    <div>
-                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
-                    </div>
-                    <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-700 w-12"></div>
-                </div>
-                <div class="flex items-center justify-between pt-4">
-                    <div>
-                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
-                    </div>
-                    <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-700 w-12"></div>
-                </div>
-                <div class="flex items-center justify-between pt-4">
-                    <div>
-                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
-                    </div>
-                    <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-700 w-12"></div>
-                </div>
-                <div class="flex items-center justify-between pt-4">
-                    <div>
-                        <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-900 w-24 mb-2.5"></div>
-                        <div class="w-32 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
-                    </div>
-                    <div class="h-2.5 bg-zinc-500 rounded-full dark:bg-zinc-700 w-12"></div>
-                </div>
-            </div>
-        </div>
-        <div class="overflow-x-auto" wire:loading.remove wire:target="perPage, statusFilter">
-            <table class="w-full text-sm text-left text-zinc-500 dark:text-zinc-400">
-                <thead class="text-xs uppercase text-zinc-700 bg-zinc-50 dark:bg-zinc-700 dark:text-zinc-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">ID</th>
-                        <th scope="col" class="px-6 py-3">Expense Date/Time</th>
-                        <th scope="col" class="px-6 py-3">Details</th>
-                        <th scope="col" class="px-6 py-3">Total Amount</th>
-                        <th scope="col" class="px-6 py-3">Status</th>
-                        <th scope="col" class="px-6 py-3">Actions</th>
+        </x-slot:header>
+        <x-slot:head>
+            <tr>
+                <th scope="col" class="px-6 py-3">ID</th>
+                <th scope="col" class="px-6 py-3">Expense Date/Time</th>
+                <th scope="col" class="px-6 py-3">Details</th>
+                <th scope="col" class="px-6 py-3">Total Amount</th>
+                <th scope="col" class="px-6 py-3">Status</th>
+                <th scope="col" class="px-6 py-3">Actions</th>
+            </tr>
+        </x-slot:head>
+
+            @forelse ($claims as $claim)
+            <tr class="dark:border-zinc-600 hover:bg-zinc-100 dark:bg-zinc-800 dark:hover:bg-zinc-900">
+                    <th scope="row" class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">{{$claim->id}}</th>
+                    <td class="px-6 py-4">
+                        {{ \Carbon\Carbon::parse($claim->expense_date)->format('M/d/Y - h:i A') }}
+                    </td>
+                    <td class="px-6 py-4">
+                        @foreach ($claim->items as $item)
+                            <p class="text-sm truncate text-zinc-500 dark:text-zinc-400">{{ $item->details }}</p>
+                        @endforeach
+                    </td>
+                    <td class="px-6 py-4">
+                        @php
+                            $currencySymbols = [
+                                'USD' => '$',
+                                'PHP' => '₱',
+                            ];
+                            $symbol = $currencySymbols[$claim->currency] ?? $claim->currency;
+                        @endphp
+                        {{ $claim->currency }} | {{ $symbol }}{{ number_format($claim->total_amount, 2) }}
+                    </td>
+                    <td class="px-6 py-4">
+                        @if ($claim->status == 'approved')
+                            <flux:badge variant="solid" color="green">Approved</flux:badge>
+                        @elseif ($claim->status == 'pending')
+                            <flux:badge variant="solid" color="sky">Pending</flux:badge>
+                        @elseif ($claim->status == 'submitted')
+                            <flux:badge variant="solid" color="zinc">Submitted</flux:badge>
+                        @elseif ($claim->status == 'unapproved')
+                            <flux:badge variant="solid" color="yellow">Unapproved</flux:badge>
+                        @elseif ($claim->status == 'rejected')
+                            <flux:badge variant="solid" color="red">Rejected</flux:badge>
+                        @endif
+                    </td>
+                    <td class="flex gap-2 px-6 py-4">
+                        <flux:modal.trigger name="delete-claim-{{ $claim->id }}">
+                            <flux:button variant="danger" icon="trash"></flux:button>
+                        </flux:modal.trigger>
+
+                        <flux:modal name="delete-claim-{{ $claim->id }}" class="min-w-[22rem]">
+                            <div class="space-y-6">
+                                <div>
+                                    <flux:heading size="lg">Archive Claim?</flux:heading>
+
+                                    <flux:text class="mt-2">
+                                        <p>You're about to archive this claim.</p>
+                                        <p>You can restore it later if needed.</p>
+                                    </flux:text>
+                                </div>
+
+                                <div class="flex gap-2">
+                                    <flux:spacer />
+
+                                    <flux:modal.close>
+                                        <flux:button variant="ghost">Cancel</flux:button>
+                                    </flux:modal.close>
+
+                                    <form action="{{ route('portal.claims.destroy', $claim->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <flux:button type="submit" variant="danger">Archive</flux:button>
+                                    </form>
+                                </div>
+                            </div>
+                        </flux:modal>
+                        <flux:tooltip content="View">
+                            <flux:button variant="primary" href="{{ route('portal.claims.show', $claim->id)}}">View</flux:button>
+                        </flux:tooltip>
+                    </td>
+                </tr>
+                    @empty
+                    <tr class=" dark:border-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-700">
+
+                        <th colspan="6" class="px-4 py-3 font-medium text-center text-zinc-900 whitespace-nowrap dark:text-white">No data available</th>
                     </tr>
-                </thead>
-                <tbody>
-                    @forelse ($claims as $claim)
-                        <tr class=" dark:border-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">{{$claim->id}}</th>
-                            <td class="px-6 py-4">
-                                {{ \Carbon\Carbon::parse($claim->expense_date)->format('M/d/Y - h:i A') }}
-                            </td>
-                            <td class="px-6 py-4">
-                                @foreach ($claim->items as $item)
-                                    <p class="text-sm truncate text-zinc-500 dark:text-zinc-400">{{ $item->details }}</p>
-                                @endforeach
-                            </td>
-                            <td class="px-6 py-4">
-                                @php
-                                    $currencySymbols = [
-                                        'USD' => '$',
-                                        'PHP' => '₱',
-                                    ];
-                                    $symbol = $currencySymbols[$claim->currency] ?? $claim->currency;
-                                @endphp
-                                {{ $claim->currency }} | {{ $symbol }}{{ number_format($claim->total_amount, 2) }}
-                            </td>
-                            <td class="px-6 py-4">
-                                @if ($claim->status == 'approved')
-                                    <flux:badge variant="solid" color="green">Approved</flux:badge>
-                                @elseif ($claim->status == 'pending')
-                                    <flux:badge variant="solid" color="sky">Pending</flux:badge>
-                                @elseif ($claim->status == 'submitted')
-                                    <flux:badge variant="solid" color="zinc">Submitted</flux:badge>
-                                @elseif ($claim->status == 'unapproved')
-                                    <flux:badge variant="solid" color="yellow">Unapproved</flux:badge>
-                                @elseif ($claim->status == 'rejected')
-                                    <flux:badge variant="solid" color="red">Rejected</flux:badge>
-                                @endif
-                            </td>
-                            <td class="flex gap-2 px-6 py-4">
-                                <flux:modal.trigger name="delete-claim-{{ $claim->id }}">
-                                    <flux:button variant="danger" icon="trash"></flux:button>
-                                </flux:modal.trigger>
+            @endforelse
 
-                                <flux:modal name="delete-claim-{{ $claim->id }}" class="min-w-[22rem]">
-                                    <div class="space-y-6">
-                                        <div>
-                                            <flux:heading size="lg">Archive Claim?</flux:heading>
-
-                                            <flux:text class="mt-2">
-                                                <p>You're about to archive this claim.</p>
-                                                <p>You can restore it later if needed.</p>
-                                            </flux:text>
-                                        </div>
-
-                                        <div class="flex gap-2">
-                                            <flux:spacer />
-
-                                            <flux:modal.close>
-                                                <flux:button variant="ghost">Cancel</flux:button>
-                                            </flux:modal.close>
-
-                                            <form action="{{ route('portal.claims.destroy', $claim->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <flux:button type="submit" variant="danger">Archive</flux:button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </flux:modal>
-                                <flux:tooltip content="View">
-                                    <flux:button variant="primary" href="{{ route('portal.claims.show', $claim->id)}}">View</flux:button>
-                                </flux:tooltip>
-                            </td>
-                        </tr>
-                            @empty
-                            <tr class=" dark:border-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-700">
-                                <th colspan="6" class="px-4 py-3 font-medium text-center text-zinc-900 whitespace-nowrap dark:text-white">No data available</th>
-                            </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-        <div>
-            {{ $claims->links() }}
-        </div>
-    </div>
+        <x-slot:footer>
+            <div>
+                {{ $claims->links() }}
+            </div>
+        </x-slot:footer>
+    </x-data-table>
 </div>

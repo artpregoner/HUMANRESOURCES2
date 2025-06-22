@@ -39,7 +39,7 @@
 
         <!-- Footer Slot: For pagination links -->
         @if (isset($footer))
-            <div class="p-4 border-t border-zinc-200 dark:border-zinc-700">
+            <div class="border-t border-zinc-200 dark:border-zinc-700">
                 {{ $footer }}
             </div>
         @endif
